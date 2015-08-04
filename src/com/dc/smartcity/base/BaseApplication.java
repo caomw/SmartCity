@@ -1,4 +1,4 @@
-package com.dc.smartcity.base;
+﻿package com.dc.smartcity.base;
 
 import java.io.File;
 
@@ -58,6 +58,7 @@ public class BaseApplication extends Application {
     }
 
     // 退出程序
+	//sassafras
     public void exit(boolean isExit) {
         if (isExit) {
             // final int apiLevel = Build.VERSION.SDK_INT;

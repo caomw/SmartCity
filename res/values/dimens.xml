@@ -1,0 +1,91 @@
+<resources>
+    <!-- actionbar的高度 -->
+    <dimen name="actionbar_height">52dp</dimen>
+
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="shadow_width">15dp</dimen>
+    <dimen name="slidingmenu_offset">60dp</dimen>
+    <dimen name="indicator_right_padding">10dp</dimen>
+    <dimen name="indicator_corner_radius">12dp</dimen>
+    <dimen name="indicator_internal_padding">4dp</dimen>
+    <dimen name="header_footer_left_right_padding">24dp</dimen>
+    <dimen name="header_footer_top_bottom_padding">12dp</dimen>
+
+
+    <!-- 用于picasso图片加载固定id -->
+    <item name="imageview_scaletype" type="id"/>
+
+    <dimen name="city_selector_height">48dp</dimen>
+    <dimen name="city_list_height">320dp</dimen>
+    <!-- 字体大小 -->
+    <dimen name="text_size_info">15sp</dimen>
+    <!-- 标题字体大小 -->
+    <dimen name="title">18sp</dimen>
+    <!-- 列表字体大小 -->
+    <dimen name="list">16sp</dimen>
+    <!-- 正文字体大小 -->
+    <dimen name="info">14sp</dimen>
+    <!-- 搜索字体大小 -->
+    <dimen name="hint">12sp</dimen>
+    <!-- 小字体 -->
+    <dimen name="xsmall">10sp</dimen>
+
+    <!-- 7.0UI规范 -->
+    <dimen name="text_size_xlarge">24sp</dimen>
+    <dimen name="text_size_title">19sp</dimen>
+    <dimen name="text_size_list">17sp</dimen>
+    <dimen name="text_size_hint">13sp</dimen>
+    <dimen name="text_size_xsmall">11sp</dimen>
+    <dimen name="text_size_small">9sp</dimen>
+
+    <!-- margin attribute -->
+    <dimen name="margin_one_px">1px</dimen>
+    <dimen name="margin_three_dp">3dp</dimen>
+    <dimen name="margin_five_dp">5dp</dimen>
+    <dimen name="margin_six_dp">6dp</dimen>
+    <dimen name="margin_eight_dp">8dp</dimen>
+    <dimen name="margin_ten_dp">10dp</dimen>
+    <dimen name="margin_fifteen_dp">15dp</dimen>
+    <dimen name="margin_twenty_dp">20dp</dimen>
+    <dimen name="margin_twenty_five_dp">25dp</dimen>
+    <dimen name="margin_thirty_dp">30dp</dimen>
+    <dimen name="margin_forty_dp">40dp</dimen>
+
+    <!-- padding attribute -->
+    <dimen name="padding_one_px">1px</dimen>
+    <dimen name="padding_three_dp">3dp</dimen>
+    <dimen name="padding_five_dp">5dp</dimen>
+    <dimen name="padding_six_dp">6dp</dimen>
+    <dimen name="padding_eight_dp">8dp</dimen>
+    <dimen name="padding_ten_dp">10dp</dimen>
+    <dimen name="padding_fifteen_dp">15dp</dimen>
+    <dimen name="padding_twenty_dp">20dp</dimen>
+    <dimen name="padding_twenty_five_dp">25dp</dimen>
+    <dimen name="padding_thirty_dp">30dp</dimen>
+    <dimen name="padding_thirty_four_dp">34dp</dimen>
+    <dimen name="padding_forty_dp">40dp</dimen>
+    <dimen name="padding_forty_four_dp">44dp</dimen>
+
+    <!-- Text Size attribute -->
+    <dimen name="text_ten_sp">10sp</dimen>
+    <dimen name="text_twelve_sp">12sp</dimen>
+    <dimen name="text_fifteen_sp">15sp</dimen>
+    <dimen name="text_eighteen_sp">18sp</dimen>
+    <dimen name="text_twenty_sp">20sp</dimen>
+    <dimen name="text_twenty_four_sp">24sp</dimen>
+    <dimen name="line_hight">0.5dip</dimen>
+    <dimen name="diven_line_hight">8.0dip</dimen>
+    <dimen name="city_choose_diven_line_hight">2.0dip</dimen>
+
+    <dimen name="min_hight">48dp</dimen>
+    <dimen name="min_width">60dp</dimen>
+
+    <dimen name="image_thumbnail_spacing">5dp</dimen>
+    <dimen name="pay_item_height">40dp</dimen>
+    <dimen name="list_indicator_height">45dp</dimen>
+
+</resources>

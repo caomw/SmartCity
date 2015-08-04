@@ -1,0 +1,89 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme">
+
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="MyTheme.NoTitleBar.CustomBackground" parent="@android:Theme.Black">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+    <style name="CustomProgressDialog" parent="@style/CustomDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- 首页 menu -->
+    <style name="tab_main_style">
+        <item name="android:background">@null</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/tab_main_text_color</item>
+        <item name="android:textSize">@dimen/text_twelve_sp</item>
+    </style>
+
+    <!-- 底部导航栏字体样式 -->
+    <style name="buttomTextSty">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@drawable/btm_text_selector</item>
+    </style>
+
+    <style name="title_style">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:shadowColor">@color/titleShadow</item>
+        <item name="android:shadowDx">1.0</item>
+        <item name="android:shadowDy">1.0</item>
+        <item name="android:shadowRadius">2.0</item>
+    </style>
+    <style name="normalList">
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:divider">@null</item>
+        <item name="android:footerDividersEnabled">false</item>
+        <item name="android:listSelector">@android:color/transparent</item>
+        <item name="android:scrollbars">@null</item>
+    </style>
+
+    <!-- 展示文字框样式 -->
+    <style name="TextButtomContainer" parent="@style/NormalText">
+        <item name="android:background">@drawable/itembottom_press</item>
+        <item name="android:padding">15dp</item>
+    </style>
+    <!-- 展示文字框样式 -->
+    <style name="TextMiddleContainer" parent="@style/NormalText">
+        <item name="android:background">@drawable/itemmiddle_press</item>
+        <item name="android:padding">15dp</item>
+    </style>
+    <style name="TextTopContainer" parent="@style/NormalText">
+        <item name="android:background">@drawable/itemtop_press</item>
+        <item name="android:padding">15dp</item>
+    </style>
+    <style name="NormalText">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+</resources>

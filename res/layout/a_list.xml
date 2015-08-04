@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bgcolor"
+    android:orientation="vertical" >
+    <include layout="@layout/head_2"/>
+
+
+        <TextView
+            android:id="@+id/one"
+            android:layout_width="match_parent"
+            android:background="@drawable/home_box1"
+            android:layout_height="40dp"
+            android:paddingLeft="20dp"
+            android:text="办理居民养老待遇审批、基本养老..."
+            android:gravity="center_vertical"
+            android:textColor="#a3a3A3"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/two"
+            android:layout_width="match_parent"
+            android:background="@drawable/home_box2"
+            android:layout_height="40dp"
+            android:paddingLeft="20dp"
+            android:text="办理征地保养人员个人账户死亡..."
+            android:gravity="center_vertical"
+            android:textColor="#a3a3A3"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/three"
+            android:layout_width="match_parent"
+            android:background="@drawable/home_box3"
+            android:layout_height="40dp"
+            android:paddingLeft="20dp"
+            android:text="办理征地保养人员死亡个人账户..."
+            android:gravity="center_vertical"
+            android:textColor="#a3a3A3"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="16sp" />
+        <TextView
+             android:id="@+id/four"
+            android:layout_width="match_parent"
+            android:background="@drawable/home_box4"
+            android:layout_height="40dp"
+            android:paddingLeft="20dp"
+            android:text="办理安置人员一次性补缴"
+            android:gravity="center_vertical"
+            android:textColor="#a3a3A3"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="16sp" />
+        <TextView
+             android:id="@+id/six"
+            android:layout_width="match_parent"
+            android:background="@drawable/home_box5"
+            android:layout_height="40dp"
+            android:paddingLeft="20dp"
+            android:text="办理企业退休人员一次性安置"
+            android:gravity="center_vertical"
+            android:textColor="#a3a3A3"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/seven"
+            android:layout_width="match_parent"
+            android:background="@drawable/home_box6"
+            android:layout_height="40dp"
+            android:paddingLeft="20dp"
+            android:text="办理企业退休人员一次性安置"
+            android:gravity="center_vertical"
+            android:textColor="#a3a3A3"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="16sp" />
+        
+        <TextView
+            android:id="@+id/eight"
+            android:layout_width="match_parent"
+            android:background="@drawable/home_box1"
+            android:layout_height="40dp"
+            android:paddingLeft="20dp"
+            android:text="办理居民养老待遇审批、基本养老..."
+            android:gravity="center_vertical"
+            android:textColor="#a3a3A3"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="16sp" />
+
+          <TextView
+               android:id="@+id/nine"
+            android:layout_width="match_parent"
+            android:background="@drawable/home_box2"
+            android:layout_height="40dp"
+            android:paddingLeft="20dp"
+            android:text="办理征地保养人员个人账户死亡..."
+            android:gravity="center_vertical"
+            android:textColor="#a3a3A3"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/ten"
+            android:layout_width="match_parent"
+            android:background="@drawable/home_box3"
+            android:layout_height="40dp"
+            android:paddingLeft="20dp"
+            android:text="办理征地保养人员死亡个人账户..."
+            android:gravity="center_vertical"
+            android:textColor="#a3a3A3"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/elev"
+            android:layout_width="match_parent"
+            android:background="@drawable/home_box4"
+            android:layout_height="40dp"
+            android:paddingLeft="20dp"
+            android:text="办理安置人员一次性补缴"
+            android:gravity="center_vertical"
+            android:textColor="#a3a3A3"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="16sp" />
+</LinearLayout>

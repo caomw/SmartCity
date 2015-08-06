@@ -578,4 +578,7 @@
     <color name="main_green">#ff50b400</color>
     <color name="c_tcolor_dark_grey">#ff7f7f7f</color>
 
+
+    <color name="griditems_bg">#ffe8ecef</color>
+    <color name="line_bg">#ffd3dde6</color>
 </resources>

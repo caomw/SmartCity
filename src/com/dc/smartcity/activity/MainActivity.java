@@ -11,7 +11,9 @@ import com.android.dcone.ut.view.annotation.event.OnRadioGroupCheckedChange;
 import com.dc.smartcity.R;
 import com.dc.smartcity.base.BaseActionBarActivity;
 import com.dc.smartcity.base.BaseFragment;
+import com.dc.smartcity.fragment.HomeAskFragment;
 import com.dc.smartcity.fragment.HomeMyFragment;
+import com.dc.smartcity.fragment.HomePageFragment;
 import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.util.Utils;
 
@@ -26,12 +28,10 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
 
     @ViewInject(R.id.rg_menu)
     public RadioGroup rg_menu;
-    @ViewInject(R.id.rb_menu_mian)
-    public RadioButton rb_menu_mian;
-    @ViewInject(R.id.rb_menu_pay)
-    public RadioButton rb_menu_pay;
-    @ViewInject(R.id.rb_menu_ball_friend)
-    public RadioButton rb_menu_ball_friend;
+    @ViewInject(R.id.rb_menu_service)
+    public RadioButton rb_menu_service;
+    @ViewInject(R.id.rb_menu_ask)
+    public RadioButton rb_menu_ask;
     @ViewInject(R.id.rb_menu_my)
     private RadioButton rb_menu_my;
     private RadioButton mCurrentButton;
@@ -41,17 +41,13 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
      */
     private BaseFragment mCurrentFragment;
     /**
-     * 首页fragment
+     * 服务超市fragment
      */
     private BaseFragment mHomeFragment;
     /**
-     * 充值fragment
+     * 有问必答fragment
      */
-    private BaseFragment mPayFragment;
-    /**
-     * fragment
-     */
-    private BaseFragment mBallfriendFragment;
+    private BaseFragment mAskFragment;
     /**
      * 我的fragment
      */
@@ -63,6 +59,7 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
         super.onCreate(savedInstanceState);
         initActionBar();
         ULog.debug("--->onCreate");
+        rb_menu_service.setChecked(true);
     }
 
     @Override
@@ -90,29 +87,25 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
         }
 
         switch (checkedId) {
-            case R.id.rb_menu_mian:
+            case R.id.rb_menu_service:
                 if (mHomeFragment != null) {
                     fragmentTransaction.show(mHomeFragment);
                 } else {
-                    mHomeFragment = new HomeMyFragment();
+                    mHomeFragment = new HomePageFragment();
                     fragmentTransaction.add(R.id.ll_fragment_container, mHomeFragment);
                 }
                 mCurrentFragment = mHomeFragment;
-                mCurrentButton = rb_menu_mian;
+                mCurrentButton = rb_menu_service;
                 break;
-            case R.id.rb_menu_pay:
-                if (mPayFragment != null) {
-                    fragmentTransaction.show(mPayFragment);
-//                    mPayFragment.initData();
+            case R.id.rb_menu_ask:
+                if (mAskFragment != null) {
+                    fragmentTransaction.show(mAskFragment);
                 } else {
-                    mPayFragment = new HomeMyFragment();
-                    fragmentTransaction.add(R.id.ll_fragment_container, mPayFragment);
+                    mAskFragment = new HomeAskFragment();
+                    fragmentTransaction.add(R.id.ll_fragment_container, mAskFragment);
                 }
-                mCurrentFragment = mPayFragment;
-                mCurrentButton = rb_menu_pay;
-                break;
-            case R.id.rb_menu_ball_friend:
-
+                mCurrentFragment = mAskFragment;
+                mCurrentButton = rb_menu_ask;
                 break;
             case R.id.rb_menu_my:
                 if (mMyFragment != null) {
@@ -153,6 +146,7 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
         if (null != mCurrentButton) {
             mCurrentButton.setChecked(true);
         }
+
     }
 
 

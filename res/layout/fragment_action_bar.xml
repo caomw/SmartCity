@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/actionbar_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@color/base_blue"
+                android:paddingLeft="@dimen/padding_eight_dp"
+                android:paddingRight="@dimen/padding_eight_dp">
+
+    <TextView
+            android:id="@+id/tv_actionbar_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/app_name"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            />
+
+    <TextView
+            android:id="@+id/tv_actionbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+
+    <TextView
+            android:id="@+id/tv_actionbar_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="31°"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+    <ImageView
+            android:id="@+id/iv_action_right"
+            android:layout_toLeftOf="@id/tv_actionbar_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher"
+            android:paddingRight="@dimen/padding_three_dp"
+            />
+</RelativeLayout>

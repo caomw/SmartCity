@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/whitesmoke" >
+                android:background="@color/whitesmoke">
 
     <RadioGroup
             android:id="@+id/rg_menu"
@@ -12,34 +12,26 @@
             android:background="@drawable/bottom_menu_bg"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingBottom="2dp" >
+            android:paddingBottom="2dp">
 
         <RadioButton
-                android:id="@+id/rb_menu_mian"
+                android:id="@+id/rb_menu_service"
                 style="@style/tab_main_style"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableTop="@drawable/icon_menu_home_bg"
-                android:text="@string/menu_main" />
+                android:text="@string/menu_main"/>
 
         <RadioButton
-                android:id="@+id/rb_menu_pay"
+                android:id="@+id/rb_menu_ask"
                 style="@style/tab_main_style"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableTop="@drawable/icon_menu_pay_bg"
-                android:text="@string/menu_pay" />
+                android:text="@string/menu_pay"/>
 
-        <RadioButton
-                android:id="@+id/rb_menu_ball_friend"
-                style="@style/tab_main_style"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/icon_menu_ballfriend_bg"
-                android:text="@string/menu_ball_friend" />
 
         <RadioButton
                 android:id="@+id/rb_menu_my"
@@ -48,24 +40,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableTop="@drawable/icon_menu_my_bg"
-                android:text="@string/menu_my" />
+                android:text="@string/menu_my"/>
     </RadioGroup>
 
-    <ScrollView
-            android:id="@+id/sv_home_container"
+    <LinearLayout
+            android:id="@+id/ll_fragment_container"
+            android:layout_above="@id/rg_menu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/rg_menu"
-            android:background="@color/background_color"
-            android:orientation="vertical" >
-
-        <LinearLayout
-                android:id="@+id/ll_fragment_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="visible" >
-        </LinearLayout>
-    </ScrollView>
-
+            android:orientation="horizontal"
+            android:visibility="visible">
+    </LinearLayout>
 </RelativeLayout>

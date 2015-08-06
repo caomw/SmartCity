@@ -25,8 +25,7 @@
 
     <string name="press_more_exit">再按一次退出</string>
 
-    <string name="menu_main">首页</string>
-    <string name="menu_pay">服务</string>
-    <string name="menu_ball_friend">问答</string>
-    <string name="menu_my">我的</string>
+    <string name="menu_main">服务超市</string>
+    <string name="menu_pay">有问必答</string>
+    <string name="menu_my">我</string>
 </resources>

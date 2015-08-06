@@ -21,10 +21,10 @@ public abstract class BaseFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-        view = inflater.inflate(setContentView(), null);
         mLoadingDialog = LoadingDialog.create(getActivity(), getActivity().getString(R.string.loading));
         mFragmentManager = getActivity().getSupportFragmentManager();
         mLayoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        view = inflater.inflate(setContentView(), null);
         try {
             ViewUtils.inject(this, view); //注入view和事件
             return view;
@@ -33,17 +33,8 @@ public abstract class BaseFragment extends Fragment {
         return null;
     }
 
+
     protected abstract int setContentView();
 
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
 
 }

@@ -14,6 +14,7 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        user = new UserObj();
         // 测试
         UpdateAgent.init(UpdateMode.MODE_APP);
         // 不使用assert目录，所以文件名为null

@@ -4,12 +4,22 @@
     android:layout_height="match_parent"
     android:background="@color/bgcolor"
     android:orientation="vertical" >
-    <include layout="@layout/head_2"/>
-	<TextView android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:textColor="#b3b3b3"
-	    android:gravity="center"
-	    android:layout_marginTop="20dp"
-	    android:textSize="15sp"
-	    android:text="当前没有更多消息"/>
+
+    <include layout="@layout/head_2" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="当前没有更多消息"
+        android:textColor="#b3b3b3"
+        android:textSize="15sp" />
+
+    <ListView
+        android:id="@+id/list"
+        style="@style/normalList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

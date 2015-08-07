@@ -2,17 +2,21 @@ package com.dc.smartcity.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.android.dcone.ut.view.annotation.event.OnClick;
 import com.dc.smartcity.R;
 import com.dc.smartcity.activity.LoginActivity;
 import com.dc.smartcity.activity.MessageActivity;
+import com.dc.smartcity.activity.NewsDetailActivity;
 import com.dc.smartcity.activity.SettingActivity;
+import com.dc.smartcity.base.BaseApplication;
 import com.dc.smartcity.base.BaseFragment;
 
 /**
@@ -32,6 +36,10 @@ public class HomeMyFragment extends BaseFragment {
     private ImageView iv_action_right;
 
 
+    @ViewInject(R.id.name)
+    private TextView name;
+    @ViewInject(R.id.tvNotlogin)
+    private TextView tvNotlogin;
     @Override
     protected int setContentView() {
         return R.layout.fragment_my;
@@ -45,6 +53,16 @@ public class HomeMyFragment extends BaseFragment {
         initActionBar();
         return view;
     }
+    
+    @Override
+    public void onResume(){
+    	super.onResume();
+    	if(!TextUtils.isEmpty(BaseApplication.user.userName)){
+    		name.setVisibility(View.VISIBLE);
+    		name.setText(BaseApplication.user.userName);
+    		tvNotlogin.setVisibility(View.GONE);
+    	}
+    }
 
     private void initActionBar() {
         tv_actionbar_left.setVisibility(View.GONE);
@@ -53,10 +71,11 @@ public class HomeMyFragment extends BaseFragment {
         tv_actionbar_right.setVisibility(View.GONE);
     }
 
-    @OnClick(value = {R.id.userHead, R.id.set, R.id.message})
+    @OnClick(value = {R.id.userHead, R.id.set, R.id.message,R.id.ll_news,R.id.ll_news1,R.id.ll_news2,R.id.tvNotlogin})
     private void OnClick(View v) {
         switch (v.getId()) {
             case R.id.userHead:
+            case R.id.tvNotlogin:
                 Intent i = new Intent(getActivity(), LoginActivity.class);
                 startActivity(i);
                 break;
@@ -68,7 +87,11 @@ public class HomeMyFragment extends BaseFragment {
                 Intent m = new Intent(getActivity(), MessageActivity.class);
                 startActivity(m);
                 break;
-
+            case R.id.ll_news:
+            case R.id.ll_news1:
+            case R.id.ll_news2:
+            	Intent o = new Intent(getActivity(), NewsDetailActivity.class);
+                startActivity(o);
             default:
                 break;
         }

@@ -1,25 +1,16 @@
 ﻿package com.dc.smartcity.base;
 
-import java.io.File;
-
 import android.app.Application;
 
 import com.android.dcone.ut.UpdateAgent;
-import com.android.dcone.ut.imageloader.cache.disc.impl.UnlimitedDiskCache;
-import com.android.dcone.ut.imageloader.cache.disc.naming.HashCodeFileNameGenerator;
-import com.android.dcone.ut.imageloader.cache.memory.impl.LruMemoryCache;
-import com.android.dcone.ut.imageloader.core.DisplayImageOptions;
-import com.android.dcone.ut.imageloader.core.ImageLoaderConfiguration;
-import com.android.dcone.ut.imageloader.core.assist.QueueProcessingType;
-import com.android.dcone.ut.imageloader.core.decode.BaseImageDecoder;
-import com.android.dcone.ut.imageloader.core.download.BaseImageDownloader;
-import com.android.dcone.ut.imageloader.utils.StorageUtils;
 import com.android.dcone.ut.update.UpdateMode;
+import com.dc.smartcity.bean.UserObj;
 
 public class BaseApplication extends Application {
 
     private static BaseApplication instance;
 
+    public static UserObj user;
     @Override
     public void onCreate() {
         super.onCreate();

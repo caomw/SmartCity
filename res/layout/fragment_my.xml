@@ -1,124 +1,273 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:imagecontrol="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    xmlns:imagecontrol="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical" >
+
     <include
-            android:id="@+id/action_bar"
-            layout="@layout/fragment_action_bar"/>
+        android:id="@+id/action_bar"
+        layout="@layout/fragment_action_bar" />
+
     <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@drawable/mine_bg">
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/mine_bg" >
 
         <com.dc.smartcity.view.RoundImageView
-                android:id="@+id/userHead"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
-                android:scaleType="matrix"
-                android:src="@drawable/userimage"
-                imagecontrol:border_outside_color="@color/white"
-                imagecontrol:border_thickness="2dp"/>
+            android:id="@+id/userHead"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:scaleType="matrix"
+            android:src="@drawable/userimage"
+            imagecontrol:border_outside_color="@color/white"
+            imagecontrol:border_thickness="2dp" />
 
         <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/userHead"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:text="未知用户"
-                android:textColor="@color/white"
-                android:textSize="20sp"/>
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/userHead"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="未知用户"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvNotlogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/userHead"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:background="@color/background_color"
+            android:text="登陆|注册"
+            android:textColor="@color/base_blue"
+            android:padding="3dp"
+            android:textSize="12sp"
+            android:orientation="horizontal" />
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_alignParentBottom="true"
-                android:layout_below="@+id/name"
-                android:layout_marginTop="15dp"
-                android:background="#20000000">
+            android:id="@+id/l_login"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="15dp"
+            android:background="#20000000"
+            android:visibility="gone" >
 
             <LinearLayout
-                    android:id="@+id/message"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                android:id="@+id/message"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
 
                 <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/mine_message"/>
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/mine_message" />
 
                 <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:text="消息"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="消息"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorGreen"/>
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorGreen" />
 
             <LinearLayout
-                    android:id="@+id/set"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                android:id="@+id/set"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
 
                 <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/mine_install"/>
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/mine_install" />
 
                 <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:text="设置"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="设置"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 
     <TextView
-            android:id="@+id/wdzl"
-            style="@style/TextTopContainer"
-            android:layout_width="fill_parent"
+        android:id="@+id/wdzl"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_gv"
+        android:drawableRight="@drawable/more"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="@string/city_news" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/shape_line" />
+
+    <LinearLayout
+        android:id="@+id/ll_news"
+        style="@style/news_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/iv_news"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icon" />
+
+        <TextView
+            android:id="@+id/tv_news"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            android:drawableLeft="@drawable/mine_profile"
-            android:drawablePadding="10dp"
-            android:drawableRight="@drawable/more"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:text="我的资料"/>
+            android:layout_marginLeft="5dp"
+            android:lineSpacingExtra="2dp"
+            android:maxLines="2"
+            android:text="@string/weih_news"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/shape_line" />
+
+    <LinearLayout
+        android:id="@+id/ll_news1"
+        style="@style/news_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/iv_news1"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icon" />
+
+        <TextView
+            android:id="@+id/tv_news1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:lineSpacingExtra="2dp"
+            android:maxLines="2"
+            android:text="@string/weih_news"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/shape_line" />
+
+    <LinearLayout
+        android:id="@+id/ll_news2"
+        style="@style/news_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/iv_news2"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icon" />
+
+        <TextView
+            android:id="@+id/tv_news2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:lineSpacingExtra="2dp"
+            android:maxLines="2"
+            android:text="@string/weih_news"
+            android:textSize="13sp" />
+    </LinearLayout>
+
     <TextView
-            android:id="@+id/wdwj"
-            style="@style/TextButtomContainer"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:drawableLeft="@drawable/mine_file"
-            android:drawablePadding="10dp"
-            android:drawableRight="@drawable/more"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:text="我的文件夹"/>
+        android:id="@+id/tv_messg"
+        style="@style/news_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/icon_walk_route"
+        android:drawablePadding="10dp"
+        android:drawableRight="@drawable/more"
+        android:text="@string/m_messg" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/shape_line" />
+
+    <TextView
+        android:id="@+id/tv_collection"
+        style="@style/news_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/icon_walk_route"
+        android:drawablePadding="10dp"
+        android:drawableRight="@drawable/more"
+        android:text="@string/m_collection" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/shape_line" />
+
+    <TextView
+        android:id="@+id/tv_foot"
+        style="@style/news_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/icon_walk_route"
+        android:drawablePadding="10dp"
+        android:drawableRight="@drawable/more"
+        android:text="@string/m_foot" />
+
+    <TextView
+        android:id="@+id/tv_setting"
+        style="@style/news_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/icon_walk_route"
+        android:drawablePadding="10dp"
+        android:drawableRight="@drawable/more"
+        android:text="@string/sys_setting" />
 
 </LinearLayout>

@@ -6,7 +6,7 @@ import android.widget.GridView;
 
 
 /**
- * 解决在scrollview中只显示第一行数据的问题
+ * 瑙ｅ喅鍦╯crollview涓彧鏄剧ず绗竴琛屾暟鎹殑闂
  */
 public class ScrollGridView extends GridView {
     public ScrollGridView(Context context, AttributeSet attrs) {

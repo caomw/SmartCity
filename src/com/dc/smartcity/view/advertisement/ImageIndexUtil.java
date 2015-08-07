@@ -35,7 +35,7 @@ public class ImageIndexUtil extends View {
     }
 
     /**
-     * ÉèÖÃÑ¡ÔñË÷ÒıµÄÍ¼Æ¬±êÊ¾
+     * è®¾ç½®é€‰æ‹©ç´¢å¼•çš„å›¾ç‰‡æ ‡ç¤º
      *
      * @param img1
      * @param img2

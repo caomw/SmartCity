@@ -12,7 +12,7 @@ public class MyInfiniteGallery extends Gallery {
 	public MyInfiniteGallery(Context context) {
 		super(context);
 	}
-	
+
 	public MyInfiniteGallery(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
@@ -24,7 +24,7 @@ public class MyInfiniteGallery extends Gallery {
 
 	@Override
 	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-			float velocityY) {		
+						   float velocityY) {
 		int kEvent;
 		if (isScrollingLeft(e1, e2)) {
 			kEvent = KeyEvent.KEYCODE_DPAD_LEFT;
@@ -51,7 +51,7 @@ public class MyInfiniteGallery extends Gallery {
 
 	@Override
 	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
-			float distanceY) {
+							float distanceY) {
 		// TODO Auto-generated method stub
 		return super.onScroll(e1, e2, distanceX, distanceY);
 	}

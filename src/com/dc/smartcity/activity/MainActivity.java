@@ -17,17 +17,12 @@ import com.dc.smartcity.fragment.HomePageFragment;
 import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.util.Utils;
 
-/**
- * 首页的4个fragment
- */
 public class MainActivity extends BaseActionBarActivity implements OnCheckedChangeListener {
     /**
      * 再按一次退出应用
      */
     private long exitTime = 0;
 
-    @ViewInject(R.id.rg_menu)
-    public RadioGroup rg_menu;
     @ViewInject(R.id.rb_menu_service)
     public RadioButton rb_menu_service;
     @ViewInject(R.id.rb_menu_ask)
@@ -57,7 +52,6 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initActionBar();
         ULog.debug("--->onCreate");
         rb_menu_service.setChecked(true);
     }
@@ -65,10 +59,6 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
     @Override
     protected void setContentView() {
         setContentView(R.layout.activity_main);
-    }
-
-
-    private void initActionBar() {
     }
 
 
@@ -91,7 +81,7 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
                 if (mHomeFragment != null) {
                     fragmentTransaction.show(mHomeFragment);
                 } else {
-                    mHomeFragment = new HomePageFragment();
+                    mHomeFragment = new HomePageFragment(mActionBar);
                     fragmentTransaction.add(R.id.ll_fragment_container, mHomeFragment);
                 }
                 mCurrentFragment = mHomeFragment;
@@ -101,7 +91,7 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
                 if (mAskFragment != null) {
                     fragmentTransaction.show(mAskFragment);
                 } else {
-                    mAskFragment = new HomeAskFragment();
+                    mAskFragment = new HomeAskFragment(mActionBar);
                     fragmentTransaction.add(R.id.ll_fragment_container, mAskFragment);
                 }
                 mCurrentFragment = mAskFragment;
@@ -111,7 +101,7 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
                 if (mMyFragment != null) {
                     fragmentTransaction.show(mMyFragment);
                 } else {
-                    mMyFragment = new HomeMyFragment();
+                    mMyFragment = new HomeMyFragment(mActionBar);
                     fragmentTransaction.add(R.id.ll_fragment_container, mMyFragment);
                 }
                 mCurrentFragment = mMyFragment;

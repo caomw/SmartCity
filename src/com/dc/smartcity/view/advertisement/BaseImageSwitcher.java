@@ -12,7 +12,8 @@ import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import com.dc.smartcity.R;
-import com.dc.smartcity.base.ImageLoader;
+import com.dc.smartcity.net.ImageLoadeCallback;
+import com.dc.smartcity.net.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,21 +23,21 @@ import java.util.TimerTask;
 import static java.lang.Math.min;
 
 /**
- * Í¼Æ¬ÇĞ»»Æ÷.
+ * å›¾ç‰‡åˆ‡æ¢å™¨.
  */
 public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnItemSelectedListener, OnItemClickListener, OnTouchListener, ISwithcer<T> {
 
-    // Ö¸Ê¾Æ÷´¦ÓÚÉÏ·½.
+    // æŒ‡ç¤ºå™¨å¤„äºä¸Šæ–¹.
     public final static int LOCATION_INDICATER_TOP = ALIGN_PARENT_TOP;
 
-    // Ö¸Ê¾Æ÷´¦ÓÚÏÂ·½.
+    // æŒ‡ç¤ºå™¨å¤„äºä¸‹æ–¹.
     public final static int LOCATION_INDICATER_BOTTOM = ALIGN_PARENT_BOTTOM;
 
     private final static boolean _DBG_ = false;
 
     private final static int FLAG_AUTO_SWITCH = 0x10;
 
-    // Ä¬ÈÏ3ÃëÌø×ª¹ã¸æ.
+    // é»˜è®¤3ç§’è·³è½¬å¹¿å‘Š.
     private int mAutoSwitchRate = 3000;
 
     protected final List<T> mDatas = new ArrayList<T>();
@@ -48,35 +49,35 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
 
     private final LayoutParams adIndicaterContainerParam = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
-    // ¹ã¸æÈİÆ÷
+    // å¹¿å‘Šå®¹å™¨
     private MyInfiniteGallery mContent;
     private ImageSwitcherAdapter mDefaultAdapter;
     private ImageLoader mImageLoader;
 
     private int dmWidth;
 
-    // ¿Ø¼ş¿í¸ß±È£¬(½¨ÒéÉèÖÃ¿í¸ß±È)
+    // æ§ä»¶å®½é«˜æ¯”ï¼Œ(å»ºè®®è®¾ç½®å®½é«˜æ¯”)
     private int widthRat = -1;
     private int heightRat = -1;
 
-    // ¿Ø¼ş¾ßÌåµÄ¿í¶È£¬¸ß¶ÈÖµ
+    // æ§ä»¶å…·ä½“çš„å®½åº¦ï¼Œé«˜åº¦å€¼
     private int width;
     private int height;
 
-    // ¹ã¸æÖ¸Ê¾Æ÷
+    // å¹¿å‘ŠæŒ‡ç¤ºå™¨
     private LinearLayout mAdIndicaterContainer;
     private ImageIndexUtil mAdIndicater;
     private int mIndicaterMargin;
     private int mIndicaterVisible = View.VISIBLE;
     private int mIndicaterLocation = LOCATION_INDICATER_BOTTOM;
 
-    // ÊÇ·ñ×Ô¶¯ÇĞ»»
+    // æ˜¯å¦è‡ªåŠ¨åˆ‡æ¢
     private boolean flag_switch = true;
 
-    // ÊÇ·ñµ±Ç°ÎªManual×´Ì¬
+    // æ˜¯å¦å½“å‰ä¸ºManualçŠ¶æ€
     private boolean flag_manual = false;
 
-    // ÊÇ·ñÒÑ¾­¿ªÆô×Ô¶¯ÂÖ²¥.
+    // æ˜¯å¦å·²ç»å¼€å¯è‡ªåŠ¨è½®æ’­.
     private boolean flag_start = false;
 
     private OnItemClickListener mItemClickListener;
@@ -85,9 +86,9 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
     private Timer mTimer = null;
     private TimerTask mTask = null;
 
-    // ÔÊĞí×î´óÑ­»·²¥·ÅÊıÁ¿.
-    protected int mMaxImageCount = -1; // µ±Ç°Êµ¼Ê×î´óÊıÁ¿
-    protected int mSettingMaxCount = -1; // ÉèÖÃÔ¤Ïë×î´óÊıÁ¿
+    // å…è®¸æœ€å¤§å¾ªç¯æ’­æ”¾æ•°é‡.
+    protected int mMaxImageCount = -1; // å½“å‰å®é™…æœ€å¤§æ•°é‡
+    protected int mSettingMaxCount = -1; // è®¾ç½®é¢„æƒ³æœ€å¤§æ•°é‡
 
     @SuppressLint("HandlerLeak")
     private final Handler mAutoSwitchHandler = new Handler() {
@@ -172,25 +173,25 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
     }
 
     /**
-     * ·µ»Øµ±Ç°Image¿í¶È(¿Ø¼ş¿í¶È),µ÷ÓÃ {@link BaseImageSwitcher#setData(List)} ºóÓĞĞ§
+     * è¿”å›å½“å‰Imageå®½åº¦(æ§ä»¶å®½åº¦),è°ƒç”¨ {@link BaseImageSwitcher#setData(List)} åæœ‰æ•ˆ
      *
-     * @return ¸ß¶È
+     * @return é«˜åº¦
      */
     public int getImageWidth() {
         return width;
     }
 
     /**
-     * ·µ»Øµ±Ç°Image¸ß¶È(¿Ø¼ş¸ß¶È),µ÷ÓÃ {@link BaseImageSwitcher#setData(List)} ºóÓĞĞ§
+     * è¿”å›å½“å‰Imageé«˜åº¦(æ§ä»¶é«˜åº¦),è°ƒç”¨ {@link BaseImageSwitcher#setData(List)} åæœ‰æ•ˆ
      *
-     * @return ¸ß¶È
+     * @return é«˜åº¦
      */
     public int getImageHeight() {
         return height;
     }
 
     /**
-     * ÉèÖÃ¼àÌıÆ÷.
+     * è®¾ç½®ç›‘å¬å™¨.
      *
      * @param l
      */
@@ -199,7 +200,7 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
     }
 
     /**
-     * ÉèÖÃÖ¸Ê¾Æ÷µÄÎ»ÖÃ.
+     * è®¾ç½®æŒ‡ç¤ºå™¨çš„ä½ç½®.
      *
      * @param location {@link #LOCATION_INDICATER_TOP} &
      *                 {@link #LOCATION_INDICATER_BOTTOM}
@@ -209,7 +210,7 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
     }
 
     /**
-     * ÉèÖÃÖ¸Ê¾Æ÷ÏÔÊ¾×´Ì¬.
+     * è®¾ç½®æŒ‡ç¤ºå™¨æ˜¾ç¤ºçŠ¶æ€.
      *
      * @param visibility
      * @see {@link View#VISIBLE}
@@ -224,7 +225,7 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
     }
 
     /**
-     * ÉèÖÃ×Ô¶¯²¥·Å¼ä¸ôÊ±¼ä (µ¥Î»:ms).
+     * è®¾ç½®è‡ªåŠ¨æ’­æ”¾é—´éš”æ—¶é—´ (å•ä½:ms).
      *
      * @param rate
      */
@@ -237,10 +238,10 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
     }
 
     /**
-     * Îª¹ã¸æÌî³äÊı¾İ.
+     * ä¸ºå¹¿å‘Šå¡«å……æ•°æ®.
      *
      * @param datas
-     * @param clearFirst Ìî³äÇ°ÊÇ·ñÇå³ıÖ®Ç°µÄÊı¾İ.
+     * @param clearFirst å¡«å……å‰æ˜¯å¦æ¸…é™¤ä¹‹å‰çš„æ•°æ®.
      */
     public void setData(List<T> datas, boolean clearFirst) {
         if (datas == null || datas.isEmpty()) {
@@ -261,7 +262,7 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
     }
 
     /**
-     * ÉèÖÃ¹ã¸æµÄ¿í¸ß±ÈÀı£¬ÔÚµ÷ÓÃsetDataÖ®Ç°²Å»áÆğ×÷ÓÃ
+     * è®¾ç½®å¹¿å‘Šçš„å®½é«˜æ¯”ä¾‹ï¼Œåœ¨è°ƒç”¨setDataä¹‹å‰æ‰ä¼šèµ·ä½œç”¨
      *
      * @param widthRat
      * @param heightRat
@@ -277,7 +278,7 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
     }
 
     /**
-     * ÉèÖÃÍ¼Æ¬¼ÓÔØÆ÷.
+     * è®¾ç½®å›¾ç‰‡åŠ è½½å™¨.
      *
      * @param loader
      */
@@ -286,14 +287,14 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
     }
 
     /**
-     * ÉèÖÃÆÁÄ»¿í¶È.
+     * è®¾ç½®å±å¹•å®½åº¦.
      */
     public final void setDmWidth(int w) {
         this.dmWidth = w;
     }
 
     /**
-     * ½ûÖ¹×Ô¶¯²¥·Å. ÓÚ {@code play} Ç°Ê¹ÓÃ£¬{@code play} ºóÊ¹ÓÃ {@code stop} ÖÕÖ¹.
+     * ç¦æ­¢è‡ªåŠ¨æ’­æ”¾. äº {@code play} å‰ä½¿ç”¨ï¼Œ{@code play} åä½¿ç”¨ {@code stop} ç»ˆæ­¢.
      *
      * @see #play()
      * @see #stop()
@@ -303,7 +304,7 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
     }
 
     /**
-     * ×Ô¶¯ÇĞ»»¿ªÆô.
+     * è‡ªåŠ¨åˆ‡æ¢å¼€å¯.
      */
     public void play() {
         if (!flag_switch) {
@@ -333,7 +334,7 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
     }
 
     /**
-     * Í£Ö¹×Ô¶¯²¥·Å.
+     * åœæ­¢è‡ªåŠ¨æ’­æ”¾.
      */
     public void stop() {
         if (!flag_start) {
@@ -358,14 +359,14 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
     }
 
     /**
-     * ÖØÉèÖ¸Ê¾Æ÷µÄÎ»ÖÃ.
+     * é‡è®¾æŒ‡ç¤ºå™¨çš„ä½ç½®.
      */
     public void resetIndicater() {
         mAdIndicater.setSelectIndex(0);
     }
 
     /**
-     * ÉèÖÃ×î´óÍ¼Æ¬Êı.
+     * è®¾ç½®æœ€å¤§å›¾ç‰‡æ•°.
      *
      * @param count
      */
@@ -378,13 +379,13 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
     }
 
     /**
-     * Ö´ĞĞ Item-Click ÊÂ¼ş.
+     * æ‰§è¡Œ Item-Click äº‹ä»¶.
      *
      * @param parent
      * @param view
      * @param position
      * @param id
-     * @param true_position ÕæÊµµÄÎ»ÖÃ.
+     * @param true_position çœŸå®çš„ä½ç½®.
      */
     protected boolean performItemClick(AdapterView<?> parent, View view, int position, long id, int true_position) {
         if (mItemClickListener != null) {
@@ -394,7 +395,7 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
     }
 
     /**
-     * Í¨ÖªĞèÒªÇĞ»»¹ã¸æ
+     * é€šçŸ¥éœ€è¦åˆ‡æ¢å¹¿å‘Š
      */
     protected void notifyAutoSwitch() {
         if (flag_manual) {
@@ -405,7 +406,7 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
     }
 
     /**
-     * ÇĞ»»¹ã¸æÄÚÈİ
+     * åˆ‡æ¢å¹¿å‘Šå†…å®¹
      */
     protected void switchItem() {
         mContent.onScroll(null, null, 1, 0);
@@ -413,7 +414,7 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
     }
 
     /**
-     * ÉèÖÃ¹ã¸æÊôĞÔ. ÖØĞ´ÉèÖÃGalleryµÄÊôĞÔ.
+     * è®¾ç½®å¹¿å‘Šå±æ€§. é‡å†™è®¾ç½®Galleryçš„å±æ€§.
      *
      * @param ad
      */
@@ -511,7 +512,7 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
          * @param view
          * @param position
          * @param id
-         * @param true_position Êµ¼ÊµÄposition.
+         * @param true_position å®é™…çš„position.
          * @return if true - handled.
          */
         boolean onItemClick(AdapterView<?> parent, View view, int position, long id, int true_position);
@@ -523,7 +524,7 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
     }
 
     /**
-     * ¹ã¸æÊÊÅäÆ÷»ùÀà£¬Ñ­»·²¥·Å.
+     * å¹¿å‘Šé€‚é…å™¨åŸºç±»ï¼Œå¾ªç¯æ’­æ”¾.
      *
      * @author sk. 09145
      * @date 2014-9-25

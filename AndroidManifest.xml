@@ -31,8 +31,7 @@
         <activity
                 android:name="com.dc.smartcity.activity.MainActivity"
                 android:configChanges="keyboardHidden|navigation|orientation"
-                android:label="@string/app_name"
-                android:theme="@style/MyTheme.NoTitleBar.CustomBackground">
+                android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -40,6 +39,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+                android:name="com.dc.smartcity.activity.ServiceMarketActivity"
+                android:configChanges="keyboardHidden|navigation|orientation">
+        </activity>
         <activity
                 android:name="com.dc.smartcity.activity.LoginActivity"
                 android:configChanges="keyboardHidden|navigation|orientation">

@@ -4,12 +4,12 @@ public class SystemConfig {
 
 
     /**
-     * debug模式
+     * debug妯″紡
      */
     public static final boolean DEBUG = true;
 
     /**
-     * 包名
+     * 鍖呭悕
      */
     public static final String PACKAGENAME="com.dc.smartcity";
 

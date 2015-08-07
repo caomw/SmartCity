@@ -6,9 +6,9 @@ public class ULog {
     public static String TAG = SystemConfig.PACKAGENAME;
 
     /**
-     * 设置日志输出标记
+     * 璁剧疆鏃ュ織杈撳嚭鏍囪
      *
-     * @param tag 日志标记
+     * @param tag 鏃ュ織鏍囪
      */
     public static void setTag(String tag) {
         debug(tag, "Changing log tag to %s", tag);
@@ -16,10 +16,10 @@ public class ULog {
     }
 
     /**
-     * 输出verbose级别日志
+     * 杈撳嚭verbose绾у埆鏃ュ織
      *
-     * @param format 日志格式
-     * @param args   替换参数
+     * @param format 鏃ュ織鏍煎紡
+     * @param args   鏇挎崲鍙傛暟
      */
     public static void verbose(String format, Object... args) {
         if (SystemConfig.DEBUG) {
@@ -28,10 +28,10 @@ public class ULog {
     }
 
     /**
-     * 输出debug级别日志
+     * 杈撳嚭debug绾у埆鏃ュ織
      *
-     * @param format 日志格式
-     * @param args   替换参数
+     * @param format 鏃ュ織鏍煎紡
+     * @param args   鏇挎崲鍙傛暟
      */
     public static void debug(String format, Object... args) {
         if (SystemConfig.DEBUG) {
@@ -40,10 +40,10 @@ public class ULog {
     }
 
     /**
-     * 输出info级别日志
+     * 杈撳嚭info绾у埆鏃ュ織
      *
-     * @param format 日志格式
-     * @param args   替换参数
+     * @param format 鏃ュ織鏍煎紡
+     * @param args   鏇挎崲鍙傛暟
      */
     public static void info(String format, Object... args) {
         if (SystemConfig.DEBUG) {
@@ -52,10 +52,10 @@ public class ULog {
     }
 
     /**
-     * 输出error级别日志
+     * 杈撳嚭error绾у埆鏃ュ織
      *
-     * @param format 日志格式
-     * @param args   替换参数
+     * @param format 鏃ュ織鏍煎紡
+     * @param args   鏇挎崲鍙傛暟
      */
     public static void error(String format, Object... args) {
         String msg = buildMessage(format, args);
@@ -63,11 +63,11 @@ public class ULog {
     }
 
     /**
-     * 输出error级别日志
+     * 杈撳嚭error绾у埆鏃ュ織
      *
-     * @param tr     异常
-     * @param format 日志格式
-     * @param args   替换参数
+     * @param tr     寮傚父
+     * @param format 鏃ュ織鏍煎紡
+     * @param args   鏇挎崲鍙傛暟
      */
     public static void error(Throwable tr, String format, Object... args) {
         String msg = buildMessage(format, args);
@@ -75,10 +75,10 @@ public class ULog {
     }
 
     /**
-     * 输出warn级别日志
+     * 杈撳嚭warn绾у埆鏃ュ織
      *
-     * @param format 日志格式
-     * @param args   替换参数
+     * @param format 鏃ュ織鏍煎紡
+     * @param args   鏇挎崲鍙傛暟
      */
     public static void warn(String format, Object... args) {
         android.util.Log.w(TAG, buildMessage(format, args));

@@ -1,5 +1,6 @@
 package com.dc.smartcity.fragment;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.dc.smartcity.R;
 import com.dc.smartcity.base.BaseFragment;
-import com.dc.smartcity.base.ImageLoader;
+import com.dc.smartcity.net.ImageLoader;
 import com.dc.smartcity.bean.AdObj;
 import com.dc.smartcity.view.advertisement.AdvertisementView;
 
@@ -27,14 +28,9 @@ public class HomeAskFragment extends BaseFragment {
     @ViewInject(R.id.ll_ad_layout)
     private LinearLayout ll_ad_layout;
 
-    @ViewInject(R.id.tv_actionbar_left)
-    private TextView tv_actionbar_left;
-    @ViewInject(R.id.tv_actionbar_title)
-    private TextView tv_actionbar_title;
-    @ViewInject(R.id.tv_actionbar_right)
-    private TextView tv_actionbar_right;
-    @ViewInject(R.id.iv_action_right)
-    private ImageView iv_action_right;
+    public HomeAskFragment(ActionBar actionBar) {
+        super(actionBar);
+    }
 
 
     @Override
@@ -52,10 +48,10 @@ public class HomeAskFragment extends BaseFragment {
     }
 
     private void initActionBar() {
-        tv_actionbar_left.setVisibility(View.GONE);
+        tv_actionbar_title.setVisibility(View.VISIBLE);
         tv_actionbar_title.setText("有问必答");
-        iv_action_right.setVisibility(View.GONE);
-        tv_actionbar_right.setVisibility(View.GONE);
+
+        iv_actionbar_right.setVisibility(View.VISIBLE);
     }
 
     // 初始化广告

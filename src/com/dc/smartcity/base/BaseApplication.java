@@ -1,7 +1,6 @@
-﻿package com.dc.smartcity.base;
+package com.dc.smartcity.base;
 
 import android.app.Application;
-
 import com.android.dcone.ut.UpdateAgent;
 import com.android.dcone.ut.update.UpdateMode;
 import com.dc.smartcity.bean.UserObj;
@@ -15,7 +14,6 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-
         // 测试
         UpdateAgent.init(UpdateMode.MODE_APP);
         // 不使用assert目录，所以文件名为null
@@ -27,7 +25,7 @@ public class BaseApplication extends Application {
     }
 
     // 退出程序
-	//sassafras
+    //sassafras
     public void exit(boolean isExit) {
         if (isExit) {
             // final int apiLevel = Build.VERSION.SDK_INT;

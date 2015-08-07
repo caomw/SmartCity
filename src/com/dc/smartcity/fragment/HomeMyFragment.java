@@ -1,5 +1,6 @@
 package com.dc.smartcity.fragment;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -26,15 +27,9 @@ import com.dc.smartcity.base.BaseFragment;
 public class HomeMyFragment extends BaseFragment {
 
 
-    @ViewInject(R.id.tv_actionbar_left)
-    private TextView tv_actionbar_left;
-    @ViewInject(R.id.tv_actionbar_title)
-    private TextView tv_actionbar_title;
-    @ViewInject(R.id.tv_actionbar_right)
-    private TextView tv_actionbar_right;
-    @ViewInject(R.id.iv_action_right)
-    private ImageView iv_action_right;
-
+    public HomeMyFragment(ActionBar actionBar) {
+        super(actionBar);
+    }
 
     @ViewInject(R.id.name)
     private TextView name;
@@ -65,10 +60,8 @@ public class HomeMyFragment extends BaseFragment {
     }
 
     private void initActionBar() {
-        tv_actionbar_left.setVisibility(View.GONE);
+        tv_actionbar_title.setVisibility(View.VISIBLE);
         tv_actionbar_title.setText("我");
-        iv_action_right.setVisibility(View.GONE);
-        tv_actionbar_right.setVisibility(View.GONE);
     }
 
     @OnClick(value = {R.id.userHead, R.id.set, R.id.message,R.id.ll_news,R.id.ll_news1,R.id.ll_news2,R.id.tvNotlogin})

@@ -1,4 +1,4 @@
-package com.dc.smartcity.base;
+package com.dc.smartcity.net;
 
 import android.os.Handler;
 import android.os.Message;
@@ -7,7 +7,7 @@ import android.widget.ProgressBar;
 import com.android.dcone.ut.picasso.Callback;
 
 /**
- * Í¼Æ¬ÏÂÔØ×´Ì¬»Øµ÷À©Õ¹Àà¡£ÓÃÓÚÍ³Ò»´¦Àí½ø¶ÈÌõ¡£Èç¹ûÏëÒª¸öĞÔ»¯´¦Àí¿ÉÒÔÊ¹ÓÃEmptyCallbackÀà¡£»òÕß×Ô¼ºÊµÏÖCallback½Ó¿Ú¡£
+ * å›¾ç‰‡ä¸‹è½½çŠ¶æ€å›è°ƒæ‰©å±•ç±»ã€‚ç”¨äºç»Ÿä¸€å¤„ç†è¿›åº¦æ¡ã€‚å¦‚æœæƒ³è¦ä¸ªæ€§åŒ–å¤„ç†å¯ä»¥ä½¿ç”¨EmptyCallbackç±»ã€‚æˆ–è€…è‡ªå·±å®ç°Callbackæ¥å£ã€‚
  */
 public class ImageLoadeCallback implements Callback {
 

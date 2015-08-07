@@ -25,7 +25,7 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * ¹ã¸æ×¨ÓÃ.
+ * å¹¿å‘Šä¸“ç”¨.
  */
 public class AdvertisementView extends BaseImageSwitcher<AdObj> {
 
@@ -50,10 +50,10 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
     }
 
     /**
-     * ¹ã¸æµÄ±ÈÀı
+     * å¹¿å‘Šçš„æ¯”ä¾‹
      *
-     * @param widthRat  ¿í¶È
-     * @param heightRat ¸ß¶È
+     * @param widthRat  å®½åº¦
+     * @param heightRat é«˜åº¦
      */
     public void setAdvertisementRate(int widthRat, int heightRat) {
         setScreenRate(widthRat, heightRat);
@@ -74,14 +74,14 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
                 String tag = data_obj.tag;
                 // NoticeTools.initNoticeUrl((Activity) mContext,
                 // data_obj.redirectUrl, "");
-                // NoticeToolsÌæ»» by Megatron King
+                // NoticeToolsæ›¿æ¢ by Megatron King
                 // URLPaserUtils.parseURL((Activity) mContext,
                 // data_obj.redirectUrl);
-                Toast.makeText(getContext(), "µã»÷ÊÂ¼ş", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "ç‚¹å‡»äº‹ä»¶", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getContext(), MyWebViewActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString(BundleKeys.WEBVIEEW_LOADURL, data_obj.redirectUrl);
-                bundle.putString(BundleKeys.WEBVIEEW_TITLE, "ÏêÇé");
+                bundle.putString(BundleKeys.WEBVIEEW_TITLE, "è¯¦æƒ…");
                 intent.putExtras(bundle);
                 getContext().startActivity(intent);
 
@@ -96,7 +96,7 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
     }
 
     /**
-     * ÏÂÀ­Ë¢ĞÂListView
+     * ä¸‹æ‹‰åˆ·æ–°ListView
      *
      * @author check_000
      */
@@ -127,17 +127,17 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         private TextView mEndLoadTipsTextView;
 
         /**
-         * headView¶¯»­
+         * headViewåŠ¨ç”»
          */
         private RotateAnimation mArrowAnim;
 
         /**
-         * headView·´×ª¶¯»­
+         * headViewåè½¬åŠ¨ç”»
          */
         private RotateAnimation mArrowReverseAnim;
 
         /**
-         * ÓÃÓÚ±£Ö¤startYµÄÖµÔÚÒ»¸öÍêÕûµÄtouchÊÂ¼şÖĞÖ»±»¼ÇÂ¼Ò»´Î
+         * ç”¨äºä¿è¯startYçš„å€¼åœ¨ä¸€ä¸ªå®Œæ•´çš„touchäº‹ä»¶ä¸­åªè¢«è®°å½•ä¸€æ¬¡
          */
         private boolean mIsRecored;
 
@@ -171,10 +171,10 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         }
 
         /**
-         * ³õÊ¼»¯²Ù×÷
+         * åˆå§‹åŒ–æ“ä½œ
          *
          * @param pContext
-         * @date 2013-11-20 ÏÂÎç4:10:46
+         * @date 2013-11-20 ä¸‹åˆ4:10:46
          * @change JohnWatson
          * @version 1.0
          */
@@ -228,7 +228,7 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         @Override
         public boolean onTouchEvent(MotionEvent ev) {
             if (mCanLoadMore && mEndState == ENDINT_LOADING) {
-                // Èç¹û´æÔÚ¼ÓÔØ¸ü¶à¹¦ÄÜ£¬²¢ÇÒµ±Ç°ÕıÔÚ¼ÓÔØ¸ü¶à£¬Ä¬ÈÏ²»ÔÊĞíÏÂÀ­Ë¢ĞÂ£¬±ØĞë¼ÓÔØÍê±Ïºó²ÅÄÜÊ¹ÓÃ¡£
+                // å¦‚æœå­˜åœ¨åŠ è½½æ›´å¤šåŠŸèƒ½ï¼Œå¹¶ä¸”å½“å‰æ­£åœ¨åŠ è½½æ›´å¤šï¼Œé»˜è®¤ä¸å…è®¸ä¸‹æ‹‰åˆ·æ–°ï¼Œå¿…é¡»åŠ è½½å®Œæ¯•åæ‰èƒ½ä½¿ç”¨ã€‚
                 return super.onTouchEvent(ev);
             }
 
@@ -250,31 +250,31 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
 
                     if (mHeadState != REFRESHING && mIsRecored && mHeadState != LOADING) {
 
-                        // ±£Ö¤ÔÚÉèÖÃpaddingµÄ¹ı³ÌÖĞ£¬µ±Ç°µÄÎ»ÖÃÒ»Ö±ÊÇÔÚhead£¬
-                        // ·ñÔòÈç¹ûµ±ÁĞ±í³¬³öÆÁÄ»µÄ»°£¬µ±ÔÚÉÏÍÆµÄÊ±ºò£¬ÁĞ±í»áÍ¬Ê±½øĞĞ¹ö¶¯
-                        // ¿ÉÒÔËÉÊÖÈ¥Ë¢ĞÂÁË
+                        // ä¿è¯åœ¨è®¾ç½®paddingçš„è¿‡ç¨‹ä¸­ï¼Œå½“å‰çš„ä½ç½®ä¸€ç›´æ˜¯åœ¨headï¼Œ
+                        // å¦åˆ™å¦‚æœå½“åˆ—è¡¨è¶…å‡ºå±å¹•çš„è¯ï¼Œå½“åœ¨ä¸Šæ¨çš„æ—¶å€™ï¼Œåˆ—è¡¨ä¼šåŒæ—¶è¿›è¡Œæ»šåŠ¨
+                        // å¯ä»¥æ¾æ‰‹å»åˆ·æ–°äº†
                         if (mHeadState == RELEASE_TO_REFRESH) {
 
                             setSelection(0);
 
-                            // ÍùÉÏÍÆÁË£¬ÍÆµ½ÁËÆÁÄ»×ã¹»ÑÚ¸ÇheadµÄ³Ì¶È£¬µ«ÊÇ»¹Ã»ÓĞÍÆµ½È«²¿ÑÚ¸ÇµÄµØ²½
+                            // å¾€ä¸Šæ¨äº†ï¼Œæ¨åˆ°äº†å±å¹•è¶³å¤Ÿæ©ç›–headçš„ç¨‹åº¦ï¼Œä½†æ˜¯è¿˜æ²¡æœ‰æ¨åˆ°å…¨éƒ¨æ©ç›–çš„åœ°æ­¥
                             if (((tempY - mStartY) / RATIO < mHeadViewHeight) && (tempY - mStartY) > 0) {
                                 mHeadState = PULL_TO_REFRESH;
                                 changeHeaderViewByState();
                             }
-                            // Ò»ÏÂ×ÓÍÆµ½¶¥ÁË
+                            // ä¸€ä¸‹å­æ¨åˆ°é¡¶äº†
                             else if (tempY - mStartY <= 0) {
                                 mHeadState = DONE;
                                 changeHeaderViewByState();
                             }
-                            // ÍùÏÂÀ­ÁË£¬»òÕß»¹Ã»ÓĞÉÏÍÆµ½ÆÁÄ»¶¥²¿ÑÚ¸ÇheadµÄµØ²½
+                            // å¾€ä¸‹æ‹‰äº†ï¼Œæˆ–è€…è¿˜æ²¡æœ‰ä¸Šæ¨åˆ°å±å¹•é¡¶éƒ¨æ©ç›–headçš„åœ°æ­¥
                         }
-                        // »¹Ã»ÓĞµ½´ïÏÔÊ¾ËÉ¿ªË¢ĞÂµÄÊ±ºò,DONE»òÕßÊÇPULL_To_REFRESH×´Ì¬
+                        // è¿˜æ²¡æœ‰åˆ°è¾¾æ˜¾ç¤ºæ¾å¼€åˆ·æ–°çš„æ—¶å€™,DONEæˆ–è€…æ˜¯PULL_To_REFRESHçŠ¶æ€
                         if (mHeadState == PULL_TO_REFRESH) {
 
                             setSelection(0);
 
-                            // ÏÂÀ­µ½¿ÉÒÔ½øÈëRELEASE_TO_REFRESHµÄ×´Ì¬
+                            // ä¸‹æ‹‰åˆ°å¯ä»¥è¿›å…¥RELEASE_TO_REFRESHçš„çŠ¶æ€
                             if ((tempY - mStartY) / RATIO >= mHeadViewHeight) {
                                 mHeadState = RELEASE_TO_REFRESH;
                                 mIsBack = true;
@@ -328,9 +328,9 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         }
 
         /**
-         * ÕıÔÚÏÂÀ­Ë¢ĞÂ
+         * æ­£åœ¨ä¸‹æ‹‰åˆ·æ–°
          *
-         * @date 2013-11-20 ÏÂÎç4:45:47
+         * @date 2013-11-20 ä¸‹åˆ4:45:47
          * @change JohnWatson
          * @version 1.0
          */
@@ -341,9 +341,9 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         }
 
         /**
-         * µ±HeadView×´Ì¬¸Ä±äÊ±ºò£¬µ÷ÓÃ¸Ã·½·¨£¬ÒÔ¸üĞÂ½çÃæ
+         * å½“HeadViewçŠ¶æ€æ”¹å˜æ—¶å€™ï¼Œè°ƒç”¨è¯¥æ–¹æ³•ï¼Œä»¥æ›´æ–°ç•Œé¢
          *
-         * @date 2013-11-20 ÏÂÎç4:29:44
+         * @date 2013-11-20 ä¸‹åˆ4:29:44
          * @change JohnWatson
          * @version 1.0
          */
@@ -358,7 +358,7 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
 
                     mArrowImageView.clearAnimation();
                     mArrowImageView.startAnimation(mArrowAnim);
-                    // ËÉ¿ªË¢ĞÂ
+                    // æ¾å¼€åˆ·æ–°
                     mTipsTextView.setText(R.string.p2refresh_release_refresh);
 
                     break;
@@ -368,15 +368,15 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
                     mLastUpdatedTextView.setVisibility(View.VISIBLE);
                     mArrowImageView.clearAnimation();
                     mArrowImageView.setVisibility(View.VISIBLE);
-                    // ÊÇÓÉRELEASE_To_REFRESH×´Ì¬×ª±äÀ´µÄ
+                    // æ˜¯ç”±RELEASE_To_REFRESHçŠ¶æ€è½¬å˜æ¥çš„
                     if (mIsBack) {
                         mIsBack = false;
                         mArrowImageView.clearAnimation();
                         mArrowImageView.startAnimation(mArrowReverseAnim);
-                        // ÏÂÀ­Ë¢ĞÂ
+                        // ä¸‹æ‹‰åˆ·æ–°
                         mTipsTextView.setText(R.string.p2refresh_pull_to_refresh);
                     } else {
-                        // ÏÂÀ­Ë¢ĞÂ
+                        // ä¸‹æ‹‰åˆ·æ–°
                         mTipsTextView.setText(R.string.p2refresh_pull_to_refresh);
                     }
                     break;
@@ -384,15 +384,15 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
                 case REFRESHING:
                     mHeadView.setPadding(0, 0, 0, 0);
 
-                    // »ªÉúµÄ½¨Òé£º
-                    // Êµ¼ÊÉÏÕâ¸öµÄsetPadding¿ÉÒÔÓÃ¶¯»­À´´úÌæ¡£ÎÒÃ»ÓĞÊÔ£¬µ«ÊÇÎÒ¼û¹ı¡£ÆäÊµÓĞµÄÈËÒ²ÓÃScroller¿ÉÒÔÊµÏÖÕâ¸öĞ§¹û£¬
-                    // ÎÒÃ»Ê±¼äÑĞ¾¿ÁË£¬ºóÆÚÔÙÀ©Õ¹£¬Õâ¸ö¹¤×÷½»¸øĞ¡»ï°éÄãÃÇÀ²~ Èç¹û¸Ä½øÁË¼ÇµÃ·¢µ½ÎÒÓÊÏäàŞ~
-                    // ±¾ÈËÓÊÏä£º xxzhaofeng5412@gmail.com
+                    // åç”Ÿçš„å»ºè®®ï¼š
+                    // å®é™…ä¸Šè¿™ä¸ªçš„setPaddingå¯ä»¥ç”¨åŠ¨ç”»æ¥ä»£æ›¿ã€‚æˆ‘æ²¡æœ‰è¯•ï¼Œä½†æ˜¯æˆ‘è§è¿‡ã€‚å…¶å®æœ‰çš„äººä¹Ÿç”¨Scrollerå¯ä»¥å®ç°è¿™ä¸ªæ•ˆæœï¼Œ
+                    // æˆ‘æ²¡æ—¶é—´ç ”ç©¶äº†ï¼ŒåæœŸå†æ‰©å±•ï¼Œè¿™ä¸ªå·¥ä½œäº¤ç»™å°ä¼™ä¼´ä½ ä»¬å•¦~ å¦‚æœæ”¹è¿›äº†è®°å¾—å‘åˆ°æˆ‘é‚®ç®±å™¢~
+                    // æœ¬äººé‚®ç®±ï¼š xxzhaofeng5412@gmail.com
 
                     mProgressBar.setVisibility(View.VISIBLE);
                     mArrowImageView.clearAnimation();
                     mArrowImageView.setVisibility(View.GONE);
-                    // ÕıÔÚË¢ĞÂ...
+                    // æ­£åœ¨åˆ·æ–°...
                     mTipsTextView.setText(R.string.p2refresh_doing_head_refresh);
                     mLastUpdatedTextView.setVisibility(View.VISIBLE);
 
@@ -400,12 +400,12 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
                 case DONE:
                     mHeadView.setPadding(0, -1 * mHeadViewHeight, 0, 0);
 
-                    // ´Ë´¦¿ÉÒÔ¸Ä½ø£¬Í¬ÉÏËùÊö¡£
+                    // æ­¤å¤„å¯ä»¥æ”¹è¿›ï¼ŒåŒä¸Šæ‰€è¿°ã€‚
 
                     mProgressBar.setVisibility(View.GONE);
                     mArrowImageView.clearAnimation();
                     mArrowImageView.setImageResource(R.drawable.ssdk_oks_ptr_ptr);
-                    // ÏÂÀ­Ë¢ĞÂ
+                    // ä¸‹æ‹‰åˆ·æ–°
                     mTipsTextView.setText(R.string.p2refresh_pull_to_refresh);
                     mLastUpdatedTextView.setVisibility(View.VISIBLE);
 
@@ -414,12 +414,12 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         }
 
         /**
-         * ÏÔÊ¾¸ñÊ½»¯ÈÕÆÚÄ£°å
+         * æ˜¾ç¤ºæ ¼å¼åŒ–æ—¥æœŸæ¨¡æ¿
          */
-        private final static String DATE_FORMAT_STR = "yyyyÄêMMÔÂddÈÕ HH:mm";
+        private final static String DATE_FORMAT_STR = "yyyyå¹´MMæœˆddæ—¥ HH:mm";
 
         /**
-         * Êµ¼ÊµÄpaddingµÄ¾àÀëÓë½çÃæÉÏÆ«ÒÆ¾àÀëµÄ±ÈÀı
+         * å®é™…çš„paddingçš„è·ç¦»ä¸ç•Œé¢ä¸Šåç§»è·ç¦»çš„æ¯”ä¾‹
          */
         private final static int RATIO = 3;
 
@@ -434,17 +434,17 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         private final static int LOADING = 4;
 
         /**
-         * ¼ÓÔØÖĞ
+         * åŠ è½½ä¸­
          */
         private final static int ENDINT_LOADING = 1;
 
         /**
-         * ÊÖ¶¯Íê³ÉË¢ĞÂ
+         * æ‰‹åŠ¨å®Œæˆåˆ·æ–°
          */
         private final static int ENDINT_MANUAL_LOAD_DONE = 2;
 
         /**
-         * ×Ô¶¯Íê³ÉË¢ĞÂ
+         * è‡ªåŠ¨å®Œæˆåˆ·æ–°
          */
         private final static int ENDINT_AUTO_LOAD_DONE = 3;
 
@@ -462,28 +462,28 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         private int mHeadState;
 
         /**
-         * 0:Íê³É/µÈ´ıË¢ĞÂ ;
+         * 0:å®Œæˆ/ç­‰å¾…åˆ·æ–° ;
          * <p>
-         * 1:¼ÓÔØÖĞ
+         * 1:åŠ è½½ä¸­
          */
         private int mEndState;
 
         /**
-         * ¿ÉÒÔ¼ÓÔØ¸ü¶à£¿
+         * å¯ä»¥åŠ è½½æ›´å¤šï¼Ÿ
          */
         private boolean mCanLoadMore = false;
 
         /**
-         * ¿ÉÒÔÏÂÀ­Ë¢ĞÂ£¿
+         * å¯ä»¥ä¸‹æ‹‰åˆ·æ–°ï¼Ÿ
          */
         private boolean mCanRefresh = false;
 
         /**
-         * ¿ÉÒÔ×Ô¶¯¼ÓÔØ¸ü¶àÂğ£¿£¨×¢Òâ£¬ÏÈÅĞ¶ÏÊÇ·ñÓĞ¼ÓÔØ¸ü¶à£¬Èç¹ûÃ»ÓĞ£¬Õâ¸öflagÒ²Ã»ÓĞÒâÒå£©
+         * å¯ä»¥è‡ªåŠ¨åŠ è½½æ›´å¤šå—ï¼Ÿï¼ˆæ³¨æ„ï¼Œå…ˆåˆ¤æ–­æ˜¯å¦æœ‰åŠ è½½æ›´å¤šï¼Œå¦‚æœæ²¡æœ‰ï¼Œè¿™ä¸ªflagä¹Ÿæ²¡æœ‰æ„ä¹‰ï¼‰
          */
         private boolean mIsAutoLoadMore = true;
 
-        // /** ÏÂÀ­Ë¢ĞÂºóÊÇ·ñÏÔÊ¾µÚÒ»ÌõItem */
+        // /** ä¸‹æ‹‰åˆ·æ–°åæ˜¯å¦æ˜¾ç¤ºç¬¬ä¸€æ¡Item */
         // private boolean mIsMoveToFirstItemAfterRefresh = false;
 
         public boolean isCanLoadMore() {
@@ -533,27 +533,27 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         @Override
         public void onScrollStateChanged(AbsListView pView, int pScrollState) {
 
-            if (mCanLoadMore) {// ´æÔÚ¼ÓÔØ¸ü¶à¹¦ÄÜ
+            if (mCanLoadMore) {// å­˜åœ¨åŠ è½½æ›´å¤šåŠŸèƒ½
                 if (mLastItemIndex == mCount && pScrollState == SCROLL_STATE_IDLE) {
-                    // SCROLL_STATE_IDLE=0£¬»¬¶¯Í£Ö¹
+                    // SCROLL_STATE_IDLE=0ï¼Œæ»‘åŠ¨åœæ­¢
                     if (mEndState != ENDINT_LOADING) {
-                        if (mIsAutoLoadMore) {// ×Ô¶¯¼ÓÔØ¸ü¶à£¬ÎÒÃÇÈÃFootViewÏÔÊ¾ ¡°¸ü ¶à¡±
+                        if (mIsAutoLoadMore) {// è‡ªåŠ¨åŠ è½½æ›´å¤šï¼Œæˆ‘ä»¬è®©FootViewæ˜¾ç¤º â€œæ›´ å¤šâ€
                             if (mCanRefresh) {
-                                // ´æÔÚÏÂÀ­Ë¢ĞÂ²¢ÇÒHeadViewÃ»ÓĞÕıÔÚË¢ĞÂÊ±£¬FootView¿ÉÒÔ×Ô¶¯¼ÓÔØ¸ü¶à¡£
+                                // å­˜åœ¨ä¸‹æ‹‰åˆ·æ–°å¹¶ä¸”HeadViewæ²¡æœ‰æ­£åœ¨åˆ·æ–°æ—¶ï¼ŒFootViewå¯ä»¥è‡ªåŠ¨åŠ è½½æ›´å¤šã€‚
                                 if (mHeadState != REFRESHING) {
-                                    // FootViewÏÔÊ¾ : ¸ü ¶à ---> ¼ÓÔØÖĞ...
+                                    // FootViewæ˜¾ç¤º : æ›´ å¤š ---> åŠ è½½ä¸­...
                                     mEndState = ENDINT_LOADING;
                                     onLoadMore();
                                     changeEndViewByState();
                                 }
-                            } else {// Ã»ÓĞÏÂÀ­Ë¢ĞÂ£¬ÎÒÃÇÖ±½Ó½øĞĞ¼ÓÔØ¸ü¶à¡£
-                                // FootViewÏÔÊ¾ : ¸ü ¶à ---> ¼ÓÔØÖĞ...
+                            } else {// æ²¡æœ‰ä¸‹æ‹‰åˆ·æ–°ï¼Œæˆ‘ä»¬ç›´æ¥è¿›è¡ŒåŠ è½½æ›´å¤šã€‚
+                                // FootViewæ˜¾ç¤º : æ›´ å¤š ---> åŠ è½½ä¸­...
                                 mEndState = ENDINT_LOADING;
                                 onLoadMore();
                                 changeEndViewByState();
                             }
-                        } else {// ²»ÊÇ×Ô¶¯¼ÓÔØ¸ü¶à£¬ÎÒÃÇÈÃFootViewÏÔÊ¾ ¡°µã»÷¼ÓÔØ¡±
-                            // FootViewÏÔÊ¾ : µã»÷¼ÓÔØ ---> ¼ÓÔØÖĞ...
+                        } else {// ä¸æ˜¯è‡ªåŠ¨åŠ è½½æ›´å¤šï¼Œæˆ‘ä»¬è®©FootViewæ˜¾ç¤º â€œç‚¹å‡»åŠ è½½â€
+                            // FootViewæ˜¾ç¤º : ç‚¹å‡»åŠ è½½ ---> åŠ è½½ä¸­...
                             mEndState = ENDINT_MANUAL_LOAD_DONE;
                             changeEndViewByState();
                         }
@@ -570,10 +570,10 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         }
 
         /**
-         * ÊµÀı»¯ÏÂÀ­Ë¢ĞÂµÄ¼ıÍ·µÄ¶¯»­Ğ§¹û
+         * å®ä¾‹åŒ–ä¸‹æ‹‰åˆ·æ–°çš„ç®­å¤´çš„åŠ¨ç”»æ•ˆæœ
          *
-         * @param pAnimDuration ¶¯»­ÔËĞĞÊ±³¤
-         * @date 2013-11-20 ÉÏÎç11:53:22
+         * @param pAnimDuration åŠ¨ç”»è¿è¡Œæ—¶é•¿
+         * @date 2013-11-20 ä¸Šåˆ11:53:22
          * @change JohnWatson
          * @version 1.0
          */
@@ -601,16 +601,16 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         }
 
         /**
-         * ÕıÔÚ¼ÓÔØ¸ü¶à£¬FootViewÏÔÊ¾ £º ¼ÓÔØÖĞ...
+         * æ­£åœ¨åŠ è½½æ›´å¤šï¼ŒFootViewæ˜¾ç¤º ï¼š åŠ è½½ä¸­...
          *
-         * @date 2013-11-20 ÏÂÎç4:35:51
+         * @date 2013-11-20 ä¸‹åˆ4:35:51
          * @change JohnWatson
          * @version 1.0
          */
         private void onLoadMore() {
             if (mLoadMoreListener != null) {
                 mEndRootView.setVisibility(View.VISIBLE);
-                // ¼ÓÔØÖĞ...
+                // åŠ è½½ä¸­...
                 mEndLoadTipsTextView.setText(R.string.p2refresh_doing_end_refresh);
                 mEndLoadTipsTextView.setVisibility(View.VISIBLE);
                 mEndLoadProgressBar.setVisibility(View.VISIBLE);
@@ -620,10 +620,10 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         }
 
         /**
-         * ÏÂÀ­Ë¢ĞÂ¼àÌı½Ó¿Ú
+         * ä¸‹æ‹‰åˆ·æ–°ç›‘å¬æ¥å£
          *
          * @version 1.0
-         * @date 2013-11-20 ÏÂÎç4:50:51
+         * @date 2013-11-20 ä¸‹åˆ4:50:51
          * @change JohnWatson
          */
         public interface OnRefreshListener {
@@ -632,10 +632,10 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         }
 
         /**
-         * ¼ÓÔØ¸ü¶à¼àÌı½Ó¿Ú
+         * åŠ è½½æ›´å¤šç›‘å¬æ¥å£
          *
          * @version 1.0
-         * @date 2013-11-20 ÏÂÎç4:50:51
+         * @date 2013-11-20 ä¸‹åˆ4:50:51
          * @change JohnWatson
          */
         public interface OnLoadMoreListener {
@@ -672,9 +672,9 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         }
 
         /**
-         * Ìí¼ÓÏÂÀ­Ë¢ĞÂµÄHeadView
+         * æ·»åŠ ä¸‹æ‹‰åˆ·æ–°çš„HeadView
          *
-         * @date 2013-11-11 ÏÂÎç9:48:26
+         * @date 2013-11-11 ä¸‹åˆ9:48:26
          * @change JohnWatson
          * @version 1.0
          */
@@ -703,9 +703,9 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         }
 
         /**
-         * Ìí¼Ó¼ÓÔØ¸ü¶àFootView
+         * æ·»åŠ åŠ è½½æ›´å¤šFootView
          *
-         * @date 2013-11-11 ÏÂÎç9:52:37
+         * @date 2013-11-11 ä¸‹åˆ9:52:37
          * @change JohnWatson
          * @version 1.0
          */
@@ -720,13 +720,13 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
                 public void onClick(View v) {
                     if (mCanLoadMore) {
                         if (mCanRefresh) {
-                            // µ±¿ÉÒÔÏÂÀ­Ë¢ĞÂÊ±£¬Èç¹ûFootViewÃ»ÓĞÕıÔÚ¼ÓÔØ£¬²¢ÇÒHeadViewÃ»ÓĞÕıÔÚË¢ĞÂ£¬²Å¿ÉÒÔµã»÷¼ÓÔØ¸ü¶à¡£
+                            // å½“å¯ä»¥ä¸‹æ‹‰åˆ·æ–°æ—¶ï¼Œå¦‚æœFootViewæ²¡æœ‰æ­£åœ¨åŠ è½½ï¼Œå¹¶ä¸”HeadViewæ²¡æœ‰æ­£åœ¨åˆ·æ–°ï¼Œæ‰å¯ä»¥ç‚¹å‡»åŠ è½½æ›´å¤šã€‚
                             if (mEndState != ENDINT_LOADING && mHeadState != REFRESHING) {
                                 mEndState = ENDINT_LOADING;
                                 onLoadMore();
                             }
                         } else if (mEndState != ENDINT_LOADING) {
-                            // µ±²»ÄÜÏÂÀ­Ë¢ĞÂÊ±£¬FootView²»ÕıÔÚ¼ÓÔØÊ±£¬²Å¿ÉÒÔµã»÷¼ÓÔØ¸ü¶à¡£
+                            // å½“ä¸èƒ½ä¸‹æ‹‰åˆ·æ–°æ—¶ï¼ŒFootViewä¸æ­£åœ¨åŠ è½½æ—¶ï¼Œæ‰å¯ä»¥ç‚¹å‡»åŠ è½½æ›´å¤šã€‚
                             mEndState = ENDINT_LOADING;
                             onLoadMore();
                         }
@@ -744,10 +744,10 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         }
 
         /**
-         * ²âÁ¿HeadView¿í¸ß(×¢Òâ£º´Ë·½·¨½öÊÊÓÃÓÚLinearLayout£¬Çë¶ÁÕß×Ô¼º²âÊÔÑéÖ¤¡£)
+         * æµ‹é‡HeadViewå®½é«˜(æ³¨æ„ï¼šæ­¤æ–¹æ³•ä»…é€‚ç”¨äºLinearLayoutï¼Œè¯·è¯»è€…è‡ªå·±æµ‹è¯•éªŒè¯ã€‚)
          *
          * @param pChild
-         * @date 2013-11-20 ÏÂÎç4:12:07
+         * @date 2013-11-20 ä¸‹åˆ4:12:07
          * @change JohnWatson
          * @version 1.0
          */
@@ -769,27 +769,27 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         }
 
         /**
-         * ÏÂÀ­Ë¢ĞÂÍê³É
+         * ä¸‹æ‹‰åˆ·æ–°å®Œæˆ
          *
-         * @date 2013-11-20 ÏÂÎç4:44:12
+         * @date 2013-11-20 ä¸‹åˆ4:44:12
          * @change JohnWatson
          * @version 1.0
          */
         public void onRefreshComplete() {
-            // ÏÂÀ­Ë¢ĞÂºóÊÇ·ñÏÔÊ¾µÚÒ»ÌõItem
+            // ä¸‹æ‹‰åˆ·æ–°åæ˜¯å¦æ˜¾ç¤ºç¬¬ä¸€æ¡Item
             setSelection(0);
 
             mHeadState = DONE;
-            // ×î½ü¸üĞÂ: Time
+            // æœ€è¿‘æ›´æ–°: Time
             mLastUpdatedTextView.setText(getResources().getString(R.string.p2refresh_refresh_lasttime)
                     + new SimpleDateFormat(DATE_FORMAT_STR, Locale.CHINA).format(new Date()));
             changeHeaderViewByState();
         }
 
         /**
-         * ¼ÓÔØ¸ü¶àÍê³É
+         * åŠ è½½æ›´å¤šå®Œæˆ
          *
-         * @date 2013-11-11 ÏÂÎç10:21:38
+         * @date 2013-11-11 ä¸‹åˆ10:21:38
          * @change JohnWatson
          * @version 1.0
          */
@@ -803,33 +803,33 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
         }
 
         /**
-         * ¸üĞÂÒ»ÏÂË¢ĞÂÊ±¼ä
+         * æ›´æ–°ä¸€ä¸‹åˆ·æ–°æ—¶é—´
          *
          * @param adapter
-         * @date 2013-11-20 ÏÂÎç5:35:51
+         * @date 2013-11-20 ä¸‹åˆ5:35:51
          * @change JohnWatson
          * @version 1.0
          */
         public void setAdapter(ListAdapter adapter) {
-            // ×î½ü¸üĞÂ: Time
+            // æœ€è¿‘æ›´æ–°: Time
             mLastUpdatedTextView.setText(getResources().getString(R.string.p2refresh_refresh_lasttime)
                     + new SimpleDateFormat(DATE_FORMAT_STR, Locale.CHINA).format(new Date()));
             super.setAdapter(adapter);
         }
 
         /**
-         * ¸Ä±ä¼ÓÔØ¸ü¶à×´Ì¬
+         * æ”¹å˜åŠ è½½æ›´å¤šçŠ¶æ€
          *
-         * @date 2013-11-11 ÏÂÎç10:05:27
+         * @date 2013-11-11 ä¸‹åˆ10:05:27
          * @change JohnWatson
          * @version 1.0
          */
         private void changeEndViewByState() {
             if (mCanLoadMore) {
-                // ÔÊĞí¼ÓÔØ¸ü¶à
+                // å…è®¸åŠ è½½æ›´å¤š
                 switch (mEndState) {
-                    case ENDINT_LOADING:// Ë¢ĞÂÖĞ
-                        // ¼ÓÔØÖĞ...
+                    case ENDINT_LOADING:// åˆ·æ–°ä¸­
+                        // åŠ è½½ä¸­...
                         if (mEndLoadTipsTextView.getText().equals(R.string.p2refresh_doing_end_refresh)) {
                             break;
                         }
@@ -837,18 +837,18 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
                         mEndLoadTipsTextView.setVisibility(View.VISIBLE);
                         mEndLoadProgressBar.setVisibility(View.VISIBLE);
                         break;
-                    case ENDINT_MANUAL_LOAD_DONE:// ÊÖ¶¯Ë¢ĞÂÍê³É
+                    case ENDINT_MANUAL_LOAD_DONE:// æ‰‹åŠ¨åˆ·æ–°å®Œæˆ
 
-                        // µã»÷¼ÓÔØ
+                        // ç‚¹å‡»åŠ è½½
                         mEndLoadTipsTextView.setText(R.string.p2refresh_end_click_load_more);
                         mEndLoadTipsTextView.setVisibility(View.VISIBLE);
                         mEndLoadProgressBar.setVisibility(View.GONE);
 
                         mEndRootView.setVisibility(View.GONE);
                         break;
-                    case ENDINT_AUTO_LOAD_DONE:// ×Ô¶¯Ë¢ĞÂÍê³É
+                    case ENDINT_AUTO_LOAD_DONE:// è‡ªåŠ¨åˆ·æ–°å®Œæˆ
 
-                        // ¸ü ¶à
+                        // æ›´ å¤š
                         mEndLoadTipsTextView.setText(R.string.p2refresh_end_load_more);
                         mEndLoadTipsTextView.setVisibility(View.VISIBLE);
                         mEndLoadProgressBar.setVisibility(View.GONE);
@@ -856,8 +856,8 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
                         mEndRootView.setVisibility(View.GONE);
                         break;
                     default:
-                        // Ô­À´µÄ´úÂëÊÇÎªÁË£º µ±ËùÓĞitemµÄ¸ß¶ÈĞ¡ÓÚListView±¾ÉíµÄ¸ß¶ÈÊ±£¬
-                        // ÒªÒş²ØµôFootView£¬´ó¼Ò×Ô¼ºÈ¥Ô­×÷ÕßµÄ´úÂë²Î¿¼¡£
+                        // åŸæ¥çš„ä»£ç æ˜¯ä¸ºäº†ï¼š å½“æ‰€æœ‰itemçš„é«˜åº¦å°äºListViewæœ¬èº«çš„é«˜åº¦æ—¶ï¼Œ
+                        // è¦éšè—æ‰FootViewï¼Œå¤§å®¶è‡ªå·±å»åŸä½œè€…çš„ä»£ç å‚è€ƒã€‚
 
                         // if (mEnoughCount) {
                         // mEndRootView.setVisibility(View.VISIBLE);

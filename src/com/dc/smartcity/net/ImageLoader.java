@@ -1,4 +1,4 @@
-package com.dc.smartcity.base;
+package com.dc.smartcity.net;
 
 /**
  * 图片加载管理类，上层业务和下层图片管理插件的中间层
@@ -12,6 +12,7 @@ import com.android.dcone.ut.picasso.Callback;
 import com.android.dcone.ut.picasso.Picasso;
 import com.android.dcone.ut.picasso.Target;
 import com.dc.smartcity.R;
+import com.dc.smartcity.base.BaseApplication;
 
 import java.io.File;
 

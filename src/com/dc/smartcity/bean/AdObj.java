@@ -3,7 +3,7 @@ package com.dc.smartcity.bean;
 import java.io.Serializable;
 
 /**
- * ¹ã¸æµÄ¶ÔÏó
+ * å¹¿å‘Šçš„å¯¹è±¡
  */
 public class AdObj implements Serializable {
 
@@ -11,7 +11,7 @@ public class AdObj implements Serializable {
     /*{
         "noticeUrlType": "",
         "redirectUrl": "",
-        "imageName": "¹ã¸æ1",
+        "imageName": "å¹¿å‘Š1",
         "imageUrl": "http://www.17workout.com/Admin/UploadFile/api/test1.png",
         "tag": "",
         "versionBegin": 0,

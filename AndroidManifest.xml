@@ -41,31 +41,36 @@
 
         <activity
                 android:name="com.dc.smartcity.activity.ServiceMarketActivity"
-                android:configChanges="keyboardHidden|navigation|orientation">
+                 >
+        </activity>
+        <activity
+                android:name="com.dc.smartcity.activity.SearchServiceActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="adjustPan">
         </activity>
         <activity
                 android:name="com.dc.smartcity.activity.LoginActivity"
-                android:configChanges="keyboardHidden|navigation|orientation">
+                 >
         </activity>
         <activity
                 android:name="com.dc.smartcity.activity.MessageActivity"
-                android:configChanges="keyboardHidden|navigation|orientation">
+                 >
         </activity>
         <activity
                 android:name="com.dc.smartcity.activity.MyWebViewActivity"
-                android:configChanges="keyboardHidden|navigation|orientation">
+                 >
         </activity>
         <activity
                 android:name="com.dc.smartcity.activity.NewsDetailActivity"
-                android:configChanges="keyboardHidden|navigation|orientation">
+                 >
         </activity>
         <activity
                 android:name="com.dc.smartcity.activity.SettingActivity"
-                android:configChanges="keyboardHidden|navigation|orientation">
+                 >
         </activity>
         <activity
                 android:name="com.dc.smartcity.activity.WelecomeActivity"
-                android:configChanges="keyboardHidden|navigation|orientation">
+                 >
         </activity>
 
 

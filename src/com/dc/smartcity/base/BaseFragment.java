@@ -17,6 +17,7 @@ import com.dc.smartcity.view.LoadingDialog;
 
 public abstract class BaseFragment extends Fragment {
 
+    private ActionBar mActionbar;
     protected ImageView iv_actionbar_left;
     protected TextView tv_actionbar_left;
     protected TextView tv_actionbar_title;
@@ -29,7 +30,9 @@ public abstract class BaseFragment extends Fragment {
     public LoadingDialog mLoadingDialog;
     public FragmentManager mFragmentManager;
     public LayoutInflater mLayoutInflater;
-    private ActionBar mActionbar;
+
+    public BaseFragment() {
+    }
 
     public BaseFragment(ActionBar actionBar) {
         this.mActionbar = actionBar;
@@ -72,4 +75,8 @@ public abstract class BaseFragment extends Fragment {
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }

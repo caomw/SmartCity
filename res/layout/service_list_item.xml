@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/griditems_bg"
+        >
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bg_gv"
+            android:padding="16dip">
+
+        <ImageView
+                android:id="@+id/iv_item"
+                android:layout_width="38.0dip"
+                android:layout_height="38.0dip"
+                android:layout_centerVertical="true"
+                android:src="@drawable/app_phonecharge"
+                android:contentDescription="@string/app_name"/>
+
+        <TextView
+                android:id="@+id/tv_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_item"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:maxLines="1"
+                android:text="五险一金"
+                android:textColor="@color/main_primary"
+                android:textSize="20sp"/>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/go"
+                android:contentDescription="@string/app_name"/>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -35,6 +35,7 @@ public class HomeMyFragment extends BaseFragment {
     private TextView name;
     @ViewInject(R.id.tvNotlogin)
     private TextView tvNotlogin;
+
     @Override
     protected int setContentView() {
         return R.layout.fragment_my;
@@ -48,23 +49,36 @@ public class HomeMyFragment extends BaseFragment {
         initActionBar();
         return view;
     }
-    
+
     @Override
-    public void onResume(){
-    	super.onResume();
-    	if(!TextUtils.isEmpty(BaseApplication.user.userName)){
-    		name.setVisibility(View.VISIBLE);
-    		name.setText(BaseApplication.user.userName);
-    		tvNotlogin.setVisibility(View.GONE);
-    	}
+    public void onResume() {
+        super.onResume();
+        if (!TextUtils.isEmpty(BaseApplication.user.userName)) {
+            name.setVisibility(View.VISIBLE);
+            name.setText(BaseApplication.user.userName);
+            tvNotlogin.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            initActionBar();
+        }
     }
 
     private void initActionBar() {
+        iv_actionbar_left.setVisibility(View.GONE);
+        tv_actionbar_left.setVisibility(View.GONE);
+        et_actionbar_search.setVisibility(View.GONE);
         tv_actionbar_title.setVisibility(View.VISIBLE);
         tv_actionbar_title.setText("我");
+        iv_actionbar_right.setVisibility(View.GONE);
+        tv_actionbar_right.setVisibility(View.GONE);
     }
 
-    @OnClick(value = {R.id.userHead, R.id.set, R.id.message,R.id.ll_news,R.id.ll_news1,R.id.ll_news2,R.id.tvNotlogin})
+    @OnClick(value = {R.id.userHead, R.id.set, R.id.message, R.id.ll_news, R.id.ll_news1, R.id.ll_news2, R.id.tvNotlogin})
     private void OnClick(View v) {
         switch (v.getId()) {
             case R.id.userHead:
@@ -83,7 +97,7 @@ public class HomeMyFragment extends BaseFragment {
             case R.id.ll_news:
             case R.id.ll_news1:
             case R.id.ll_news2:
-            	Intent o = new Intent(getActivity(), NewsDetailActivity.class);
+                Intent o = new Intent(getActivity(), NewsDetailActivity.class);
                 startActivity(o);
             default:
                 break;

@@ -13,6 +13,7 @@ import com.dc.smartcity.R;
 import com.dc.smartcity.base.BaseFragment;
 import com.dc.smartcity.net.ImageLoader;
 import com.dc.smartcity.bean.AdObj;
+import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.view.advertisement.AdvertisementView;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ import java.util.ArrayList;
  * Created by vincent on 2015/8/3.
  */
 public class HomeAskFragment extends BaseFragment {
+    private String TAG = HomeAskFragment.class.getSimpleName();
+
     private ArrayList<AdObj> advertismentlist = new ArrayList<AdObj>();
     private AdvertisementView advertisementControlLayout;
 
@@ -47,11 +50,24 @@ public class HomeAskFragment extends BaseFragment {
         return view;
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        ULog.error("---%s.hidden=%s", TAG, hidden);
+        if (!hidden) {
+            initActionBar();
+        }
+    }
+
     private void initActionBar() {
+        iv_actionbar_left.setVisibility(View.GONE);
+        tv_actionbar_left.setVisibility(View.GONE);
+        et_actionbar_search.setVisibility(View.GONE);
         tv_actionbar_title.setVisibility(View.VISIBLE);
         tv_actionbar_title.setText("有问必答");
-
         iv_actionbar_right.setVisibility(View.VISIBLE);
+        iv_actionbar_right.setImageResource(R.drawable.pub);
+        tv_actionbar_right.setVisibility(View.GONE);
     }
 
     // 初始化广告

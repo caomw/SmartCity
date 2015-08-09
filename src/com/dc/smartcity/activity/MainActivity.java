@@ -2,6 +2,7 @@ package com.dc.smartcity.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -52,7 +53,6 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ULog.debug("--->onCreate");
         rb_menu_service.setChecked(true);
     }
 

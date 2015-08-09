@@ -13,11 +13,11 @@ public class IconWithTextGridAdapter extends BaseAdapter {
     private Context mContext;
 
     public String[] img_text = {"转账", "余额宝", "手机充值", "信用卡还款", "淘宝电影", "彩票",
-            "当面付", "亲密付"};
+            "当面付", "更多"};
     public int[] imgs = {R.drawable.app_transfer, R.drawable.app_fund,
             R.drawable.app_phonecharge, R.drawable.app_creditcard,
             R.drawable.app_movie, R.drawable.app_lottery,
-            R.drawable.app_facepay, R.drawable.app_close};
+            R.drawable.app_facepay, R.drawable.more};
 
     public IconWithTextGridAdapter(Context mContext) {
         super();

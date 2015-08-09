@@ -4,15 +4,15 @@
               android:layout_height="@dimen/actionbar_height"
               android:background="@color/base_blue"
               android:gravity="center_vertical"
-              android:paddingLeft="@dimen/padding_eight_dp"
-              android:paddingRight="@dimen/padding_eight_dp">
+              android:paddingLeft="@dimen/padding_ten_dp"
+              android:paddingRight="@dimen/padding_ten_dp">
     <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <ImageView
                 android:id="@+id/iv_actionbar_left"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/actionbar_height"
                 android:layout_centerVertical="true"
                 android:scaleType="center"
                 android:src="@drawable/selector_back"
@@ -53,15 +53,15 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:background="@drawable/bg_searchbox"
-                android:drawableLeft="@drawable/icon_indicator_search_rest"
+                android:drawableLeft="@drawable/sear"
                 android:drawablePadding="@dimen/margin_five_dp"
-                android:hint="搜服务"
                 android:singleLine="true"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:textCursorDrawable="@null"
                 android:textSize="@dimen/text_fifteen_sp"
-                android:visibility="gone">
+                android:visibility="gone"
+                >
         </EditText>
     </RelativeLayout>
     <RelativeLayout
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/icon_menu_home_bg"
+                android:src="@drawable/search"
                 android:visibility="gone"/>
     </RelativeLayout>
 </LinearLayout>

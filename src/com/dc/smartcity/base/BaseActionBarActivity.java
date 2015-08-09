@@ -2,6 +2,7 @@ package com.dc.smartcity.base;
 
 import android.app.ActionBar;
 import android.content.Context;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -12,10 +13,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.dcone.ut.ViewUtils;
 import com.dc.smartcity.R;
+import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.view.LoadingDialog;
 
 
 public abstract class BaseActionBarActivity extends FragmentActivity {
+    private String TAG =BaseActionBarActivity.class.getSimpleName();
 
 
     protected ImageView iv_actionbar_left;
@@ -55,6 +58,14 @@ public abstract class BaseActionBarActivity extends FragmentActivity {
         et_actionbar_search = (EditText) actionView.findViewById(R.id.et_actionbar_search);
         tv_actionbar_right = (TextView) actionView.findViewById(R.id.tv_actionbar_right);
         iv_actionbar_right = (ImageView) actionView.findViewById(R.id.iv_actionbar_right);
+
+        iv_actionbar_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ULog.error("%s----iv_actionbar_left.onClick",TAG);
+                onBackPressed();
+            }
+        });
         mActionBar = this.getActionBar();
         if (mActionBar != null) {
             mActionBar.setDisplayShowCustomEnabled(true);// 可以自定义actionbar
@@ -71,12 +82,6 @@ public abstract class BaseActionBarActivity extends FragmentActivity {
             tv_actionbar_title.setVisibility(View.VISIBLE);
             tv_actionbar_title.setText(title);
         }
-    }
-
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
     }
 
 }

@@ -6,16 +6,20 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.dc.smartcity.R;
+import com.dc.smartcity.activity.SearchServiceActivity;
 import com.dc.smartcity.activity.ServiceMarketActivity;
 import com.dc.smartcity.base.BaseFragment;
 import com.dc.smartcity.bean.AdObj;
 import com.dc.smartcity.net.ImageLoader;
+import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.view.advertisement.AdvertisementView;
 import com.dc.smartcity.view.gridview.IconWithTextGridAdapter;
 import com.dc.smartcity.view.gridview.ScrollGridView;
@@ -28,6 +32,8 @@ import java.util.ArrayList;
  * Created by vincent on 2015/8/3.
  */
 public class HomePageFragment extends BaseFragment {
+
+    private String TAG = HomePageFragment.class.getSimpleName();
 
     private ArrayList<AdObj> advertismentlist = new ArrayList<AdObj>();
     private AdvertisementView advertisementControlLayout;
@@ -62,11 +68,21 @@ public class HomePageFragment extends BaseFragment {
         initActionBarAction();
         initADS();
         initGridView();
-        initBottonMudule();
+        initBottomMudule();
+
         return view;
     }
 
-    private void initBottonMudule() {
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            initActionBarAction();
+        }
+    }
+
+
+    private void initBottomMudule() {
         DisplayMetrics dm = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
         int widthPixels = dm.widthPixels;
@@ -97,6 +113,12 @@ public class HomePageFragment extends BaseFragment {
 
     private void initGridView() {
         gridview.setAdapter(new IconWithTextGridAdapter(getActivity()));
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(getActivity(), ServiceMarketActivity.class));
+            }
+        });
     }
 
 
@@ -126,22 +148,26 @@ public class HomePageFragment extends BaseFragment {
     }
 
     private void initActionBarAction() {
+        iv_actionbar_left.setVisibility(View.GONE);
         tv_actionbar_left.setVisibility(View.VISIBLE);
         tv_actionbar_left.setText("常熟");
+        tv_actionbar_title.setVisibility(View.GONE);
 
         et_actionbar_search.setVisibility(View.VISIBLE);
-        et_actionbar_search.setOnClickListener(new View.OnClickListener() {
+        et_actionbar_search.setHint("搜服务");
+        et_actionbar_search.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), ServiceMarketActivity.class));
+            public boolean onTouch(View v, MotionEvent event) {
+                startActivity(new Intent(getActivity(), SearchServiceActivity.class));
+                return true;
             }
         });
-        tv_actionbar_title.setVisibility(View.VISIBLE);
-        tv_actionbar_title.setText("智慧城市");
 
         tv_actionbar_right.setVisibility(View.VISIBLE);
-        Drawable drawable = getActivity().getResources().getDrawable(R.drawable.ic_launcher);
+        Drawable drawable = getActivity().getResources().getDrawable(R.drawable.baoxue);
         tv_actionbar_right.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null);
         tv_actionbar_right.setText("31℃");
+
+        iv_actionbar_right.setVisibility(View.GONE);
     }
 }

@@ -101,7 +101,14 @@
 
     <!-- 通用的左右滑动title -->
     <style name="tab_title_style">
-        <item name="android:textColor">@color/vpi_tab_title_color</item>
+        <item name="android:textColor">@color/main_secondary</item>
         <item name="android:textSize">@dimen/text_size_title</item>
+    </style>
+
+    <style name="tv_hint_hint_style" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/text_size_hint</item>
+        <item name="android:textColor">@color/main_hint</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 </resources>

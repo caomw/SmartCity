@@ -26,6 +26,8 @@ import com.dc.smartcity.base.BaseFragment;
  */
 public class HomeMyFragment extends BaseFragment {
 
+    public HomeMyFragment() {
+    }
 
     public HomeMyFragment(ActionBar actionBar) {
         super(actionBar);

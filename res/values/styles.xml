@@ -18,10 +18,6 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
-    <style name="MyTheme.NoTitleBar.CustomBackground" parent="@android:Theme.Black">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
 
     <style name="actionbar_def_style" parent="@android:style/Widget.Holo.Light.ActionBar">
 
@@ -30,6 +26,7 @@
         <!-- 在样式里面去掉acionbar的应用图标和标题 -->
         <item name="android:displayOptions">@null</item>
     </style>
+
     <!-- 自定义窗口样式，需要带ActionBar -->
     <style name="ActivityTheme_Light" parent="android:Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/actionbar_def_style</item>

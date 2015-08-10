@@ -115,9 +115,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_gv"
-        android:drawableRight="@drawable/more"
-        android:padding="10dp"
+        android:drawableRight="@drawable/go"
         android:gravity="center_vertical"
+        android:padding="10dp"
         android:drawablePadding="10dp"
         android:drawableLeft="@drawable/my1"
         android:text="@string/city_news" />
@@ -223,7 +223,7 @@
         android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/my2"
         android:drawablePadding="10dp"
-        android:drawableRight="@drawable/more"
+        android:drawableRight="@drawable/go"
         android:text="@string/m_messg" />
 
     <ImageView
@@ -239,7 +239,7 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/my3"
         android:drawablePadding="10dp"
-        android:drawableRight="@drawable/more"
+        android:drawableRight="@drawable/go"
         android:text="@string/m_collection" />
 
     <ImageView
@@ -255,7 +255,7 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/my4"
         android:drawablePadding="10dp"
-        android:drawableRight="@drawable/more"
+        android:drawableRight="@drawable/go"
         android:text="@string/m_foot" />
 
     <TextView
@@ -267,7 +267,7 @@
         android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/my5"
         android:drawablePadding="10dp"
-        android:drawableRight="@drawable/more"
+        android:drawableRight="@drawable/go"
         android:text="@string/sys_setting" />
 
 </LinearLayout>

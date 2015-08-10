@@ -9,12 +9,11 @@ import android.view.View;
 import android.view.Window;
 import android.webkit.*;
 import com.dc.smartcity.R;
-import com.dc.smartcity.util.BundleKeys;
 import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.view.LoadingDialog;
 
 /**
- * Í³Ò»µÄwebviewµÄactivity
+ * ç»Ÿä¸€çš„webviewçš„activity
  */
 public class MyWebViewActivity extends Activity {
 
@@ -32,19 +31,21 @@ public class MyWebViewActivity extends Activity {
 
         mLoadingDialog = LoadingDialog.create(MyWebViewActivity.this, MyWebViewActivity.this.getString(R.string.loading));
         my_webview = (WebView) findViewById(R.id.my_webview);
-        loadurl = getIntent().getStringExtra(BundleKeys.WEBVIEEW_LOADURL);
-        title = getIntent().getStringExtra(BundleKeys.WEBVIEEW_TITLE);
+//        loadurl = getIntent().getStringExtra(BundleKeys.WEBVIEEW_LOADURL);
+//        title = getIntent().getStringExtra(BundleKeys.WEBVIEEW_TITLE);
+        loadurl = "http://www.w3school.com.cn";
+        title = "è¯¦æƒ…";
 
-        /*----ÉèÖÃWebView¿Ø¼ş²ÎÊı----*/
+        /*----è®¾ç½®WebViewæ§ä»¶å‚æ•°----*/
         WebSettings webSettings = my_webview.getSettings();
-        webSettings.setJavaScriptEnabled(true);// ÉèÖÃÏìÓ¦JS
+        webSettings.setJavaScriptEnabled(true);// è®¾ç½®å“åº”JS
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
         my_webview.setVerticalScrollBarEnabled(false);
         my_webview.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        my_webview.setWebViewClient(new WebViewClient() {// ÉèÖÃWebView¿Í»§¶Ë¶ÔÏó
+        my_webview.setWebViewClient(new WebViewClient() {// è®¾ç½®WebViewå®¢æˆ·ç«¯å¯¹è±¡
             /**
-             * ÖØĞ´·½·¨£¬·ñÔòµã»÷Ò³ÃæÊ±WebView»áÖØĞÂÆô¶¯ÏµÍ³ä¯ÀÀÆ÷
+             * é‡å†™æ–¹æ³•ï¼Œå¦åˆ™ç‚¹å‡»é¡µé¢æ—¶WebViewä¼šé‡æ–°å¯åŠ¨ç³»ç»Ÿæµè§ˆå™¨
              */
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -66,14 +67,14 @@ public class MyWebViewActivity extends Activity {
 
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                handler.proceed();// ÈÃhttpsµÄÕ¾µãÍ¨¹ı·ÃÎÊ£¬ÉèÖÃÎª¿ÉÍ¨¹ıÖ¤Êé¡£
+                handler.proceed();// è®©httpsçš„ç«™ç‚¹é€šè¿‡è®¿é—®ï¼Œè®¾ç½®ä¸ºå¯é€šè¿‡è¯ä¹¦ã€‚
             }
         });
 
         my_webview.setWebChromeClient(new WebChromeClient() {
             public void onProgressChanged(WebView view, int progress) {
-                // ActivityºÍWebview¸ù¾İ¼ÓÔØ³Ì¶È¾ö¶¨½ø¶ÈÌõµÄ½ø¶È´óĞ¡
-                // µ±¼ÓÔØµ½100%µÄÊ±ºò ½ø¶ÈÌõ×Ô¶¯ÏûÊ§
+                // Activityå’ŒWebviewæ ¹æ®åŠ è½½ç¨‹åº¦å†³å®šè¿›åº¦æ¡çš„è¿›åº¦å¤§å°
+                // å½“åŠ è½½åˆ°100%çš„æ—¶å€™ è¿›åº¦æ¡è‡ªåŠ¨æ¶ˆå¤±
                 if (progress == 100) {
                     if (null != mLoadingDialog) {
                         mLoadingDialog.dismiss();
@@ -103,4 +104,3 @@ public class MyWebViewActivity extends Activity {
         }
     }
 }
-

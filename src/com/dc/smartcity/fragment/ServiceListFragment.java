@@ -18,6 +18,7 @@ import com.dc.smartcity.view.pullrefresh.PullToRefreshListView;
 import java.util.ArrayList;
 
 /**
+ * 服务超市
  * Created by vincent on 2015/8/9.
  */
 public class ServiceListFragment extends BaseFragment {

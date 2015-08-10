@@ -1,20 +1,25 @@
 package com.dc.smartcity.fragment;
 
 import android.app.ActionBar;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.dc.smartcity.R;
+import com.dc.smartcity.activity.AskDetailActivity;
 import com.dc.smartcity.base.BaseFragment;
-import com.dc.smartcity.net.ImageLoader;
-import com.dc.smartcity.bean.AdObj;
+import com.dc.smartcity.bean.AskObj;
 import com.dc.smartcity.util.ULog;
-import com.dc.smartcity.view.advertisement.AdvertisementView;
+import com.dc.smartcity.util.Utils;
+import com.dc.smartcity.view.gridview.BaseViewHolder;
+import com.dc.smartcity.view.pullrefresh.PullToRefreshListView;
 
 import java.util.ArrayList;
 
@@ -25,16 +30,16 @@ import java.util.ArrayList;
 public class HomeAskFragment extends BaseFragment {
     private String TAG = HomeAskFragment.class.getSimpleName();
 
-    private ArrayList<AdObj> advertismentlist = new ArrayList<AdObj>();
-    private AdvertisementView advertisementControlLayout;
+    @ViewInject(R.id.pullToRefreshListview)
+    private PullToRefreshListView pullToRefreshListview;
 
-    @ViewInject(R.id.ll_ad_layout)
-    private LinearLayout ll_ad_layout;
 
     public HomeAskFragment(ActionBar actionBar) {
         super(actionBar);
     }
 
+    public HomeAskFragment() {
+    }
 
     @Override
     protected int setContentView() {
@@ -45,8 +50,8 @@ public class HomeAskFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
         view = super.onCreateView(inflater, container, bundle);
-        initADS();
         initActionBar();
+        initList();
         return view;
     }
 
@@ -67,31 +72,72 @@ public class HomeAskFragment extends BaseFragment {
         tv_actionbar_title.setText("有问必答");
         iv_actionbar_right.setVisibility(View.VISIBLE);
         iv_actionbar_right.setImageResource(R.drawable.pub);
+        iv_actionbar_right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utils.showToast("需要实名认证", getActivity());
+            }
+        });
         tv_actionbar_right.setVisibility(View.GONE);
     }
 
-    // 初始化广告
-    private void initADS() {
-        advertisementControlLayout = new AdvertisementView(getActivity());
-        advertisementControlLayout.setAdvertisementRate(8, 5);
-        advertisementControlLayout.setImageLoader(ImageLoader.getInstance());
-        ll_ad_layout.addView(advertisementControlLayout);
+    private void initList() {
+        pullToRefreshListview.setMode(PullToRefreshListView.MODE_NONE);
+//        lv_activity_center.setOnRefreshListener(this);
+        ArrayList<AskObj> list = new ArrayList<AskObj>();
+        for (int i = 0; i < 25; i++) {
+            list.add(new AskObj());
+        }
+        ListAdapter adapter = new ListAdapter(getActivity(), list);
+        pullToRefreshListview.setAdapter(adapter);
+        pullToRefreshListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(getActivity(), AskDetailActivity.class));
+            }
+        });
+    }
 
-        AdObj adObj1 = new AdObj();
-        adObj1.imageUrl = "http://b.hiphotos.baidu.com/image/pic/item/0dd7912397dda144dc2ba0bbb0b7d0a20cf4869d.jpg";
-        AdObj adObj2 = new AdObj();
-        adObj2.imageUrl = "http://c.hiphotos.baidu.com/image/pic/item/9d82d158ccbf6c810a4107e5be3eb13533fa404c.jpg";
-        AdObj adObj3 = new AdObj();
-        adObj3.imageUrl = "http://e.hiphotos.baidu.com/image/pic/item/3801213fb80e7bec203a3fe12d2eb9389a506bc9.jpg";
-        AdObj adObj4 = new AdObj();
-        adObj4.imageUrl = "http://f.hiphotos.baidu.com/image/pic/item/eac4b74543a982261a1836268882b9014b90ebd2.jpg";
-        advertismentlist.add(adObj1);
-        advertismentlist.add(adObj2);
-        advertismentlist.add(adObj3);
-        advertismentlist.add(adObj4);
-        if (advertismentlist != null && advertismentlist.size() > 0) {
-            advertisementControlLayout.setAdvertisementData(advertismentlist);
-            ll_ad_layout.setVisibility(View.VISIBLE);
+
+    class ListAdapter extends BaseAdapter {
+        private ArrayList<AskObj> list = new ArrayList<AskObj>();
+        private Context mContext;
+
+        public ListAdapter(Context mContext, ArrayList<AskObj> list) {
+            this.list = list;
+            this.mContext = mContext;
+        }
+
+        @Override
+        public int getCount() {
+            return list.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = LayoutInflater.from(mContext).inflate(
+                        R.layout.ask_list_item, parent, false);
+            }
+            ImageView iv_head = BaseViewHolder.get(convertView, R.id.iv_head);
+            TextView tv_name = BaseViewHolder.get(convertView, R.id.tv_name);
+            TextView tv_title = BaseViewHolder.get(convertView, R.id.tv_title);
+            TextView tv_status = BaseViewHolder.get(convertView, R.id.tv_status);
+            TextView tv_content = BaseViewHolder.get(convertView, R.id.tv_content);
+            TextView tv_ask_date = BaseViewHolder.get(convertView, R.id.tv_ask_date);
+            TextView tv_ask_location = BaseViewHolder.get(convertView, R.id.tv_ask_location);
+            return convertView;
         }
     }
+
 }

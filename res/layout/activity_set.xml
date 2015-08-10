@@ -5,7 +5,6 @@
     android:background="@color/bgcolor"
     android:orientation="vertical" >
 
-    <include layout="@layout/head_2" />
 
     <TextView
         style="@style/TextTopContainer"

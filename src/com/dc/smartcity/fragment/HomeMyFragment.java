@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.dcone.ut.view.annotation.ViewInject;
@@ -35,6 +35,8 @@ public class HomeMyFragment extends BaseFragment {
     private TextView name;
     @ViewInject(R.id.tvNotlogin)
     private TextView tvNotlogin;
+    @ViewInject(R.id.l_login)
+    private LinearLayout l_login;
 
     @Override
     protected int setContentView() {
@@ -57,6 +59,7 @@ public class HomeMyFragment extends BaseFragment {
             name.setVisibility(View.VISIBLE);
             name.setText(BaseApplication.user.userName);
             tvNotlogin.setVisibility(View.GONE);
+            l_login.setVisibility(View.VISIBLE);
         }
     }
 

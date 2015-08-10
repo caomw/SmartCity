@@ -4,13 +4,14 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <LinearLayout
-            android:id="@+id/ll_ad_layout"
-            android:layout_width="match_parent"
+    <com.dc.smartcity.view.pullrefresh.PullToRefreshListView
+            xmlns:ptr="http://schemas.android.com/apk/res/com.dc.smartcity"
+            android:id="@+id/pullToRefreshListview"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-    </LinearLayout>
-
+            android:background="@color/white"
+            android:divider="@color/transparent"
+            android:listSelector="@android:color/transparent"
+            ptr:pullmode="both"/>
 
 </LinearLayout>

@@ -40,6 +40,7 @@ public class ServiceMarketActivity extends BaseActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         initActionBar();
         initViews();
     }
@@ -56,6 +57,7 @@ public class ServiceMarketActivity extends BaseActionBarActivity {
         });
     }
 
+
     private void initViews() {
         tab_indicator = (TabPageIndicator) findViewById(R.id.tab_indicator);
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
@@ -67,13 +69,12 @@ public class ServiceMarketActivity extends BaseActionBarActivity {
         }
         mAdapter = new TabAdapter(getSupportFragmentManager(), list_fragments);
         mViewPager.setAdapter(mAdapter);
-        tab_indicator.setViewPager(mViewPager, 0);
+        tab_indicator.setViewPager(mViewPager);
     }
 
-
-    public class TabAdapter extends FragmentPagerAdapter {
-        public final String[] TITLES = new String[]{"办事大厅", "融合账单", "生活周边", "智能出行", "旅游咨询", "教育生涯", "医疗健康", "文化体育", "职业生涯", "居家服务", "我的办事"};
+    class TabAdapter extends FragmentPagerAdapter {
         private List<BaseFragment> list_fragments;
+
 
         public TabAdapter(FragmentManager fm, List<BaseFragment> list_fragments) {
             super(fm);
@@ -81,22 +82,18 @@ public class ServiceMarketActivity extends BaseActionBarActivity {
         }
 
         @Override
-        public Fragment getItem(int arg0) {
-            return list_fragments.get(arg0);
+        public Fragment getItem(int position) {
+            return list_fragments.get(position);
         }
-
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return TITLES[position % TITLES.length];
+            return TITLES[position % TITLES.length].toUpperCase();
         }
-
 
         @Override
         public int getCount() {
             return TITLES.length;
         }
-
-
     }
 }

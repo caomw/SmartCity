@@ -7,9 +7,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.android.dcone.ut.view.annotation.event.OnClick;
 import com.dc.smartcity.R;
@@ -26,6 +24,8 @@ import com.dc.smartcity.base.BaseFragment;
  */
 public class HomeMyFragment extends BaseFragment {
 
+    public HomeMyFragment() {
+    }
 
     public HomeMyFragment(ActionBar actionBar) {
         super(actionBar);

@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.dc.smartcity.R;
+import com.dc.smartcity.activity.MyWebViewActivity;
 import com.dc.smartcity.activity.SearchServiceActivity;
 import com.dc.smartcity.activity.ServiceMarketActivity;
 import com.dc.smartcity.base.BaseFragment;
@@ -51,6 +52,10 @@ public class HomePageFragment extends BaseFragment {
     private RelativeLayout mudule_3;
     @ViewInject(R.id.mudule_4)
     private RelativeLayout mudule_4;
+
+    public HomePageFragment() {
+    }
+
 
     public HomePageFragment(ActionBar actionBar) {
         super(actionBar);
@@ -91,6 +96,13 @@ public class HomePageFragment extends BaseFragment {
         layoutParams1.width = widthPixels / 3;
         layoutParams1.height = widthPixels * 2 / 5;
         mudule_1.setLayoutParams(layoutParams1);
+
+        mudule_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), MyWebViewActivity.class));
+            }
+        });
 
 
         RelativeLayout.LayoutParams layoutParams2 = (RelativeLayout.LayoutParams) mudule_2.getLayoutParams();

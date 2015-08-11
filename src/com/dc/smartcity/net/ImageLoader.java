@@ -1,8 +1,5 @@
 package com.dc.smartcity.net;
 
-/**
- * Í¼Æ¬¼ÓÔØ¹ÜÀíÀà£¬ÉÏ²ãÒµÎñºÍÏÂ²ãÍ¼Æ¬¹ÜÀí²å¼şµÄÖĞ¼ä²ã
- */
 
 import android.content.Context;
 import android.graphics.Bitmap.Config;
@@ -16,12 +13,14 @@ import com.dc.smartcity.base.BaseApplication;
 
 import java.io.File;
 
-
+/**
+ * å›¾ç‰‡åŠ è½½ç®¡ç†ç±»
+ */
 public class ImageLoader {
 
-    public static final int STUB_NULL = -1;// ²»ÉèÖÃÄ¬ÈÏÍ¼
+    public static final int STUB_NULL = -1;// ä¸è®¾ç½®é»˜è®¤å›¾
 
-    private static final int STUB_ID = R.drawable.bg_default_common; // Ä¬ÈÏÍ¼Æ¬£¨ÔÙ²»ÉèÖÃÄ¬ÈÏÍ¼µÄÇé¿öÏÂÓÃÕâ¸ö£©
+    private static final int STUB_ID = R.drawable.bg_default_common; // é»˜è®¤å›¾ç‰‡
     private static final Config DEFAULT_CONFIG = Config.RGB_565;
 
     private static ImageLoader imageLoader = null;
@@ -38,19 +37,16 @@ public class ImageLoader {
         return imageLoader;
     }
 
+
     /**
-     * Ä¬ÈÏÍ¼Æ¬¼ÓÔØ
+     * é»˜è®¤å›¾ç‰‡åŠ è½½
      */
     public void displayImage(String imageUrl, ImageView imageView) {
         displayImage(imageUrl, imageView, STUB_ID, STUB_ID, DEFAULT_CONFIG);
     }
 
     /**
-     * ´øÄ¬ÈÏÍ¼Æ¬µÄÍ¼Æ¬¼ÓÔØ£¨¼ÓÔØ³É¹¦Ç°ºÍ¼ÓÔØÊ§°ÜºóµÄÍ¼Æ¬Ò»Ñù£©
-     *
-     * @param imageUrl
-     * @param imageView
-     * @param stub_id
+     * å¸¦é»˜è®¤å›¾ç‰‡çš„å›¾ç‰‡åŠ è½½ï¼ˆåŠ è½½æˆåŠŸå‰å’ŒåŠ è½½å¤±è´¥åçš„å›¾ç‰‡ä¸€æ ·ï¼‰
      */
     public void displayImage(String imageUrl, ImageView imageView, int stub_id) {
         if (stub_id == STUB_NULL) {
@@ -61,7 +57,7 @@ public class ImageLoader {
     }
 
     /**
-     * ´øÓĞÉè¶¨Í¼Æ¬Æ·ÖÊµÄ½Ó¿Ú
+     * å¸¦æœ‰è®¾å®šå›¾ç‰‡å“è´¨çš„æ¥å£
      *
      * @param imageUrl
      * @param imageView
@@ -75,33 +71,9 @@ public class ImageLoader {
         displayImage(imageUrl, imageView, stub_id, stub_id, config);
     }
 
-    /**
-     * Îª´óÊ×Ò³¶¨ÖÆµÄ£¬Ã»ÓĞ¶¯»­µÄÍ¼Æ¬¼ÓÔØ¡££¨Ä¬ÈÏÇé¿öÏÂÔÚÍ¼Æ¬ÉèÖÃÊ±»áÓĞ¶¯»­£©
-     *
-     * @param imageUrl
-     * @param imageView
-     * @param stub_id
-     * @param isNoFade
-     */
-    public void displayImage(String imageUrl, ImageView imageView, int stub_id, boolean isNoFade) {
-        if (imageUrl == null || "".equals(imageUrl)) {
-            imageView.setScaleType(ScaleType.FIT_XY);
-            imageView.setImageResource(stub_id);
-            return;
-        }
-        if (stub_id == STUB_NULL) {
-            Picasso.with(context).load(imageUrl).config(DEFAULT_CONFIG).noFade().into(imageView);
-            return;
-        }
-        if (isNoFade) {
-            Picasso.with(context).load(imageUrl).placeholder(stub_id).error(stub_id).config(DEFAULT_CONFIG).noFade().into(imageView);
-            return;
-        }
-        Picasso.with(context).load(imageUrl).placeholder(stub_id).error(stub_id).config(DEFAULT_CONFIG).into(imageView);
-    }
 
     /**
-     * ´øÄ¬ÈÏÍ¼Æ¬µÄÍ¼Æ¬¼ÓÔØ£¨¼ÓÔØ³É¹¦Ç°ºÍ¼ÓÔØÊ§°ÜºóµÄÍ¼Æ¬ÏÔÊ¾£©
+     * å¸¦é»˜è®¤å›¾ç‰‡çš„å›¾ç‰‡åŠ è½½ï¼ˆåŠ è½½æˆåŠŸå‰å’ŒåŠ è½½å¤±è´¥åçš„å›¾ç‰‡æ˜¾ç¤ºï¼‰
      *
      * @param imageUrl
      * @param imageView
@@ -117,9 +89,6 @@ public class ImageLoader {
         Picasso.with(context).load(imageUrl).placeholder(stub_id).error(stub_id_no_img).config(config).into(imageView);
     }
 
-    /**
-     * ´ø»Øµ÷µÄÍ¼Æ¬¼ÓÔØ£¨¼ÓÔØ³É¹¦¡¢Ê§°Ü¡¢½ø¶ÈµÄ»Øµ÷£©
-     */
     public void displayImage(String imageUrl, ImageView imageView, Callback callback) {
         displayImage(imageUrl, imageView, STUB_ID, STUB_ID, callback, DEFAULT_CONFIG);
     }
@@ -136,15 +105,6 @@ public class ImageLoader {
         displayImage(imageUrl, imageView, stub_id, stub_id, callback, config);
     }
 
-    /**
-     * ´øÄ¬ÈÏÍ¼Æ¬ºÍ»Øµ÷º¯ÊıµÄ¼ÓÔØ
-     *
-     * @param imageUrl
-     * @param imageView
-     * @param stub_id
-     * @param stub_id_no_img
-     * @param callback
-     */
     public void displayImage(String imageUrl, ImageView imageView, int stub_id, int stub_id_no_img, Callback callback, Config config) {
         if (imageUrl == null || "".equals(imageUrl)) {
             imageView.setScaleType(ScaleType.FIT_XY);
@@ -181,7 +141,7 @@ public class ImageLoader {
     }
 
     /**
-     * È¡ÏûÇëÇó£¨ÓÃÓÚÊÍ·Å×ÊÔ´£©
+     * å–æ¶ˆè¯·æ±‚ï¼ˆç”¨äºé‡Šæ”¾èµ„æºï¼‰
      *
      * @param view
      */

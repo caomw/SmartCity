@@ -5,12 +5,22 @@
                 android:background="@color/whitesmoke">
 
 
-    <LinearLayout
-            android:id="@+id/ll_fragment_container"
-            android:layout_above="@id/rg_menu"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:visibility="visible">
-    </LinearLayout>
+    <com.dc.smartcity.view.pullrefresh.PullToRefreshListView
+            xmlns:ptr="http://schemas.android.com/apk/res/com.dc.smartcity"
+            android:id="@+id/lv_search_history"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:divider="@color/transparent"
+            android:listSelector="@android:color/transparent"
+            ptr:pullmode="both"/>
+    <com.dc.smartcity.view.pullrefresh.PullToRefreshListView
+            xmlns:ptr="http://schemas.android.com/apk/res/com.dc.smartcity"
+            android:id="@+id/lv_search_result"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:divider="@color/transparent"
+            android:listSelector="@android:color/transparent"
+            ptr:pullmode="both"/>
 </RelativeLayout>

@@ -59,6 +59,7 @@ public class HomePageFragment extends BaseFragment {
 
     public HomePageFragment(ActionBar actionBar) {
         super(actionBar);
+        ULog.debug("---HomePageFragment", TAG);
     }
 
     @Override
@@ -74,8 +75,20 @@ public class HomePageFragment extends BaseFragment {
         initADS();
         initGridView();
         initBottomMudule();
-
+        ULog.debug("---onCreateView");
         return view;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ULog.debug("---onCreate");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ULog.debug("---onResume");
     }
 
     @Override

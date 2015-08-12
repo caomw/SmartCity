@@ -525,9 +525,6 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
 
     /**
      * 广告适配器基类，循环播放.
-     *
-     * @author sk. 09145
-     * @date 2014-9-25
      */
     public class ImageSwitcherAdapter extends BaseAdapter {
         private ViewHolder mHolder;

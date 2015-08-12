@@ -132,8 +132,5 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
         if (null != mCurrentButton) {
             mCurrentButton.setChecked(true);
         }
-
     }
-
-
 }

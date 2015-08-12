@@ -1,40 +1,41 @@
 package com.dc.smartcity.activity;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
-import android.view.Window;
 import android.webkit.*;
 import com.dc.smartcity.R;
+import com.dc.smartcity.base.BaseActionBarActivity;
+import com.dc.smartcity.util.BundleKeys;
 import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.view.LoadingDialog;
 
 /**
  * 统一的webview的activity
  */
-public class MyWebViewActivity extends Activity {
+public class WebViewActivity extends BaseActionBarActivity {
 
     protected LoadingDialog mLoadingDialog;
     protected WebView my_webview;
     protected String loadurl = "";
     protected String title = "";
-    protected Handler myHandler = new Handler();
+
+
+    @Override
+    protected void setContentView() {
+        setContentView(R.layout.my_webview_layout);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.my_webview_layout);
-
-        mLoadingDialog = LoadingDialog.create(MyWebViewActivity.this, MyWebViewActivity.this.getString(R.string.loading));
+        mLoadingDialog = LoadingDialog.create(WebViewActivity.this, WebViewActivity.this.getString(R.string.loading));
         my_webview = (WebView) findViewById(R.id.my_webview);
 //        loadurl = getIntent().getStringExtra(BundleKeys.WEBVIEEW_LOADURL);
-//        title = getIntent().getStringExtra(BundleKeys.WEBVIEEW_TITLE);
-        loadurl = "http://www.w3school.com.cn";
-        title = "详情";
+        title = getIntent().getStringExtra(BundleKeys.WEBVIEEW_TITLE);
+        loadurl = "http://m.baidu.com";
+        initActionBar();
 
         /*----设置WebView控件参数----*/
         WebSettings webSettings = my_webview.getSettings();
@@ -94,6 +95,12 @@ public class MyWebViewActivity extends Activity {
         });
         my_webview.loadUrl(loadurl);
     }
+
+    private void initActionBar() {
+        iv_actionbar_left.setVisibility(View.VISIBLE);
+        tv_actionbar_title.setText(title);
+    }
+
 
     @Override
     protected void onDestroy() {

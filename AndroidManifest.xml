@@ -21,6 +21,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <!-- 使用存储卡 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 使用系统对话框的权限!-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW"/>
 
     <application
             android:name=".base.BaseApplication"
@@ -62,7 +65,7 @@
                 >
         </activity>
         <activity
-                android:name="com.dc.smartcity.activity.MyWebViewActivity"
+                android:name=".activity.WebViewActivity"
                 >
         </activity>
         <activity

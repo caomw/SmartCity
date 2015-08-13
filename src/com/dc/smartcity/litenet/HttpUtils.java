@@ -190,7 +190,6 @@ public class HttpUtils {
         }
         
         private HttpResponseData(org.apache.http.client.methods.HttpRequestBase request,HttpResponse response) {
-//            this.request = request;
             this.response = response;
         }
 /*

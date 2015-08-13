@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.StringEntity;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 import android.util.Log;
@@ -18,10 +19,6 @@ import com.dc.smartcity.litenet.response.LiteRequest;
 import com.dc.smartcity.litenet.response.ResponHead;
 
 public class Api {
-
-//	public static HttpUtils http = new HttpUtils("", -1, -1);
-
-
 
 	public void makeHttpPost(LiteRequest request, final IResPonseListener listener) {
 
@@ -66,6 +63,7 @@ public class Api {
 		makeHttpPost(request.url, entity,listener);
 	}
 
+	@SuppressLint("NewApi")
 	private void makeHttpPost(final String url, final HttpEntity entity,
 			final IResPonseListener listener) {
 		new AsyncTask<HttpEntity, Void, HttpResponseData>() {

@@ -2,7 +2,6 @@ package com.dc.smartcity.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -15,7 +14,6 @@ import com.dc.smartcity.base.BaseFragment;
 import com.dc.smartcity.fragment.HomeAskFragment;
 import com.dc.smartcity.fragment.HomeMyFragment;
 import com.dc.smartcity.fragment.HomePageFragment;
-import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.util.Utils;
 
 public class MainActivity extends BaseActionBarActivity implements OnCheckedChangeListener {
@@ -39,15 +37,15 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
     /**
      * 服务超市fragment
      */
-    private BaseFragment mHomeFragment;
+    private HomePageFragment mHomeFragment;
     /**
      * 有问必答fragment
      */
-    private BaseFragment mAskFragment;
+    private HomeAskFragment mAskFragment;
     /**
      * 我的fragment
      */
-    private BaseFragment mMyFragment;
+    private HomeMyFragment mMyFragment;
 
 
     @Override
@@ -110,9 +108,7 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
             default:
                 break;
         }
-
         fragmentTransaction.commitAllowingStateLoss();
-        ULog.debug("---->onCheckedChanged()");
     }
 
     @Override

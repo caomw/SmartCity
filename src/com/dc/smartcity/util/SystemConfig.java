@@ -11,7 +11,7 @@ public class SystemConfig {
     /**
      * 包名
      */
-    public static final String PACKAGENAME="com.dc.smartcity";
+    public static final String PACKAGENAME = "com.dc.smartcity";
 
 
 //    public static HttpTaskFactory.Type TYPE_HTTP_TASKER = HttpTaskFactory.Type.OK_HTTP;

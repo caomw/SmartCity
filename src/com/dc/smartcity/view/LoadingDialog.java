@@ -3,12 +3,14 @@ package com.dc.smartcity.view;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.dc.smartcity.R;
 
 /**
@@ -17,6 +19,7 @@ import com.dc.smartcity.R;
 public class LoadingDialog extends Dialog {
 
     private static LoadingDialog mLoadingDialog;
+    private boolean flag;
 
     public LoadingDialog(Context context, int theme) {
         super(context, theme);
@@ -99,5 +102,15 @@ public class LoadingDialog extends Dialog {
             AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getBackground();
             animationDrawable.start();
         }
+    }
+    
+    @Override
+    public void setCancelable(boolean flag) {
+        this.flag = flag;
+        super.setCancelable(flag);
+    }
+
+    public boolean getDialogCancelable() {
+        return flag;
     }
 }

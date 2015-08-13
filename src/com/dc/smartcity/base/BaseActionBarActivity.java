@@ -2,7 +2,6 @@ package com.dc.smartcity.base;
 
 import android.app.ActionBar;
 import android.content.Context;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -11,8 +10,14 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.android.dcone.ut.ViewUtils;
 import com.dc.smartcity.R;
+import com.dc.smartcity.dialog.DialogConfig;
+import com.dc.smartcity.litenet.RequestService;
+import com.dc.smartcity.litenet.interf.IResPonseListener;
+import com.dc.smartcity.litenet.interf.RequestProxy;
+import com.dc.smartcity.litenet.response.LiteRequest;
 import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.view.LoadingDialog;
 
@@ -33,6 +38,7 @@ public abstract class BaseActionBarActivity extends FragmentActivity {
     public LayoutInflater mLayoutInflater;
     public Context mContext;
 
+    RequestService baseService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +48,26 @@ public abstract class BaseActionBarActivity extends FragmentActivity {
         setContentView();
         initDefaultActionbar();
         ViewUtils.inject(this);
+        
+        baseService = new RequestService(this);
+        
+        test();
+    }
+    
+    protected void test() {
+		
+	}
+
+	@Override
+    protected void onPause(){
+    	super.onPause();
+    	baseService.dismissLoadingDialog();
+    }
+    
+    @Override
+    protected void onDestroy(){
+    	super.onDestroy();
+//    	baseService.cancelAllRequest();
     }
 
     /**
@@ -84,4 +110,25 @@ public abstract class BaseActionBarActivity extends FragmentActivity {
         }
     }
 
+    public void sendRequestWithNoDialog(LiteRequest request, final IResPonseListener listener) {
+         baseService.sendRequestWithNoDialog(request, listener);
+    }
+
+    public void sendRequestWithNoDialog(LiteRequest request, final RequestProxy callback) {
+         baseService.sendRequestWithNoDialog(request, callback);
+    }
+
+    public void sendRequestWithDialog(LiteRequest request, DialogConfig dialogConfig,
+            final IResPonseListener listener) {
+         baseService.sendRequestWithDialog(request, dialogConfig, listener);
+    }
+
+    public void sendRequestWithDialog(LiteRequest request, DialogConfig dialogConfig,
+            final RequestProxy callback) {
+         baseService.sendRequestWithDialog(request, dialogConfig, callback);
+    }
+
+//    public void cancelRequest(String requestKey) {
+//        baseService.cancelRequest(requestKey);
+//    }
 }

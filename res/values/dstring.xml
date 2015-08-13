@@ -2,4 +2,5 @@
 <resources>
     <string name="edit_data">编辑资料</string>
     <string name="safe_set">安全设置</string>
+    <string name="loading_public_default">正在加载</string>
 </resources>

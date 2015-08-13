@@ -11,8 +11,15 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.android.dcone.ut.ViewUtils;
 import com.dc.smartcity.R;
+import com.dc.smartcity.dialog.DialogConfig;
+import com.dc.smartcity.litenet.RequestService;
+import com.dc.smartcity.litenet.interf.IResPonseListener;
+import com.dc.smartcity.litenet.interf.RequestProxy;
+import com.dc.smartcity.litenet.response.LiteRequest;
+import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.view.LoadingDialog;
 
 public abstract class BaseFragment extends Fragment {
@@ -31,6 +38,14 @@ public abstract class BaseFragment extends Fragment {
     public FragmentManager mFragmentManager;
     public LayoutInflater mLayoutInflater;
 
+    RequestService baseService;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ULog.debug("---onCreate");
+        baseService = new RequestService(getActivity());
+    }
+    
     public BaseFragment() {
     }
 
@@ -79,4 +94,27 @@ public abstract class BaseFragment extends Fragment {
     public void onResume() {
         super.onResume();
     }
+    @Override
+    public void onPause() {
+    	super.onPause();
+    	baseService.dismissLoadingDialog();
+    }
+    
+    public void sendRequestWithNoDialog(LiteRequest request, final IResPonseListener listener) {
+        baseService.sendRequestWithNoDialog(request, listener);
+   }
+
+   public void sendRequestWithNoDialog(LiteRequest request, final RequestProxy callback) {
+        baseService.sendRequestWithNoDialog(request, callback);
+   }
+
+   public void sendRequestWithDialog(LiteRequest request, DialogConfig dialogConfig,
+           final IResPonseListener listener) {
+        baseService.sendRequestWithDialog(request, dialogConfig, listener);
+   }
+
+   public void sendRequestWithDialog(LiteRequest request, DialogConfig dialogConfig,
+           final RequestProxy callback) {
+        baseService.sendRequestWithDialog(request, dialogConfig, callback);
+   }
 }

@@ -22,22 +22,9 @@ public class WelcomeActivity extends BaseActionBarActivity {
     
     @ViewInject(R.id.tvTest)
     private TextView tvTest;
-    @Override
-    protected void test(){
-    	showShare();
-    	
-//    	sendRequestWithDialog(RequestPool.getRegistVerifyCode("15251446176"), new  DialogConfig.Builder().build(), new RequestProxy() {
-//
-//			@Override
-//			public void onSuccess(String msg, String result) {
-//				tvTest.setText(result);
-//			}
-//			
-//		});
-    	
-    	
-    }
+
     
+    //一键分享集成
     private void showShare() {
     	 ShareSDK.initSDK(this);
     	 OnekeyShare oks = new OnekeyShare();

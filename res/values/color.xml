@@ -6,7 +6,8 @@
 
     <color name="pull_refresh_textview">#000000</color>
     <color name="list_selected">#00000000</color>
-
+    <color name="main_thin_green">#ff71FF00</color>
+    <color name="main_line_translucence">#33dcdcdc</color>
 
     <color name="main_line">#ffdcdcdc</color>
     <color name="c_tcolor_dark">#ff333333</color>

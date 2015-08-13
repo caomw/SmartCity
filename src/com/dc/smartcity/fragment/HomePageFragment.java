@@ -14,9 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.dc.smartcity.R;
-import com.dc.smartcity.activity.MyWebViewActivity;
 import com.dc.smartcity.activity.SearchServiceActivity;
 import com.dc.smartcity.activity.ServiceMarketActivity;
+import com.dc.smartcity.activity.WebViewActivity;
 import com.dc.smartcity.base.BaseFragment;
 import com.dc.smartcity.bean.AdObj;
 import com.dc.smartcity.net.ImageLoader;
@@ -113,7 +113,7 @@ public class HomePageFragment extends BaseFragment {
         mudule_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), MyWebViewActivity.class));
+                startActivity(new Intent(getActivity(), WebViewActivity.class));
             }
         });
 
@@ -155,13 +155,17 @@ public class HomePageFragment extends BaseFragment {
         ll_ad_layout.addView(advertisementControlLayout);
 
         AdObj adObj1 = new AdObj();
+        adObj1.redirectUrl = "http://www.w3school.com.cn";
         adObj1.imageUrl = "http://b.hiphotos.baidu.com/image/pic/item/0dd7912397dda144dc2ba0bbb0b7d0a20cf4869d.jpg";
         AdObj adObj2 = new AdObj();
         adObj2.imageUrl = "http://c.hiphotos.baidu.com/image/pic/item/9d82d158ccbf6c810a4107e5be3eb13533fa404c.jpg";
+        adObj2.redirectUrl = "http://www.w3school.com.cn";
         AdObj adObj3 = new AdObj();
         adObj3.imageUrl = "http://c.hiphotos.baidu.com/image/pic/item/9d82d158ccbf6c810a4107e5be3eb13533fa404c.jpg";
+        adObj3.redirectUrl = "http://www.w3school.com.cn";
         AdObj adObj4 = new AdObj();
         adObj4.imageUrl = "http://f.hiphotos.baidu.com/image/pic/item/eac4b74543a982261a1836268882b9014b90ebd2.jpg";
+        adObj4.redirectUrl = "http://www.w3school.com.cn";
         advertismentlist.add(adObj1);
         advertismentlist.add(adObj2);
         advertismentlist.add(adObj3);

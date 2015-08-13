@@ -7,7 +7,7 @@ import android.widget.ProgressBar;
 import com.android.dcone.ut.picasso.Callback;
 
 /**
- * 图片下载状态回调扩展类。用于统一处理进度条。如果想要个性化处理可以使用EmptyCallback类。或者自己实现Callback接口。
+ * 图片下载状态回调扩展类。用于统一处理进度条
  */
 public class ImageLoadeCallback implements Callback {
 

@@ -32,8 +32,8 @@ public class WebViewActivity extends BaseActionBarActivity {
         super.onCreate(savedInstanceState);
         mLoadingDialog = LoadingDialog.create(WebViewActivity.this, WebViewActivity.this.getString(R.string.loading));
         my_webview = (WebView) findViewById(R.id.my_webview);
-//        loadurl = getIntent().getStringExtra(BundleKeys.WEBVIEEW_LOADURL);
-        title = getIntent().getStringExtra(BundleKeys.WEBVIEEW_TITLE);
+//        loadurl = getIntent().getStringExtra(BundleKeys.WEBVIEW_LOADURL);
+        title = getIntent().getStringExtra(BundleKeys.WEBVIEW_TITLE);
         loadurl = "http://m.baidu.com";
         initActionBar();
 
@@ -98,6 +98,7 @@ public class WebViewActivity extends BaseActionBarActivity {
 
     private void initActionBar() {
         iv_actionbar_left.setVisibility(View.VISIBLE);
+        tv_actionbar_title.setVisibility(View.VISIBLE);
         tv_actionbar_title.setText(title);
     }
 

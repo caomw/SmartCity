@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.dc.smartcity.R;
 import com.dc.smartcity.base.BaseFragment;
-import com.dc.smartcity.bean.ServiceObj;
+import com.dc.smartcity.db.tab.ServiceHistory;
 import com.dc.smartcity.view.gridview.BaseViewHolder;
 import com.dc.smartcity.view.pullrefresh.PullToRefreshListView;
 
@@ -41,9 +41,9 @@ public class ServiceListFragment extends BaseFragment {
     private void initView() {
         pullToRefreshListview.setMode(PullToRefreshListView.MODE_NONE);
 //        lv_activity_center.setOnRefreshListener(this);
-        ArrayList<ServiceObj> list = new ArrayList<ServiceObj>();
+        ArrayList<ServiceHistory> list = new ArrayList<ServiceHistory>();
         for (int i = 0; i < 25; i++) {
-            list.add(new ServiceObj());
+            list.add(new ServiceHistory());
         }
         ListAdapter adapter = new ListAdapter(getActivity(), list);
         pullToRefreshListview.setAdapter(adapter);
@@ -51,10 +51,10 @@ public class ServiceListFragment extends BaseFragment {
 
 
     class ListAdapter extends BaseAdapter {
-        private ArrayList<ServiceObj> list = new ArrayList<ServiceObj>();
+        private ArrayList<ServiceHistory> list = new ArrayList<ServiceHistory>();
         private Context mContext;
 
-        public ListAdapter(Context mContext, ArrayList<ServiceObj> list) {
+        public ListAdapter(Context mContext, ArrayList<ServiceHistory> list) {
             this.list = list;
             this.mContext = mContext;
         }

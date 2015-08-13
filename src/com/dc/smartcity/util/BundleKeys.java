@@ -8,8 +8,8 @@ public class BundleKeys {
     /**
      * webview的key值
      */
-    public static final String WEBVIEEW_LOADURL = "loadurl";
-    public static final String WEBVIEEW_TITLE = "loadtitle";
+    public static final String WEBVIEW_LOADURL = "loadurl";
+    public static final String WEBVIEW_TITLE = "loadtitle";
 
 
 }

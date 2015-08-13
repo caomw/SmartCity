@@ -3,7 +3,6 @@ package com.dc.smartcity.db.dao;
 import com.android.dcone.ut.DbUtils;
 import com.android.dcone.ut.exception.DbException;
 import com.dc.smartcity.db.tab.ServiceHistory;
-import com.dc.smartcity.db.tab.ServiceObj;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +10,11 @@ import java.util.List;
 /**
  * Created by vincent on 2015/8/12.
  */
-public class ServiceDao {
+public class ServiceHistoryDao {
 
     private DbUtils mDbUtils;
 
-    public ServiceDao(DbUtils dbUtils) {
+    public ServiceHistoryDao(DbUtils dbUtils) {
         this.mDbUtils = dbUtils;
     }
 
@@ -23,7 +22,7 @@ public class ServiceDao {
     /**
      * 插入所有数据
      */
-    public void insertServiceList(List<ServiceObj> list) throws DbException {
+    public void insertServiceList(List<ServiceHistory> list) throws DbException {
         removeAll();
         mDbUtils.saveAll(list);
     }
@@ -34,8 +33,8 @@ public class ServiceDao {
      *
      * @throws DbException
      */
-    public List<ServiceObj> getAll() throws DbException {
-        List<ServiceObj> list = mDbUtils.findAll(ServiceObj.class);
+    public List<ServiceHistory> getAll() throws DbException {
+        List<ServiceHistory> list = mDbUtils.findAll(ServiceHistory.class);
         return list;
     }
 
@@ -46,10 +45,10 @@ public class ServiceDao {
      * @return
      * @throws DbException
      */
-    public List<ServiceObj> getListByKey(String key) throws DbException {
-        List<ServiceObj> l = mDbUtils.findAll(ServiceObj.class);
-        List<ServiceObj> list = new ArrayList<>();
-        for (ServiceObj obj : l) {
+    public List<ServiceHistory> getListByKey(String key) throws DbException {
+        List<ServiceHistory> l = mDbUtils.findAll(ServiceHistory.class);
+        List<ServiceHistory> list = new ArrayList<>();
+        for (ServiceHistory obj : l) {
             if (obj.name.contains(key)) {
                 list.add(obj);
             }
@@ -64,7 +63,7 @@ public class ServiceDao {
      */
     public void removeAll() {
         try {
-            mDbUtils.deleteAll(ServiceObj.class);
+            mDbUtils.deleteAll(ServiceHistory.class);
         } catch (DbException e) {
         }
     }

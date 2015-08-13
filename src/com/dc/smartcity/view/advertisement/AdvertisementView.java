@@ -62,8 +62,8 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
                 String tag = data_obj.tag;
                 Intent intent = new Intent(getContext(), WebViewActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString(BundleKeys.WEBVIEEW_LOADURL, data_obj.redirectUrl);
-                bundle.putString(BundleKeys.WEBVIEEW_TITLE, "详情");
+                bundle.putString(BundleKeys.WEBVIEW_LOADURL, data_obj.redirectUrl);
+                bundle.putString(BundleKeys.WEBVIEW_TITLE, "详情");
                 intent.putExtras(bundle);
                 getContext().startActivity(intent);
             }

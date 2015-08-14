@@ -86,7 +86,17 @@ public class ImageLoader {
             imageView.setImageResource(stub_id);
             return;
         }
-        Picasso.with(context).load(imageUrl).placeholder(stub_id).error(stub_id_no_img).config(config).into(imageView);
+        int resId = -1;
+        try {
+        	resId = Integer.parseInt(imageUrl);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        if(-1 != resId){
+        	Picasso.with(context).load(resId).config(config).into(imageView);
+        }else{
+        	Picasso.with(context).load(imageUrl).placeholder(stub_id).error(stub_id_no_img).config(config).into(imageView);
+        }
     }
 
     public void displayImage(String imageUrl, ImageView imageView, Callback callback) {

@@ -1,5 +1,6 @@
 package com.dc.smartcity.activity;
 
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -24,7 +25,17 @@ public class LoginActivity extends BaseActionBarActivity {
         setContentView(R.layout.activity_login);
     }
     
-    @OnClick(R.id.btnLogin)
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        
+        initActionBar();
+    }
+    
+    private void initActionBar() {
+	}
+
+	@OnClick(R.id.btnLogin)
     private void onClick(View v){
     	String n = name.getText().toString().trim();
     	String p = pass.getText().toString().trim();

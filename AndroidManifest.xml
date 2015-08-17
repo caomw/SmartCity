@@ -44,8 +44,7 @@
 
         <activity
                 android:name="com.dc.smartcity.activity.ServiceMarketActivity"
-                android:theme="@style/ActivityTheme_Light.PageIndicatorDefaults">
-        </activity>
+                android:theme="@style/ActivityTheme_Light.PageIndicatorDefaults"/>
         <activity
                 android:name="com.dc.smartcity.activity.SearchServiceActivity"
                 android:launchMode="singleTask"
@@ -53,33 +52,23 @@
                 android:windowSoftInputMode="adjustPan">
         </activity>
         <activity
-                android:name="com.dc.smartcity.activity.LoginActivity"
-                >
-        </activity>
+                android:name="com.dc.smartcity.activity.LoginActivity"/>
         <activity
-                android:name="com.dc.smartcity.activity.MessageActivity"
-                >
-        </activity>
+                android:name="com.dc.smartcity.activity.MessageActivity"/>
         <activity
-                android:name="com.dc.smartcity.activity.AskDetailActivity"
-                >
-        </activity>
+                android:name="com.dc.smartcity.activity.AskDetailActivity"/>
         <activity
-                android:name="com.dc.smartcity.activity.WebViewActivity"
-                >
-        </activity>
+                android:name="com.dc.smartcity.activity.WebViewActivity"/>
         <activity
-                android:name="com.dc.smartcity.activity.NewsDetailActivity"
-                >
-        </activity>
+                android:name="com.dc.smartcity.activity.NewsDetailActivity"/>
         <activity
-                android:name="com.dc.smartcity.activity.SettingActivity"
-                >
-        </activity>
+                android:name="com.dc.smartcity.activity.SettingActivity"/>
         <activity
-                android:name="com.dc.smartcity.activity.WelecomeActivity"
-                >
-        </activity>
+                android:name="com.dc.smartcity.activity.WelcomeActivity"/>
+        <activity
+                android:name="com.dc.smartcity.activity.AboutActivity"/>
+        <activity
+                android:name="com.dc.smartcity.activity.FeedbackActivity"/>
 
 
         <meta-data

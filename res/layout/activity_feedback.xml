@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:background="@color/whitesmoke"
+            android:scrollbars="none">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <EditText
+                android:id="@+id/et_feedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="300dp"
+                android:padding="@dimen/padding_five_dp"
+                android:layout_marginTop="@dimen/margin_twenty_dp"
+                android:hint="请输入您的意见，我们将不断改进"
+                android:background="@color/white"
+                android:gravity="left|top"
+                android:textColorHint="@color/main_hint"
+                android:textColor="@color/main_secondary"
+                android:textSize="@dimen/text_size_info"
+                />
+
+        <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_eight_dp"
+                android:layout_marginTop="@dimen/margin_twenty_dp"
+                android:layout_marginLeft="@dimen/margin_thirty_dp"
+                android:layout_marginRight="@dimen/margin_thirty_dp"
+                android:text="提交"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@color/base_blue"
+                android:textSize="@dimen/text_eighteen_sp"/>
+
+    </LinearLayout>
+</ScrollView>

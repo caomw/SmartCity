@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -34,6 +35,7 @@ import com.dc.smartcity.bean.ScenceItem;
 import com.dc.smartcity.litenet.RequestPool;
 import com.dc.smartcity.litenet.interf.RequestProxy;
 import com.dc.smartcity.net.ImageLoader;
+import com.dc.smartcity.util.BundleKeys;
 import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.view.advertisement.AdvertisementView;
 import com.dc.smartcity.view.gridview.IconWithTextGridAdapter;
@@ -239,7 +241,8 @@ public class HomePageFragment extends BaseFragment {
 				}else{
 					Intent intent = new Intent(getActivity(),
 							WebViewActivity.class);
-					intent.putExtra("key", list.get(position).getServiceUrl());
+					intent.putExtra(BundleKeys.WEBVIEW_LOADURL, list.get(position).getServiceUrl());
+					intent.putExtra(BundleKeys.WEBVIEW_TITLE, list.get(position).getServiceName());
 					startActivity(intent);
 				}
 			}

@@ -22,11 +22,13 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.dc.smartcity.R;
 import com.dc.smartcity.util.Utils;
 
@@ -204,6 +206,7 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
             throw new IllegalStateException("ViewPager does not have adapter instance.");
         }
         mViewPager = view;
+        Log.e("TabPageIndicator", "setViewPager called"+(null == mViewPager));
         view.setOnPageChangeListener(this);
         notifyDataSetChanged();
     }

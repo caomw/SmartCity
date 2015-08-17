@@ -7,14 +7,17 @@ public class RequestPool {
 	public static String cityCode = "320581";
 	/**
 	 * 首页接口
-	 * 
-	 * @param ids
-	 *            参数
-	 * @param listener
-	 *            监听
 	 */
 	public static LiteRequest GetHomePage() {
 		LiteRequest re = new LiteRequest("CW0101");
+		re.body.put("siteId", cityCode);
+		return re;
+	}
+	/**
+	 * 首页接口
+	 */
+	public static LiteRequest GetMoreService() {
+		LiteRequest re = new LiteRequest("CW0103");
 		re.body.put("siteId", cityCode);
 		return re;
 	}
@@ -24,8 +27,6 @@ public class RequestPool {
 	 * 
 	 * @param mobile
 	 *            手机号码
-	 * @param listener
-	 *            监听器
 	 */
 	public static LiteRequest getRegistVerifyCode(String mobile) {
 		LiteRequest re = new LiteRequest("CW0603");

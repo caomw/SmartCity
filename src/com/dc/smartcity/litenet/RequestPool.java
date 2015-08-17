@@ -14,7 +14,7 @@ public class RequestPool {
 		return re;
 	}
 	/**
-	 * 首页接口
+	 * 更多接口：加载顶部目录及第一个子列表
 	 */
 	public static LiteRequest GetMoreService() {
 		LiteRequest re = new LiteRequest("CW0103");
@@ -47,6 +47,21 @@ public class RequestPool {
 		re.body.put("MOBILENUM", mobile);
 		re.body.put("CODE", verifyCode);
 		re.body.put("PWDSTRENGTH", "1");//密码强度（1或2）
+		return re;
+	}
+	
+	/**
+	 * 登陆接口
+	 * @param username
+	 * 				用户名
+	 * @param password
+	 * 				密码
+	 * @return
+	 */
+	public static LiteRequest requestLogin(String username,String password){
+		LiteRequest re = new LiteRequest("CW6030");
+		re.body.put("username", username);
+		re.body.put("password", password);
 		return re;
 	}
 }

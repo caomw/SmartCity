@@ -10,7 +10,6 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.android.dcone.ut.ViewUtils;
 import com.dc.smartcity.R;
 import com.dc.smartcity.dialog.DialogConfig;
@@ -23,7 +22,7 @@ import com.dc.smartcity.view.LoadingDialog;
 
 
 public abstract class BaseActionBarActivity extends FragmentActivity {
-    private String TAG =BaseActionBarActivity.class.getSimpleName();
+    private String TAG = BaseActionBarActivity.class.getSimpleName();
 
 
     protected ImageView iv_actionbar_left;
@@ -39,6 +38,7 @@ public abstract class BaseActionBarActivity extends FragmentActivity {
     public Context mContext;
 
     RequestService baseService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,25 +48,25 @@ public abstract class BaseActionBarActivity extends FragmentActivity {
         setContentView();
         initDefaultActionbar();
         ViewUtils.inject(this);
-        
+
         baseService = new RequestService(this);
-        
+
         test();
     }
-    
-    protected void test() {
-		
-	}
 
-	@Override
-    protected void onPause(){
-    	super.onPause();
-    	baseService.dismissLoadingDialog();
+    protected void test() {
+
     }
-    
+
     @Override
-    protected void onDestroy(){
-    	super.onDestroy();
+    protected void onPause() {
+        super.onPause();
+        baseService.dismissLoadingDialog();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 //    	baseService.cancelAllRequest();
     }
 
@@ -88,7 +88,7 @@ public abstract class BaseActionBarActivity extends FragmentActivity {
         iv_actionbar_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ULog.error("%s----iv_actionbar_left.onClick",TAG);
+                ULog.error("%s----iv_actionbar_left.onClick", TAG);
                 onBackPressed();
             }
         });
@@ -110,22 +110,28 @@ public abstract class BaseActionBarActivity extends FragmentActivity {
         }
     }
 
+    public void hideActionBar() {
+        if (null == mActionBar)
+            mActionBar = this.getActionBar();
+        mActionBar.hide();
+    }
+
     public void sendRequestWithNoDialog(LiteRequest request, final IResPonseListener listener) {
-         baseService.sendRequestWithNoDialog(request, listener);
+        baseService.sendRequestWithNoDialog(request, listener);
     }
 
     public void sendRequestWithNoDialog(LiteRequest request, final RequestProxy callback) {
-         baseService.sendRequestWithNoDialog(request, callback);
+        baseService.sendRequestWithNoDialog(request, callback);
     }
 
     public void sendRequestWithDialog(LiteRequest request, DialogConfig dialogConfig,
-            final IResPonseListener listener) {
-         baseService.sendRequestWithDialog(request, dialogConfig, listener);
+                                      final IResPonseListener listener) {
+        baseService.sendRequestWithDialog(request, dialogConfig, listener);
     }
 
     public void sendRequestWithDialog(LiteRequest request, DialogConfig dialogConfig,
-            final RequestProxy callback) {
-         baseService.sendRequestWithDialog(request, dialogConfig, callback);
+                                      final RequestProxy callback) {
+        baseService.sendRequestWithDialog(request, dialogConfig, callback);
     }
 
 //    public void cancelRequest(String requestKey) {

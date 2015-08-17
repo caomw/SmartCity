@@ -74,13 +74,8 @@ public class HomeMyFragment extends BaseFragment {
     }
 
     private void initActionBar() {
-        iv_actionbar_left.setVisibility(View.GONE);
-        tv_actionbar_left.setVisibility(View.GONE);
-        et_actionbar_search.setVisibility(View.GONE);
         tv_actionbar_title.setVisibility(View.VISIBLE);
         tv_actionbar_title.setText("我");
-        iv_actionbar_right.setVisibility(View.GONE);
-        tv_actionbar_right.setVisibility(View.GONE);
     }
 
     @OnClick(value = {R.id.userHead, R.id.set, R.id.message, R.id.ll_news, R.id.ll_news1, R.id.ll_news2, R.id.tvNotlogin})

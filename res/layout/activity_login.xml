@@ -2,16 +2,61 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#20ffffff"
+    android:background="@drawable/login_page_bg"
     android:orientation="vertical" >
 
-
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:scaleType="fitXY"
-        android:src="@drawable/login_head" />
+        android:layout_weight="1" >
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            android:src="@drawable/outlogin" />
+
+        <com.dc.smartcity.view.RoundImageView
+            android:id="@+id/head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/head" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/whitesmoke"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_line" />
+
+            <EditText
+                android:id="@+id/name"
+                style="@style/loginEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/username"
+                android:drawablePadding="10dp"
+                android:hint="用户名/手机号/邮箱" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_line" />
+        </LinearLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,35 +64,39 @@
         android:layout_weight="1"
         android:gravity="center_horizontal" >
 
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="230dp"
+        <LinearLayout
+            android:id="@+id/ll_pass"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:drawableLeft="@drawable/login_user"
-            android:drawablePadding="5dp"
-            android:hint="用户名/手机号/邮箱"
-            android:singleLine="true"
-            android:textSize="12sp" />
+            android:background="@color/whitesmoke"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
 
-        <EditText
-            android:id="@+id/pass"
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/name"
-            android:layout_marginTop="10dp"
-            android:drawableLeft="@drawable/login_password"
-            android:drawablePadding="5dp"
-            android:hint="密码"
-            android:inputType="textPassword"
-            android:singleLine="true"
-            android:textSize="12sp" />
+            <EditText
+                android:id="@+id/pass"
+                style="@style/loginEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/password"
+                android:drawablePadding="10dp"
+                android:hint="密码"
+                android:inputType="textPassword" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_line" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/btnLogin"
             android:layout_width="230dp"
             android:layout_height="40dp"
-            android:layout_below="@+id/pass"
+            android:layout_below="@+id/ll_pass"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:background="@drawable/login_bg"
             android:gravity="center"
@@ -55,6 +104,31 @@
             android:textColor="@color/white"
             android:textSize="22sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_forgetpass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:textSize="14sp"
+            android:text="@string/tv_forget_pass"
+            android:textColor="@color/info" />
+        
+        <TextView
+            android:id="@+id/tv_regist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:textSize="14sp"
+            android:text="@string/tv_regist"
+            android:background="@drawable/edit_saletop_bg"
+            android:textColor="#6495ED" />
     </RelativeLayout>
 
 </LinearLayout>

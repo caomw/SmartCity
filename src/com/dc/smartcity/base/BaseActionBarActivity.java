@@ -51,12 +51,8 @@ public abstract class BaseActionBarActivity extends FragmentActivity {
 
         baseService = new RequestService(this);
 
-        test();
     }
 
-    protected void test() {
-
-    }
 
     @Override
     protected void onPause() {

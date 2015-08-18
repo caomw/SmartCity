@@ -69,6 +69,8 @@
                 android:name="com.dc.smartcity.activity.AboutActivity"/>
         <activity
                 android:name="com.dc.smartcity.activity.FeedbackActivity"/>
+        <activity
+                android:name="com.dc.smartcity.activity.RegistAct"/>
 
 
         <meta-data

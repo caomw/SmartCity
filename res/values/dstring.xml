@@ -6,4 +6,18 @@
     <string name="loading_public_default">正在加载</string>
     <string name="tv_forget_pass">忘记密码？</string>
     <string name="tv_regist">立即注册</string>
+    <string name="tv_user_name">用户名</string>
+    <string name="hint_user_name">请输入用户名</string>
+    <string name="tv_mobile">手机号码</string>
+    <string name="hint_mobile">请输入手机号码</string>
+    <string name="tv_send_verifycode">获取验证码</string>
+    <string name="tv_send_verifycode_count">%s秒后重新获取</string>
+    <string name="tv_verify_code">验证码</string>
+    <string name="hint_verify_code">请输入验证码</string>
+    <string name="tv_password">密码</string>
+    <string name="tv_confirm_password">确认密码</string>
+    <string name="hint_password">请输入密码</string>
+    <string name="hint_repassword">请再次输入密码</string>
+    <string name="hint_cb_regist">我已阅读并同意</string>
+    <string name="tv_regist_rules">《注册协议》</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.dc.smartcity.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -37,7 +38,7 @@ public class LoginActivity extends BaseActionBarActivity {
 		hideActionBar();
 	}
 
-	@OnClick(value={R.id.btnLogin,R.id.tv_forgetpass,R.id.tv_regist})
+	@OnClick(value={R.id.btnLogin,R.id.tv_forgetpass,R.id.tv_regist,R.id.ivClose})
 	private void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btnLogin:
@@ -53,7 +54,10 @@ public class LoginActivity extends BaseActionBarActivity {
 			
 			break;
 		case R.id.tv_regist:
-			
+			startActivity(new Intent(this, RegistAct.class));
+			break;
+		case R.id.ivClose:
+			finish();
 			break;
 		default:
 			break;

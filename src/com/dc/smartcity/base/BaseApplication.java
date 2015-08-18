@@ -3,18 +3,15 @@ package com.dc.smartcity.base;
 import android.app.Application;
 import com.android.dcone.ut.UpdateAgent;
 import com.android.dcone.ut.update.UpdateMode;
-import com.dc.smartcity.bean.UserObj;
 
 public class BaseApplication extends Application {
 
     private static BaseApplication instance;
 
-    public static UserObj user;
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
-        user = new UserObj();
         // 测试
         UpdateAgent.init(UpdateMode.MODE_APP);
         // 不使用assert目录，所以文件名为null

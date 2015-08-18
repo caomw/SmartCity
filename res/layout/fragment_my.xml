@@ -49,8 +49,8 @@
                     android:background="@color/background_color"
                     android:text="登陆|注册"
                     android:textColor="@color/base_blue"
-                    android:padding="3dp"
-                    android:textSize="12sp"
+                    android:padding="8dp"
+                    android:textSize="@dimen/text_size_hint"
                     android:orientation="horizontal"/>
 
             <LinearLayout

@@ -127,7 +127,7 @@ public class HomeMyFragment extends BaseFragment {
                 //常见问题
                 Intent intent_problem = new Intent(getActivity(), WebViewActivity.class);
                 intent_problem.putExtra(BundleKeys.WEBVIEW_TITLE,"常见问题");
-                intent_problem.putExtra(BundleKeys.WEBVIEW_LOADURL,"www.baidu.com");
+                intent_problem.putExtra(BundleKeys.WEBVIEW_LOADURL,"http://m.baidu.com");
                 startActivity(intent_problem);
                 break;
             case R.id.tv_welcome:

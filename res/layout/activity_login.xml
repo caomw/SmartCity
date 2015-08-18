@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_margin="5dp"
+            android:padding="5dp"
             android:src="@drawable/outlogin" />
 
         <com.dc.smartcity.view.RoundImageView
@@ -93,17 +93,15 @@
 
         <TextView
             android:id="@+id/btnLogin"
-            android:layout_width="230dp"
-            android:layout_height="40dp"
+            style="@style/normalBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_below="@+id/ll_pass"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_margin="15dp"
             android:background="@drawable/login_bg"
-            android:gravity="center"
             android:text="登     陆"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+             />
 
         <TextView
             android:id="@+id/tv_forgetpass"
@@ -112,7 +110,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_margin="5dp"
-            android:padding="5dp"
+            android:padding="10dp"
             android:textSize="14sp"
             android:text="@string/tv_forget_pass"
             android:textColor="@color/info" />
@@ -124,7 +122,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_margin="5dp"
-            android:padding="5dp"
+            android:padding="10dp"
             android:textSize="14sp"
             android:text="@string/tv_regist"
             android:background="@drawable/edit_saletop_bg"

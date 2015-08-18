@@ -582,13 +582,6 @@
 
     <color name="griditems_bg">#ffe8ecef</color>
     <color name="line_bg">#ffd3dde6</color>
-
-    <color name="vpi__background_holo_dark">#ff000000</color>
-    <color name="vpi__background_holo_light">#fff3f3f3</color>
-    <color name="vpi__bright_foreground_holo_dark">@color/vpi__background_holo_light</color>
-    <color name="vpi__bright_foreground_holo_light">@color/vpi__background_holo_dark</color>
-    <color name="vpi__bright_foreground_disabled_holo_dark">#ff4c4c4c</color>
-    <color name="vpi__bright_foreground_disabled_holo_light">#ffb2b2b2</color>
-    <color name="vpi__bright_foreground_inverse_holo_dark">@color/vpi__bright_foreground_holo_light</color>
-    <color name="vpi__bright_foreground_inverse_holo_light">@color/vpi__bright_foreground_holo_dark</color>
+	<!-- 深黑 用于正文文字 -->
+    <color name="shape_line_stroke">#80333333</color>
 </resources>

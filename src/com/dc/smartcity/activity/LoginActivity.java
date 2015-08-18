@@ -1,5 +1,6 @@
 package com.dc.smartcity.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.dc.smartcity.dialog.DialogConfig;
 import com.dc.smartcity.litenet.RequestPool;
 import com.dc.smartcity.litenet.SHA1;
 import com.dc.smartcity.litenet.interf.RequestProxy;
+import com.dc.smartcity.util.Utils;
 
 /**
  * 登陆
@@ -37,7 +39,7 @@ public class LoginActivity extends BaseActionBarActivity {
 		hideActionBar();
 	}
 
-	@OnClick(value={R.id.btnLogin,R.id.tv_forgetpass,R.id.tv_regist})
+	@OnClick(value={R.id.btnLogin,R.id.tv_forgetpass,R.id.tv_regist,R.id.ivClose})
 	private void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btnLogin:
@@ -53,7 +55,10 @@ public class LoginActivity extends BaseActionBarActivity {
 			
 			break;
 		case R.id.tv_regist:
-			
+			startActivity(new Intent(this, RegistAct.class));
+			break;
+		case R.id.ivClose:
+			finish();
 			break;
 		default:
 			break;
@@ -67,7 +72,11 @@ public class LoginActivity extends BaseActionBarActivity {
 
 					@Override
 					public void onSuccess(String msg, String result) {
-
+						
+					}
+					@Override
+					public void onError(String code, String msg) {
+						Utils.showToast(msg, LoginActivity.this);
 					}
 				});
 	}

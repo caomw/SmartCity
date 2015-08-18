@@ -29,7 +29,7 @@ public class RequestPool {
 	 *            手机号码
 	 */
 	public static LiteRequest getRegistVerifyCode(String mobile) {
-		LiteRequest re = new LiteRequest("CW0603");
+		LiteRequest re = new LiteRequest("cs_portal/service/CW0603");
 		re.body.put("MOBILENUM", mobile);
 		re.body.put("BUSINESSTYPE", "03");
 		return re;
@@ -59,7 +59,7 @@ public class RequestPool {
 	 * @return
 	 */
 	public static LiteRequest requestLogin(String username,String password){
-		LiteRequest re = new LiteRequest("CW6030");
+		LiteRequest re = new LiteRequest(Config.LOGIN_URL);
 		re.body.put("username", username);
 		re.body.put("password", password);
 		return re;

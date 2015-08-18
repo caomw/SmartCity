@@ -29,6 +29,8 @@ public class AboutActivity extends BaseActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        tv_about.setText("哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈");
+        iv_actionbar_left.setVisibility(View.VISIBLE);
+        setActionBarTitle("关于");
+        tv_about.setText("关于关于关于关于关于关于关于关于关于关于关于关于关于关于关于关于关于关于关于关于");
     }
 }

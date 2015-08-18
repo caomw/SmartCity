@@ -129,7 +129,7 @@ public class HomeMyFragment extends BaseFragment {
                 break;
             case R.id.tv_welcome:
                 //产品导读
-                Intent intent_welcome = new Intent(getActivity(), SettingActivity.class);
+                Intent intent_welcome = new Intent(getActivity(), WelcomeActivity.class);
                 startActivity(intent_welcome);
                 break;
             default:

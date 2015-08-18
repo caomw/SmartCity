@@ -82,7 +82,7 @@
     <dimen name="city_choose_diven_line_hight">2.0dip</dimen>
 
     <dimen name="min_hight">48dp</dimen>
-    <dimen name="min_width">60dp</dimen>
+    <dimen name="min_width">90dp</dimen>
 
     <dimen name="image_thumbnail_spacing">5dp</dimen>
     <dimen name="pay_item_height">40dp</dimen>

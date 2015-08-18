@@ -16,6 +16,7 @@ import com.dc.smartcity.activity.*;
 import com.dc.smartcity.base.BaseApplication;
 import com.dc.smartcity.base.BaseFragment;
 import com.dc.smartcity.util.BundleKeys;
+import com.dc.smartcity.util.Utils;
 
 /**
  * 个人中心
@@ -54,9 +55,10 @@ public class HomeMyFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (!TextUtils.isEmpty(BaseApplication.user.userName)) {
+//        if (Utils.isLogin()) {
+        if (true) {
             name.setVisibility(View.VISIBLE);
-            name.setText(BaseApplication.user.userName);
+//            name.setText(Utils.getUserInfo().userName);
             tvNotlogin.setVisibility(View.GONE);
             l_login.setVisibility(View.VISIBLE);
         }
@@ -80,7 +82,7 @@ public class HomeMyFragment extends BaseFragment {
         tv_actionbar_right.setVisibility(View.GONE);
     }
 
-    @OnClick(value = {R.id.userHead, R.id.set, R.id.message, R.id.ll_news, R.id.ll_news1, R.id.ll_news2, R.id.tvNotlogin, R.id.tv_setting, R.id.tv_about, R.id.tv_share, R.id.tv_feedback, R.id.tv_problem, R.id.tv_welcome})
+    @OnClick(value = {R.id.userHead, R.id.ll_safe_set, R.id.ll_edit_info, R.id.ll_news, R.id.ll_news1, R.id.ll_news2, R.id.tvNotlogin, R.id.tv_setting, R.id.tv_about, R.id.tv_share, R.id.tv_feedback, R.id.tv_problem, R.id.tv_welcome})
     private void OnClick(View v) {
         switch (v.getId()) {
             case R.id.userHead:
@@ -90,11 +92,12 @@ public class HomeMyFragment extends BaseFragment {
                 Intent i = new Intent(getActivity(), LoginActivity.class);
                 startActivity(i);
                 break;
-            case R.id.set:
-
+            case R.id.ll_safe_set:
+                Intent intent_safe = new Intent(getActivity(), AccountSettingActivity.class);
+                startActivity(intent_safe);
                 break;
-            case R.id.message:
-                Intent m = new Intent(getActivity(), MessageActivity.class);
+            case R.id.ll_edit_info:
+                Intent m = new Intent(getActivity(), ModifyUserInfoActivity.class);
                 startActivity(m);
                 break;
             case R.id.ll_news:
@@ -126,8 +129,8 @@ public class HomeMyFragment extends BaseFragment {
             case R.id.tv_problem:
                 //常见问题
                 Intent intent_problem = new Intent(getActivity(), WebViewActivity.class);
-                intent_problem.putExtra(BundleKeys.WEBVIEW_TITLE,"常见问题");
-                intent_problem.putExtra(BundleKeys.WEBVIEW_LOADURL,"http://m.baidu.com");
+                intent_problem.putExtra(BundleKeys.WEBVIEW_TITLE, "常见问题");
+                intent_problem.putExtra(BundleKeys.WEBVIEW_LOADURL, "http://m.baidu.com");
                 startActivity(intent_problem);
                 break;
             case R.id.tv_welcome:

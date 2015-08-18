@@ -15,6 +15,7 @@ import com.dc.smartcity.R;
 import com.dc.smartcity.activity.*;
 import com.dc.smartcity.base.BaseApplication;
 import com.dc.smartcity.base.BaseFragment;
+import com.dc.smartcity.util.BundleKeys;
 
 /**
  * 个人中心
@@ -124,7 +125,9 @@ public class HomeMyFragment extends BaseFragment {
                 break;
             case R.id.tv_problem:
                 //常见问题
-                Intent intent_problem = new Intent(getActivity(), SettingActivity.class);
+                Intent intent_problem = new Intent(getActivity(), WebViewActivity.class);
+                intent_problem.putExtra(BundleKeys.WEBVIEW_TITLE,"常见问题");
+                intent_problem.putExtra(BundleKeys.WEBVIEW_LOADURL,"www.baidu.com");
                 startActivity(intent_problem);
                 break;
             case R.id.tv_welcome:

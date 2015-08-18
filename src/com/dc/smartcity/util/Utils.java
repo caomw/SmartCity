@@ -24,4 +24,13 @@ public class Utils {
     }
 
 
+    private static String accessTicket;
+    
+    public static void setAccessTicket(String accessTick){
+    	accessTicket = accessTick;
+    }
+    
+    public static String getAccessTicket(){
+    	return accessTicket;
+    }
 }

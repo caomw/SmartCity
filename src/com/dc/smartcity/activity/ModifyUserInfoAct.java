@@ -7,13 +7,12 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.android.dcone.ut.view.annotation.ViewInject;
-import com.android.dcone.ut.view.annotation.event.OnChildClick;
 import com.android.dcone.ut.view.annotation.event.OnClick;
 import com.dc.smartcity.R;
 import com.dc.smartcity.base.BaseActionBarActivity;
 /**
- * 
- * @author 修改用户信息
+ * 修改用户信息
+ * @author szsm_dyj
  *
  */
 public class ModifyUserInfoAct extends BaseActionBarActivity {
@@ -68,9 +67,18 @@ public class ModifyUserInfoAct extends BaseActionBarActivity {
 		
 	}
 
-	@OnClick(R.id.btnSave)
+	@OnClick(value={R.id.btnSave,R.id.tv_brithday})
 	private void onClick(View v){
-		
+		switch (v.getId()) {
+		case R.id.btnSave:
+			
+			break;
+		case R.id.tv_brithday:
+			
+			break;
+		default:
+			break;
+		}
 	}
 	
 }

@@ -70,8 +70,9 @@
         <activity
                 android:name="com.dc.smartcity.activity.FeedbackActivity"/>
         <activity
-                android:name="com.dc.smartcity.activity.RegistAct"/>
-
+                android:name="com.dc.smartcity.activity.ModifyUserInfoActivity"/>
+        <activity
+                android:name="com.dc.smartcity.activity.AccountSettingActivity"/>
 
         <meta-data
                 android:name="DC_H5_APP_VERSION"

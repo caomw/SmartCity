@@ -20,7 +20,8 @@ import com.dc.smartcity.litenet.response.ResponHead;
 
 public class Api {
 
-	public void makeHttpPost(LiteRequest request, final IResPonseListener listener) {
+	public void makeHttpPost(LiteRequest request,
+			final IResPonseListener listener) {
 
 		final HashMap<String, Object> req = new HashMap<String, Object>();
 		StringEntity entity = null;
@@ -60,7 +61,7 @@ public class Api {
 		// try { entity = new UrlEncodedFormEntity(params, "UTF-8");
 		// }catch(Exception e){}
 		Log.e("Api:", "entity:" + JSON.toJSONString(req));
-		makeHttpPost(request.url, entity,listener);
+		makeHttpPost(request.url, entity, listener);
 	}
 
 	@SuppressLint("NewApi")
@@ -70,8 +71,18 @@ public class Api {
 			@Override
 			protected HttpResponseData doInBackground(HttpEntity... params) {
 				HttpUtils http = new HttpUtils("", -1, -1);
-				HttpResponseData r = http.doHttpPost(Config.SERVER_URL + url,
-						null, params[0], true);
+				HttpResponseData r;
+				String realUrl;
+				if (url.startsWith("http")) {
+					realUrl = url;
+				}else if(url.contains("/")){
+					realUrl = Config.BASE_URL + url;
+				}else {
+					realUrl = Config.SERVER_URL + url;
+				}
+				
+				r = http.doHttpPost(realUrl, null,
+						params[0], true);
 				r.getDataString();
 				return r;
 			}
@@ -113,5 +124,4 @@ public class Api {
 		}.execute(entity);
 	}
 
-	
 }

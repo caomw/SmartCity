@@ -29,6 +29,8 @@ import org.apache.http.conn.scheme.SocketFactory;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 
+import com.dc.smartcity.util.ULog;
+
 import android.util.Log;
 
 public class HttpUtils {
@@ -113,6 +115,8 @@ public class HttpUtils {
     
     public HttpResponseData doHttpRequest(int method, String url, java.util.List<? extends Header> headers, HttpEntity httpEntity,boolean recuive) {
 //        WriteLog("Requesting :[%s] %s ...", method, url);
+    	
+    	Log.e("HttpUtils", "url:"+url);
         org.apache.http.client.methods.HttpRequestBase request=null;
         if (METHOD_GET==method) {
             request = new org.apache.http.client.methods.HttpGet(url);

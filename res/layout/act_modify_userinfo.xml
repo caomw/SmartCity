@@ -19,6 +19,7 @@
         android:paddingLeft="@dimen/regist_margin_left" >
 
         <LinearLayout
+            style="@style/normalPadding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/regist_margin_top"
@@ -29,17 +30,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="@string/tv_user_name"
+                android:text="@string/tv_real_auth"
                 android:textSize="15sp" />
 
-            <EditText
-                android:id="@+id/et_user_name"
-                style="@style/loginEdit"
+            <TextView
+                android:id="@+id/tv_auth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@null"
-                android:hint="@string/hint_user_name" />
+                android:text="@string/tv_real_auth_hint"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <ImageView
@@ -58,41 +58,90 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="@string/tv_mobile"
+                android:text="@string/tv_realname"
                 android:textSize="15sp" />
 
-            <LinearLayout
+            <EditText
+                android:id="@+id/et_realname"
+                style="@style/loginEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center_vertical"
+                android:background="@null"
+                android:hint="@string/hint_realname" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/shape_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/tv_sex"
+                android:textSize="15sp" />
+
+            <RadioGroup
+                style="@style/normalPadding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="horizontal" >
 
-                <EditText
-                    android:id="@+id/et_mobile"
-                    style="@style/loginEdit"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.8"
-                    android:background="@null"
-                    android:hint="@string/hint_mobile"
-                    android:inputType="phone" />
-
-                <TextView
-                    android:id="@+id/tvGetVerify"
+                <RadioButton
+                    android:id="@+id/rb_sex_male"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="2dp"
-                    android:background="@drawable/shape_blue"
-                    android:text="@string/tv_send_verifycode"
-                    android:textSize="11sp" />
-            </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:hint="@string/rb_sex_male" />
+
+                <RadioButton
+                    android:id="@+id/rb_sex_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:hint="@string/rb_sex_female" />
+            </RadioGroup>
         </LinearLayout>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:src="@drawable/shape_line" />
+
+        <LinearLayout
+            style="@style/normalPadding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/regist_margin_top"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/tv_brithday"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_brithday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/hint_brithday" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:src="@drawable/shape_line" />
 
         <LinearLayout
@@ -106,27 +155,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="@string/tv_verify_code"
+                android:text="@string/tv_live_place"
                 android:textSize="15sp" />
 
             <EditText
-                android:id="@+id/et_verify_code"
+                android:id="@+id/et_live_place"
                 style="@style/loginEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@null"
-                android:hint="@string/hint_verify_code"
-                android:inputType="numberSigned" />
+                android:hint="@string/hint_live_place" />
         </LinearLayout>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/regist_margin_top"
             android:src="@drawable/shape_line" />
 
         <LinearLayout
+            style="@style/normalPadding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/regist_margin_top"
@@ -137,27 +185,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="@string/tv_password"
+                android:text="@string/modify_mobile"
                 android:textSize="15sp" />
 
-            <EditText
-                android:id="@+id/et_password"
-                style="@style/loginEdit"
+            <TextView
+                android:id="@+id/tv_modify_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@null"
-                android:hint="@string/hint_password"
-                android:inputType="textPassword" />
+                android:layout_weight="1" />
         </LinearLayout>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/regist_margin_top"
             android:src="@drawable/shape_line" />
 
         <LinearLayout
+            style="@style/normalPadding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/regist_margin_top"
@@ -168,18 +212,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="@string/tv_confirm_password"
+                android:text="@string/tv_mail"
                 android:textSize="15sp" />
 
-            <EditText
-                android:id="@+id/et_confirm_password"
-                style="@style/loginEdit"
+            <TextView
+                android:id="@+id/tv_mail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@null"
-                android:hint="@string/hint_repassword"
-                android:inputType="textPassword" />
+                android:text="@string/hint_mail" />
         </LinearLayout>
     </LinearLayout>
 
@@ -188,35 +229,13 @@
         android:layout_height="wrap_content"
         android:src="@drawable/shape_line" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/regist_margin_top"
-        android:gravity="center"
-        android:orientation="horizontal" >
-
-        <CheckBox
-            android:id="@+id/cb_agree"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawablePadding="8dp"
-            android:hint="@string/hint_cb_regist" />
-
-        <TextView
-            android:id="@+id/tv_user_rules"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="@string/tv_regist_rules" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_regist"
+    <TextView
+        android:id="@+id/btnSave"
         style="@style/normalBtn"
+        android:background="@drawable/login_bg"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="15dp"
-        android:background="@drawable/login_bg"
-        android:text="@string/tv_regist" />
+        android:text="@string/btn_save" />
 
 </LinearLayout>

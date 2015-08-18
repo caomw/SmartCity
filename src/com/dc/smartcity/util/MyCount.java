@@ -1,11 +1,10 @@
 package com.dc.smartcity.util;
 
+import com.dc.smartcity.R;
+
 import android.content.Context;
 import android.os.CountDownTimer;
-import android.view.View;
-import android.widget.Button;
-
-import com.dc.smartcity.R;
+import android.widget.TextView;
 
 /**
  * 
@@ -14,7 +13,7 @@ import com.dc.smartcity.R;
  */
 public class MyCount extends CountDownTimer {
 
-	private View verifyBtn;
+	private TextView verifyBtn;
 
 	private Context context;
 
@@ -25,13 +24,13 @@ public class MyCount extends CountDownTimer {
 
 	private final static int COUNT_DOWN_INTERVAL = 1000;
 
-	public MyCount(final Context context, final Button verifyBtn) {
+	public MyCount(final Context context, final TextView verifyBtn) {
 		super(MILLS_IN_FUTURE, COUNT_DOWN_INTERVAL);
 		this.verifyBtn = verifyBtn;
 		this.context = context;
 	}
 
-	public MyCount(final Context context, final Button verifyBtn, final long MILLS_IN_FUTURE) {
+	public MyCount(final Context context, final TextView verifyBtn, final long MILLS_IN_FUTURE) {
 		super(MILLS_IN_FUTURE, COUNT_DOWN_INTERVAL);
 		this.verifyBtn = verifyBtn;
 		this.context = context;

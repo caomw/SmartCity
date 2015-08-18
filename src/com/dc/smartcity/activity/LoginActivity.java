@@ -14,6 +14,7 @@ import com.dc.smartcity.dialog.DialogConfig;
 import com.dc.smartcity.litenet.RequestPool;
 import com.dc.smartcity.litenet.SHA1;
 import com.dc.smartcity.litenet.interf.RequestProxy;
+import com.dc.smartcity.util.Utils;
 
 /**
  * 登陆
@@ -71,7 +72,11 @@ public class LoginActivity extends BaseActionBarActivity {
 
 					@Override
 					public void onSuccess(String msg, String result) {
-
+						
+					}
+					@Override
+					public void onError(String code, String msg) {
+						Utils.showToast(msg, LoginActivity.this);
 					}
 				});
 	}

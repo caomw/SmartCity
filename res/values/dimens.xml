@@ -91,4 +91,5 @@
     <dimen name="regist_margin_left">15dp</dimen>
     <dimen name="regist_margin_top">10dp</dimen>
 
+    <dimen name="ll_padding">8dp</dimen>
 </resources>

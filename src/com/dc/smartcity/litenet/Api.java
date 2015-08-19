@@ -17,6 +17,7 @@ import com.dc.smartcity.litenet.interf.IResPonseListener;
 import com.dc.smartcity.litenet.response.DCResponse;
 import com.dc.smartcity.litenet.response.LiteRequest;
 import com.dc.smartcity.litenet.response.ResponHead;
+import com.dc.smartcity.util.Utils;
 
 public class Api {
 
@@ -46,6 +47,9 @@ public class Api {
 			// 1.0后台不做验签，大于2.0以及以上做验签
 			head.put("version", "2.0");
 
+			if(!TextUtils.isEmpty(Utils.getAccessTicket())){
+				head.put("accessTicket", Utils.getAccessTicket());
+			}
 			// body.put("siteId", "320581");
 
 			req.put("head", head);

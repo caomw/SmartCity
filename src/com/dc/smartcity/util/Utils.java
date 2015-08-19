@@ -2,9 +2,12 @@ package com.dc.smartcity.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.widget.Toast;
-import com.dc.smartcity.bean.UserObj;
+
+import com.dc.smartcity.bean.user.UserObj;
+
 
 public class Utils {
     public static UserObj user;//登录的用户信息
@@ -25,17 +28,11 @@ public class Utils {
         return dm;
     }
 
-    /**
-     * 是否登陆
-     *
-     * @return
-     */
-    public static boolean isLogin() {
-        if (user == null)
-            return false;
-        return true;
-    }
+    
 
+    public static void setUserObj(UserObj u){
+    	user = u;
+    }
     /**
      * 获取用户信息
      *
@@ -45,6 +42,16 @@ public class Utils {
         return user;
     }
 
+    /**
+     * 是否登陆
+     * @return
+     */
+    public static boolean isLogon(){
+    	if(TextUtils.isEmpty(accessTicket)){
+    		return false;
+    	}
+    	return true;
+    }
 
     private static String accessTicket;
     

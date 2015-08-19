@@ -55,10 +55,9 @@ public class HomeMyFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-//        if (Utils.isLogin()) {
-        if (true) {
+        if (Utils.isLogon()) {
             name.setVisibility(View.VISIBLE);
-//            name.setText(Utils.getUserInfo().userName);
+            name.setText(Utils.getUserInfo().userBase.name);
             tvNotlogin.setVisibility(View.GONE);
             l_login.setVisibility(View.VISIBLE);
         }

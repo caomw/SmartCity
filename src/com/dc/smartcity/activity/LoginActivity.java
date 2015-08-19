@@ -6,10 +6,15 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.android.dcone.ut.view.annotation.event.OnClick;
 import com.dc.smartcity.R;
 import com.dc.smartcity.base.BaseActionBarActivity;
+import com.dc.smartcity.bean.user.UserAuthBean;
+import com.dc.smartcity.bean.user.UserBaseBean;
+import com.dc.smartcity.bean.user.UserObj;
 import com.dc.smartcity.dialog.DialogConfig;
 import com.dc.smartcity.litenet.RequestPool;
 import com.dc.smartcity.litenet.SHA1;
@@ -72,12 +77,33 @@ public class LoginActivity extends BaseActionBarActivity {
 
 					@Override
 					public void onSuccess(String msg, String result) {
-						
+						Utils.setAccessTicket(result);
+						queryUserInfo();
 					}
 					@Override
 					public void onError(String code, String msg) {
 						Utils.showToast(msg, LoginActivity.this);
 					}
 				});
+	}
+	
+	/**
+	 * 查询用户信息
+	 */
+	private void queryUserInfo(){
+		sendRequestWithDialog(RequestPool.requestUserInfo(), new DialogConfig.Builder().build(), new RequestProxy() {
+			
+			@Override
+			public void onSuccess(String msg, String result) {
+				JSONObject obj = JSON.parseObject(result);
+				UserObj user = new UserObj();
+				user.userBase = JSON.parseObject(obj.getString("USERBASIC"), UserBaseBean.class);
+				user.userAuth = JSON.parseObject(obj.getString("USERAUTH"),UserAuthBean.class);
+				if(null !=user.userBase){
+					Utils.setUserObj(user);
+				}
+				finish();
+			}
+		});
 	}
 }

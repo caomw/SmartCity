@@ -64,4 +64,13 @@ public class RequestPool {
 		re.body.put("password", password);
 		return re;
 	}
+	
+	/**
+	 * 查询用户信息
+	 * @return
+	 */
+	public static LiteRequest requestUserInfo(){
+		LiteRequest re = new LiteRequest("cs_portal/service/CW0201");
+		return re;
+	}
 }

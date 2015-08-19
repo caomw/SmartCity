@@ -15,7 +15,7 @@
         <item name="android:singleLine">true</item>
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:background">@color/whitesmoke</item>
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:cursorVisible">true</item>
         
     </style>

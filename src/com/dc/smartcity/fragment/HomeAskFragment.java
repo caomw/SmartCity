@@ -1,9 +1,13 @@
 package com.dc.smartcity.fragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +15,21 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.dc.smartcity.R;
 import com.dc.smartcity.activity.AskDetailActivity;
 import com.dc.smartcity.base.BaseFragment;
 import com.dc.smartcity.bean.AskObj;
+import com.dc.smartcity.litenet.RequestPool;
+import com.dc.smartcity.litenet.interf.RequestProxy;
+import com.dc.smartcity.net.ImageLoader;
 import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.util.Utils;
 import com.dc.smartcity.view.gridview.BaseViewHolder;
 import com.dc.smartcity.view.pullrefresh.PullToRefreshListView;
-
-import java.util.ArrayList;
 
 /**
  * 有问必答
@@ -33,6 +41,7 @@ public class HomeAskFragment extends BaseFragment {
     @ViewInject(R.id.pullToRefreshListview)
     private PullToRefreshListView pullToRefreshListview;
 
+    int pageNo=1;
 
     public HomeAskFragment(ActionBar actionBar) {
         super(actionBar);
@@ -81,14 +90,12 @@ public class HomeAskFragment extends BaseFragment {
         tv_actionbar_right.setVisibility(View.GONE);
     }
 
+    ListAdapter adapter;
     private void initList() {
         pullToRefreshListview.setMode(PullToRefreshListView.MODE_NONE);
 //        lv_activity_center.setOnRefreshListener(this);
-        ArrayList<AskObj> list = new ArrayList<AskObj>();
-        for (int i = 0; i < 25; i++) {
-            list.add(new AskObj());
-        }
-        ListAdapter adapter = new ListAdapter(getActivity(), list);
+        adapter = new ListAdapter(getActivity());
+        
         pullToRefreshListview.setAdapter(adapter);
         pullToRefreshListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -96,18 +103,38 @@ public class HomeAskFragment extends BaseFragment {
                 startActivity(new Intent(getActivity(), AskDetailActivity.class));
             }
         });
+        
+        queryAsk(pageNo);
     }
 
 
-    class ListAdapter extends BaseAdapter {
-        private ArrayList<AskObj> list = new ArrayList<AskObj>();
+    private void queryAsk(int pageNo) {
+		sendRequestWithNoDialog(RequestPool.requestQannAns(pageNo), new RequestProxy() {
+			
+			@Override
+			public void onSuccess(String msg, String result) {
+				Log.e(TAG, "result:"+result);
+				JSONObject js = JSON.parseObject(result);
+				List<AskObj> items= JSON.parseArray(js.getJSONObject("page").getString("result"),AskObj.class);
+				if(items.size()>0){
+					adapter.list.addAll(items);
+					adapter.notifyDataSetChanged();
+				}
+			}
+		});
+	}
+
+
+	class ListAdapter extends BaseAdapter {
+        ArrayList<AskObj> list;
         private Context mContext;
 
-        public ListAdapter(Context mContext, ArrayList<AskObj> list) {
-            this.list = list;
+        public ListAdapter(Context mContext) {
+            this.list = new ArrayList<AskObj>();
             this.mContext = mContext;
         }
 
+        
         @Override
         public int getCount() {
             return list.size();
@@ -136,6 +163,18 @@ public class HomeAskFragment extends BaseFragment {
             TextView tv_content = BaseViewHolder.get(convertView, R.id.tv_content);
             TextView tv_ask_date = BaseViewHolder.get(convertView, R.id.tv_ask_date);
             TextView tv_ask_location = BaseViewHolder.get(convertView, R.id.tv_ask_location);
+            
+            if(list.size()>= position){
+            	AskObj obj = list.get(position);
+            	ImageLoader.getInstance().displayImage(obj.photoUrl, iv_head);
+            	tv_name.setText(obj.userName);
+            	tv_title.setText(obj.title);
+            	tv_status.setText(obj.status);//需处理
+            	tv_content.setText(obj.content);
+            	tv_ask_date.setText(obj.happenTime);
+            	tv_ask_location.setText(obj.location);
+            }
+            
             return convertView;
         }
     }

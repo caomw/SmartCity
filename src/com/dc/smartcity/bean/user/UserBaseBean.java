@@ -23,6 +23,11 @@ public class UserBaseBean {
 	public String headphotourl;
 	public String sex;
 	public String birthday;
+	public String lastlogintime;
+
+	public void setLastlogintime(String lastlogintime) {
+		this.lastlogintime = lastlogintime;
+	}
 
 	public void setUserid(String userid) {
 		this.userid = userid;

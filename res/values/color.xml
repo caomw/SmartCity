@@ -566,6 +566,8 @@
     <color name="dialog_loading_button_text_color">#FF9F382A</color>
     <!-- app主蓝色调 -->
     <color name="base_blue">#007aff</color>
+    <!-- action bar 背景 -->
+    <color name="action_bar_bg">#6bb2cf</color>
     <color name="main_page_middle_blue">#36abcc</color>
     <color name="base_orange">#FF6602</color>
     <color name="main_primary">#ff333333</color>

@@ -24,6 +24,8 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.dc.smartcity.R;
+import com.dc.smartcity.activity.CordovaWebwiewActivity;
+import com.dc.smartcity.activity.LoginActivity;
 import com.dc.smartcity.activity.SearchServiceActivity;
 import com.dc.smartcity.activity.ServiceMarketActivity;
 import com.dc.smartcity.activity.WebViewActivity;
@@ -37,6 +39,7 @@ import com.dc.smartcity.litenet.interf.RequestProxy;
 import com.dc.smartcity.net.ImageLoader;
 import com.dc.smartcity.util.BundleKeys;
 import com.dc.smartcity.util.ULog;
+import com.dc.smartcity.util.Utils;
 import com.dc.smartcity.view.advertisement.AdvertisementView;
 import com.dc.smartcity.view.gridview.IconWithTextGridAdapter;
 import com.dc.smartcity.view.gridview.ScrollGridView;
@@ -210,7 +213,7 @@ public class HomePageFragment extends BaseFragment {
 				@Override
 				public void onClick(View arg0) {
 					Intent intent = new Intent(getActivity(),
-							WebViewActivity.class);
+							CordovaWebwiewActivity.class);
 					intent.putExtra("key", sitem.getColumnId());
 					startActivity(intent);
 				}
@@ -234,16 +237,23 @@ public class HomePageFragment extends BaseFragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				if(TextUtils.isEmpty(list.get(position).getServiceUrl())){
+				if(TextUtils.isEmpty(list.get(position).serviceUrl)){
 					
 					startActivity(new Intent(getActivity(),
 							ServiceMarketActivity.class));
-				}else{
-					Intent intent = new Intent(getActivity(),
-							WebViewActivity.class);
-					intent.putExtra(BundleKeys.WEBVIEW_LOADURL, list.get(position).getServiceUrl());
-					intent.putExtra(BundleKeys.WEBVIEW_TITLE, list.get(position).getServiceName());
-					startActivity(intent);
+				}else {
+					
+					if(!"01".equals(list.get(position).level) && !Utils.isLogon()){
+						startActivity(new Intent(getActivity(),LoginActivity.class));
+						
+					}else{
+						Intent intent = new Intent(getActivity(),
+								CordovaWebwiewActivity.class);
+						intent.putExtra(BundleKeys.WEBVIEW_LOADURL, list.get(position).serviceUrl);
+						intent.putExtra(BundleKeys.WEBVIEW_TITLE, list.get(position).serviceName);
+						startActivity(intent);
+					}
+					
 				}
 			}
 		});

@@ -8,5 +8,6 @@ public class UserObj {
 
 	public UserBaseBean userBase;
 	public UserAuthBean userAuth;
+	public UserLocalBean userLocal;
 	
 }

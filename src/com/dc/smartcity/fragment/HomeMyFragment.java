@@ -3,20 +3,29 @@ package com.dc.smartcity.fragment;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.android.dcone.ut.view.annotation.event.OnClick;
 import com.dc.smartcity.R;
-import com.dc.smartcity.activity.*;
-import com.dc.smartcity.base.BaseApplication;
+import com.dc.smartcity.activity.AboutActivity;
+import com.dc.smartcity.activity.AccountSettingActivity;
+import com.dc.smartcity.activity.FeedbackActivity;
+import com.dc.smartcity.activity.LoginActivity;
+import com.dc.smartcity.activity.ModifyUserInfoAct;
+import com.dc.smartcity.activity.SettingActivity;
+import com.dc.smartcity.activity.WebViewActivity;
+import com.dc.smartcity.activity.WelcomeActivity;
 import com.dc.smartcity.base.BaseFragment;
+import com.dc.smartcity.net.ImageLoader;
 import com.dc.smartcity.util.BundleKeys;
 import com.dc.smartcity.util.Utils;
+import com.dc.smartcity.view.RoundImageView;
 
 /**
  * 个人中心
@@ -37,6 +46,8 @@ public class HomeMyFragment extends BaseFragment {
     private TextView tvNotlogin;
     @ViewInject(R.id.l_login)
     private LinearLayout l_login;
+    @ViewInject(R.id.userHead)
+    private RoundImageView userHead;
 
     @Override
     protected int setContentView() {
@@ -57,9 +68,14 @@ public class HomeMyFragment extends BaseFragment {
         super.onResume();
         if (Utils.isLogon()) {
             name.setVisibility(View.VISIBLE);
-            name.setText(Utils.getUserInfo().userBase.name);
+            name.setText(Utils.user.userBase.name);
             tvNotlogin.setVisibility(View.GONE);
             l_login.setVisibility(View.VISIBLE);
+            ImageLoader.getInstance().displayImage(Utils.user.userBase.headphotourl, userHead);
+        }else{
+        	name.setVisibility(View.GONE);
+        	tvNotlogin.setVisibility(View.VISIBLE);
+        	l_login.setVisibility(View.GONE);
         }
     }
 
@@ -81,7 +97,7 @@ public class HomeMyFragment extends BaseFragment {
         tv_actionbar_right.setVisibility(View.GONE);
     }
 
-    @OnClick(value = {R.id.userHead, R.id.ll_safe_set, R.id.ll_edit_info, R.id.ll_news, R.id.ll_news1, R.id.ll_news2, R.id.tvNotlogin, R.id.tv_setting, R.id.tv_about, R.id.tv_share, R.id.tv_feedback, R.id.tv_problem, R.id.tv_welcome})
+    @OnClick(value = {R.id.userHead, R.id.ll_safe_set, R.id.ll_edit_info,  R.id.tvNotlogin, R.id.tv_setting, R.id.tv_about, R.id.tv_share, R.id.tv_feedback, R.id.tv_problem, R.id.tv_welcome})
     private void OnClick(View v) {
         switch (v.getId()) {
             case R.id.userHead:
@@ -96,16 +112,8 @@ public class HomeMyFragment extends BaseFragment {
                 startActivity(intent_safe);
                 break;
             case R.id.ll_edit_info:
-                Intent m = new Intent(getActivity(), ModifyUserInfoActivity.class);
+                Intent m = new Intent(getActivity(), ModifyUserInfoAct.class);
                 startActivity(m);
-                break;
-            case R.id.ll_news:
-                break;
-            case R.id.ll_news1:
-                break;
-            case R.id.ll_news2:
-                Intent o = new Intent(getActivity(), NewsDetailActivity.class);
-                startActivity(o);
                 break;
             case R.id.tv_setting:
                 Intent s = new Intent(getActivity(), SettingActivity.class);
@@ -118,7 +126,8 @@ public class HomeMyFragment extends BaseFragment {
                 break;
             case R.id.tv_share:
                 //分享
-
+            	OnekeyShare share = new OnekeyShare();
+            	share.show(getActivity());
                 break;
             case R.id.tv_feedback:
                 //反馈

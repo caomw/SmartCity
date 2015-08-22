@@ -6,6 +6,7 @@ import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.android.dcone.ut.view.annotation.event.OnRadioGroupCheckedChange;
 import com.dc.smartcity.R;
@@ -13,7 +14,9 @@ import com.dc.smartcity.base.BaseActionBarActivity;
 import com.dc.smartcity.base.BaseFragment;
 import com.dc.smartcity.fragment.HomeAskFragment;
 import com.dc.smartcity.fragment.HomeMyFragment;
+import com.dc.smartcity.fragment.HomeNewsFragment;
 import com.dc.smartcity.fragment.HomePageFragment;
+import com.dc.smartcity.fragment.ServiceListFragment;
 import com.dc.smartcity.util.Utils;
 
 public class MainActivity extends BaseActionBarActivity implements OnCheckedChangeListener {
@@ -28,6 +31,8 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
     public RadioButton rb_menu_ask;
     @ViewInject(R.id.rb_menu_my)
     private RadioButton rb_menu_my;
+    @ViewInject(R.id.rb_menu_news)
+    private RadioButton rb_menu_news;
     private RadioButton mCurrentButton;
 
     /**
@@ -46,6 +51,10 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
      * 我的fragment
      */
     private HomeMyFragment mMyFragment;
+    /**
+     * 我的fragment
+     */
+    private HomeNewsFragment mServiceFragment;
 
 
     @Override
@@ -105,6 +114,16 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
                 mCurrentFragment = mMyFragment;
                 mCurrentButton = rb_menu_my;
                 break;
+            case R.id.rb_menu_news:
+            	 if (mServiceFragment != null) {
+                     fragmentTransaction.show(mServiceFragment);
+                 } else {
+                	 mServiceFragment = new HomeNewsFragment(mActionBar);
+                     fragmentTransaction.add(R.id.ll_fragment_container, mServiceFragment);
+                 }
+                 mCurrentFragment = mServiceFragment;
+                 mCurrentButton = rb_menu_news;
+            	break;
             default:
                 break;
         }

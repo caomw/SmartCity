@@ -60,9 +60,9 @@ public class IconWithTextGridAdapter extends BaseAdapter {
         }
         TextView tv = BaseViewHolder.get(convertView, R.id.tv_item);
         ImageView iv = BaseViewHolder.get(convertView, R.id.iv_item);
-        ImageLoader.getInstance().displayImage(list.get(position).getServicePicUrl(), iv);
+        ImageLoader.getInstance().displayImage(list.get(position).serviceUrl, iv);
 
-        tv.setText(list.get(position).getServiceName());
+        tv.setText(list.get(position).serviceName);
         return convertView;
     }
 

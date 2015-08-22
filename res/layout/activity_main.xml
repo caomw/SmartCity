@@ -31,6 +31,15 @@
                 android:layout_weight="1"
                 android:drawableTop="@drawable/icon_menu_pay_bg"
                 android:text="@string/menu_pay"/>
+        
+        <RadioButton
+                android:id="@+id/rb_menu_news"
+                style="@style/tab_main_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/icon_menu_pay_bg"
+                android:text="@string/main_buttom_news"/>
 
 
         <RadioButton

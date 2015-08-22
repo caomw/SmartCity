@@ -1,46 +1,59 @@
-package com.dc.smartcity.activity;
+package com.dc.smartcity.fragment;
 
+import android.app.ActionBar;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.webkit.*;
+import android.view.ViewGroup;
+import android.webkit.JsResult;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.dc.smartcity.R;
-import com.dc.smartcity.base.BaseActionBarActivity;
-import com.dc.smartcity.util.BundleKeys;
+import com.dc.smartcity.base.BaseFragment;
+import com.dc.smartcity.litenet.Config;
 import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.view.LoadingDialog;
 
 /**
- * 统一的webview的activity
+ * 城市新鲜事，新闻资讯
+ * 
+ * @author szsm_dyj
+ *
  */
-public class WebViewActivity extends BaseActionBarActivity {
+public class HomeNewsFragment extends BaseFragment {
 
-    protected LoadingDialog mLoadingDialog;
-    @ViewInject(R.id.my_webview)
-    protected WebView my_webview;
-    protected String loadurl = "";
-    protected String title = "";
+	protected LoadingDialog mLoadingDialog;
+	@ViewInject(R.id.my_webview)
+	protected WebView my_webview;
 
+	public HomeNewsFragment(ActionBar actionbar) {
+		super(actionbar);
+	}
 
-    @Override
-    protected void setContentView() {
-        setContentView(R.layout.my_webview_layout);
-    }
+	@Override
+	protected int setContentView() {
+		return R.layout.my_webview_layout;
+	}
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mLoadingDialog = LoadingDialog.create(WebViewActivity.this, WebViewActivity.this.getString(R.string.loading));
-//        my_webview = (WebView) findViewById(R.id.my_webview);
-        loadurl = getIntent().getStringExtra(BundleKeys.WEBVIEW_LOADURL);
-        title = getIntent().getStringExtra(BundleKeys.WEBVIEW_TITLE);
-//        loadurl = "http://m.baidu.com";
-        initActionBar();
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle bundle) {
+		view = super.onCreateView(inflater, container, bundle);
 
-        /*----设置WebView控件参数----*/
+		initActionBar();
+		initViews();
+		return view;
+	}
+
+	private void initViews() {
+		 /*----设置WebView控件参数----*/
         WebSettings webSettings = my_webview.getSettings();
         webSettings.setJavaScriptEnabled(true);// 设置响应JS
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
@@ -96,22 +109,15 @@ public class WebViewActivity extends BaseActionBarActivity {
                 return super.onJsAlert(view, url, message, result);
             }
         });
-        my_webview.loadUrl(loadurl);
-    }
+        my_webview.loadUrl(Config.CITY_NEWS);
+	}
 
-    private void initActionBar() {
-        iv_actionbar_left.setVisibility(View.VISIBLE);
-        tv_actionbar_title.setVisibility(View.VISIBLE);
-        tv_actionbar_title.setText(title);
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (null != mLoadingDialog) {
-            mLoadingDialog.dismiss();
-            mLoadingDialog = null;
-        }
-    }
+	private void initActionBar() {
+		iv_actionbar_left.setVisibility(View.GONE);
+		tv_actionbar_left.setVisibility(View.GONE);
+		et_actionbar_search.setVisibility(View.GONE);
+		tv_actionbar_title.setVisibility(View.VISIBLE);
+		tv_actionbar_title.setText("新闻资讯");
+		iv_actionbar_right.setVisibility(View.GONE);
+	}
 }

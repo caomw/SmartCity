@@ -13,6 +13,7 @@ import com.dc.smartcity.R;
 import com.dc.smartcity.base.BaseActionBarActivity;
 import com.dc.smartcity.dialog.DialogConfig;
 import com.dc.smartcity.litenet.RequestPool;
+import com.dc.smartcity.litenet.SHA1;
 import com.dc.smartcity.litenet.interf.RequestProxy;
 import com.dc.smartcity.util.MyCount;
 import com.dc.smartcity.util.Utils;
@@ -104,7 +105,9 @@ public class RegistAct extends BaseActionBarActivity {
 		}else if(!cb_agree.isChecked()){
 			Utils.showToast("请先阅读注册协议", RegistAct.this);
 		}else{
-			sendRequestWithDialog(RequestPool.registQuest(name, pass, mobile, verifyCode), new DialogConfig.Builder().build(), new RequestProxy() {
+			SHA1 sha1 = new SHA1();
+			String password = sha1.getDigestOfString(pass.getBytes());
+			sendRequestWithDialog(RequestPool.registQuest(name, password, mobile, verifyCode), new DialogConfig.Builder().build(), new RequestProxy() {
 				
 				@Override
 				public void onSuccess(String msg, String result) {

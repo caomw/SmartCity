@@ -10,6 +10,6 @@ import com.dc.smartcity.base.BaseActionBarActivity;
 public class NewsDetailActivity extends BaseActionBarActivity {
     @Override
     protected void setContentView() {
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.webview_layout);
     }
 }

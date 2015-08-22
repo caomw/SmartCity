@@ -30,7 +30,8 @@ public class RequestService {
 
 	public void sendRequestWithDialog(LiteRequest request,
 			DialogConfig dialogConfig, final IResPonseListener listener) {
-
+		showLoadingDialog(dialogConfig.loadingMessage(),
+				dialogConfig.cancelable());
 		task.makeHttpPost(request, new IResPonseListener() {
 
 			@Override
@@ -58,8 +59,7 @@ public class RequestService {
 				}
 			}
 		});
-		showLoadingDialog(dialogConfig.loadingMessage(),
-				dialogConfig.cancelable());
+		
 	}
 
 	public void sendRequestWithNoDialog(LiteRequest request,

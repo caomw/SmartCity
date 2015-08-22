@@ -1,5 +1,9 @@
 package com.dc.smartcity.util;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
@@ -29,17 +33,11 @@ public class Utils {
     }
 
     
-
-    public static void setUserObj(UserObj u){
-    	user = u;
-    }
-    /**
-     * 获取用户信息
-     *
-     * @return
-     */
-    public static UserObj getUserInfo() {
-        return user;
+    public static String mixPhone(String mobile){
+    	if(TextUtils.isEmpty(mobile) || mobile.length() != 11){
+    		return mobile;
+    	}
+    	return mobile.replace(mobile.substring(3, 7), "****");
     }
 
     /**
@@ -61,5 +59,18 @@ public class Utils {
     
     public static String getAccessTicket(){
     	return accessTicket;
+    }
+    
+    public static String formatDate(String timpstam){
+    	long time = (long)Double.parseDouble(timpstam);
+    	DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date date = new Date(time);
+		return sdf.format(date);
+    }
+    public static String formatDateTime(String timpstam){
+    	long time = (long)Double.parseDouble(timpstam);
+    	DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
+    	Date date = new Date(time);
+    	return sdf.format(date);
     }
 }

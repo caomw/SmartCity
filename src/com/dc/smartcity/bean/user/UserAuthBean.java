@@ -25,6 +25,22 @@ public class UserAuthBean {
 	
 	public String  mobilenum;
 	public String  email;
+	public String  pwdstrength;//1弱，2强
+	public String  mobileisbound;
+	public String  emailisbound;
+	public String  idcardcode;
+	public void setIdcardcode(String idcardcode) {
+		this.idcardcode = idcardcode;
+	}
+	public void setEmailisbound(String emailisbound) {
+		this.emailisbound = emailisbound;
+	}
+	public void setMobileisbound(String mobileisbound) {
+		this.mobileisbound = mobileisbound;
+	}
+	public void setPwdstrength(String pwdstrength) {
+		this.pwdstrength = pwdstrength;
+	}
 	public void setMobilenum(String mobilenum) {
 		this.mobilenum = mobilenum;
 	}

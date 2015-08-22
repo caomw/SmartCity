@@ -1,5 +1,7 @@
 package com.dc.smartcity.fragment;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,14 +10,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.dc.smartcity.R;
 import com.dc.smartcity.base.BaseFragment;
 import com.dc.smartcity.db.tab.ServiceHistory;
 import com.dc.smartcity.view.gridview.BaseViewHolder;
 import com.dc.smartcity.view.pullrefresh.PullToRefreshListView;
-
-import java.util.ArrayList;
 
 /**
  * 服务超市
@@ -30,7 +31,7 @@ public class ServiceListFragment extends BaseFragment {
     protected int setContentView() {
         return R.layout.fragment_service_list;
     }
-
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
         view = super.onCreateView(inflater, container, bundle);

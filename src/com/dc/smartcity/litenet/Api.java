@@ -39,15 +39,13 @@ public class Api {
 			// body.put(nameValues[i], nameValues[i + 1]);
 			// }
 			// appid,数据库配死，手机端写死
-			head.put("appid", "BAS-0512-0001");
+			head.put("appid", Config.APP_ID);
 			// 第三个参数appkey数据库配死，手机端写死
-			head.put("sign", DataUtil.signRequest("BAS-0512-0001",
-					request.body,
-					"01a775fe5749154f1f2cf875ec924adc7fd3cd79b5f27f2a"));
+			head.put("sign", DataUtil.signRequest(Config.APP_ID, request.body,Config.APP_KEY));
 			// 1.0后台不做验签，大于2.0以及以上做验签
 			head.put("version", "2.0");
 
-			if(!TextUtils.isEmpty(Utils.getAccessTicket())){
+			if (!TextUtils.isEmpty(Utils.getAccessTicket())) {
 				head.put("accessTicket", Utils.getAccessTicket());
 			}
 			// body.put("siteId", "320581");
@@ -79,14 +77,13 @@ public class Api {
 				String realUrl;
 				if (url.startsWith("http")) {
 					realUrl = url;
-				}else if(url.contains("/")){
+				} else if (url.contains("/")) {
 					realUrl = Config.BASE_URL + url;
-				}else {
+				} else {
 					realUrl = Config.SERVER_URL + url;
 				}
-				
-				r = http.doHttpPost(realUrl, null,
-						params[0], true);
+
+				r = http.doHttpPost(realUrl, null, params[0], true);
 				r.getDataString();
 				return r;
 			}

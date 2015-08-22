@@ -87,17 +87,19 @@ public class ImageLoader {
             return;
         }
         int resId = -1;
-        try {
+        if(isNum(imageUrl)){
         	resId = Integer.parseInt(imageUrl);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		} 
         if(-1 != resId){
         	Picasso.with(context).load(resId).config(config).into(imageView);
         }else{
         	Picasso.with(context).load(imageUrl).placeholder(stub_id).error(stub_id_no_img).config(config).into(imageView);
         }
     }
+    
+    private  boolean isNum(String str){
+		return str.matches("^[-+]?(([0-9]+)([.]([0-9]+))?|([.]([0-9]+))?)$");
+	}
 
     public void displayImage(String imageUrl, ImageView imageView, Callback callback) {
         displayImage(imageUrl, imageView, STUB_ID, STUB_ID, callback, DEFAULT_CONFIG);

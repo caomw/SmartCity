@@ -30,7 +30,7 @@
             android:allowBackup="true"
             android:icon="@drawable/ic_launcher"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme">
+            >
         <activity
                 android:name="com.dc.smartcity.activity.MainActivity"
                 android:configChanges="keyboardHidden|navigation|orientation"
@@ -70,10 +70,56 @@
         <activity
                 android:name="com.dc.smartcity.activity.FeedbackActivity"/>
         <activity
-                android:name="com.dc.smartcity.activity.ModifyUserInfoActivity"/>
+                android:name="com.dc.smartcity.activity.ModifyUserInfoAct"
+                />
         <activity
                 android:name="com.dc.smartcity.activity.AccountSettingActivity"/>
+        <activity
+                android:name="com.dc.smartcity.activity.AuthAct"/>
+        <activity
+                android:name="com.dc.smartcity.activity.ChangeBindMobileAct"/>
+        <activity
+                android:name="com.dc.smartcity.activity.ChangePasswordAct"/>
+        <activity
+                android:name="com.dc.smartcity.activity.RegistAct"/>
+        <activity
+                android:name="com.dc.smartcity.activity.CordovaWebwiewActivity"/>
 
+        
+        <!-- sharesdk -->
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+            <intent-filter>
+                <data android:scheme="tencent100371282" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- 微信分享回调 -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- 易信分享回调 -->
+        <activity
+            android:name=".yxapi.YXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- sharesdk -->
+        
         <meta-data
                 android:name="DC_H5_APP_VERSION"
                 android:value="1"/>

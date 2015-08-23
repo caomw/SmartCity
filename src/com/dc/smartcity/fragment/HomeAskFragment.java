@@ -52,6 +52,7 @@ public class HomeAskFragment extends BaseFragment {
 
     @Override
     protected int setContentView() {
+        ///test
         return R.layout.fragment_ask;
     }
 

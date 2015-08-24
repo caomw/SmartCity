@@ -78,6 +78,21 @@ public class RequestPool {
         return re;
     }
 
+
+    /**
+     * 获取服务列表
+     *
+     * @param columnId
+     * @return
+     */
+    public static LiteRequest getServiceList(String columnId) {
+        LiteRequest re = new LiteRequest("cs_phoneInterface/service/CW0102");
+        re.body.put("columnId", columnId);
+        re.body.put("siteId", Config.cityCode);
+        return re;
+    }
+
+
     /**
      * 登陆接口
      *
@@ -110,7 +125,7 @@ public class RequestPool {
     public static LiteRequest searchService(String keyword) {
         LiteRequest re = new LiteRequest("cs_phoneInterface/service/CW0106");
         re.body.put("keyword", keyword);
-        re.version=Config.version1;
+        re.version = Config.version1;
         return re;
     }
 

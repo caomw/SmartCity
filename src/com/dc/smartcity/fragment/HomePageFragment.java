@@ -24,11 +24,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.dc.smartcity.R;
-import com.dc.smartcity.activity.CordovaWebwiewActivity;
-import com.dc.smartcity.activity.LoginActivity;
-import com.dc.smartcity.activity.SearchServiceActivity;
-import com.dc.smartcity.activity.ServiceMarketActivity;
-import com.dc.smartcity.activity.WebViewActivity;
+import com.dc.smartcity.activity.*;
 import com.dc.smartcity.base.BaseFragment;
 import com.dc.smartcity.bean.AdObj;
 import com.dc.smartcity.bean.DCMenuItem;
@@ -212,21 +208,10 @@ public class HomePageFragment extends BaseFragment {
 
 				@Override
 				public void onClick(View arg0) {
-					Intent intent = new Intent(getActivity(),
-							CordovaWebwiewActivity.class);
-					String loadurl="";
-					if("1".equals(sitem.getColumnId())){
-						loadurl = "";//就业创业
-					}else if("2".equals(sitem.getColumnId())){
-						loadurl = "";//交通出行
-					}else if("3".equals(sitem.getColumnId())){
-						loadurl = "";//旅游去啊
-					}else if("4".equals(sitem.getColumnId())){
-						loadurl = "";//生病就医
-					}
-					intent.putExtra(BundleKeys.WEBVIEW_LOADURL, loadurl);
-					intent.putExtra(BundleKeys.WEBVIEW_TITLE, sitem.getColumnName());
-					
+					Intent intent = new Intent(getActivity(),ServiceListActivity.class);
+					Bundle bundle=new Bundle();
+					bundle.putSerializable(BundleKeys.SCENCEITEM,sitem);
+					intent.putExtras(bundle);
 					startActivity(intent);
 				}
 			});

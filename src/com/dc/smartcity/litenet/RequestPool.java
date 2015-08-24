@@ -132,7 +132,7 @@ public class RequestPool {
     public static LiteRequest requestQannAns(int pageNo) {
         LiteRequest re = new LiteRequest("cs_mo/service/CW1701");
         re.body.put("PAGE_INDEX", String.valueOf(pageNo));
-        re.body.put("PAGE_COUNT", 8);
+        re.body.put("PAGE_COUNT", "8");
         return re;
     }
 

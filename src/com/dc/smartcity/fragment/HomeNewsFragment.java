@@ -129,6 +129,7 @@ public class HomeNewsFragment extends BaseFragment {
 		tv_actionbar_title.setVisibility(View.VISIBLE);
 		tv_actionbar_title.setText("新闻资讯");
 		iv_actionbar_right.setVisibility(View.GONE);
+		tv_actionbar_right.setVisibility(View.GONE);
 	}
 
 	

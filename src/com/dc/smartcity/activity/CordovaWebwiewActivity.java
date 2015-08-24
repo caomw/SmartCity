@@ -3,6 +3,8 @@ package com.dc.smartcity.activity;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.apache.cordova.Config;
+import org.apache.cordova.CordovaChromeClient;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
@@ -53,6 +55,10 @@ public class CordovaWebwiewActivity extends BaseActionBarActivity implements
 		initActionBar();
 
 		wb_cordvo = (CordovaWebView) findViewById(R.id.wb_cordvo);
+		Config.init(this);
+		
+		// wb_cordvo.init(this, mWebC, mWebCr, pluginEntries, internalWhitelist,
+		// externalWhitelist, preferences);
 		Log.e(title, loadurl);
 
 		webSettings = wb_cordvo.getSettings();
@@ -70,6 +76,53 @@ public class CordovaWebwiewActivity extends BaseActionBarActivity implements
 		iv_actionbar_left.setVisibility(View.VISIBLE);
 		setActionBarTitle(title);
 	}
+
+	private CordovaWebViewClient mWebC = new CordovaWebViewClient(this,
+			wb_cordvo) {// 设置WebView客户端对象
+		/**
+		 * 重写方法，否则点击页面时WebView会重新启动系统浏览器
+		 */
+		@Override
+		public boolean shouldOverrideUrlLoading(WebView view, String url) {
+			ULog.error(url);
+			view.loadUrl(url);
+			return true;
+		}
+
+		@Override
+		public void onPageFinished(WebView view, String url) {
+			super.onPageFinished(view, url);
+
+		}
+
+		@Override
+		public void onPageStarted(WebView view, String url, Bitmap favicon) {
+			super.onPageStarted(view, url, favicon);
+		}
+
+		@Override
+		public void onReceivedSslError(WebView view, SslErrorHandler handler,
+				SslError error) {
+			handler.proceed();// 让https的站点通过访问，设置为可通过证书。
+		}
+	};
+
+	private CordovaChromeClient mWebCr = new CordovaChromeClient(this,
+			wb_cordvo) {
+		public void onProgressChanged(WebView view, int progress) {
+			// Activity和Webview根据加载程度决定进度条的进度大小
+			// 当加载到100%的时候 进度条自动消失
+			if (progress == 100) {
+				if (null != mLoadingDialog) {
+					mLoadingDialog.dismiss();
+				}
+			} else {
+				if (null != mLoadingDialog && !mLoadingDialog.isShowing()) {
+					mLoadingDialog.show();
+				}
+			}
+		}
+	};
 
 	@Override
 	public Activity getActivity() {

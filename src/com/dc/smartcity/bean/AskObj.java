@@ -1,9 +1,11 @@
 package com.dc.smartcity.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by vincent on 2015/8/9.
  */
-public class AskObj {
+public class AskObj implements Serializable{
 
 	//应该是事务id
     public String observeId;

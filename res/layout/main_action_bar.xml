@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/iv_actionbar_left"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/actionbar_height"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:scaleType="center"
             android:src="@drawable/selector_back"
@@ -88,8 +88,10 @@
         <ImageView
             android:id="@+id/iv_actionbar_right"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:src="@drawable/search"
             android:visibility="gone" />
     </RelativeLayout>

@@ -10,6 +10,7 @@ public class BundleKeys {
      */
     public static final String WEBVIEW_LOADURL = "loadurl";
     public static final String WEBVIEW_TITLE = "loadtitle";
+    public static final String QUESTION_BEAN = "bean";
 
 
 }

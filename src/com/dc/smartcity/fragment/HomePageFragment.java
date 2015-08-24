@@ -309,12 +309,12 @@ public class HomePageFragment extends BaseFragment {
 			}
 		});
 
-		tv_actionbar_right.setVisibility(View.VISIBLE);
-		Drawable drawable = getActivity().getResources().getDrawable(
-				R.drawable.baoxue);
-		tv_actionbar_right.setCompoundDrawablesWithIntrinsicBounds(drawable,
-				null, null, null);
-		tv_actionbar_right.setText("31℃");
+//		tv_actionbar_right.setVisibility(View.VISIBLE);
+//		Drawable drawable = getActivity().getResources().getDrawable(
+//				R.drawable.baoxue);
+//		tv_actionbar_right.setCompoundDrawablesWithIntrinsicBounds(drawable,
+//				null, null, null);
+//		tv_actionbar_right.setText("31℃");
 
 		iv_actionbar_right.setVisibility(View.GONE);
 	}

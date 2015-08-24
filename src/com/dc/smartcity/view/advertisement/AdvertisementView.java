@@ -24,16 +24,15 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
 
     public AdvertisementView(Context context) {
         super(context);
-        setScreenRate(8, 3);
     }
 
     public AdvertisementView(Context context, int tagLevel) {
         super(context);
         this.tagLevel = tagLevel;
-        setScreenRate(8, 3);
     }
 
     public void setAdvertisementData(ArrayList<AdObj> datas) {
+        setScreenRate(17,10 );
         setData(datas);
     }
 

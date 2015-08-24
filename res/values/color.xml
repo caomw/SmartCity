@@ -492,6 +492,10 @@
 
     <color name="text_red">#E31F2D</color>
     <!-- 按钮的字体颜色 -->
+    
+    
+    <color name="text_orange">#FF7F50</color>
+    <!-- 按钮的字体橙色 -->
 
     <color name="text_grey">#919191</color>
     <!-- 登陆界面提示字体颜色 -->
@@ -586,4 +590,7 @@
     <color name="line_bg">#ffd3dde6</color>
 	<!-- 深黑 用于正文文字 -->
     <color name="shape_line_stroke">#80333333</color>
+	<!-- 浅黑 用于正文文字 -->
+    <color name="light_bg_gray">#80a3a3a3</color>
+    <color name="light_text_bg">#80f3f3f3</color>
 </resources>

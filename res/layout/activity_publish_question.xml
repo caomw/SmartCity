@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whitesmoke" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/white_round"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_title"
+                    android:textColor="@color/text_orange" />
+
+                <EditText
+                    android:id="@+id/et_title"
+                    style="@style/loginEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:hint="@string/hint_et_title"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_content"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_content"
+                    android:textColor="@color/text_orange" />
+
+                <EditText
+                    android:id="@+id/et_content"
+                    style="@style/loginEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="top"
+                    android:hint="@string/hint_et_content"
+                    android:lines="5" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/gray_round"
+                android:drawableLeft="@drawable/email"
+                android:drawablePadding="3dp"
+                android:maxLength="20"
+                android:text="123@abc.com"
+                android:textColor="@color/text_orange"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/tv_add_pic"
+                android:textColor="@color/text_orange" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:weightSum="5" >
+
+                <ImageView
+                    android:id="@+id/iv_pic1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/add" />
+
+                <ImageView
+                    android:id="@+id/iv_pic2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/add" />
+
+                <ImageView
+                    android:id="@+id/iv_pic3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/add" />
+
+                <ImageView
+                    android:id="@+id/iv_pic4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/add" />
+
+                <ImageView
+                    android:id="@+id/iv_pic5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/add" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:weightSum="2" >
+
+                <TextView
+                    android:id="@+id/tv_gps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gray_round"
+                    android:drawableLeft="@drawable/gps"
+                    android:drawablePadding="3dp"
+                    android:maxLength="20"
+                    android:text="定位中..."
+                    android:textColor="@color/text_orange"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_ispublic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/gray_round"
+                    android:drawableLeft="@drawable/gps"
+                    android:drawablePadding="3dp"
+                    android:maxLength="20"
+                    android:text="公开"
+                    android:textColor="@color/text_orange"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btn_submit"
+            style="@style/normalBtn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/login_bg"
+            android:text="@string/btn_submit_text" />
+    </LinearLayout>
+
+</ScrollView>

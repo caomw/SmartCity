@@ -30,8 +30,10 @@ import com.dc.smartcity.view.LoadingDialog;
 public class HomeNewsFragment extends BaseFragment {
 
 	protected LoadingDialog mLoadingDialog;
-	@ViewInject(R.id.my_webview)
+	@ViewInject(R.id.my_webview)	
 	protected WebView my_webview;
+	
+	
 
 	public HomeNewsFragment(ActionBar actionbar) {
 		super(actionbar);
@@ -41,6 +43,14 @@ public class HomeNewsFragment extends BaseFragment {
 	protected int setContentView() {
 		return R.layout.my_webview_layout;
 	}
+	
+	@Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            initActionBar();
+        }
+    }
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -120,4 +130,6 @@ public class HomeNewsFragment extends BaseFragment {
 		tv_actionbar_title.setText("新闻资讯");
 		iv_actionbar_right.setVisibility(View.GONE);
 	}
+
+	
 }

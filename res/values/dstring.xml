@@ -198,4 +198,11 @@
   <string name="wifi_changing_network">请求连接到网络\u2026</string>
   <string name="wifi_ssid_label">网络SSID</string>
   <string name="wifi_type_label">类型</string>
+  
+  <string name="tv_title">标题:</string>
+  <string name="tv_content">内容:</string>
+  <string name="tv_add_pic">添加图片:</string>
+  <string name="hint_et_title">请输入标题</string>
+  <string name="btn_submit_text">发           布</string>
+  <string name="hint_et_content">请输入内容，最多500字哦~</string>
 </resources>

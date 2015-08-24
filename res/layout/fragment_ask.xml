@@ -5,37 +5,13 @@
     android:background="@color/whitesmoke"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/ll_bars"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:visibility="gone"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:id="@+id/tv_all"
+    <com.dc.smartcity.view.viewpagerindicator.TabPageIndicator
+            android:id="@+id/tab_indicator"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="全部问答" />
-
-        <TextView
-            android:id="@+id/tv_mysend"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="我发表的" />
-
-        <TextView
-            android:id="@+id/tv_mycon"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="我关注的" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            >
+    </com.dc.smartcity.view.viewpagerindicator.TabPageIndicator>
 
     <com.dc.smartcity.view.pullrefresh.PullToRefreshListView
         xmlns:ptr="http://schemas.android.com/apk/res/com.dc.smartcity"

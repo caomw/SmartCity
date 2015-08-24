@@ -69,7 +69,7 @@ public class ServiceHistoryDao {
      */
     public List<ServiceHistory> getListByKey(String key) throws DbException {
         List<ServiceHistory> l = mDbUtils.findAll(ServiceHistory.class);
-        List<ServiceHistory> list = new ArrayList<>();
+        List<ServiceHistory> list = new ArrayList<ServiceHistory>();
         for (ServiceHistory obj : l) {
             if (obj.serviceName.contains(key)) {
                 list.add(obj);

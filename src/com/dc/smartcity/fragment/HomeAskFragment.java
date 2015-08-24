@@ -35,6 +35,7 @@ import com.dc.smartcity.util.Utils;
 import com.dc.smartcity.view.gridview.BaseViewHolder;
 import com.dc.smartcity.view.pullrefresh.PullToRefreshBase.OnRefreshListener;
 import com.dc.smartcity.view.pullrefresh.PullToRefreshListView;
+import com.dc.smartcity.view.viewpagerindicator.TabPageIndicator;
 
 /**
  * 有问必答 Created by vincent on 2015/8/3.
@@ -42,6 +43,9 @@ import com.dc.smartcity.view.pullrefresh.PullToRefreshListView;
 public class HomeAskFragment extends BaseFragment implements OnRefreshListener {
 	private String TAG = HomeAskFragment.class.getSimpleName();
 
+	@ViewInject(R.id.tab_indicator)
+	TabPageIndicator tab_indicator;
+	
 	@ViewInject(R.id.pullToRefreshListview)
 	private PullToRefreshListView pullToRefreshListview;
 
@@ -66,6 +70,21 @@ public class HomeAskFragment extends BaseFragment implements OnRefreshListener {
 		initActionBar();
 		initList();
 		return view;
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		if(Utils.isLogon()){
+			showIndicator();
+		}
+	}
+	
+	/**
+	 * 展示Tab页
+	 */
+	private void showIndicator() {
+		
 	}
 
 	@Override

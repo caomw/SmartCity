@@ -109,13 +109,13 @@ public class SearchServiceActivity extends BaseActionBarActivity {
     private void showHistory() {
         final ServiceHistoryDao dao = new ServiceHistoryDao(dbUtils);
         try {
-            List<ServiceHistory> list = dao.getAllByNum(6);//获取前6条搜索记录
+            final List<ServiceHistory> list = dao.getAllByNum(6);//获取前6条搜索记录
             if (null != list && list.size() > 0) {
-                HistoryListAdapter adapter = new HistoryListAdapter(list);
+                final HistoryListAdapter adapter = new HistoryListAdapter(list);
                 lv_search_history.setAdapter(adapter);
 
                 if (lv_search_history.getFooterViewsCount() == 0) {
-                    View footerView = mLayoutInflater.inflate(R.layout.search_history_list_footerview, null);
+                    final View footerView = mLayoutInflater.inflate(R.layout.search_history_list_footerview, null);
                     footerView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -201,7 +201,7 @@ public class SearchServiceActivity extends BaseActionBarActivity {
         sendRequestWithDialog(RequestPool.searchService(keyWord), new DialogConfig.Builder().build(), new RequestProxy() {
             @Override
             public void onSuccess(String msg, String result) {
-                List<SearchServiceObj> list = JSON.parseArray(result, SearchServiceObj.class);
+                final List<SearchServiceObj> list = JSON.parseArray(result, SearchServiceObj.class);
                 if (null == list || list.size() == 0) {
                     Utils.showToast("没有查询到相关服务", mContext);
                 } else {
@@ -307,7 +307,7 @@ public class SearchServiceActivity extends BaseActionBarActivity {
      * 搜索历史记录
      */
     class HistoryListAdapter extends BaseAdapter {
-        private List<ServiceHistory> list = new ArrayList<>();
+        private List<ServiceHistory> list = new ArrayList<ServiceHistory>();
 
         public HistoryListAdapter(List<ServiceHistory> list) {
             this.list = list;

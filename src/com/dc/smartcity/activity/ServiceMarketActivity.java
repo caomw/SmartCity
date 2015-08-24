@@ -78,7 +78,7 @@ public class ServiceMarketActivity extends BaseActionBarActivity {
             public void onSuccess(String msg, String result) {
                 more = JSON.parseObject(result, MoreObj.class);
 
-                List<BaseFragment> list_fragments = new ArrayList<>();
+                List<BaseFragment> list_fragments = new ArrayList<BaseFragment>();
                 if (null != more.columnList && more.columnList.size() > 0) {
                     for (int i = 0; i < more.columnList.size(); i++) {
                         ServiceListFragment fragment = new ServiceListFragment();

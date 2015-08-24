@@ -57,7 +57,7 @@ public class ServiceDao {
      */
     public List<SearchServiceObj> getListByKey(String key) throws DbException {
         List<SearchServiceObj> l = mDbUtils.findAll(SearchServiceObj.class);
-        List<SearchServiceObj> list = new ArrayList<>();
+        List<SearchServiceObj> list = new ArrayList<SearchServiceObj>();
         for (SearchServiceObj obj : l) {
             if (obj.serviceName.contains(key)) {
                 list.add(obj);

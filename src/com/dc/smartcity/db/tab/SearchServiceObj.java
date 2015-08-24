@@ -4,10 +4,11 @@ import com.android.dcone.ut.orm.annotation.Column;
 import com.android.dcone.ut.orm.annotation.Table;
 
 /**
- * 搜索历史
+ * 搜索
+ * Created by vincent on 2015/8/24.
  */
-@Table(name = ServiceHistory.TABLE_NAME)
-public class ServiceHistory extends EntityBase {
+@Table(name = SearchServiceObj.TABLE_NAME)
+public class SearchServiceObj extends EntityBase {
 
     public static final String TABLE_NAME = "search_service_history";
 

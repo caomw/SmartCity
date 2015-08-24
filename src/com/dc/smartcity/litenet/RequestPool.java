@@ -103,6 +103,18 @@ public class RequestPool {
     }
 
     /**
+     * 搜索服务
+     *
+     * @return
+     */
+    public static LiteRequest searchService(String keyword) {
+        LiteRequest re = new LiteRequest("cs_phoneInterface/service/CW0106");
+        re.body.put("keyword", keyword);
+        re.version=Config.version1;
+        return re;
+    }
+
+    /**
      * 实名认证
      *
      * @return

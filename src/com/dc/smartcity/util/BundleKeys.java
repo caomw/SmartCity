@@ -13,4 +13,5 @@ public class BundleKeys {
     public static final String QUESTION_BEAN = "bean";
 
 
+    public static final String SCENCEITEM = "scenceitem";
 }

@@ -68,8 +68,8 @@ public class CordovaWebwiewActivity extends BaseActionBarActivity implements
 		wb_cordvo.setVerticalScrollBarEnabled(false);
 		wb_cordvo.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
 		wb_cordvo.loadUrl(loadurl);
-		// wb_cordvo.loadUrl("file:///android_asset/www/hospital/index.html");
-		// wb_cordvo.loadUrl("http://test.cszhcs.cn/cs_phoneBill/social_security/security_bill.html");
+//		wb_cordvo.loadUrl("file:///android_asset/www/hospital/index.html");
+//		wb_cordvo.loadUrl("http://test.cszhcs.cn/cs_phoneBill/social_security/security_bill.html");
 	}
 
 	private void initActionBar() {

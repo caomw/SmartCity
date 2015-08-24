@@ -5,7 +5,6 @@ import android.net.http.SslError;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.*;
-
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.dc.smartcity.R;
 import com.dc.smartcity.base.BaseActionBarActivity;
@@ -37,7 +36,6 @@ public class WebViewActivity extends BaseActionBarActivity {
 //        my_webview = (WebView) findViewById(R.id.my_webview);
         loadurl = getIntent().getStringExtra(BundleKeys.WEBVIEW_LOADURL);
         title = getIntent().getStringExtra(BundleKeys.WEBVIEW_TITLE);
-//        loadurl = "http://m.baidu.com";
         initActionBar();
 
         /*----设置WebView控件参数----*/

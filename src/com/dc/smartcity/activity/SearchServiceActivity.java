@@ -64,42 +64,6 @@ public class SearchServiceActivity extends BaseActionBarActivity {
         initActionBar();
         dbUtils = DbFactory.getDBUtils(mContext);
 
-        // 模拟搜索历史数据
-//		ServiceHistoryDao dao = new ServiceHistoryDao(dbUtils);
-//		ArrayList<ServiceHistory> l = new ArrayList<ServiceHistory>();
-//		for (int i = 0; i < 4; i++) {
-//			ServiceHistory serviceHistory = new ServiceHistory();
-//			serviceHistory.name = "公交查询" + i;
-//			serviceHistory.imageUrl = "http://img3.3lian.com/2014/s5/35/d/94.jpg";
-//			serviceHistory.url = "http://baike.baidu.com/";
-//			l.add(serviceHistory);
-//		}
-//		try {
-//			dao.insertServiceList(l);
-//		} catch (DbException e) {
-//			e.printStackTrace();
-//			Utils.showToast("插入数据库异常", mContext);
-//		}
-        // 模拟结束。。。。。
-
-        // 模拟搜索历史数据
-//		ServiceDao dao1 = new ServiceDao(dbUtils);
-//		ArrayList<ServiceObj> ll = new ArrayList<ServiceObj>();
-//		for (int i = 0; i < 4; i++) {
-//			ServiceObj service = new ServiceObj();
-//			service.name = "公交查询地图导航----" + i;
-//			service.imageUrl = "http://img3.3lian.com/2014/s5/35/d/94.jpg";
-//			service.url = "http://baike.baidu.com/";
-//			ll.add(service);
-//		}
-//		try {
-//			dao1.insertServiceList(ll);
-//		} catch (DbException e) {
-//			e.printStackTrace();
-//			Utils.showToast("插入数据库异常", mContext);
-//		}
-        // 模拟结束。。。。。
-
         showHistory();
     }
 
@@ -222,6 +186,12 @@ public class SearchServiceActivity extends BaseActionBarActivity {
                         }
                     });
                 }
+            }
+
+            @Override
+            public void onError(String code, String msg) {
+                super.onError(code, msg);
+                Utils.showToast("没有查询到相关服务", mContext);
             }
         });
     }

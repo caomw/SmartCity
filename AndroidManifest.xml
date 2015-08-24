@@ -52,6 +52,8 @@
                 android:windowSoftInputMode="adjustPan">
         </activity>
         <activity
+                android:name="com.dc.smartcity.activity.ServiceListActivity"/>
+        <activity
                 android:name="com.dc.smartcity.activity.LoginActivity"/>
         <activity
                 android:name="com.dc.smartcity.activity.MessageActivity"/>

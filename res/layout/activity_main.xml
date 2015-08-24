@@ -38,7 +38,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/icon_menu_pay_bg"
+                android:drawableTop="@drawable/icon_menu_news"
                 android:text="@string/main_buttom_news"/>
 
 

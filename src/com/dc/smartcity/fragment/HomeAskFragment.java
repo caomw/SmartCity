@@ -21,6 +21,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.dc.smartcity.R;
 import com.dc.smartcity.activity.AskDetailActivity;
+import com.dc.smartcity.activity.LoginActivity;
 import com.dc.smartcity.base.BaseFragment;
 import com.dc.smartcity.bean.AskObj;
 import com.dc.smartcity.litenet.RequestPool;
@@ -84,7 +85,11 @@ public class HomeAskFragment extends BaseFragment {
         iv_actionbar_right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.showToast("需要实名认证", getActivity());
+            	if(Utils.isLogon()){
+            		startActivity(new Intent(getActivity(),LoginActivity.class));
+            	}else if("01".equals(Utils.user.userBase.level)){
+            		Utils.showToast("需要实名认证", getActivity());
+            	}
             }
         });
         tv_actionbar_right.setVisibility(View.GONE);

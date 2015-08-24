@@ -214,7 +214,19 @@ public class HomePageFragment extends BaseFragment {
 				public void onClick(View arg0) {
 					Intent intent = new Intent(getActivity(),
 							CordovaWebwiewActivity.class);
-					intent.putExtra("key", sitem.getColumnId());
+					String loadurl="";
+					if("1".equals(sitem.getColumnId())){
+						loadurl = "";//就业创业
+					}else if("2".equals(sitem.getColumnId())){
+						loadurl = "";//交通出行
+					}else if("3".equals(sitem.getColumnId())){
+						loadurl = "";//旅游去啊
+					}else if("4".equals(sitem.getColumnId())){
+						loadurl = "";//生病就医
+					}
+					intent.putExtra(BundleKeys.WEBVIEW_LOADURL, loadurl);
+					intent.putExtra(BundleKeys.WEBVIEW_TITLE, sitem.getColumnName());
+					
 					startActivity(intent);
 				}
 			});
@@ -228,32 +240,36 @@ public class HomePageFragment extends BaseFragment {
 		DCMenuItem more = new DCMenuItem();
 		more.setLevel("0");
 		more.setServiceName("更多服务");
-		more.setServicePicUrl(""+R.drawable.more);
+		more.setServicePicUrl("" + R.drawable.more);
 		more.setServiceUrl("");
 		list.add(more);
-		
+
 		gridview.setAdapter(new IconWithTextGridAdapter(getActivity(), list));
 		gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				if(TextUtils.isEmpty(list.get(position).serviceUrl)){
-					
+				if (TextUtils.isEmpty(list.get(position).serviceUrl)) {
+
 					startActivity(new Intent(getActivity(),
 							ServiceMarketActivity.class));
-				}else {
-					
-					if(!"01".equals(list.get(position).level) && !Utils.isLogon()){
-						startActivity(new Intent(getActivity(),LoginActivity.class));
-						
-					}else{
-						Intent intent = new Intent(getActivity(),
-								CordovaWebwiewActivity.class);
-						intent.putExtra(BundleKeys.WEBVIEW_LOADURL, list.get(position).serviceUrl);
-						intent.putExtra(BundleKeys.WEBVIEW_TITLE, list.get(position).serviceName);
-						startActivity(intent);
-					}
-					
+				} else {
+
+					// if(!"01".equals(list.get(position).level) &&
+					// !Utils.isLogon()){
+					// startActivity(new
+					// Intent(getActivity(),LoginActivity.class));
+					//
+					// }else{
+					Intent intent = new Intent(getActivity(),
+							CordovaWebwiewActivity.class);
+					intent.putExtra(BundleKeys.WEBVIEW_LOADURL,
+							list.get(position).serviceUrl);
+					intent.putExtra(BundleKeys.WEBVIEW_TITLE,
+							list.get(position).serviceName);
+					startActivity(intent);
+					// }
+
 				}
 			}
 		});

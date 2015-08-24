@@ -24,7 +24,7 @@
         <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
     </feature>
     <feature name="DFH">
-        <param name="android-package" value="com.dc.smartcity.cordova.DFHPlugin" />
+        <param name="android-package" value="com.dfh.plugin.DFHPlugin" />
     </feature>
     <feature name="BarcodeScanner">
         <param name="android-package" value="com.phonegap.plugins.barcodescanner.BarcodeScanner" />

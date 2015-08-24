@@ -60,8 +60,8 @@
             android:drawableLeft="@drawable/sear"
             android:drawablePadding="@dimen/margin_five_dp"
             android:singleLine="true"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/main_secondary"
+            android:textColorHint="@color/main_hint"
             android:textCursorDrawable="@null"
             android:textSize="@dimen/text_fifteen_sp"
             android:visibility="gone" >

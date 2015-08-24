@@ -14,16 +14,20 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.alibaba.fastjson.JSON;
 import com.android.dcone.ut.DbUtils;
 import com.android.dcone.ut.exception.DbException;
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.dc.smartcity.R;
 import com.dc.smartcity.base.BaseActionBarActivity;
 import com.dc.smartcity.db.DbFactory;
-import com.dc.smartcity.db.dao.ServiceDao;
 import com.dc.smartcity.db.dao.ServiceHistoryDao;
+import com.dc.smartcity.db.tab.SearchServiceObj;
 import com.dc.smartcity.db.tab.ServiceHistory;
-import com.dc.smartcity.db.tab.ServiceObj;
+import com.dc.smartcity.dialog.DialogConfig;
+import com.dc.smartcity.litenet.RequestPool;
+import com.dc.smartcity.litenet.interf.RequestProxy;
+import com.dc.smartcity.net.ImageLoader;
 import com.dc.smartcity.util.BundleKeys;
 import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.util.Utils;
@@ -37,291 +41,304 @@ import java.util.List;
  * 搜索服务 Created by vincent on 2015/8/7.
  */
 public class SearchServiceActivity extends BaseActionBarActivity {
-	private String TAG = SearchServiceActivity.class.getSimpleName();
+    private String TAG = SearchServiceActivity.class.getSimpleName();
 
-	private InputMethodManager imm;
+    private InputMethodManager imm;
 
-	@ViewInject(R.id.lv_search_history)
-	private PullToRefreshListView lv_search_history;
-	@ViewInject(R.id.lv_search_result)
-	private PullToRefreshListView lv_search_result;
+    @ViewInject(R.id.lv_search_history)
+    private PullToRefreshListView lv_search_history;
+    @ViewInject(R.id.lv_search_result)
+    private PullToRefreshListView lv_search_result;
 
-	private DbUtils dbUtils;
+    private DbUtils dbUtils;
 
-	@Override
-	protected void setContentView() {
-		setContentView(R.layout.activity_serach_service);
-	}
+    @Override
+    protected void setContentView() {
+        setContentView(R.layout.activity_serach_service);
+    }
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		initActionBar();
-		dbUtils = DbFactory.getDBUtils(mContext);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        initActionBar();
+        dbUtils = DbFactory.getDBUtils(mContext);
 
-		// 模拟搜索历史数据
-		ServiceHistoryDao dao = new ServiceHistoryDao(dbUtils);
-		ArrayList<ServiceHistory> l = new ArrayList<ServiceHistory>();
-		for (int i = 0; i < 4; i++) {
-			ServiceHistory serviceHistory = new ServiceHistory();
-			serviceHistory.name = "公交查询" + i;
-			serviceHistory.imageUrl = "http://img3.3lian.com/2014/s5/35/d/94.jpg";
-			serviceHistory.url = "http://baike.baidu.com/";
-			l.add(serviceHistory);
-		}
-		try {
-			dao.insertServiceList(l);
-		} catch (DbException e) {
-			e.printStackTrace();
-			Utils.showToast("插入数据库异常", mContext);
-		}
-		// 模拟结束。。。。。
+        // 模拟搜索历史数据
+//		ServiceHistoryDao dao = new ServiceHistoryDao(dbUtils);
+//		ArrayList<ServiceHistory> l = new ArrayList<ServiceHistory>();
+//		for (int i = 0; i < 4; i++) {
+//			ServiceHistory serviceHistory = new ServiceHistory();
+//			serviceHistory.name = "公交查询" + i;
+//			serviceHistory.imageUrl = "http://img3.3lian.com/2014/s5/35/d/94.jpg";
+//			serviceHistory.url = "http://baike.baidu.com/";
+//			l.add(serviceHistory);
+//		}
+//		try {
+//			dao.insertServiceList(l);
+//		} catch (DbException e) {
+//			e.printStackTrace();
+//			Utils.showToast("插入数据库异常", mContext);
+//		}
+        // 模拟结束。。。。。
 
-		// 模拟搜索历史数据
-		ServiceDao dao1 = new ServiceDao(dbUtils);
-		ArrayList<ServiceObj> ll = new ArrayList<ServiceObj>();
-		for (int i = 0; i < 4; i++) {
-			ServiceObj service = new ServiceObj();
-			service.name = "公交查询地图导航----" + i;
-			service.imageUrl = "http://img3.3lian.com/2014/s5/35/d/94.jpg";
-			service.url = "http://baike.baidu.com/";
-			ll.add(service);
-		}
-		try {
-			dao1.insertServiceList(ll);
-		} catch (DbException e) {
-			e.printStackTrace();
-			Utils.showToast("插入数据库异常", mContext);
-		}
-		// 模拟结束。。。。。
+        // 模拟搜索历史数据
+//		ServiceDao dao1 = new ServiceDao(dbUtils);
+//		ArrayList<ServiceObj> ll = new ArrayList<ServiceObj>();
+//		for (int i = 0; i < 4; i++) {
+//			ServiceObj service = new ServiceObj();
+//			service.name = "公交查询地图导航----" + i;
+//			service.imageUrl = "http://img3.3lian.com/2014/s5/35/d/94.jpg";
+//			service.url = "http://baike.baidu.com/";
+//			ll.add(service);
+//		}
+//		try {
+//			dao1.insertServiceList(ll);
+//		} catch (DbException e) {
+//			e.printStackTrace();
+//			Utils.showToast("插入数据库异常", mContext);
+//		}
+        // 模拟结束。。。。。
 
-		showHistory();
-	}
+        showHistory();
+    }
 
-	/**
-	 * 显示历史记录
-	 */
-	private void showHistory() {
-		final ServiceHistoryDao dao = new ServiceHistoryDao(dbUtils);
-		try {
-			final List<ServiceHistory> list = dao.getAll();
-			if (null != list && list.size() > 0) {
-				final HistoryListAdapter adapter = new HistoryListAdapter(list);
-				lv_search_history.setAdapter(adapter);
+    /**
+     * 显示历史记录
+     */
+    private void showHistory() {
+        final ServiceHistoryDao dao = new ServiceHistoryDao(dbUtils);
+        try {
+            List<ServiceHistory> list = dao.getAllByNum(6);//获取前6条搜索记录
+            if (null != list && list.size() > 0) {
+                HistoryListAdapter adapter = new HistoryListAdapter(list);
+                lv_search_history.setAdapter(adapter);
 
-				final View footerView = mLayoutInflater.inflate(
-						R.layout.search_history_list_footerview, null);
-				footerView.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						// 删除历史记录
-						dao.removeAll();
-						list.clear();
-						adapter.notifyDataSetChanged();
-						lv_search_history.removeFooterView(footerView);
-					}
-				});
-				lv_search_history.addFooterView(footerView);
-				lv_search_history
-						.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-							@Override
-							public void onItemClick(AdapterView<?> parent,
-									View view, int position, long id) {
-								startWebViewActivity(list.get(position).url,
-										list.get(position).name);
-							}
-						});
-			}
-		} catch (DbException e) {
-			e.printStackTrace();
-			Utils.showToast("查询数据库异常", mContext);
-		}
-	}
+                if (lv_search_history.getFooterViewsCount() == 0) {
+                    View footerView = mLayoutInflater.inflate(R.layout.search_history_list_footerview, null);
+                    footerView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // 删除历史记录
+                            dao.removeAll();
+                            list.clear();
+                            adapter.notifyDataSetChanged();
+                            lv_search_history.removeFooterView(footerView);
+                        }
+                    });
+                    lv_search_history.addFooterView(footerView);
+                }
 
-	private void startWebViewActivity(String url, String title) {
-		Intent intent = new Intent(SearchServiceActivity.this,
-				WebViewActivity.class);
-		intent.putExtra(BundleKeys.WEBVIEW_LOADURL, url);
-		intent.putExtra(BundleKeys.WEBVIEW_TITLE, title);
-		startActivity(intent);
-	}
+                lv_search_history.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent,
+                                            View view, int position, long id) {
+                        startWebViewActivity(list.get(position).serviceUrl, list.get(position).serviceName);
+                    }
+                });
+            }
+        } catch (DbException e) {
+            e.printStackTrace();
+            Utils.showToast("查询数据库异常", mContext);
+        }
+    }
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		showSoftInput();
-	}
+    private void startWebViewActivity(String url, String title) {
+        Intent intent = new Intent(SearchServiceActivity.this,
+                CordovaWebwiewActivity.class);
+        intent.putExtra(BundleKeys.WEBVIEW_LOADURL, url);
+        intent.putExtra(BundleKeys.WEBVIEW_TITLE, title);
+        startActivity(intent);
+    }
 
-	private void initActionBar() {
-		iv_actionbar_left.setVisibility(View.VISIBLE);
-		et_actionbar_search.setVisibility(View.VISIBLE);
-		et_actionbar_search.setHint("请输入服务名称");
-		et_actionbar_search.addTextChangedListener(watcher);
-		et_actionbar_search.requestFocusFromTouch();
-	}
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showSoftInput();
+    }
 
-	private TextWatcher watcher = new TextWatcher() {
+    private void initActionBar() {
+        iv_actionbar_left.setVisibility(View.VISIBLE);
+        et_actionbar_search.setVisibility(View.VISIBLE);
+        et_actionbar_search.setHint("请输入服务名称");
+        et_actionbar_search.addTextChangedListener(watcher);
+        et_actionbar_search.requestFocusFromTouch();
+    }
 
-		@Override
-		public void onTextChanged(CharSequence s, int start, int before,
-				int count) {
-			// TODO Auto-generated method stub
+    private TextWatcher watcher = new TextWatcher() {
 
-		}
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before,
+                                  int count) {
+            // TODO Auto-generated method stub
 
-		@Override
-		public void beforeTextChanged(CharSequence s, int start, int count,
-				int after) {
-			// TODO Auto-generated method stub
+        }
 
-		}
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count,
+                                      int after) {
+            // TODO Auto-generated method stub
 
-		@Override
-		public void afterTextChanged(Editable s) {
-			String keyWord = et_actionbar_search.getText().toString();
-			if (!TextUtils.isEmpty(keyWord)) {
-				lv_search_history.setVisibility(View.GONE);
-				lv_search_result.setVisibility(View.VISIBLE);
-				doSearch(keyWord);
-			} else {
-				lv_search_history.setVisibility(View.VISIBLE);
-				showHistory();
-				lv_search_result.setVisibility(View.GONE);
-			}
-		}
-	};
+        }
 
-	private void doSearch(String keyWord) {
-		ServiceDao dao = new ServiceDao(dbUtils);
-		try {
-			final List<ServiceObj> list = dao.getListByKey(keyWord);
-			ListAdapter adapter = new ListAdapter(list);
-			lv_search_result.setAdapter(adapter);
-			lv_search_result
-					.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-						@Override
-						public void onItemClick(AdapterView<?> parent,
-								View view, int position, long id) {
-							startWebViewActivity(list.get(position).url,
-									list.get(position).name);
-						}
-					});
-		} catch (DbException e) {
+        @Override
+        public void afterTextChanged(Editable s) {
+            String keyWord = et_actionbar_search.getText().toString();
+            if (!TextUtils.isEmpty(keyWord)) {
+                lv_search_history.setVisibility(View.GONE);
+                lv_search_result.setVisibility(View.VISIBLE);
+                doSearch(keyWord);
+            } else {
+                lv_search_history.setVisibility(View.VISIBLE);
+                showHistory();
+                lv_search_result.setVisibility(View.GONE);
+            }
+        }
+    };
 
-		}
-	}
+    private void doSearch(String keyWord) {
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-		hideSoftInput();
-	}
+        sendRequestWithDialog(RequestPool.searchService(keyWord), new DialogConfig.Builder().build(), new RequestProxy() {
+            @Override
+            public void onSuccess(String msg, String result) {
+                List<SearchServiceObj> list = JSON.parseArray(result, SearchServiceObj.class);
+                if (null == list || list.size() == 0) {
+                    Utils.showToast("没有查询到相关服务", mContext);
+                } else {
+                    ListAdapter adapter = new ListAdapter(list);
+                    lv_search_result.setAdapter(adapter);
+                    lv_search_result.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            //启动到webview
+                            startWebViewActivity(list.get(position).serviceUrl, list.get(position).serviceName);
+                            //保存历史记录
+                            try {
+                                ServiceHistoryDao dao = new ServiceHistoryDao(dbUtils);
+                                dao.saveService(list.get(position));
+                            } catch (DbException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
 
-	@Override
-	public void onBackPressed() {
-		hideSoftInput();
-		super.onBackPressed();
-	}
+    @Override
+    protected void onPause() {
+        super.onPause();
+        hideSoftInput();
+    }
 
-	/**
-	 * 显示键盘
-	 */
-	private void showSoftInput() {
-		ULog.error("----showSoftInput()");
-		if (imm != null && imm.isActive()) {
-			imm.showSoftInput(et_actionbar_search,
-					InputMethodManager.RESULT_SHOWN);
-			imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,
-					InputMethodManager.HIDE_IMPLICIT_ONLY);
-		}
-	}
+    @Override
+    public void onBackPressed() {
+        hideSoftInput();
+        super.onBackPressed();
+    }
 
-	/**
-	 * 隐藏键盘
-	 */
-	private void hideSoftInput() {
-		if (imm != null && imm.isActive()) {
-			imm.hideSoftInputFromWindow(et_actionbar_search.getWindowToken(), 0);
-		}
-	}
+    /**
+     * 显示键盘
+     */
 
-	/**
-	 * 搜索结果
-	 */
-	class ListAdapter extends BaseAdapter {
-		private List<ServiceObj> list = new ArrayList<ServiceObj>();
+    private void showSoftInput() {
+        ULog.error("----showSoftInput()");
+        if (imm != null && imm.isActive()) {
+            imm.showSoftInput(et_actionbar_search,
+                    InputMethodManager.RESULT_SHOWN);
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,
+                    InputMethodManager.HIDE_IMPLICIT_ONLY);
+        }
+    }
 
-		public ListAdapter(List<ServiceObj> list) {
-			this.list = list;
-		}
+    /**
+     * 隐藏键盘
+     */
+    private void hideSoftInput() {
+        if (imm != null && imm.isActive()) {
+            imm.hideSoftInputFromWindow(et_actionbar_search.getWindowToken(), 0);
+        }
+    }
 
-		@Override
-		public int getCount() {
-			return list.size();
-		}
+    /**
+     * 搜索结果
+     */
+    class ListAdapter extends BaseAdapter {
+        private List<SearchServiceObj> list = new ArrayList<SearchServiceObj>();
 
-		@Override
-		public Object getItem(int position) {
-			return null;
-		}
+        public ListAdapter(List<SearchServiceObj> list) {
+            this.list = list;
+        }
 
-		@Override
-		public long getItemId(int position) {
-			return 0;
-		}
+        @Override
+        public int getCount() {
+            if (null != list)
+                return list.size();
+            return 0;
+        }
 
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			if (convertView == null) {
-				convertView = LayoutInflater.from(mContext).inflate(
-						R.layout.search_result_list_item, parent, false);
-			}
-			TextView tv = BaseViewHolder.get(convertView, R.id.tv_item);
-			ImageView iv = BaseViewHolder.get(convertView, R.id.iv_item);
-			// iv.setBackgroundResource();
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
 
-			ServiceObj obj = list.get(position);
-			tv.setText(obj.name);
-			return convertView;
-		}
-	}
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
 
-	/**
-	 * 搜索历史记录
-	 */
-	class HistoryListAdapter extends BaseAdapter {
-		private List<ServiceHistory> list = new ArrayList<ServiceHistory>();
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = LayoutInflater.from(mContext).inflate(
+                        R.layout.search_result_list_item, parent, false);
+            }
+            TextView tv = BaseViewHolder.get(convertView, R.id.tv_item);
+            ImageView iv = BaseViewHolder.get(convertView, R.id.iv_item);
+            SearchServiceObj obj = list.get(position);
+            ImageLoader.getInstance().displayImage(obj.servicePicUrl, iv);
+            tv.setText(obj.serviceName);
+            return convertView;
+        }
+    }
 
-		public HistoryListAdapter(List<ServiceHistory> list) {
-			this.list = list;
-		}
+    /**
+     * 搜索历史记录
+     */
+    class HistoryListAdapter extends BaseAdapter {
+        private List<ServiceHistory> list = new ArrayList<>();
 
-		@Override
-		public int getCount() {
-			return list.size();
-		}
+        public HistoryListAdapter(List<ServiceHistory> list) {
+            this.list = list;
+        }
 
-		@Override
-		public Object getItem(int position) {
-			return null;
-		}
+        @Override
+        public int getCount() {
+            if (null != list)
+                return list.size();
+            return 0;
+        }
 
-		@Override
-		public long getItemId(int position) {
-			return 0;
-		}
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
 
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			if (convertView == null) {
-				convertView = LayoutInflater.from(mContext).inflate(
-						R.layout.search_history_list_item, parent, false);
-			}
-			TextView tv = BaseViewHolder.get(convertView, R.id.tv_item);
-			ServiceHistory obj = list.get(position);
-			tv.setText(obj.name);
-			return convertView;
-		}
-	}
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.search_history_list_item, parent, false);
+            }
+            TextView tv = BaseViewHolder.get(convertView, R.id.tv_item);
+            ServiceHistory obj = list.get(position);
+            tv.setText(obj.serviceName);
+            return convertView;
+        }
+    }
 }

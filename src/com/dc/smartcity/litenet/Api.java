@@ -43,7 +43,7 @@ public class Api {
 			// 第三个参数appkey数据库配死，手机端写死
 			head.put("sign", DataUtil.signRequest(Config.APP_ID, request.body,Config.APP_KEY));
 			// 1.0后台不做验签，大于2.0以及以上做验签
-			head.put("version", "2.0");
+			head.put("version", request.version);
 
 			if (!TextUtils.isEmpty(Utils.getAccessTicket())) {
 				head.put("accessTicket", Utils.getAccessTicket());

@@ -1,9 +1,12 @@
 package com.dc.smartcity.litenet.response;
 
+import com.dc.smartcity.litenet.Config;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class LiteRequest {
+		public String version = Config.version2;
 		public String url;
 		public Map<String, Object> body;
 

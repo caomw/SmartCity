@@ -16,24 +16,26 @@ import com.dc.smartcity.dialog.DialogConfig;
 import com.dc.smartcity.fragment.ServiceListFragment;
 import com.dc.smartcity.litenet.RequestPool;
 import com.dc.smartcity.litenet.interf.RequestProxy;
+import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.view.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 更多
+ * 更多服务
  * Created by vincent on 2015/8/7.
  */
 public class ServiceMarketActivity extends BaseActionBarActivity {
+
+    private final String TAG = ServiceMarketActivity.class.getSimpleName();
 
     //	@ViewInject(R.id.viewPager)
     private ViewPager mViewPager;
     //	@ViewInject(R.id.tab_indicator)
     private TabPageIndicator tab_indicator;
-    private FragmentPagerAdapter mAdapter;
 
-    private final String TAG = ServiceMarketActivity.class.getSimpleName();
+    private FragmentPagerAdapter mAdapter;
 
 //    public final String[] TITLES = new String[]{"办事大厅", "融合账单", "生活周边", "智能出行", "旅游咨询", "教育生涯", "医疗健康", "文化体育", "职业生涯", "居家服务", "我的办事"};
 
@@ -78,9 +80,14 @@ public class ServiceMarketActivity extends BaseActionBarActivity {
 
                 List<BaseFragment> list_fragments = new ArrayList<>();
                 if (null != more.columnList && more.columnList.size() > 0) {
-
                     for (int i = 0; i < more.columnList.size(); i++) {
                         ServiceListFragment fragment = new ServiceListFragment();
+                        if (i == 0) {
+                            fragment.setData(more.columnList.get(i), more.serviceList);
+                        }else
+                        {
+                            fragment.setData(more.columnList.get(i));
+                        }
                         list_fragments.add(fragment);
                     }
                     mAdapter = new TabAdapter(ServiceMarketActivity.this.getSupportFragmentManager(), list_fragments);

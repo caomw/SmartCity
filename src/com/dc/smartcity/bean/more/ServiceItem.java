@@ -6,6 +6,7 @@ package com.dc.smartcity.bean.more;
  * @author szsm_dyj
  */
 public class ServiceItem {
+
     private String columnName;
     private String level;
     private String serviceName;

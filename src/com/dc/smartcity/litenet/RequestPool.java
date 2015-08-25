@@ -197,4 +197,17 @@ public class RequestPool {
 		re.body.put("SEX", bean.sex);
 		return re;
 	}
+	/**
+	 * 发布微观
+	 *
+	 * @return
+	 */
+	public static LiteRequest submitWeiGuan(String title,String content,String isPublic,String loc) {
+		LiteRequest re = new LiteRequest("cs_portal/service/CW0202");
+		re.body.put("LOCATION", loc);
+		re.body.put("IS_PUBLIC", isPublic);
+		re.body.put("CONTENT", content);
+		re.body.put("TITLE", title);
+		return re;
+	}
 }

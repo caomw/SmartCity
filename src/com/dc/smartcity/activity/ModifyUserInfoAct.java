@@ -2,6 +2,7 @@ package com.dc.smartcity.activity;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -78,8 +79,8 @@ public class ModifyUserInfoAct extends BaseActionBarActivity implements
 		super.onCreate(savedInstanceState);
 
 		initActionBar();
-		updateUserInfo();
 		bean = new ModifyUserBean();
+		updateUserInfo();
 	}
 
 	// 查询用户信息
@@ -112,13 +113,19 @@ public class ModifyUserInfoAct extends BaseActionBarActivity implements
 			});
 		} else {
 			tv_auth.setText("已认证");
+			et_realname.setEnabled(false);
 
 			rb_sex_female.setClickable(false);
 			rb_sex_male.setClickable(false);
+		}
+		if (null != Utils.user.userLocal
+				&& !TextUtils.isEmpty(Utils.user.userLocal.residence)) {
+
 			et_live_place.setText(Utils.user.userLocal.residence);
 		}
-		et_realname.setText(Utils.user.userBase.name);
-		et_realname.setEnabled(false);
+		if (!TextUtils.isEmpty(Utils.user.userBase.name)) {
+			et_realname.setText(Utils.user.userBase.name);
+		}
 		if ("02".equals(Utils.user.userBase.sex)) {
 			rb_sex_female.setChecked(true);
 		} else {

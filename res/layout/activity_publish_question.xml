@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -73,6 +73,7 @@
                 android:drawablePadding="3dp"
                 android:maxLength="20"
                 android:text="123@abc.com"
+                android:visibility="gone"
                 android:textColor="@color/text_orange"
                 android:textSize="12sp" />
 
@@ -81,6 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="@string/tv_add_pic"
+                android:visibility="gone"
                 android:textColor="@color/text_orange" />
 
             <LinearLayout
@@ -88,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:weightSum="5" >
 
                 <ImageView
@@ -137,32 +140,33 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:weightSum="2" >
+                >
 
-                <TextView
+                <EditText
                     android:id="@+id/tv_gps"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/gray_round"
+                    style="@style/loginEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
                     android:drawableLeft="@drawable/gps"
-                    android:drawablePadding="3dp"
-                    android:maxLength="20"
-                    android:text="定位中..."
-                    android:textColor="@color/text_orange"
-                    android:textSize="12sp" />
+                    android:hint="定位中..."
+                    android:drawablePadding="5dp"
+                     />
 
                 <TextView
                     android:id="@+id/tv_ispublic"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_weight="3"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/gray_round"
                     android:drawableLeft="@drawable/gps"
-                    android:drawablePadding="3dp"
-                    android:maxLength="20"
+                    android:drawablePadding="5dp"
+                    android:padding="5dp"
                     android:text="公开"
+                    android:gravity="center"
                     android:textColor="@color/text_orange"
-                    android:textSize="12sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
 

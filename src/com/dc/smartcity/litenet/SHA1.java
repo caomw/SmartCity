@@ -193,14 +193,14 @@ public class SHA1 {
     public String getDigestOfString(byte[] byteData) {
         return byteArrayToHexString(getDigestOfBytes(byteData)).toLowerCase();
     }
-    public static void main(String[] args) {
-        String data = "111111";
-        System.out.println(data);
-        String digest = new SHA1().getDigestOfString(data.getBytes());
-        System.out.println(digest);
-//        String sString="3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d";
-//        String string ="3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d";
-//        System.out.println(sString);
-    }
+//    public static void main(String[] args) {
+//        String data = "111111";
+//        System.out.println(data);
+//        String digest = new SHA1().getDigestOfString(data.getBytes());
+//        System.out.println(digest);
+////        String sString="3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d";
+////        String string ="3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d";
+////        System.out.println(sString);
+//    }
 }
 

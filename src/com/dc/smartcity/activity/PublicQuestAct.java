@@ -1,6 +1,7 @@
 package com.dc.smartcity.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -10,6 +11,8 @@ import com.android.dcone.ut.view.annotation.ViewInject;
 import com.android.dcone.ut.view.annotation.event.OnClick;
 import com.dc.smartcity.R;
 import com.dc.smartcity.base.BaseActionBarActivity;
+import com.dc.smartcity.litenet.RequestPool;
+import com.dc.smartcity.util.Utils;
 
 /**
  * 我说说
@@ -33,7 +36,7 @@ public class PublicQuestAct extends BaseActionBarActivity {
 
 	// 定位
 	@ViewInject(R.id.tv_gps)
-	TextView tv_gps;
+	EditText tv_gps;
 
 	// 是否公开
 	@ViewInject(R.id.tv_ispublic)
@@ -83,15 +86,24 @@ public class PublicQuestAct extends BaseActionBarActivity {
 		setContentView(R.layout.activity_publish_question);
 	}
 
+	String isPublic= "1";
+	
 	@OnClick(value = { R.id.btn_submit, R.id.tv_ispublic, R.id.iv_pic1,
 			R.id.iv_pic2, R.id.iv_pic3, R.id.iv_pic4, R.id.iv_pic5 })
 	private void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.btn_submit:
-
+			submitWg();
 			break;
 		case R.id.tv_ispublic:
-
+			//公开1；不公开0
+			if("1".equals(isPublic)){
+				isPublic = "0";
+				tv_ispublic.setText("不公开");
+			}else{
+				isPublic = "1";
+				tv_ispublic.setText("公开");
+			}
 			break;
 		case R.id.iv_pic1:
 			break;
@@ -106,5 +118,25 @@ public class PublicQuestAct extends BaseActionBarActivity {
 		default:
 			break;
 		}
+	}
+
+	private void submitWg() {
+		String title = et_title.getText().toString().trim();
+		if(TextUtils.isEmpty(title)){
+			Utils.showToast("微观标题不能为空", this);
+			return;
+		}
+		String content = et_content.getText().toString().trim();
+		if(TextUtils.isEmpty(content)){
+			Utils.showToast("微观内容不能为空", this);
+			return;
+		}
+		String loc = tv_gps.getText().toString().trim();
+		if(TextUtils.isEmpty(loc)){
+			Utils.showToast("微观地址不能为空", this);
+			return;
+		}
+		
+//		sendRequestWithDialog(RequestPool.changePass(opass, npass), dialogConfig, listener);
 	}
 }

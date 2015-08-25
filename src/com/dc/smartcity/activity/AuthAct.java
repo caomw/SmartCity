@@ -17,10 +17,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.android.dcone.ut.view.annotation.event.OnClick;
 import com.dc.smartcity.R;
 import com.dc.smartcity.base.BaseActionBarActivity;
+import com.dc.smartcity.bean.user.UserAuthBean;
+import com.dc.smartcity.bean.user.UserBaseBean;
+import com.dc.smartcity.bean.user.UserLocalBean;
+import com.dc.smartcity.bean.user.UserObj;
 import com.dc.smartcity.dialog.DialogConfig;
 import com.dc.smartcity.dialog.PicpickDlg;
 import com.dc.smartcity.dialog.PicpickDlg.IPictureListener;
@@ -87,7 +93,10 @@ public class AuthAct extends BaseActionBarActivity implements IPictureListener {
 	}
 
 	private void initUserInfo() {
-		tv_loginname.setText(Utils.user.userBase.name);
+		tv_loginname.setText(Utils.user.userBase.login);
+		if (!TextUtils.isEmpty(Utils.user.userBase.name)) {
+			et_idcard_name.setText(Utils.user.userBase.name);
+		}
 	}
 
 	private void initActionBar() {
@@ -123,7 +132,7 @@ public class AuthAct extends BaseActionBarActivity implements IPictureListener {
 		if (null == picDlg) {
 			picDlg = new PicpickDlg(this, this);
 		}
-		
+
 		if (!picDlg.isShowing()) {
 			picDlg.show();
 		}
@@ -133,13 +142,64 @@ public class AuthAct extends BaseActionBarActivity implements IPictureListener {
 	 * 实名认证
 	 */
 	private void doAuth() {
-		sendRequestWithDialog(RequestPool.GetHomePage(), new DialogConfig.Builder().build(), new RequestProxy() {
-			
-			@Override
-			public void onSuccess(String msg, String result) {
-				
-			}
-		});
+		String name = et_idcard_name.getText().toString().trim();
+		if (TextUtils.isEmpty(name)) {
+			Utils.showToast("请填写真实姓名", this);
+			return;
+		}
+		String idcardCode = et_idcard_no.getText().toString().trim();
+		if (TextUtils.isEmpty(name)) {
+			Utils.showToast("请填写真实身份证号", this);
+			return;
+		}
+		if (null == fpic) {
+			Utils.showToast("请选择身份证正面照片", this);
+			return;
+		}
+		String fP = Utils.BitmapToBase64(fpic);
+		if (null == bpic) {
+			Utils.showToast("请选择身份证反面照片", this);
+			return;
+		}
+		String bP = Utils.BitmapToBase64(bpic);
+
+		sendRequestWithDialog(RequestPool.requestAuth(name, idcardCode, fP, bP,
+				Utils.user.userAuth.mobilenum),
+				new DialogConfig.Builder().build(), new RequestProxy() {
+
+					@Override
+					public void onSuccess(String msg, String result) {
+						Utils.showToast("实名认证成功", AuthAct.this);
+						queryUserInfo();
+					}
+
+				});
+	}
+
+	/**
+	 * 
+	 */
+	private void queryUserInfo() {
+		sendRequestWithDialog(RequestPool.requestUserInfo(),
+				new DialogConfig.Builder().build(), new RequestProxy() {
+
+					@Override
+					public void onSuccess(String msg, String result) {
+						JSONObject obj = JSON.parseObject(result);
+						UserObj user = new UserObj();
+						user.userBase = JSON.parseObject(
+								obj.getString("USERBASIC"), UserBaseBean.class);
+						user.userAuth = JSON.parseObject(
+								obj.getString("USERAUTH"), UserAuthBean.class);
+						user.userLocal = JSON.parseObject(
+								obj.getString("LOCALUSER"), UserLocalBean.class);
+
+						if (null != user.userBase) {
+							Utils.user = user;
+						}
+						finish();
+					}
+				});
 	}
 
 	MyCount mc;

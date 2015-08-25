@@ -63,6 +63,18 @@
         android:padding="10dip" >
 
         <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:gravity="left"
+            android:text="公交站点是不是可以变更位置啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"
+            android:maxWidth="150dp"
+            android:textColor="@color/main_primary"
+            android:textSize="16sp" />
+        
+        <TextView
             android:id="@+id/tv_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,17 +85,7 @@
             android:textColor="@color/main_hint"
             android:textSize="15sp" />
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/tv_status"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:gravity="left"
-            android:text="公交站点是不是可以变更位置啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"
-            android:textColor="@color/main_primary"
-            android:textSize="16sp" />
+        
 
         <TextView
             android:id="@+id/tv_content"

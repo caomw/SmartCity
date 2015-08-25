@@ -68,7 +68,7 @@ public class HomeMyFragment extends BaseFragment {
         super.onResume();
         if (Utils.isLogon()) {
             name.setVisibility(View.VISIBLE);
-            name.setText(Utils.user.userBase.name);
+            name.setText(Utils.user.userBase.login);
             tvNotlogin.setVisibility(View.GONE);
             l_login.setVisibility(View.VISIBLE);
             ImageLoader.getInstance().displayImage(Utils.user.userBase.headphotourl, userHead);

@@ -50,7 +50,7 @@ public class ServiceListActivity extends BaseActionBarActivity {
         sendRequestWithDialog(RequestPool.getServiceList(scenceItem.getColumnId()), new DialogConfig.Builder().build(), new RequestProxy() {
             @Override
             public void onSuccess(String msg, String result) {
-                List<ServiceItem> list = JSON.parseArray(result, ServiceItem.class);
+                final List<ServiceItem> list = JSON.parseArray(result, ServiceItem.class);
                 ListAdapter adapter = new ListAdapter(mContext, list);
                 pullToRefreshListview.setAdapter(adapter);
                 pullToRefreshListview.setMode(PullToRefreshListView.MODE_NONE);

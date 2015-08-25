@@ -1,5 +1,8 @@
 package com.dc.smartcity.activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+
 import com.alibaba.fastjson.JSON;
 import com.dc.smartcity.R;
 import com.dc.smartcity.base.BaseActionBarActivity;
@@ -16,11 +20,7 @@ import com.dc.smartcity.dialog.DialogConfig;
 import com.dc.smartcity.fragment.ServiceListFragment;
 import com.dc.smartcity.litenet.RequestPool;
 import com.dc.smartcity.litenet.interf.RequestProxy;
-import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.view.viewpagerindicator.TabPageIndicator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 更多服务
@@ -117,13 +117,11 @@ public class ServiceMarketActivity extends BaseActionBarActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-//            return TITLES[position % TITLES.length].toUpperCase();
             return more.columnList.get(position).getColumnName();
         }
 
         @Override
         public int getCount() {
-//            return TITLES.length;
             return more.columnList.size();
         }
     }

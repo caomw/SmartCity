@@ -131,7 +131,7 @@ public class RegistAct extends BaseActionBarActivity {
 			mc = new MyCount(this, tvGetVerify);
 		}
 		mc.start();
-		sendRequestWithNoDialog(RequestPool.getRegistVerifyCode(mobile), new RequestProxy() {
+		sendRequestWithNoDialog(RequestPool.getVerifyCode(mobile,"03"), new RequestProxy() {
 			
 			@Override
 			public void onSuccess(String msg, String result) {

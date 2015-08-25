@@ -112,17 +112,18 @@ public class ModifyUserInfoAct extends BaseActionBarActivity implements
 			});
 		} else {
 			tv_auth.setText("已认证");
-			et_realname.setText(Utils.user.userBase.name);
-			et_realname.setEnabled(false);
-			if ("02".equals(Utils.user.userBase.sex)) {
-				rb_sex_female.setChecked(true);
-			} else {
-				rb_sex_male.setChecked(true);
-			}
+
 			rb_sex_female.setClickable(false);
 			rb_sex_male.setClickable(false);
+			et_live_place.setText(Utils.user.userLocal.residence);
 		}
-		et_live_place.setText(Utils.user.userLocal.residence);
+		et_realname.setText(Utils.user.userBase.name);
+		et_realname.setEnabled(false);
+		if ("02".equals(Utils.user.userBase.sex)) {
+			rb_sex_female.setChecked(true);
+		} else {
+			rb_sex_male.setChecked(true);
+		}
 		tv_brithday.setText(Utils.formatDate(Utils.user.userBase.birthday));
 		tv_mail.setText(Utils.user.userAuth.email);
 		tv_modify_phone.setText(Utils.mixPhone(Utils.user.userAuth.mobilenum));

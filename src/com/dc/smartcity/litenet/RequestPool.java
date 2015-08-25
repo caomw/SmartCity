@@ -35,17 +35,17 @@ public class RequestPool {
         return re;
     }
 
-    /**
-     * 获取登录验证码
-     *
-     * @param mobile 手机号码
-     */
-    public static LiteRequest getRegistVerifyCode(String mobile) {
-        LiteRequest re = new LiteRequest("cs_portal/service/CW0603");
-        re.body.put("MOBILENUM", mobile);
-        re.body.put("BUSINESSTYPE", "03");
-        return re;
-    }
+//    /**
+//     * 获取登录验证码
+//     *
+//     * @param mobile 手机号码
+//     */
+//    public static LiteRequest getRegistVerifyCode(String mobile) {
+//        LiteRequest re = new LiteRequest("CW0104");
+//        re.body.put("MOBILENUM", mobile);
+//        re.body.put("BUSINESSTYPE", "03");
+//        return re;
+//    }
 
     /**
      * 获取登录验证码
@@ -54,7 +54,7 @@ public class RequestPool {
      * @param mobile 手机号码
      */
     public static LiteRequest getVerifyCode(String mobile, String code) {
-        LiteRequest re = new LiteRequest("cs_portal/service/CW0603");
+        LiteRequest re = new LiteRequest("CW0104");
         re.body.put("MOBILENUM", mobile);
         re.body.put("BUSINESSTYPE", code);
         return re;
@@ -68,7 +68,7 @@ public class RequestPool {
      */
     public static LiteRequest registQuest(String login, String pass,
                                           String mobile, String verifyCode) {
-        LiteRequest re = new LiteRequest("CW0102");
+        LiteRequest re = new LiteRequest("center_userservice/service/CW0102");
         re.body.put("LOGIN", login);
         re.body.put("PASSWORD", pass);
         re.body.put("SITEID", Config.cityCode);
@@ -140,7 +140,7 @@ public class RequestPool {
     }
 
     /**
-     * 问答
+     * 问答-全部
      *
      * @return
      */
@@ -149,6 +149,17 @@ public class RequestPool {
         re.body.put("PAGE_INDEX", String.valueOf(pageNo));
         re.body.put("PAGE_COUNT", "8");
         return re;
+    }
+    /**
+     * 问答-我的
+     *
+     * @return
+     */
+    public static LiteRequest requestMQannAns(int pageNo) {
+    	LiteRequest re = new LiteRequest("cs_mo/service/CW1703");
+    	re.body.put("PAGE_INDEX", String.valueOf(pageNo));
+    	re.body.put("PAGE_COUNT", "8");
+    	return re;
     }
 
     /**

@@ -45,11 +45,14 @@ public class Utils {
      * @return
      */
     public static boolean isLogon(){
-    	if(TextUtils.isEmpty(accessTicket)){
-    		return false;
+    	if(!TextUtils.isEmpty(accessTicket) && null != user){
+    		return true;
     	}
-    	return true;
+    	return false;
     }
+    
+    
+    
 
     private static String accessTicket;
     
@@ -62,6 +65,9 @@ public class Utils {
     }
     
     public static String formatDate(String timpstam){
+    	if(TextUtils.isEmpty(timpstam)){
+    		return "";
+    	}
     	long time = (long)Double.parseDouble(timpstam);
     	DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
 		Date date = new Date(time);

@@ -7,6 +7,9 @@ import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +17,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.android.dcone.ut.view.annotation.ViewInject;
+import com.android.dcone.ut.view.annotation.event.OnClick;
 import com.dc.smartcity.R;
 import com.dc.smartcity.activity.AskDetailActivity;
 import com.dc.smartcity.activity.AuthAct;
@@ -35,21 +41,27 @@ import com.dc.smartcity.util.Utils;
 import com.dc.smartcity.view.gridview.BaseViewHolder;
 import com.dc.smartcity.view.pullrefresh.PullToRefreshBase.OnRefreshListener;
 import com.dc.smartcity.view.pullrefresh.PullToRefreshListView;
-import com.dc.smartcity.view.viewpagerindicator.TabPageIndicator;
 
 /**
  * 有问必答 Created by vincent on 2015/8/3.
  */
-public class HomeAskFragment extends BaseFragment implements OnRefreshListener {
+public class HomeAskFragment extends BaseFragment {
 	private String TAG = HomeAskFragment.class.getSimpleName();
 
-	@ViewInject(R.id.tab_indicator)
-	TabPageIndicator tab_indicator;
-	
-	@ViewInject(R.id.pullToRefreshListview)
-	private PullToRefreshListView pullToRefreshListview;
+	@ViewInject(R.id.rg_login)
+	RadioGroup rg_login;
 
-	int pageNo = 1;
+	@ViewInject(R.id.rb_all)
+	RadioButton rb_all;
+
+	@ViewInject(R.id.rb_my)
+	RadioButton rb_my;
+
+	// @ViewInject(R.id.pullToRefreshListview)
+	// private PullToRefreshListView pullToRefreshListview;
+
+	@ViewInject(R.id.viewPager)
+	ViewPager viewPager;
 
 	public HomeAskFragment(ActionBar actionBar) {
 		super(actionBar);
@@ -68,23 +80,29 @@ public class HomeAskFragment extends BaseFragment implements OnRefreshListener {
 			Bundle bundle) {
 		view = super.onCreateView(inflater, container, bundle);
 		initActionBar();
-		initList();
+		initAdapter();
+
+		initAllList();
 		return view;
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		if(Utils.isLogon()){
-			showIndicator();
+		if (Utils.isLogon()) {
+			rg_login.setVisibility(View.VISIBLE);
+			if (tadapter.mListViews.size() < 2) {
+
+				initMyList();
+			}
+
+		} else {
+			rg_login.setVisibility(View.GONE);
+			if (tadapter.mListViews.size() == 2) {
+				tadapter.mListViews.remove(1);
+				tadapter.notifyDataSetChanged();
+			}
 		}
-	}
-	
-	/**
-	 * 展示Tab页
-	 */
-	private void showIndicator() {
-		
 	}
 
 	@Override
@@ -101,6 +119,19 @@ public class HomeAskFragment extends BaseFragment implements OnRefreshListener {
 		}
 	}
 
+	@OnClick(value={R.id.rb_all,R.id.rb_my})
+	private void onClick(View v){
+		switch (v.getId()) {
+		case R.id.rb_all:
+			viewPager.setCurrentItem(0);
+			break;
+		case R.id.rb_my:
+			viewPager.setCurrentItem(1);
+			break;
+		default:
+			break;
+		}
+	}
 	private void initActionBar() {
 		iv_actionbar_left.setVisibility(View.GONE);
 		tv_actionbar_left.setVisibility(View.GONE);
@@ -125,38 +156,122 @@ public class HomeAskFragment extends BaseFragment implements OnRefreshListener {
 		tv_actionbar_right.setVisibility(View.GONE);
 	}
 
-	ListAdapter adapter;
+	ListAdapter allAdapter;
+	ListAdapter myAdapter;
+	TabAdapter tadapter;
 
-	private void initList() {
+	private void initAdapter() {
+		tadapter = new TabAdapter();
+		viewPager.setAdapter(tadapter);
+		viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
+		allAdapter = new ListAdapter(getActivity());
+		myAdapter = new ListAdapter(getActivity());
+
+	}
+
+	private void initAllList() {
+
+		LayoutInflater inflater = LayoutInflater.from(getActivity());
+		View view = inflater.inflate(R.layout.view_pulltorefresh, null);
+		final PullToRefreshListView pullToRefreshListview = (PullToRefreshListView) view
+				.findViewById(R.id.pullToRefreshListview);
+
 		pullToRefreshListview.setMode(PullToRefreshListView.MODE_BOTH);
-		// lv_activity_center.setOnRefreshListener(this);
-		adapter = new ListAdapter(getActivity());
 
-		pullToRefreshListview.setAdapter(adapter);
-		pullToRefreshListview.setOnRefreshListener(this);
+		pullToRefreshListview.setAdapter(allAdapter);
+		pullToRefreshListview.setOnRefreshListener(new OnRefreshListener() {
+
+			@Override
+			public boolean onRefresh(int curMode) {
+				if (curMode == PullToRefreshListView.MODE_PULL_DOWN_TO_REFRESH) {
+					allAdapter.pageNo++;
+					queryAllAsk(allAdapter.pageNo, allAdapter, pullToRefreshListview);
+				} else if (curMode == PullToRefreshListView.MODE_PULL_UP_TO_REFRESH) {
+					allAdapter.pageNo = 1;
+					queryAllAsk(allAdapter.pageNo, allAdapter, pullToRefreshListview);
+				}
+				return false;
+			}
+		});
 		pullToRefreshListview
 				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 					@Override
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
-						Intent intent = new Intent(getActivity(),AskDetailActivity.class);
-						intent.putExtra(BundleKeys.QUESTION_BEAN, adapter.list.get(position));
+						Intent intent = new Intent(getActivity(),
+								AskDetailActivity.class);
+						intent.putExtra(BundleKeys.QUESTION_BEAN,
+								allAdapter.list.get(position));
 						startActivity(intent);
 					}
 				});
 
-		queryAsk(pageNo);
+		queryAllAsk(allAdapter.pageNo, allAdapter, pullToRefreshListview);
+		tadapter.mListViews.add(view);
+		tadapter.notifyDataSetChanged();
+		viewPager.setCurrentItem(0);
+	}
+	
+	private void initMyList() {
+
+		LayoutInflater inflater = LayoutInflater.from(getActivity());
+		View view = inflater.inflate(R.layout.view_pulltorefresh, null);
+		final PullToRefreshListView pullToRefreshListview = (PullToRefreshListView) view
+				.findViewById(R.id.pullToRefreshListview);
+
+		pullToRefreshListview.setMode(PullToRefreshListView.MODE_BOTH);
+
+		pullToRefreshListview.setAdapter(myAdapter);
+		pullToRefreshListview.setOnRefreshListener(new OnRefreshListener() {
+
+			@Override
+			public boolean onRefresh(int curMode) {
+				if (curMode == PullToRefreshListView.MODE_PULL_DOWN_TO_REFRESH) {
+					myAdapter.pageNo++;
+					queryMyAsk(myAdapter.pageNo, myAdapter, pullToRefreshListview);
+				} else if (curMode == PullToRefreshListView.MODE_PULL_UP_TO_REFRESH) {
+					myAdapter.pageNo = 1;
+					queryMyAsk(myAdapter.pageNo, myAdapter, pullToRefreshListview);
+				}
+				return false;
+			}
+		});
+		pullToRefreshListview
+				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view,
+							int position, long id) {
+						Intent intent = new Intent(getActivity(),
+								AskDetailActivity.class);
+						intent.putExtra(BundleKeys.QUESTION_BEAN,
+								myAdapter.list.get(position));
+						startActivity(intent);
+					}
+				});
+
+		queryMyAsk(myAdapter.pageNo, myAdapter, pullToRefreshListview);
+		tadapter.mListViews.add(view);
+		tadapter.notifyDataSetChanged();
+		viewPager.setCurrentItem(0);
 	}
 
-	private void queryAsk(final int pageNo) {
+	/**
+	 * 查询全部
+	 * @param pageNo
+	 * @param adapter
+	 * @param pullToRefreshListview
+	 */
+	private void queryAllAsk(final int pageNo, final ListAdapter adapter,
+			final PullToRefreshListView pullToRefreshListview) {
 		sendRequestWithNoDialog(RequestPool.requestQannAns(pageNo),
 				new RequestProxy() {
 
 					@Override
 					public void onSuccess(String msg, String result) {
-						Log.e(TAG, "result:" + result);
+						Log.e(TAG, "result:" + result +" \n pageNo:"+ pageNo);
 						JSONObject js = JSON.parseObject(result);
-						List<AskObj> items = JSON.parseArray(js.getJSONObject("page").getString("result"),
+						List<AskObj> items = JSON.parseArray(
+								js.getJSONObject("page").getString("result"),
 								AskObj.class);
 
 						if (pageNo == 1) {
@@ -174,15 +289,61 @@ public class HomeAskFragment extends BaseFragment implements OnRefreshListener {
 						pullToRefreshListview.onRefreshComplete();
 					}
 				});
+
+	}
+	
+	/**
+	 * 查询我发表的
+	 * @param pageNo
+	 * @param adapter
+	 * @param pullToRefreshListview
+	 */
+	private void queryMyAsk(final int pageNo, final ListAdapter adapter,
+			final PullToRefreshListView pullToRefreshListview) {
+		sendRequestWithNoDialog(RequestPool.requestMQannAns(pageNo),
+				new RequestProxy() {
+			
+			@Override
+			public void onSuccess(String msg, String result) {
+				Log.e(TAG, "result:" + result);
+				JSONObject js = JSON.parseObject(result);
+				List<AskObj> items = JSON.parseArray(
+						js.getJSONObject("page").getString("result"),
+						AskObj.class);
+				
+				if (pageNo == 1) {
+					adapter.list.clear();
+				}
+				if (items.size() > 0) {
+					adapter.list.addAll(items);
+				}
+				adapter.notifyDataSetChanged();
+				pullToRefreshListview.onRefreshComplete();
+			}
+			
+			@Override
+			public void onError(String code, String msg) {
+				pullToRefreshListview.onRefreshComplete();
+			}
+		});
+		
 	}
 
+	/**
+	 * 列表适配器
+	 * 
+	 * @author check_000
+	 *
+	 */
 	class ListAdapter extends BaseAdapter {
 		ArrayList<AskObj> list;
 		private Context mContext;
+		int pageNo;
 
 		public ListAdapter(Context mContext) {
 			this.list = new ArrayList<AskObj>();
 			this.mContext = mContext;
+			pageNo = 1;
 		}
 
 		@Override
@@ -192,12 +353,12 @@ public class HomeAskFragment extends BaseFragment implements OnRefreshListener {
 
 		@Override
 		public Object getItem(int position) {
-			return null;
+			return list.get(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			return 0;
+			return position;
 		}
 
 		@Override
@@ -233,16 +394,71 @@ public class HomeAskFragment extends BaseFragment implements OnRefreshListener {
 		}
 	}
 
-	@Override
-	public boolean onRefresh(int curMode) {
-		if (curMode == PullToRefreshListView.MODE_PULL_DOWN_TO_REFRESH) {
-			pageNo++;
-			queryAsk(pageNo);
-		} else if (curMode == PullToRefreshListView.MODE_PULL_UP_TO_REFRESH) {
-			pageNo = 1;
-			queryAsk(pageNo);
+	// @Override
+	// public boolean onRefresh(int curMode) {
+	//
+	// }
+
+	// tab adapter
+	class TabAdapter extends PagerAdapter {
+
+		List<View> mListViews;
+
+		public TabAdapter() {
+			this.mListViews = new ArrayList<View>();
 		}
-		return false;
+
+		@Override
+		public void destroyItem(ViewGroup container, int position, Object object) {
+			container.removeView(mListViews.get(position));
+		}
+
+		@Override
+		public Object instantiateItem(ViewGroup container, int position) {
+			container.addView(mListViews.get(position), 0);
+			return mListViews.get(position);
+		}
+
+		@Override
+		public int getCount() {
+			return mListViews.size();
+		}
+
+		@Override
+		public boolean isViewFromObject(View arg0, Object arg1) {
+			return arg0 == arg1;
+		}
+
+	}
+
+	int MODE = 1;
+	
+	/**
+	 * 页面切换，更新标题
+	 * 
+	 * @author check_000
+	 *
+	 */
+	public class MyOnPageChangeListener implements OnPageChangeListener {
+
+		public void onPageScrollStateChanged(int arg0) {
+
+		}
+
+		public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+		}
+
+		public void onPageSelected(int postion) {
+			if (postion == 0) {
+				rb_all.setChecked(true);
+				rb_my.setChecked(false);
+			} else if (1 == postion) {
+				rb_all.setChecked(false);
+				rb_my.setChecked(true);
+			}
+		}
+
 	}
 
 }

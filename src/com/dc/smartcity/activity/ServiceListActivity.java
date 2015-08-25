@@ -53,6 +53,7 @@ public class ServiceListActivity extends BaseActionBarActivity {
                 final List<ServiceItem> list = JSON.parseArray(result, ServiceItem.class);
                 ListAdapter adapter = new ListAdapter(mContext, list);
                 pullToRefreshListview.setAdapter(adapter);
+                pullToRefreshListview.setMode(PullToRefreshListView.MODE_NONE);
                 pullToRefreshListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -62,6 +63,8 @@ public class ServiceListActivity extends BaseActionBarActivity {
                         startActivity(intent);
                     }
                 });
+                View empty=mLayoutInflater.inflate(R.layout.view_empty,null);
+                pullToRefreshListview.setEmptyView(empty);
             }
         });
     }

@@ -22,7 +22,7 @@ public class DCMenuItem {
 	 */
 	public String servicePicUrl;
 	/**
-	 * 服务图标
+	 * 服务地址
 	 */
 	public String serviceUrl;
 	/**

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
+import com.dc.smartcity.activity.CordovaWebwiewActivity;
 import com.dc.smartcity.activity.WebViewActivity;
 import com.dc.smartcity.bean.AdObj;
 import com.dc.smartcity.util.BundleKeys;
@@ -59,7 +60,7 @@ public class AdvertisementView extends BaseImageSwitcher<AdObj> {
 
             if (data_obj != null && !TextUtils.isEmpty(data_obj.redirectUrl)) {
                 String tag = data_obj.tag;
-                Intent intent = new Intent(getContext(), WebViewActivity.class);
+                Intent intent = new Intent(getContext(), CordovaWebwiewActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString(BundleKeys.WEBVIEW_LOADURL, data_obj.redirectUrl);
                 bundle.putString(BundleKeys.WEBVIEW_TITLE, "详情");

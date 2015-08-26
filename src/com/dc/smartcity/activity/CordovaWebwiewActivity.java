@@ -39,7 +39,7 @@ public class CordovaWebwiewActivity extends BaseActionBarActivity implements
     WebSettings webSettings;
     private final ExecutorService threadPool = Executors.newCachedThreadPool();
     protected CordovaPreferences prefs = new CordovaPreferences();
-    
+
     protected Whitelist internalWhitelist = new Whitelist();
     protected Whitelist externalWhitelist = new Whitelist();
     protected ArrayList<PluginEntry> pluginEntries;
@@ -50,8 +50,9 @@ public class CordovaWebwiewActivity extends BaseActionBarActivity implements
         super.onCreate(savedInstanceState);
         loadurl = getIntent().getStringExtra(BundleKeys.WEBVIEW_LOADURL);
         title = getIntent().getStringExtra(BundleKeys.WEBVIEW_TITLE);
-        ULog.error("title=" + title + ",loadurl=" + loadurl);
-        initActionBar();
+//        ULog.error("title=" + title + ",loadurl=" + loadurl);
+//        initActionBar();
+        hideActionBar();
 
         wb_cordvo = (CordovaWebView) findViewById(R.id.wb_cordvo);
         webSettings = wb_cordvo.getSettings();

@@ -4,17 +4,10 @@ import android.app.ActionBar;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.JsResult;
-import android.webkit.SslErrorHandler;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-
+import android.webkit.*;
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.dc.smartcity.R;
 import com.dc.smartcity.base.BaseFragment;
@@ -24,18 +17,22 @@ import com.dc.smartcity.view.LoadingDialog;
 
 /**
  * 城市新鲜事，新闻资讯
- * 
+ *
  * @author szsm_dyj
  *
  */
 public class HomeNewsFragment extends BaseFragment {
+    private String TAG = HomeNewsFragment.class.getSimpleName();
 
 	protected LoadingDialog mLoadingDialog;
 	@ViewInject(R.id.my_webview)
 	protected WebView my_webview;
 
+    private ActionBar actionbar;
+
 	public HomeNewsFragment(ActionBar actionbar) {
 		super(actionbar);
+        this.actionbar=actionbar;
 	}
 
 	@Override
@@ -46,8 +43,9 @@ public class HomeNewsFragment extends BaseFragment {
 	@Override
 	public void onHiddenChanged(boolean hidden) {
 		super.onHiddenChanged(hidden);
+        ULog.error("---%s.hidden=%s", TAG, hidden);
 		if (!hidden) {
-			initActionBar();
+            hideActionBar(actionbar);
 		}
 	}
 
@@ -55,7 +53,8 @@ public class HomeNewsFragment extends BaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle bundle) {
 		view = super.onCreateView(inflater, container, bundle);
-		initActionBar();
+        hideActionBar(actionbar);
+//		initActionBar();
 		initViews();
 		return view;
 	}
@@ -87,7 +86,7 @@ public class HomeNewsFragment extends BaseFragment {
 
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-            	
+
             }
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -125,7 +124,6 @@ public class HomeNewsFragment extends BaseFragment {
 	}
 
 	private void initActionBar() {
-		
 		iv_actionbar_left.setVisibility(View.GONE);
 		tv_actionbar_left.setVisibility(View.GONE);
 		et_actionbar_search.setVisibility(View.GONE);

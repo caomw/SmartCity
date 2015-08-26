@@ -16,4 +16,8 @@ public class BundleKeys {
     public static final String SCENCEITEM = "scenceitem";
 
     public static final String ISFROMMY = "isfrommy";
+
+    public static final String KEY_SHAREDPREFERENCES = "sharedpreferences";
+    public static final String ISFIRSTOPEN = "isfirstopen";
+
 }

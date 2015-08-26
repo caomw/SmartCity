@@ -72,10 +72,10 @@ public class HomeMyFragment extends BaseFragment {
             tvNotlogin.setVisibility(View.GONE);
             l_login.setVisibility(View.VISIBLE);
             ImageLoader.getInstance().displayImage(Utils.user.userBase.headphotourl, userHead);
-        }else{
-        	name.setVisibility(View.GONE);
-        	tvNotlogin.setVisibility(View.VISIBLE);
-        	l_login.setVisibility(View.GONE);
+        } else {
+            name.setVisibility(View.GONE);
+            tvNotlogin.setVisibility(View.VISIBLE);
+            l_login.setVisibility(View.GONE);
         }
     }
 
@@ -97,7 +97,7 @@ public class HomeMyFragment extends BaseFragment {
         tv_actionbar_right.setVisibility(View.GONE);
     }
 
-    @OnClick(value = {R.id.userHead, R.id.ll_safe_set, R.id.ll_edit_info,  R.id.tvNotlogin, R.id.tv_setting, R.id.tv_about, R.id.tv_share, R.id.tv_feedback, R.id.tv_problem, R.id.tv_welcome})
+    @OnClick(value = {R.id.userHead, R.id.ll_safe_set, R.id.ll_edit_info, R.id.tvNotlogin, R.id.tv_setting, R.id.tv_about, R.id.tv_share, R.id.tv_feedback, R.id.tv_problem, R.id.tv_welcome})
     private void OnClick(View v) {
         switch (v.getId()) {
             case R.id.userHead:
@@ -126,8 +126,8 @@ public class HomeMyFragment extends BaseFragment {
                 break;
             case R.id.tv_share:
                 //分享
-            	OnekeyShare share = new OnekeyShare();
-            	share.show(getActivity());
+                OnekeyShare share = new OnekeyShare();
+                share.show(getActivity());
                 break;
             case R.id.tv_feedback:
                 //反馈
@@ -144,6 +144,7 @@ public class HomeMyFragment extends BaseFragment {
             case R.id.tv_welcome:
                 //产品导读
                 Intent intent_welcome = new Intent(getActivity(), WelcomeActivity.class);
+                intent_welcome.putExtra(BundleKeys.ISFROMMY, true);
                 startActivity(intent_welcome);
                 break;
             default:

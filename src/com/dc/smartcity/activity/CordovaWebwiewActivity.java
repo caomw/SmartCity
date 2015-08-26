@@ -120,6 +120,7 @@ public class CordovaWebwiewActivity extends BaseActionBarActivity implements
             if (progress == 100) {
                 if (null != mLoadingDialog) {
                     mLoadingDialog.dismiss();
+                    hideActionBar();
                 }
             } else {
                 if (null != mLoadingDialog && !mLoadingDialog.isShowing()) {

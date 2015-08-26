@@ -14,4 +14,6 @@ public class BundleKeys {
 
 
     public static final String SCENCEITEM = "scenceitem";
+
+    public static final String ISFROMMY = "isfrommy";
 }

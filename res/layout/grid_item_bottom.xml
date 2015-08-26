@@ -15,7 +15,6 @@
                 android:layout_width="38.0dip"
                 android:layout_height="38.0dip"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/app_lottery"
                 android:contentDescription="@string/app_name"/>
 
         <TextView
@@ -26,7 +25,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5.0dip"
                 android:maxLines="1"
-                android:text="业务介绍"
                 android:textColor="@color/main_primary"
                 android:textSize="14.0sp"/>
     </RelativeLayout>

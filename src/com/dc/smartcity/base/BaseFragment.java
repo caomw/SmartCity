@@ -39,13 +39,14 @@ public abstract class BaseFragment extends Fragment {
     public LayoutInflater mLayoutInflater;
 
     RequestService baseService;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ULog.debug("---onCreate");
         baseService = new RequestService(getActivity());
     }
-    
+
     public BaseFragment() {
     }
 
@@ -71,8 +72,15 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract int setContentView();
 
+    public void hideActionBar(ActionBar actionbar) {
+        if (null != actionbar)
+            actionbar.hide();
+    }
+
+
     private void initActionBar() {
         if (mActionbar != null) {
+            mActionbar.show();
             View actionView = mActionbar.getCustomView();
             iv_actionbar_left = (ImageView) actionView.findViewById(R.id.iv_actionbar_left);
             tv_actionbar_left = (TextView) actionView.findViewById(R.id.tv_actionbar_left);
@@ -94,27 +102,28 @@ public abstract class BaseFragment extends Fragment {
     public void onResume() {
         super.onResume();
     }
+
     @Override
     public void onPause() {
-    	super.onPause();
-    	baseService.dismissLoadingDialog();
+        super.onPause();
+        baseService.dismissLoadingDialog();
     }
-    
+
     public void sendRequestWithNoDialog(LiteRequest request, final IResPonseListener listener) {
         baseService.sendRequestWithNoDialog(request, listener);
-   }
+    }
 
-   public void sendRequestWithNoDialog(LiteRequest request, final RequestProxy callback) {
+    public void sendRequestWithNoDialog(LiteRequest request, final RequestProxy callback) {
         baseService.sendRequestWithNoDialog(request, callback);
-   }
+    }
 
-   public void sendRequestWithDialog(LiteRequest request, DialogConfig dialogConfig,
-           final IResPonseListener listener) {
+    public void sendRequestWithDialog(LiteRequest request, DialogConfig dialogConfig,
+                                      final IResPonseListener listener) {
         baseService.sendRequestWithDialog(request, dialogConfig, listener);
-   }
+    }
 
-   public void sendRequestWithDialog(LiteRequest request, DialogConfig dialogConfig,
-           final RequestProxy callback) {
+    public void sendRequestWithDialog(LiteRequest request, DialogConfig dialogConfig,
+                                      final RequestProxy callback) {
         baseService.sendRequestWithDialog(request, dialogConfig, callback);
-   }
+    }
 }

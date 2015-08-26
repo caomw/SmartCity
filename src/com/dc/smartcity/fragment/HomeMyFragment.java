@@ -13,14 +13,7 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.android.dcone.ut.view.annotation.event.OnClick;
 import com.dc.smartcity.R;
-import com.dc.smartcity.activity.AboutActivity;
-import com.dc.smartcity.activity.AccountSettingActivity;
-import com.dc.smartcity.activity.FeedbackActivity;
-import com.dc.smartcity.activity.LoginActivity;
-import com.dc.smartcity.activity.ModifyUserInfoAct;
-import com.dc.smartcity.activity.SettingActivity;
-import com.dc.smartcity.activity.WebViewActivity;
-import com.dc.smartcity.activity.WelcomeActivity;
+import com.dc.smartcity.activity.*;
 import com.dc.smartcity.base.BaseFragment;
 import com.dc.smartcity.net.ImageLoader;
 import com.dc.smartcity.util.BundleKeys;
@@ -38,7 +31,10 @@ public class HomeMyFragment extends BaseFragment {
 
     public HomeMyFragment(ActionBar actionBar) {
         super(actionBar);
+        this.actionbar = actionBar;
     }
+
+    private ActionBar actionbar;
 
     @ViewInject(R.id.name)
     private TextView name;
@@ -88,6 +84,7 @@ public class HomeMyFragment extends BaseFragment {
     }
 
     private void initActionBar() {
+        actionbar.show();
         iv_actionbar_left.setVisibility(View.GONE);
         tv_actionbar_left.setVisibility(View.GONE);
         et_actionbar_search.setVisibility(View.GONE);
@@ -121,8 +118,10 @@ public class HomeMyFragment extends BaseFragment {
                 break;
             case R.id.tv_about:
                 //关于
-                Intent intent_about = new Intent(getActivity(), AboutActivity.class);
-                startActivity(intent_about);
+                Intent intent = new Intent(getActivity(), CordovaWebwiewActivity.class);
+                intent.putExtra(BundleKeys.WEBVIEW_TITLE, "关于");
+                intent.putExtra(BundleKeys.WEBVIEW_LOADURL, "http://test.cszhcs.cn/cs_phoneAppcms/about_us/about_us.html");
+                startActivity(intent);
                 break;
             case R.id.tv_share:
                 //分享
@@ -136,10 +135,10 @@ public class HomeMyFragment extends BaseFragment {
                 break;
             case R.id.tv_problem:
                 //常见问题
-                Intent intent_problem = new Intent(getActivity(), WebViewActivity.class);
-                intent_problem.putExtra(BundleKeys.WEBVIEW_TITLE, "常见问题");
-                intent_problem.putExtra(BundleKeys.WEBVIEW_LOADURL, "http://m.baidu.com");
-                startActivity(intent_problem);
+//                Intent intent_problem = new Intent(getActivity(), WebViewActivity.class);
+//                intent_problem.putExtra(BundleKeys.WEBVIEW_TITLE, "常见问题");
+//                intent_problem.putExtra(BundleKeys.WEBVIEW_LOADURL, "http://m.baidu.com");
+//                startActivity(intent_problem);
                 break;
             case R.id.tv_welcome:
                 //产品导读

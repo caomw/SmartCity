@@ -233,4 +233,13 @@ public class RequestPool {
 		re.body.put("CODE", code);
 		return re;
 	}
+	
+    /**
+     * 提交反馈
+     */
+    public static LiteRequest feedback(String content) {
+        LiteRequest re = new LiteRequest("cs_portal/service/CW0611");
+        re.body.put("content", content);
+        return re;
+    }
 }

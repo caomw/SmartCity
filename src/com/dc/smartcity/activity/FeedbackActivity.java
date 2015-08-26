@@ -1,16 +1,31 @@
 package com.dc.smartcity.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
-import com.android.dcone.ut.view.annotation.event.OnClick;
+import android.widget.Button;
+import android.widget.EditText;
+import com.android.dcone.ut.view.annotation.ViewInject;
 import com.dc.smartcity.R;
 import com.dc.smartcity.base.BaseActionBarActivity;
+import com.dc.smartcity.dialog.DialogConfig;
+import com.dc.smartcity.litenet.RequestPool;
+import com.dc.smartcity.litenet.interf.RequestProxy;
+import com.dc.smartcity.util.Utils;
 
 /**
  * 反馈意见
  * Created by vincent on 2015/8/17.
  */
 public class FeedbackActivity extends BaseActionBarActivity {
+
+    @ViewInject(R.id.et_feedback)
+    private EditText et_feedback;
+
+    @ViewInject(R.id.btn_submit)
+    private Button btn_submit;
+
+
     @Override
     protected void setContentView() {
         setContentView(R.layout.activity_feedback);
@@ -21,6 +36,24 @@ public class FeedbackActivity extends BaseActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initActionBar();
+        btn_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String content = et_feedback.getText().toString();
+                if (TextUtils.isEmpty(content)) {
+                    Utils.showToast("请输入反馈内容", mContext);
+                } else {
+                    sendRequestWithDialog(RequestPool.feedback(content), new DialogConfig.Builder().build(), new RequestProxy() {
+
+                        @Override
+                        public void onSuccess(String msg, String result) {
+                            Utils.showToast("提交反馈成功", mContext);
+                            et_feedback.setText("");
+                        }
+                    });
+                }
+            }
+        });
     }
 
     private void initActionBar() {
@@ -28,15 +61,4 @@ public class FeedbackActivity extends BaseActionBarActivity {
         setActionBarTitle("意见反馈");
     }
 
-
-    @OnClick(value = {R.id.tv_feedback})
-    private void OnClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_feedback:
-                //提交反馈
-                break;
-            default:
-                break;
-        }
-    }
 }

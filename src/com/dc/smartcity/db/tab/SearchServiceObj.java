@@ -1,6 +1,7 @@
 package com.dc.smartcity.db.tab;
 
 import com.android.dcone.ut.orm.annotation.Column;
+import com.android.dcone.ut.orm.annotation.Id;
 import com.android.dcone.ut.orm.annotation.Table;
 
 /**
@@ -25,6 +26,7 @@ public class SearchServiceObj extends EntityBase {
 
     @Column(column = FIELD_SERVICE_ID)
     public String serviceId;
+
     @Column(column = FIELD_SERVICE_NAME)
     public String serviceName;
     @Column(column = FIELD_COLUMN_ID)

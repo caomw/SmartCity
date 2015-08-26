@@ -2,7 +2,6 @@ package com.dc.smartcity.db.dao;
 
 import com.android.dcone.ut.DbUtils;
 import com.android.dcone.ut.exception.DbException;
-import com.dc.smartcity.db.tab.SearchServiceObj;
 import com.dc.smartcity.db.tab.ServiceHistory;
 
 import java.util.ArrayList;
@@ -32,8 +31,24 @@ public class ServiceHistoryDao {
     /**
      * 更新数据
      */
-    public void saveService(SearchServiceObj obj) throws DbException {
-        mDbUtils.saveOrUpdate(obj);
+    public void saveService(ServiceHistory obj) throws DbException {
+        List<ServiceHistory> list = mDbUtils.findAll(ServiceHistory.class);
+        if (null == list || list.size() == 0) {
+            mDbUtils.save(obj);
+        } else {
+            boolean isSave = false;
+            for (ServiceHistory history : list) {
+                if (history.serviceName.equals(obj.serviceName)) {
+                    isSave = true;
+                    break;
+                }
+            }
+            if (isSave) {
+                mDbUtils.update(obj);
+            } else {
+                mDbUtils.save(obj);
+            }
+        }
     }
 
 

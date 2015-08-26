@@ -22,6 +22,10 @@ public class ServiceHistory extends EntityBase {
     public static final String FIELD_LEVEL = "level";
 
 
+    public ServiceHistory() {
+    }
+
+
     @Column(column = FIELD_SERVICE_ID)
     public String serviceId;
     @Column(column = FIELD_SERVICE_NAME)

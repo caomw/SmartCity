@@ -179,7 +179,18 @@ public class SearchServiceActivity extends BaseActionBarActivity {
                             //保存历史记录
                             try {
                                 ServiceHistoryDao dao = new ServiceHistoryDao(dbUtils);
-                                dao.saveService(list.get(position));
+                                SearchServiceObj obj = list.get(position);
+                                ServiceHistory history = new ServiceHistory();
+                                history.serviceName = obj.serviceName;
+                                history.columnId = obj.columnId;
+                                history.columnName = obj.columnName;
+                                history.isRecommend = obj.isRecommend;
+                                history.level = obj.level;
+                                history.serviceId = obj.serviceId;
+                                history.servicePicUrl = obj.servicePicUrl;
+                                history.serviceUrl = obj.serviceUrl;
+                                history.siteId = obj.siteId;
+                                dao.saveService(history);
                             } catch (DbException e) {
                                 e.printStackTrace();
                             }

@@ -18,5 +18,5 @@ public class Config {
 //    	public static String BASE_URL = "http://192.168.23.4/";
     public static String SERVER_URL = BASE_URL + "cs_phoneInterface/service/";
     public static String LOGIN_URL = "sso/service/CW6030";
-    public static String CITY_NEWS = "http://test.cszhcs.cn/cs_cmsapph5/localMessages/index.html";
+    public static String CITY_NEWS = "http://test.cszhcs.cn/cs_phoneAppcms/localMessages/index.html#main";
 }

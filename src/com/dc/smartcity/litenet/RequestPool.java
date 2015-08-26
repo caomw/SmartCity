@@ -14,17 +14,6 @@ public class RequestPool {
         return re;
     }
 
-
-    /**
-     * 提交反馈
-     */
-    public static LiteRequest feedback(String content) {
-        LiteRequest re = new LiteRequest("cs_portal/service/CW0611");
-        re.body.put("content", content);
-        return re;
-    }
-
-
     /**
      * 更多接口：加载顶部目录及第一个子列表
      */
@@ -204,6 +193,29 @@ public class RequestPool {
         re.body.put("NAME", bean.name);
         re.body.put("RESIDENCE", bean.residence);
         re.body.put("SEX", bean.sex);
+        return re;
+    }
+
+    /**
+     * 发布微观
+     *
+     * @return
+     */
+    public static LiteRequest submitWeiGuan(String title, String content, String isPublic, String loc) {
+        LiteRequest re = new LiteRequest("cs_portal/service/CW0202");
+        re.body.put("LOCATION", loc);
+        re.body.put("IS_PUBLIC", isPublic);
+        re.body.put("CONTENT", content);
+        re.body.put("TITLE", title);
+        return re;
+    }
+
+    /**
+     * 提交反馈
+     */
+    public static LiteRequest feedback(String content) {
+        LiteRequest re = new LiteRequest("cs_portal/service/CW0611");
+        re.body.put("content", content);
         return re;
     }
 }

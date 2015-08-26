@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +31,8 @@ import com.dc.smartcity.view.LoadingDialog;
 public class HomeNewsFragment extends BaseFragment {
 
 	protected LoadingDialog mLoadingDialog;
-	@ViewInject(R.id.my_webview)	
+	@ViewInject(R.id.my_webview)
 	protected WebView my_webview;
-	
-	
 
 	public HomeNewsFragment(ActionBar actionbar) {
 		super(actionbar);
@@ -43,14 +42,14 @@ public class HomeNewsFragment extends BaseFragment {
 	protected int setContentView() {
 		return R.layout.my_webview_layout;
 	}
-	
+
 	@Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (!hidden) {
-            initActionBar();
-        }
-    }
+	public void onHiddenChanged(boolean hidden) {
+		super.onHiddenChanged(hidden);
+		if (!hidden) {
+			initActionBar();
+		}
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,6 +86,10 @@ public class HomeNewsFragment extends BaseFragment {
 
             }
 
+            @Override
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            	
+            }
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
@@ -132,5 +135,4 @@ public class HomeNewsFragment extends BaseFragment {
 		tv_actionbar_right.setVisibility(View.GONE);
 	}
 
-	
 }

@@ -106,6 +106,7 @@ public class RequestService {
 		// alertDialog.setOnDismissListener(null);
 		// }
 		alertDialog.show();
+		Log.e("RequestService", "alert dialg show");
 	}
 
 	/**

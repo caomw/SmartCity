@@ -35,6 +35,7 @@ public class CordovaWebwiewActivity extends BaseActionBarActivity implements
     WebSettings webSettings;
     private final ExecutorService threadPool = Executors.newCachedThreadPool();
     protected CordovaPreferences prefs = new CordovaPreferences();
+    
     protected Whitelist internalWhitelist = new Whitelist();
     protected Whitelist externalWhitelist = new Whitelist();
     protected ArrayList<PluginEntry> pluginEntries;
@@ -61,14 +62,14 @@ public class CordovaWebwiewActivity extends BaseActionBarActivity implements
         externalWhitelist.addWhiteListEntry("sms:*", false);
         prefs.set("loglevel", "DEBUG");
 
-        wb_cordvo.init(this, makeWebViewClient(wb_cordvo), cordovaChromeClient,
-                pluginEntries, internalWhitelist, externalWhitelist, prefs);
+//        wb_cordvo.init(this, makeWebViewClient(wb_cordvo), cordovaChromeClient,
+//                pluginEntries, internalWhitelist, externalWhitelist, prefs);
         wb_cordvo.loadUrlIntoView(loadurl);
     }
 
-    protected CordovaWebViewClient makeWebViewClient(CordovaWebView webView) {
-        return webView.makeWebViewClient(this);
-    }
+//    protected CordovaWebViewClient makeWebViewClient(CordovaWebView webView) {
+//        return webView.makeWebViewClient(this);
+//    }
 
     protected CordovaChromeClient makeChromeClient(CordovaWebView webView) {
         return webView.makeWebChromeClient(this);

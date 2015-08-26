@@ -149,7 +149,7 @@ public class RequestPool {
 	 */
 	public static LiteRequest requestAuth(String name, String idcardCode,
 			String fpic, String bpic, String mobile) {
-		LiteRequest re = new LiteRequest("sso/service/CW0606");
+		LiteRequest re = new LiteRequest("cs_portal/service/CW0606");
 		re.body.put("NAME", name);
 		re.body.put("IDCARDCODE", idcardCode);
 		re.body.put("FPICTURE", fpic);
@@ -241,5 +241,14 @@ public class RequestPool {
         LiteRequest re = new LiteRequest("cs_portal/service/CW0611");
         re.body.put("content", content);
         return re;
+    }
+    /**
+     * 发表微观评论
+     */
+    public static LiteRequest commentWG(String comment,String observeId) {
+    	LiteRequest re = new LiteRequest("cs_mo/service/CW1730");
+    	re.body.put("observeId", observeId);
+    	re.body.put("comment", comment);
+    	return re;
     }
 }

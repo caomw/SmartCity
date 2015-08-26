@@ -36,8 +36,9 @@ public class LoadingDialog extends Dialog {
      * @return
      */
     private static LoadingDialog create(Context context, String message, boolean cancelable) {
-        if (null == mLoadingDialog)
-            mLoadingDialog = new LoadingDialog(context, R.style.CustomProgressDialog);
+        if (null == mLoadingDialog){
+        	mLoadingDialog = new LoadingDialog(context, R.style.CustomProgressDialog);
+        }
         mLoadingDialog.setContentView(R.layout.myprogressdialog);
         mLoadingDialog.setCancelable(cancelable);
         mLoadingDialog.getWindow().getAttributes().gravity = Gravity.CENTER;

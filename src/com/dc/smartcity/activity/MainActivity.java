@@ -16,7 +16,6 @@ import com.dc.smartcity.fragment.HomeAskFragment;
 import com.dc.smartcity.fragment.HomeMyFragment;
 import com.dc.smartcity.fragment.HomeNewsFragment;
 import com.dc.smartcity.fragment.HomePageFragment;
-import com.dc.smartcity.fragment.ServiceListFragment;
 import com.dc.smartcity.util.Utils;
 
 public class MainActivity extends BaseActionBarActivity implements OnCheckedChangeListener {
@@ -105,7 +104,7 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
                 mCurrentButton = rb_menu_ask;
                 break;
             case R.id.rb_menu_my:
-                if (mMyFragment != null) {
+            	if (mMyFragment != null) {
                     fragmentTransaction.show(mMyFragment);
                 } else {
                     mMyFragment = new HomeMyFragment(mActionBar);

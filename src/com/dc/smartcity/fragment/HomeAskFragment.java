@@ -215,10 +215,13 @@ public class HomeAskFragment extends BaseFragment {
 		viewPager.setCurrentItem(0);
 	}
 
+	TextView tv_mempty;
+
 	private void initMyList() {
 
 		LayoutInflater inflater = LayoutInflater.from(getActivity());
 		View view = inflater.inflate(R.layout.view_pulltorefresh, null);
+		tv_mempty = (TextView) view.findViewById(R.id.tv_empty);
 		final PullToRefreshListView pullToRefreshListview = (PullToRefreshListView) view
 				.findViewById(R.id.pullToRefreshListview);
 
@@ -270,7 +273,6 @@ public class HomeAskFragment extends BaseFragment {
 	private void queryAllAsk(final int pageNo, final ListAdapter adapter,
 			final PullToRefreshListView pullToRefreshListview) {
 
-		
 		sendRequestWithNoDialog(RequestPool.requestQannAns(pageNo),
 				new RequestProxy() {
 
@@ -284,14 +286,16 @@ public class HomeAskFragment extends BaseFragment {
 
 						if (pageNo == 1) {
 							adapter.list.clear();
-							pullToRefreshListview.setMode(PullToRefreshListView.MODE_BOTH);
+							pullToRefreshListview
+									.setMode(PullToRefreshListView.MODE_BOTH);
 						}
 						if (items.size() > 0) {
 							adapter.list.addAll(items);
 						}
-						
-						if(items.size()< 8){
-							pullToRefreshListview.setMode(PullToRefreshListView.MODE_PULL_UP_TO_REFRESH);
+
+						if (items.size() < 8) {
+							pullToRefreshListview
+									.setMode(PullToRefreshListView.MODE_PULL_UP_TO_REFRESH);
 						}
 						adapter.notifyDataSetChanged();
 						pullToRefreshListview.onRefreshComplete();
@@ -326,6 +330,11 @@ public class HomeAskFragment extends BaseFragment {
 								AskObj.class);
 
 						if (pageNo == 1) {
+							if (items.size() == 0) {
+								tv_mempty.setVisibility(View.VISIBLE);
+							}else{
+								tv_mempty.setVisibility(View.GONE);
+							}
 							adapter.list.clear();
 						}
 						if (items.size() > 0) {

@@ -55,7 +55,6 @@ public class HomeNewsFragment extends BaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle bundle) {
 		view = super.onCreateView(inflater, container, bundle);
-
 		initActionBar();
 		initViews();
 		return view;
@@ -126,6 +125,7 @@ public class HomeNewsFragment extends BaseFragment {
 	}
 
 	private void initActionBar() {
+		
 		iv_actionbar_left.setVisibility(View.GONE);
 		tv_actionbar_left.setVisibility(View.GONE);
 		et_actionbar_search.setVisibility(View.GONE);

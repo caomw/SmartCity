@@ -1,6 +1,7 @@
 package com.dc.smartcity.litenet;
 
 import android.content.Context;
+import android.os.Looper;
 import android.util.Log;
 
 import com.dc.smartcity.R;
@@ -36,7 +37,7 @@ public class RequestService {
 
 			@Override
 			public void onSuccess(String msg, String result) {
-				Log.e("RequestService", "on success");
+				Log.e("RequestService", "onSuccess:currTime:"+System.currentTimeMillis());
 				dismissLoadingDialog();
 				if (null != listener) {
 					listener.onSuccess(msg, result);
@@ -59,7 +60,7 @@ public class RequestService {
 				}
 			}
 		});
-		
+
 	}
 
 	public void sendRequestWithNoDialog(LiteRequest request,
@@ -75,8 +76,7 @@ public class RequestService {
 			title = context.getString(resId);
 		}
 		if (alertDialog == null) {
-			LoadingDialog dialog = LoadingDialog.create(context, title);
-			alertDialog = dialog;
+			alertDialog = LoadingDialog.create(context, title);
 		}
 
 		// 可取消的dialog若存在则不启动新的dialog
@@ -106,7 +106,7 @@ public class RequestService {
 		// alertDialog.setOnDismissListener(null);
 		// }
 		alertDialog.show();
-		Log.e("RequestService", "alert dialg show");
+		Log.e("RequestService", "Dialog show:currTime:"+System.currentTimeMillis());
 	}
 
 	/**

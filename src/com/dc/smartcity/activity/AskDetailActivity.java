@@ -19,6 +19,8 @@ import com.dc.smartcity.R;
 import com.dc.smartcity.base.BaseActionBarActivity;
 import com.dc.smartcity.bean.AskObj;
 import com.dc.smartcity.bean.askwg.WeiguanBean;
+import com.dc.smartcity.dialog.CommitDialog;
+import com.dc.smartcity.dialog.CommitDialog.OnSendMessage;
 import com.dc.smartcity.dialog.DialogConfig;
 import com.dc.smartcity.litenet.RequestPool;
 import com.dc.smartcity.litenet.interf.RequestProxy;
@@ -33,7 +35,7 @@ import com.dc.smartcity.view.pullrefresh.PullToRefreshListView;
  * 问答详情 Created by vincent on 2015/8/9.
  */
 public class AskDetailActivity extends BaseActionBarActivity implements
-		OnRefreshListener {
+		OnRefreshListener,OnSendMessage {
 
 	// 问答详情
 	AskObj obj;
@@ -89,9 +91,9 @@ public class AskDetailActivity extends BaseActionBarActivity implements
 					public void onSuccess(String msg, String result) {
 						JSONObject js = JSON.parseObject(result);
 						boolean hasMore = js.getBooleanValue("hasMore");
-						if(!hasMore){
+						if (!hasMore) {
 							pullToRefreshListView
-							.setMode(PullToRefreshListView.MODE_PULL_UP_TO_REFRESH);
+									.setMode(PullToRefreshListView.MODE_PULL_UP_TO_REFRESH);
 						}
 						List<WeiguanBean> items = JSON.parseArray(
 								js.getString("moCommentList"),
@@ -117,19 +119,30 @@ public class AskDetailActivity extends BaseActionBarActivity implements
 				});
 	}
 
+	CommitDialog dlgCommit;
 	private void initActionBar() {
 
 		iv_actionbar_left.setVisibility(View.VISIBLE);
 		setActionBarTitle("详情");
-		iv_actionbar_right.setImageResource(R.drawable.attu);
-		// iv_actionbar_right.setVisibility(View.VISIBLE);
-		// iv_actionbar_right.setOnClickListener(new View.OnClickListener() {
-		// @Override
-		// public void onClick(View v) {
-		// Utils.showToast("关注....", AskDetailActivity.this);
-		// }
-		// });
+		iv_actionbar_right.setImageResource(R.drawable.speak);
+		iv_actionbar_right.setVisibility(View.VISIBLE);
+		iv_actionbar_right.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showCommentDlg();
+			}
+		});
 	}
+	
+	private void showCommentDlg(){
+		if(null == dlgCommit){
+			dlgCommit = new CommitDialog(this, this);
+		}
+		if(!dlgCommit.isShowing()){
+			dlgCommit.show();
+		}
+	}
+	
 
 	private void updateUIDatas() {
 		tv_name.setText(obj.userName);
@@ -220,6 +233,18 @@ public class AskDetailActivity extends BaseActionBarActivity implements
 			break;
 		}
 		return false;
+	}
+
+	@Override
+	public void sendComment(String comment) {
+		sendRequestWithDialog(RequestPool.commentWG(comment, obj.observeId), new DialogConfig.Builder().build(), new RequestProxy() {
+			
+			@Override
+			public void onSuccess(String msg, String result) {
+				adapter.pageNo = 1;
+				queryComment();
+			}
+		});
 	}
 
 }

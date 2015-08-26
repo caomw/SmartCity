@@ -6,14 +6,18 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
+import android.webkit.WebSettings.LayoutAlgorithm;
 import android.webkit.WebView;
+
 import com.dc.smartcity.R;
 import com.dc.smartcity.base.BaseActionBarActivity;
 import com.dc.smartcity.util.BundleKeys;
 import com.dc.smartcity.util.ULog;
+
 import org.apache.cordova.*;
 
 import java.util.ArrayList;
@@ -54,6 +58,7 @@ public class CordovaWebwiewActivity extends BaseActionBarActivity implements
         webSettings.setJavaScriptEnabled(true);// 设置响应JS
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
         webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
+        webSettings.setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN);
         wb_cordvo.setVerticalScrollBarEnabled(false);
         wb_cordvo.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
 
@@ -78,6 +83,9 @@ public class CordovaWebwiewActivity extends BaseActionBarActivity implements
     private void initActionBar() {
         iv_actionbar_left.setVisibility(View.VISIBLE);
         setActionBarTitle(title);
+        if(!TextUtils.isEmpty(loadurl)){
+        	hideActionBar();
+        }
     }
 
     private CordovaWebViewClient mWebC = new CordovaWebViewClient(this, wb_cordvo) {// 设置WebView客户端对象

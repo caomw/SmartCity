@@ -121,8 +121,8 @@ public class HomeAskFragment extends BaseFragment {
 		}
 	}
 
-	@OnClick(value={R.id.rb_all,R.id.rb_my})
-	private void onClick(View v){
+	@OnClick(value = { R.id.rb_all, R.id.rb_my })
+	private void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.rb_all:
 			viewPager.setCurrentItem(0);
@@ -134,6 +134,7 @@ public class HomeAskFragment extends BaseFragment {
 			break;
 		}
 	}
+
 	private void initActionBar() {
 		actionBar.show();
 		iv_actionbar_left.setVisibility(View.GONE);
@@ -187,11 +188,13 @@ public class HomeAskFragment extends BaseFragment {
 			@Override
 			public boolean onRefresh(int curMode) {
 				if (curMode == PullToRefreshListView.MODE_PULL_DOWN_TO_REFRESH) {
-					allAdapter.pageNo++;
-					queryAllAsk(allAdapter.pageNo, allAdapter, pullToRefreshListview);
-				} else if (curMode == PullToRefreshListView.MODE_PULL_UP_TO_REFRESH) {
 					allAdapter.pageNo = 1;
-					queryAllAsk(allAdapter.pageNo, allAdapter, pullToRefreshListview);
+					queryAllAsk(allAdapter.pageNo, allAdapter,
+							pullToRefreshListview);
+				} else if (curMode == PullToRefreshListView.MODE_PULL_UP_TO_REFRESH) {
+					allAdapter.pageNo++;
+					queryAllAsk(allAdapter.pageNo, allAdapter,
+							pullToRefreshListview);
 				}
 				return false;
 			}
@@ -214,7 +217,7 @@ public class HomeAskFragment extends BaseFragment {
 		tadapter.notifyDataSetChanged();
 		viewPager.setCurrentItem(0);
 	}
-	
+
 	private void initMyList() {
 
 		LayoutInflater inflater = LayoutInflater.from(getActivity());
@@ -230,11 +233,13 @@ public class HomeAskFragment extends BaseFragment {
 			@Override
 			public boolean onRefresh(int curMode) {
 				if (curMode == PullToRefreshListView.MODE_PULL_DOWN_TO_REFRESH) {
-					myAdapter.pageNo++;
-					queryMyAsk(myAdapter.pageNo, myAdapter, pullToRefreshListview);
-				} else if (curMode == PullToRefreshListView.MODE_PULL_UP_TO_REFRESH) {
 					myAdapter.pageNo = 1;
-					queryMyAsk(myAdapter.pageNo, myAdapter, pullToRefreshListview);
+					queryMyAsk(myAdapter.pageNo, myAdapter,
+							pullToRefreshListview);
+				} else if (curMode == PullToRefreshListView.MODE_PULL_UP_TO_REFRESH) {
+					myAdapter.pageNo++;
+					queryMyAsk(myAdapter.pageNo, myAdapter,
+							pullToRefreshListview);
 				}
 				return false;
 			}
@@ -260,18 +265,64 @@ public class HomeAskFragment extends BaseFragment {
 
 	/**
 	 * 查询全部
+	 * 
 	 * @param pageNo
 	 * @param adapter
 	 * @param pullToRefreshListview
 	 */
 	private void queryAllAsk(final int pageNo, final ListAdapter adapter,
 			final PullToRefreshListView pullToRefreshListview) {
+
+		
 		sendRequestWithNoDialog(RequestPool.requestQannAns(pageNo),
 				new RequestProxy() {
 
 					@Override
 					public void onSuccess(String msg, String result) {
-						Log.e(TAG, "result:" + result +" \n pageNo:"+ pageNo);
+						Log.e(TAG, "result:" + result + " \n pageNo:" + pageNo);
+						JSONObject js = JSON.parseObject(result);
+						List<AskObj> items = JSON.parseArray(
+								js.getJSONObject("page").getString("result"),
+								AskObj.class);
+
+						if (pageNo == 1) {
+							adapter.list.clear();
+							pullToRefreshListview.setMode(PullToRefreshListView.MODE_BOTH);
+						}
+						if (items.size() > 0) {
+							adapter.list.addAll(items);
+						}
+						
+						if(items.size()< 8){
+							pullToRefreshListview.setMode(PullToRefreshListView.MODE_PULL_UP_TO_REFRESH);
+						}
+						adapter.notifyDataSetChanged();
+						pullToRefreshListview.onRefreshComplete();
+					}
+
+					@Override
+					public void onError(String code, String msg) {
+						pullToRefreshListview.onRefreshComplete();
+					}
+				});
+
+	}
+
+	/**
+	 * 查询我发表的
+	 * 
+	 * @param pageNo
+	 * @param adapter
+	 * @param pullToRefreshListview
+	 */
+	private void queryMyAsk(final int pageNo, final ListAdapter adapter,
+			final PullToRefreshListView pullToRefreshListview) {
+		sendRequestWithNoDialog(RequestPool.requestMQannAns(pageNo),
+				new RequestProxy() {
+
+					@Override
+					public void onSuccess(String msg, String result) {
+						Log.e(TAG, "result:" + result);
 						JSONObject js = JSON.parseObject(result);
 						List<AskObj> items = JSON.parseArray(
 								js.getJSONObject("page").getString("result"),
@@ -293,43 +344,6 @@ public class HomeAskFragment extends BaseFragment {
 					}
 				});
 
-	}
-	
-	/**
-	 * 查询我发表的
-	 * @param pageNo
-	 * @param adapter
-	 * @param pullToRefreshListview
-	 */
-	private void queryMyAsk(final int pageNo, final ListAdapter adapter,
-			final PullToRefreshListView pullToRefreshListview) {
-		sendRequestWithNoDialog(RequestPool.requestMQannAns(pageNo),
-				new RequestProxy() {
-			
-			@Override
-			public void onSuccess(String msg, String result) {
-				Log.e(TAG, "result:" + result);
-				JSONObject js = JSON.parseObject(result);
-				List<AskObj> items = JSON.parseArray(
-						js.getJSONObject("page").getString("result"),
-						AskObj.class);
-				
-				if (pageNo == 1) {
-					adapter.list.clear();
-				}
-				if (items.size() > 0) {
-					adapter.list.addAll(items);
-				}
-				adapter.notifyDataSetChanged();
-				pullToRefreshListview.onRefreshComplete();
-			}
-			
-			@Override
-			public void onError(String code, String msg) {
-				pullToRefreshListview.onRefreshComplete();
-			}
-		});
-		
 	}
 
 	/**
@@ -435,7 +449,7 @@ public class HomeAskFragment extends BaseFragment {
 	}
 
 	int MODE = 1;
-	
+
 	/**
 	 * 页面切换，更新标题
 	 * 

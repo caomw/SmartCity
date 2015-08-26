@@ -95,7 +95,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="@string/hint_idcard_no"
-                android:inputType="numberSigned|textCapCharacters" />
+                android:maxLength="18"
+                 />
         </LinearLayout>
 
         <ImageView

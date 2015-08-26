@@ -33,12 +33,32 @@
                 android:text="@string/modify_mobile"
                 android:textSize="15sp" />
 
-            <TextView
-                android:id="@+id/tv_mobile"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="15sp" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/et_mobile"
+                    style="@style/loginEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:background="@null"
+                    android:hint="@string/hint_mobile"
+                    android:inputType="phone" />
+
+                <TextView
+                    android:id="@+id/tvGetVerify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:background="@drawable/shape_blue"
+                    android:text="@string/tv_send_verifycode"
+                    android:textSize="11sp" />
+            </LinearLayout>
         </LinearLayout>
 
         <ImageView
@@ -57,17 +77,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="@string/tv_loadpass"
+                android:text="@string/tv_verify_code"
                 android:textSize="15sp" />
 
             <EditText
-                android:id="@+id/et_idcard_name"
+                android:id="@+id/et_verify_code"
                 style="@style/loginEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="@string/hint_password"
-                android:inputType="textPassword" />
+                android:background="@null"
+                android:hint="@string/hint_verify_code"
+                android:inputType="numberSigned" />
         </LinearLayout>
     </LinearLayout>
 

@@ -12,6 +12,7 @@ import com.dc.smartcity.bean.AskObj;
 import com.dc.smartcity.net.ImageLoader;
 import com.dc.smartcity.util.BundleKeys;
 import com.dc.smartcity.util.Utils;
+import com.dc.smartcity.view.pullrefresh.PullToRefreshListView;
 
 /**
  * 问答详情 Created by vincent on 2015/8/9.
@@ -42,6 +43,9 @@ public class AskDetailActivity extends BaseActionBarActivity {
 	@ViewInject(R.id.tv_ask_location)
 	TextView tv_ask_location;
 	
+	@ViewInject(R.id.pullToRefreshListView)
+	PullToRefreshListView pullToRefreshListView;
+	
 	@Override
 	protected void setContentView() {
 		setContentView(R.layout.activity_ask_detail);
@@ -54,6 +58,11 @@ public class AskDetailActivity extends BaseActionBarActivity {
 				BundleKeys.QUESTION_BEAN);
 		initActionBar();
 		updateUIDatas();
+		queryComment();
+	}
+
+	private void queryComment() {
+		
 	}
 
 	private void initActionBar() {

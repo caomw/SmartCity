@@ -135,7 +135,7 @@ public class RegistAct extends BaseActionBarActivity {
 			
 			@Override
 			public void onSuccess(String msg, String result) {
-				
+				Utils.showToast(result, RegistAct.this);
 			}
 			@Override
 			public void onError(String msg, String result) {

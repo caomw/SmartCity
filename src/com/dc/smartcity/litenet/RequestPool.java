@@ -97,8 +97,8 @@ public class RequestPool {
 	 * @return
 	 */
 	public static LiteRequest changePass(String opass,String npass) {
-		LiteRequest re = new LiteRequest("center_userservice/CW0108");
-		re.body.put("PWDSTRENGTH", "02");
+		LiteRequest re = new LiteRequest("center_userservice/service/CW0108");
+		re.body.put("PWDSTRENGTH", "01");
 		re.body.put("NEWPWD", npass);
 		re.body.put("OLDPWD", opass);
 		return re;
@@ -208,6 +208,29 @@ public class RequestPool {
 		re.body.put("IS_PUBLIC", isPublic);
 		re.body.put("CONTENT", content);
 		re.body.put("TITLE", title);
+		return re;
+	}
+	/**
+	 * 微观-点评列表
+	 *
+	 * @return
+	 */
+	public static LiteRequest getCommentList(String observeId,int page) {
+		LiteRequest re = new LiteRequest("cs_mo/service/CW1731");
+		re.body.put("observeId", observeId);
+		re.body.put("page", String.valueOf(page));
+		re.body.put("size", "4");
+		return re;
+	}
+	/**
+	 * 更改绑定手机号
+	 *
+	 * @return
+	 */
+	public static LiteRequest changeBindMobile(String mobile,String code) {
+		LiteRequest re = new LiteRequest("center_userservice/service/CW0104");
+		re.body.put("MOBILENUM", mobile);
+		re.body.put("CODE", code);
 		return re;
 	}
 }

@@ -179,7 +179,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/iv_mline"
         android:background="@color/white"
-        android:divider="@color/transparent"
+        android:divider="@drawable/shape_line"
         android:listSelector="@android:color/transparent"
         ptr:pullmode="both" />
 

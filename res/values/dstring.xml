@@ -52,7 +52,7 @@
     <string name="tv_loadpass">登陆密码:</string>
     <string name="btn_action_auth">  &#160;&#160;去实名认证&#160;&#160;</string>
     <string name="btn_action_bind">更改绑定号码</string>
-    <string name="btn_action_pass">更改登录号码</string>
+    <string name="btn_action_pass">更改登录密码</string>
     <string name="tv_lastlogintime">上次登录:</string>
     <string name="tv_unauth">未认证</string>
     <string name="tv_alauth">已认证</string>

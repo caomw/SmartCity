@@ -151,6 +151,7 @@
                     android:drawableLeft="@drawable/gps"
                     android:hint="定位中..."
                     android:drawablePadding="5dp"
+                    android:background="@drawable/gray_round"
                      />
 
                 <TextView

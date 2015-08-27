@@ -121,7 +121,7 @@ public class AuthAct extends BaseActionBarActivity implements IPictureListener {
 	}
 
 	@OnClick(value = { R.id.btn_auth, R.id.tvGetVerify, R.id.iv_idcard_pic1,
-			R.id.iv_idcard_pic2 })
+			R.id.iv_idcard_pic2,R.id.tv_auth_rules })
 	private void onClcik(View v) {
 		switch (v.getId()) {
 		case R.id.btn_auth:
@@ -133,7 +133,9 @@ public class AuthAct extends BaseActionBarActivity implements IPictureListener {
 		case R.id.iv_idcard_pic1:
 			type = FPICTURE;
 			showPickDialog();
-
+			break;
+		case R.id.tv_auth_rules:
+			startActivity(new Intent(this, RegistActProtocal.class));
 			break;
 		case R.id.iv_idcard_pic2:
 			type = BPICTURE;
@@ -168,16 +170,20 @@ public class AuthAct extends BaseActionBarActivity implements IPictureListener {
 			Utils.showToast("请填写真实身份证号", this);
 			return;
 		}
-		if (null == fpic) {
-			Utils.showToast("请选择身份证正面照片", this);
-			return;
-		}
-		String fP = Utils.BitmapToBase64(fpic);
-		if (null == bpic) {
-			Utils.showToast("请选择身份证反面照片", this);
-			return;
-		}
-		String bP = Utils.BitmapToBase64(bpic);
+//		if (null == fpic) {
+//			Utils.showToast("请选择身份证正面照片", this);
+//			return;
+//		}
+//		String fP = Utils.BitmapToBase64(fpic);
+//		if (null == bpic) {
+//			Utils.showToast("请选择身份证反面照片", this);
+//			return;
+//		}
+//		String bP = Utils.BitmapToBase64(bpic);
+		
+		//Temp:
+		String fP = "fp_tmp";
+		String bP = "bp_tmp";
 		if (!cb_agree.isChecked()) {
 			Utils.showToast("请先阅读认证协议", this);
 			return;
@@ -189,7 +195,7 @@ public class AuthAct extends BaseActionBarActivity implements IPictureListener {
 
 			@Override
 			public void onSuccess(String msg, String result) {
-				Utils.showToast("实名认证成功", AuthAct.this);
+				Utils.showToast("实名认证申请提交成功", AuthAct.this);
 				queryUserInfo();
 			}
 

@@ -23,8 +23,7 @@ import com.dc.smartcity.litenet.interf.RequestProxy;
 import com.dc.smartcity.util.Utils;
 
 /**
- * 登陆 
- * Created by vincent on 2015/8/3.
+ * 登陆 Created by vincent on 2015/8/3.
  */
 public class LoginActivity extends BaseActionBarActivity {
 
@@ -52,11 +51,17 @@ public class LoginActivity extends BaseActionBarActivity {
 		case R.id.btnLogin:
 			String n = name.getText().toString().trim();
 			String p = pass.getText().toString().trim();
-			if (!TextUtils.isEmpty(n) && !TextUtils.isEmpty(p)) {
-				SHA1 sha1 = new SHA1();
-				String password = sha1.getDigestOfString(p.getBytes());
-				doLogin(n, password);
+			if (TextUtils.isEmpty(n)) {
+				Utils.showToast("用户名不能为空", LoginActivity.this);
+				return;
 			}
+			if (TextUtils.isEmpty(p)) {
+				Utils.showToast("密码不能为空", LoginActivity.this);
+				return;
+			}
+			SHA1 sha1 = new SHA1();
+			String password = sha1.getDigestOfString(p.getBytes());
+			doLogin(n, password);
 			break;
 		case R.id.tv_forgetpass:
 
@@ -107,8 +112,9 @@ public class LoginActivity extends BaseActionBarActivity {
 								obj.getString("USERBASIC"), UserBaseBean.class);
 						user.userAuth = JSON.parseObject(
 								obj.getString("USERAUTH"), UserAuthBean.class);
-						user.userLocal = JSON.parseObject(obj.getString("LOCALUSER"), UserLocalBean.class);
-						
+						user.userLocal = JSON.parseObject(
+								obj.getString("LOCALUSER"), UserLocalBean.class);
+
 						if (null != user.userBase) {
 							Utils.user = user;
 						}

@@ -136,7 +136,6 @@ public class HomeAskFragment extends BaseFragment {
 	}
 
 	private void initActionBar() {
-		actionBar.show();
 		iv_actionbar_left.setVisibility(View.GONE);
 		tv_actionbar_left.setVisibility(View.GONE);
 		et_actionbar_search.setVisibility(View.GONE);

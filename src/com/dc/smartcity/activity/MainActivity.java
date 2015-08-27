@@ -57,7 +57,7 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
      */
     private HomeMyFragment mMyFragment;
     /**
-     * 我的fragment
+     * 新闻fragment
      */
     private HomeNewsFragment mServiceFragment;
 

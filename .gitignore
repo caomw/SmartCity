@@ -1,0 +1,13 @@
+.idea/
+gen/
+out/
+.project
+.classpath
+.settings/
+bin/
+gen/
+App_Frame_Core.iml
+ant.properties
+build.xml
+local.properties
+proguard-project.txt

@@ -19,48 +19,46 @@ import com.dc.smartcity.view.LoadingDialog;
  * 城市新鲜事，新闻资讯
  *
  * @author szsm_dyj
- *
  */
 public class HomeNewsFragment extends BaseFragment {
     private String TAG = HomeNewsFragment.class.getSimpleName();
 
-	protected LoadingDialog mLoadingDialog;
-	@ViewInject(R.id.my_webview)
-	protected WebView my_webview;
+    protected LoadingDialog mLoadingDialog;
+    @ViewInject(R.id.my_webview)
+    protected WebView my_webview;
 
     private ActionBar actionbar;
 
-	public HomeNewsFragment(ActionBar actionbar) {
-		super(actionbar);
-        this.actionbar=actionbar;
-	}
+    public HomeNewsFragment(ActionBar actionbar) {
+        super(actionbar);
+        this.actionbar = actionbar;
+    }
 
-	@Override
-	protected int setContentView() {
-		return R.layout.my_webview_layout;
-	}
+    @Override
+    protected int setContentView() {
+        return R.layout.my_webview_layout;
+    }
 
-	@Override
-	public void onHiddenChanged(boolean hidden) {
-		super.onHiddenChanged(hidden);
-        ULog.error("---%s.hidden=%s", TAG, hidden);
-		if (!hidden) {
-            hideActionBar(actionbar);
-		}
-	}
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+//            hideActionBar(actionbar);
+            initActionBar();
+        }
+    }
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle bundle) {
-		view = super.onCreateView(inflater, container, bundle);
-        hideActionBar(actionbar);
-//		initActionBar();
-		initViews();
-		return view;
-	}
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle bundle) {
+        view = super.onCreateView(inflater, container, bundle);
+        initActionBar();
+        initViews();
+        return view;
+    }
 
-	private void initViews() {
-		 /*----设置WebView控件参数----*/
+    private void initViews() {
+         /*----设置WebView控件参数----*/
         WebSettings webSettings = my_webview.getSettings();
         webSettings.setJavaScriptEnabled(true);// 设置响应JS
         webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
@@ -88,6 +86,7 @@ public class HomeNewsFragment extends BaseFragment {
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
 
             }
+
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
@@ -121,16 +120,16 @@ public class HomeNewsFragment extends BaseFragment {
             }
         });
         my_webview.loadUrl(Config.CITY_NEWS);
-	}
+    }
 
-	private void initActionBar() {
-		iv_actionbar_left.setVisibility(View.GONE);
-		tv_actionbar_left.setVisibility(View.GONE);
-		et_actionbar_search.setVisibility(View.GONE);
-		tv_actionbar_title.setVisibility(View.VISIBLE);
-		tv_actionbar_title.setText("新闻资讯");
-		iv_actionbar_right.setVisibility(View.GONE);
-		tv_actionbar_right.setVisibility(View.GONE);
-	}
+    private void initActionBar() {
+        iv_actionbar_left.setVisibility(View.GONE);
+        tv_actionbar_left.setVisibility(View.GONE);
+        et_actionbar_search.setVisibility(View.GONE);
+        tv_actionbar_title.setVisibility(View.VISIBLE);
+        tv_actionbar_title.setText("新闻资讯");
+        iv_actionbar_right.setVisibility(View.GONE);
+        tv_actionbar_right.setVisibility(View.GONE);
+    }
 
 }

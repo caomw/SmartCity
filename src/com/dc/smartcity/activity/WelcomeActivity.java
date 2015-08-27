@@ -62,13 +62,22 @@ public class WelcomeActivity extends BaseActionBarActivity {
             }
         }
 
+        View view1 = mLayoutInflater.inflate(R.layout.view_welcome, null);
+        ImageView imageView1 = (ImageView) view1.findViewById(R.id.imageView);
+        imageView1.setImageResource(R.drawable.s1);
+
+        View view2 = mLayoutInflater.inflate(R.layout.view_welcome, null);
+        ImageView imageView2 = (ImageView) view2.findViewById(R.id.imageView);
+        imageView2.setImageResource(R.drawable.s2);
+
+        View view3 = mLayoutInflater.inflate(R.layout.view_welcome, null);
+        ImageView imageView3 = (ImageView) view3.findViewById(R.id.imageView);
+        imageView3.setImageResource(R.drawable.s3);
+
         List<View> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            View view = mLayoutInflater.inflate(R.layout.view_welcome, null);
-            ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
-            imageView.setImageResource(R.drawable.wel_bg);
-            list.add(view);
-        }
+        list.add(view1);
+        list.add(view2);
+        list.add(view3);
 
         totalNum = list.size();
         ViewPagerAdapter adapter = new ViewPagerAdapter(list);

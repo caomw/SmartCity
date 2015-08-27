@@ -20,7 +20,11 @@ public class AskObj implements Serializable{
     public String contactMobile;
     public String userName;
     public String photoUrl;
-    public String status;
+    public String commentNum;
+    public void setCommentNum(String commentNum) {
+		this.commentNum = commentNum;
+	}
+	public String status;
     public void setObserveId(String observeId) {
 		this.observeId = observeId;
 	}

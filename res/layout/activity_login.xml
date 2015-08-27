@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@color/whitesmoke"
+            android:background="@color/white"
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
@@ -68,7 +68,7 @@
             android:id="@+id/ll_pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/whitesmoke"
+            android:background="@color/white"
             android:gravity="center_horizontal"
             android:orientation="vertical" >
 
@@ -113,6 +113,7 @@
             android:layout_margin="5dp"
             android:padding="10dp"
             android:textSize="14sp"
+            android:visibility="invisible"
             android:text="@string/tv_forget_pass"
             android:textColor="@color/info" />
         

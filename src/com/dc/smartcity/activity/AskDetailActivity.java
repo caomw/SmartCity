@@ -147,7 +147,7 @@ public class AskDetailActivity extends BaseActionBarActivity implements
 	private void updateUIDatas() {
 		tv_name.setText(obj.userName);
 		tv_title.setText(obj.title);
-		tv_status.setText(obj.status);// 需处理
+		tv_status.setText(getString(R.string.tv_comment_num, obj.commentNum));// 需处理
 		tv_content.setText(obj.content);
 		tv_ask_date.setText(obj.happenTime);
 		tv_ask_location.setText(obj.location);

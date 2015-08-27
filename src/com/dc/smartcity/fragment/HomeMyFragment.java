@@ -13,7 +13,13 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.android.dcone.ut.view.annotation.event.OnClick;
 import com.dc.smartcity.R;
-import com.dc.smartcity.activity.*;
+import com.dc.smartcity.activity.AccountSettingActivity;
+import com.dc.smartcity.activity.CordovaWebwiewActivity;
+import com.dc.smartcity.activity.FeedbackActivity;
+import com.dc.smartcity.activity.LoginActivity;
+import com.dc.smartcity.activity.ModifyUserInfoAct;
+import com.dc.smartcity.activity.SettingActivity;
+import com.dc.smartcity.activity.WelcomeActivity;
 import com.dc.smartcity.base.BaseFragment;
 import com.dc.smartcity.net.ImageLoader;
 import com.dc.smartcity.util.BundleKeys;
@@ -67,7 +73,7 @@ public class HomeMyFragment extends BaseFragment {
             name.setText(Utils.user.userBase.login);
             tvNotlogin.setVisibility(View.GONE);
             l_login.setVisibility(View.VISIBLE);
-            ImageLoader.getInstance().displayImage(Utils.user.userBase.headphotourl, userHead);
+            ImageLoader.getInstance().displayImage(Utils.user.userBase.headphotourl, userHead,R.drawable.default_head);
         } else {
             name.setVisibility(View.GONE);
             tvNotlogin.setVisibility(View.VISIBLE);

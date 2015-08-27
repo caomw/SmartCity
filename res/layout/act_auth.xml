@@ -159,11 +159,13 @@
         android:layout_margin="10dp"
         android:text="@string/tv_idcard_pic"
         android:textSize="20sp"
+        android:visibility="gone"
         android:textStyle="bold" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:src="@drawable/shape_line" />
 
     <LinearLayout
@@ -171,6 +173,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:gravity="center"
+        android:visibility="gone"
         android:orientation="horizontal" >
 
         <ImageView
@@ -195,6 +198,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:src="@drawable/shape_line" />
 
     <LinearLayout

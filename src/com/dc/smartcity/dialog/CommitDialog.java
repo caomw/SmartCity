@@ -29,6 +29,12 @@ public class CommitDialog extends Dialog implements View.OnClickListener{
 		setWindow();
 		findViewById(R.id.btn_submit).setOnClickListener(this);
 	}
+	
+	@Override
+	public void show() {
+		et_content.setText(null);
+		super.show();
+	}
 
 	@Override
 	public void onClick(View arg0) {

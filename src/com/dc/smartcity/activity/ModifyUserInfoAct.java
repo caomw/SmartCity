@@ -132,7 +132,12 @@ public class ModifyUserInfoAct extends BaseActionBarActivity implements
 			rb_sex_male.setChecked(true);
 		}
 		tv_brithday.setText(Utils.formatDate(Utils.user.userBase.birthday));
-		tv_mail.setText(Utils.user.userAuth.email);
+		if(!TextUtils.isEmpty(Utils.user.userAuth.email)){
+			
+			tv_mail.setText(Utils.user.userAuth.email);
+		}else{
+			tv_mail.setText("--");
+		}
 		tv_modify_phone.setText(Utils.mixPhone(Utils.user.userAuth.mobilenum));
 		et_live_place.addTextChangedListener(new TextWatcher() {
 

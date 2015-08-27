@@ -2,6 +2,7 @@ package com.dc.smartcity.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -61,7 +62,11 @@ public class AccountSettingActivity extends BaseActionBarActivity {
     private void initUserInfo() {
     	tv_username.setText(Utils.user.userBase.name);
     	tv_mobile.setText(Utils.mixPhone(Utils.user.userAuth.mobilenum));
-    	tv_mail.setText(Utils.user.userAuth.email);
+    	if(!TextUtils.isEmpty(Utils.user.userAuth.email)){
+    		tv_mail.setText(Utils.user.userAuth.email);
+    	}else{
+    		tv_mail.setText("--");
+    	}
     	tv_lastlogintime.setText(Utils.formatDateTime(Utils.user.userBase.lastlogintime));
     	
     	if("01".equals(Utils.user.userBase.level)){

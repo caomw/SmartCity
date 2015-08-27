@@ -156,12 +156,12 @@ public class RequestPool {
 	public static LiteRequest requestAuth(String name, String idcardCode,
 			String fpic, String bpic, String mobile) {
 		LiteRequest re = new LiteRequest("cs_portal/service/CW0606");
-		// LiteRequest re = new
-		// LiteRequest("http://192.168.3.102/portal/service/CW0606");
 		re.body.put("NAME", name);
 		re.body.put("IDCARDCODE", idcardCode);
-		re.body.put("FPICTURE", fpic);
-		re.body.put("BPICTURE", bpic);
+//		re.body.put("FPICTURE", fpic);
+//		re.body.put("BPICTURE", bpic);
+		re.body.put("FPICTURE", "fpic");
+		re.body.put("BPICTURE", "bpic");
 		re.body.put("MOBILENUM", mobile);
 		re.body.put("CODE", "123456");
 		return re;

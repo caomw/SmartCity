@@ -86,6 +86,8 @@
                 android:name="com.dc.smartcity.activity.CordovaWebwiewActivity"/>
         <activity
                 android:name="com.dc.smartcity.activity.PublicQuestAct"/>
+        <activity
+                android:name="com.dc.smartcity.activity.RegistActProtocal"/>
 
         
         <!-- sharesdk -->

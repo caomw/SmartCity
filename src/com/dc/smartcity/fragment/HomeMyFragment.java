@@ -84,7 +84,7 @@ public class HomeMyFragment extends BaseFragment {
     }
 
     private void initActionBar() {
-        actionbar.show();
+//        actionbar.show();
         iv_actionbar_left.setVisibility(View.GONE);
         tv_actionbar_left.setVisibility(View.GONE);
         et_actionbar_search.setVisibility(View.GONE);

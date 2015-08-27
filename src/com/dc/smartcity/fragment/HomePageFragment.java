@@ -23,6 +23,7 @@ import com.dc.smartcity.bean.AdObj;
 import com.dc.smartcity.bean.DCMenuItem;
 import com.dc.smartcity.bean.HomeObj;
 import com.dc.smartcity.bean.ScenceItem;
+import com.dc.smartcity.dialog.DialogConfig;
 import com.dc.smartcity.litenet.RequestPool;
 import com.dc.smartcity.litenet.interf.RequestProxy;
 import com.dc.smartcity.net.ImageLoader;
@@ -91,7 +92,7 @@ public class HomePageFragment extends BaseFragment {
     }
 
     private void initBiz() {
-        sendRequestWithNoDialog(RequestPool.GetHomePage(), new RequestProxy() {
+        sendRequestWithDialog(RequestPool.GetHomePage(), new DialogConfig.Builder().build(),new RequestProxy() {
 
             @Override
             public void onSuccess(String msg, String result) {
@@ -264,7 +265,6 @@ public class HomePageFragment extends BaseFragment {
     }
 
     private void initActionBarAction() {
-        actionbar.show();
         iv_actionbar_left.setVisibility(View.GONE);
         tv_actionbar_left.setVisibility(View.VISIBLE);
         tv_actionbar_left.setText("常熟");

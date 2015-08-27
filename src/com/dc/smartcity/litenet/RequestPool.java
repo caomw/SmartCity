@@ -29,9 +29,9 @@ public class RequestPool {
 	/**
 	 * 更多接口：加载顶子列表
 	 */
-	public static LiteRequest GetMoreServiceItem(String columnId,
-			String columnName) {
-		LiteRequest re = new LiteRequest("CW0103");
+	public static LiteRequest getMoreServiceItem(String columnId,
+												 String columnName) {
+		LiteRequest re = new LiteRequest("CW0102");
 		re.body.put("siteId", Config.cityCode);
 		re.body.put("columnId", columnId);
 		re.body.put("columnName", columnName);

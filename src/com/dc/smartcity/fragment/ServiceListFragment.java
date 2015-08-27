@@ -17,7 +17,6 @@ import com.dc.smartcity.activity.CordovaWebwiewActivity;
 import com.dc.smartcity.base.BaseFragment;
 import com.dc.smartcity.bean.more.ColumnItem;
 import com.dc.smartcity.bean.more.ServiceItem;
-import com.dc.smartcity.bean.more.ServiceList;
 import com.dc.smartcity.dialog.DialogConfig;
 import com.dc.smartcity.litenet.RequestPool;
 import com.dc.smartcity.litenet.interf.RequestProxy;
@@ -63,13 +62,14 @@ public class ServiceListFragment extends BaseFragment {
                 adapter = new ListAdapter(getActivity(), mServiceList);
                 pullToRefreshListview.setAdapter(adapter);
             } else {
-                sendRequestWithDialog(RequestPool.GetMoreServiceItem(mColumnItem.getColumnId(), mColumnItem.getColumnName()), new DialogConfig.Builder().build(), new RequestProxy() {
+                sendRequestWithDialog(RequestPool.getMoreServiceItem(mColumnItem.getColumnId(), mColumnItem.getColumnName()), new DialogConfig.Builder().build(), new RequestProxy() {
                     @Override
                     public void onSuccess(String msg, String result) {
-                        ServiceList list = JSON.parseObject(result, ServiceList.class);
-                        mServiceList = list.serviceList;
-                        ListAdapter adapter = new ListAdapter(getActivity(), mServiceList);
-                        pullToRefreshListview.setAdapter(adapter);
+                        mServiceList=JSON.parseArray(result,ServiceItem.class);
+                        if (mServiceList != null) {
+                            ListAdapter adapter = new ListAdapter(getActivity(), mServiceList);
+                            pullToRefreshListview.setAdapter(adapter);
+                        }
                     }
                 });
             }

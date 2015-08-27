@@ -13,7 +13,7 @@ public abstract class PullToRefreshAbsListViewBase<T extends AbsListView> extend
 		OnScrollListener {
 	
 	/**
-	 * »¬¶¯¼àÌýÆ÷£¨ÓëAbsListView.OnScrollListenerµÄ×÷ÓÃÏàÍ¬£©
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½AbsListView.OnScrollListenerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½
 	 *
 	 */
 	public interface PullToRefreshOnScrollListener extends OnScrollListener{}
@@ -24,14 +24,14 @@ public abstract class PullToRefreshAbsListViewBase<T extends AbsListView> extend
 	private FrameLayout refreshableViewHolder;
 	private int mtotalItemCount;
 	private int bottomVisibleItem;
-	private int ADVANCE_COUNT=0;//Ô¤¼ÓÔØÌáÇ°Á¿
-//	private int firstItem = 0,pad,index;// »¬¶¯Ö®Ç°µÚÒ»¸öitemµÄÎ»ÖÃ,ListViewµÄpaddingÖµ,»¬¶¯µÄµÚÒ»¸ö¿É¼ûItemÖµ
-//	private static Animation translate_foot_bottom_to_top,//µ×²¿TABÏÔÊ¾¶¯»­
-//							translate_foot_top_to_bottom,//µ×²¿TABÒþ²Ø¶¯»­
-//							translate_header_bottom_to_top,//Í·²¿TAbÒþ²Ø¶¯»­
-//							translate_header_top_to_bottom;//Í·²¿TAbÏÔÊ¾¶¯»­
+	private int ADVANCE_COUNT=0;//Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½
+//	private int firstItem = 0,pad,index;// ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½ï¿½Ò»ï¿½ï¿½itemï¿½ï¿½Î»ï¿½ï¿½,ListViewï¿½ï¿½paddingÖµ,ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Ò»ï¿½ï¿½ï¿½É¼ï¿½ItemÖµ
+//	private static Animation translate_foot_bottom_to_top,//ï¿½×²ï¿½TABï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
+//							translate_foot_top_to_bottom,//ï¿½×²ï¿½TABï¿½ï¿½ï¿½Ø¶ï¿½ï¿½ï¿½
+//							translate_header_bottom_to_top,//Í·ï¿½ï¿½TAbï¿½ï¿½ï¿½Ø¶ï¿½ï¿½ï¿½
+//							translate_header_top_to_bottom;//Í·ï¿½ï¿½TAbï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
 //	private View tabViewBottom,tabViewHeader,myView;
-//	private boolean inScroll = false,isHeaderAnimationFinish =true,isBottomAnimationFinish = true;//ÊÇ·ñÒÑ¾­»¬¶¯¹ý,¶¯»­ÊÇ·ñÒÑ¾­½áÊø
+//	private boolean inScroll = false,isHeaderAnimationFinish =true,isBottomAnimationFinish = true;//ï¿½Ç·ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	public PullToRefreshAbsListViewBase(Context context) {
 		super(context);
@@ -59,12 +59,12 @@ public abstract class PullToRefreshAbsListViewBase<T extends AbsListView> extend
 			}
 //		myView = view;
 //		index = firstVisibleItem;
-//		//ÉèÖÃÁÐ±í»¬¶¯Ê±TABÒþ²ØºÍÏÔÊ¾µÄ¼àÌý
+//		//ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ê±TABï¿½ï¿½ï¿½Øºï¿½ï¿½ï¿½Ê¾ï¿½Ä¼ï¿½ï¿½ï¿½
 //		if(tabViewHeader!=null){
-//			tabViewHeader.bringToFront();//½«µ±Ç°¶¯»­×é¼þ·ÅÔÚ×îÉÏ²ã
+//			tabViewHeader.bringToFront();//ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï²ï¿½
 //		}
 //		if(tabViewBottom!=null){
-//			tabViewBottom.bringToFront();//½«µ±Ç°¶¯»­×é¼þ·ÅÔÚ×îÉÏ²ã
+//			tabViewBottom.bringToFront();//ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï²ï¿½
 //		}
 //
 //		if (!(view.getLastVisiblePosition() == totalItemCount - 1)) {
@@ -89,7 +89,7 @@ public abstract class PullToRefreshAbsListViewBase<T extends AbsListView> extend
 //				}
 //			}
 //		}
-//		if(view.getFirstVisiblePosition() == 0 && inScroll){//µ½´ïÍ·²¿
+//		if(view.getFirstVisiblePosition() == 0 && inScroll){//ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½
 //			if(tabViewHeader != null){
 //				if(tabViewHeader.getVisibility() == View.VISIBLE){
 //					if(view.getPaddingTop() == 0){
@@ -109,7 +109,7 @@ public abstract class PullToRefreshAbsListViewBase<T extends AbsListView> extend
 
 	@Override
 	public  void onScrollStateChanged( AbsListView view,  int scrollState) {
-		if ((getMode()==MODE_AUTO_REFRESH||getMode()==(MODE_AUTO_REFRESH|MODE_PULL_DOWN_TO_REFRESH))&&bottomVisibleItem == mtotalItemCount-ADVANCE_COUNT /*&& scrollState == OnScrollListener.SCROLL_STATE_IDLE*/) {//µ½´ïµ×²¿&&ÔÚ»¬¶¯
+		if ((getMode()==MODE_AUTO_REFRESH||getMode()==(MODE_AUTO_REFRESH|MODE_PULL_DOWN_TO_REFRESH))&&bottomVisibleItem == mtotalItemCount-ADVANCE_COUNT /*&& scrollState == OnScrollListener.SCROLL_STATE_IDLE*/) {//ï¿½ï¿½ï¿½ï¿½×²ï¿½&&ï¿½Ú»ï¿½ï¿½ï¿½
 			if(lastSavedBottomVisibleItem!=bottomVisibleItem&&getOnRefreshListener()!=null){
 				lastSavedBottomVisibleItem=bottomVisibleItem;
 				if(getOnRefreshListener().onRefresh(MODE_AUTO_REFRESH))
@@ -146,7 +146,7 @@ public abstract class PullToRefreshAbsListViewBase<T extends AbsListView> extend
 	}
 
 //	/**
-//	 * ¼ì²éÊÇ·ñ¿ÉÒÔ¼ÌÐø¼ÓÔØ
+//	 * ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //	 */
 //	private void checkRefreshAble(){
 //		if(bottomVisibleItem == mtotalItemCount-ADVANCE_COUNT){
@@ -159,7 +159,7 @@ public abstract class PullToRefreshAbsListViewBase<T extends AbsListView> extend
 //	}
 
 	/**
-	 * Ë¢ÐÂÌáÇ°Á¿£¨Ä¬ÈÏµ½µ×²¿Ë¢ÐÂ£©
+	 * Ë¢ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½Ïµï¿½ï¿½×²ï¿½Ë¢ï¿½Â£ï¿½
 	 * @param count
 	 */
 	public void setAdvanceCount(int count){
@@ -167,19 +167,19 @@ public abstract class PullToRefreshAbsListViewBase<T extends AbsListView> extend
 	}
 
 	/**
-	 * Ê¹ÓÃ³¡¾°£º<br/><br/>
-	 * 1	ÁÐ±íµ×²¿¼ÓÔØºó(ÒÑ¼ÇÂ¼¸ÃÎ»ÖÃÒÑ¼ÓÔØ)£¬ÓÉÓÚÍøÂçÎÊÌâµÈÔ­ÒòÊý¾ÝÎ´¼ÓÔØ³É¹¦,ÐèÒªÔÙ´ÎÖØÐÂ¼ÓÔØ£¬ÕâÊ±¾ÍÒªµ÷ÓÃ
-	 * ´Ë·½·¨ÖØÐÂÉèÖÃ´ËÎ»ÖÃ¿É¼ÓÔØ<br/><br/>
+	 * Ê¹ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½<br/><br/>
+	 * 1	ï¿½Ð±ï¿½×²ï¿½ï¿½ï¿½ï¿½Øºï¿½(ï¿½Ñ¼ï¿½Â¼ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ñ¼ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½Ø³É¹ï¿½,ï¿½ï¿½Òªï¿½Ù´ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ø£ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
+	 * ï¿½Ë·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã´ï¿½Î»ï¿½Ã¿É¼ï¿½ï¿½ï¿½<br/><br/>
 	 *
-	 * 2	¶àÊý¾Ý¼¯¹²ÏíÁÐ±í£ºµ±Ç°²Ëµ¥Î»ÖÃ,ÁÐ±íÇëÇóµÚ1Ò³Êý¾Ýºó(¼ÙÉèÒ»Ò³Êý¾ÝÎª20Ìõ)£¬»¬¶¯µ½µ×²¿¼ÓÔØµÚ2Ò³£¬´ËÊ±position=20µÄÎ»ÖÃÒÑ¼ÇÂ¼Ë¢ÐÂ£¬
-	 * È»ºóÔÙµã»÷ÆäËû²Ëµ¥¼ÓÔØÊý¾Ýºó£¬ÁÐ±íÔÙ´Î¼ÓÔØµÚ2Ò³Êý¾ÝÊ±¾Í²»»áÔÚ×Ô¶¯Ë¢ÐÂÁË£¬
-	 * ÒòÎªÖ®Ç°²Ëµ¥×´Ì¬ÒÑ¼ÇÂ¼¹ý¸ÃÎ»ÖÃ(20)Ë¢ÐÂ¹ý£¬ÕâÊ±¾ÍÒªµ÷ÓÃ´Ë·½·¨ÖØÐÂÉèÖÃ¸Ãµ×²¿¿É¼ÓÔØ<br/>
-	 * <b>ps:½¨ÒéÃ¿´Îµã»÷²Ëµ¥µÄÊ±ºòµ÷ÓÃÏÂ´Ë·½·¨</b><br/><br/>
+	 * 2	ï¿½ï¿½ï¿½ï¿½ï¿½Ý¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ç°ï¿½Ëµï¿½Î»ï¿½ï¿½,ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1Ò³ï¿½ï¿½ï¿½Ýºï¿½(ï¿½ï¿½ï¿½ï¿½Ò»Ò³ï¿½ï¿½ï¿½ï¿½Îª20ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×²ï¿½ï¿½ï¿½ï¿½Øµï¿½2Ò³ï¿½ï¿½ï¿½ï¿½Ê±position=20ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ñ¼ï¿½Â¼Ë¢ï¿½Â£ï¿½
+	 * È»ï¿½ï¿½ï¿½Ùµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýºï¿½ï¿½Ð±ï¿½ï¿½Ù´Î¼ï¿½ï¿½Øµï¿½2Ò³ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Í²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½Ë¢ï¿½ï¿½ï¿½Ë£ï¿½
+	 * ï¿½ï¿½ÎªÖ®Ç°ï¿½Ëµï¿½×´Ì¬ï¿½Ñ¼ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½(20)Ë¢ï¿½Â¹ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Òªï¿½ï¿½ï¿½Ã´Ë·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¸Ãµ×²ï¿½ï¿½É¼ï¿½ï¿½ï¿½<br/>
+	 * <b>ps:ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½Îµï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â´Ë·ï¿½ï¿½ï¿½</b><br/><br/>
 	 *
-	 * 3	ÒµÎñÐèÒª<br/>
+	 * 3	Òµï¿½ï¿½ï¿½ï¿½Òª<br/>
 	 *
 	 * @param refreshAble
-	 * 	true :µ±Ç°µ×²¿¿É×Ô¶¯Ë¢ÐÂ ; false µ±Ç°µ×²¿²»¿ÉË¢ÐÂ
+	 * 	true :ï¿½ï¿½Ç°ï¿½×²ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½Ë¢ï¿½ï¿½ ; false ï¿½ï¿½Ç°ï¿½×²ï¿½ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½ï¿½
 	 */
 	public void setCurrentBottomAutoRefreshAble(boolean refreshAble){
 		if(refreshAble){
@@ -195,9 +195,9 @@ public abstract class PullToRefreshAbsListViewBase<T extends AbsListView> extend
 			@Override
 			public void onClick(View v) {
 				if (refreshableView instanceof ListView ) {
-					((ListView)refreshableView).setSelection(0);
+					refreshableView.setSelection(0);
 				}else if(refreshableView instanceof GridView){
-					((GridView)refreshableView).setSelection(0);
+					refreshableView.setSelection(0);
 				}
 			}
 		});
@@ -257,7 +257,7 @@ public abstract class PullToRefreshAbsListViewBase<T extends AbsListView> extend
 		refreshableViewHolder.addView(refreshableView, ViewGroup.LayoutParams.FILL_PARENT,
 				ViewGroup.LayoutParams.FILL_PARENT);
 		addView(refreshableViewHolder, new LayoutParams(LayoutParams.FILL_PARENT, 0, 1.0f));
-	};
+	}
 
 	protected boolean isReadyForPullDown() {
 		return isFirstItemVisible();
@@ -302,7 +302,7 @@ public abstract class PullToRefreshAbsListViewBase<T extends AbsListView> extend
 
 
 	/*
-	 *¿¼ÂÇµ½ÁÐ±í»¬¶¯Á÷³©ÐÔ£¬ÔÚ²»ÊÇMODE_AUTO_REFRESHµÄÄ£Ê½ÏÂ²»ÉèÖÃ¶ÔOnScrollµÄ¼àÌý
+	 *ï¿½ï¿½ï¿½Çµï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½ï¿½Ú²ï¿½ï¿½ï¿½MODE_AUTO_REFRESHï¿½ï¿½Ä£Ê½ï¿½Â²ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½OnScrollï¿½Ä¼ï¿½ï¿½ï¿½
 	 */
 	@Override
 	public void setMode(int mode) {
@@ -326,22 +326,22 @@ public abstract class PullToRefreshAbsListViewBase<T extends AbsListView> extend
 		}
 	}
 	/**
-	 * ÉèÖÃÁÐ±í»¬¶¯TABÒþ²ØºÍÏÔÊ¾
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½TABï¿½ï¿½ï¿½Øºï¿½ï¿½ï¿½Ê¾
 	 * @param mContext
-	 * @param tabViewBottom  µ×²¿Òþ²Ø°´Å¥
-	 * @param tabViewHeader Í·²¿Òþ²Ø°´Å¥
+	 * @param tabViewBottom  ï¿½×²ï¿½ï¿½ï¿½ï¿½Ø°ï¿½Å¥
+	 * @param tabViewHeader Í·ï¿½ï¿½ï¿½ï¿½ï¿½Ø°ï¿½Å¥
 	 */
 //	public void setTabView(Context mContext, final View tabViewBottom , final View tabViewHeader){
 //		this.tabViewBottom = tabViewBottom;
 //		this.tabViewHeader = tabViewHeader;
 //		System.out.println(tabViewHeader);
-//		if(tabViewHeader !=null ){//Í·²¿TAB
+//		if(tabViewHeader !=null ){//Í·ï¿½ï¿½TAB
 //			translate_header_top_to_bottom = AnimationUtils.loadAnimation(
-//					mContext, R.anim.tab_show_header_top_bottom);//Í·²¿TABÏÔÊ¾¶¯»­
+//					mContext, R.anim.tab_show_header_top_bottom);//Í·ï¿½ï¿½TABï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
 //			translate_header_bottom_to_top = AnimationUtils.loadAnimation(
-//					mContext, R.anim.tab_show_header_bottom_top);//Í·²¿TABÒþ²Ø¶¯»­
+//					mContext, R.anim.tab_show_header_bottom_top);//Í·ï¿½ï¿½TABï¿½ï¿½ï¿½Ø¶ï¿½ï¿½ï¿½
 //
-//			//Í·²¿¶¯»­¼àÌý
+//			//Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //			translate_header_bottom_to_top.setAnimationListener(new AnimationListener() {
 //
 //				@Override
@@ -391,13 +391,13 @@ public abstract class PullToRefreshAbsListViewBase<T extends AbsListView> extend
 //				}
 //			});
 //		}
-//	  if(tabViewBottom != null){//µ×²¿TAB
+//	  if(tabViewBottom != null){//ï¿½×²ï¿½TAB
 //			translate_foot_bottom_to_top = AnimationUtils.loadAnimation(
-//					mContext, R.anim.alpha_flight_sort_in);//µ×²¿TABÏÔÊ¾
+//					mContext, R.anim.alpha_flight_sort_in);//ï¿½×²ï¿½TABï¿½ï¿½Ê¾
 //			translate_foot_top_to_bottom = AnimationUtils.loadAnimation(
-//					mContext, R.anim.flight_sort_top_to_bottom);//µ×²¿TABÒþ²Ø¶¯»­
+//					mContext, R.anim.flight_sort_top_to_bottom);//ï¿½×²ï¿½TABï¿½ï¿½ï¿½Ø¶ï¿½ï¿½ï¿½
 //
-//			//µ×²¿¶¯»­¼àÌý
+//			//ï¿½×²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //			translate_foot_bottom_to_top.setAnimationListener(new AnimationListener() {
 //				
 //				@Override

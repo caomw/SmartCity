@@ -74,6 +74,9 @@ public class ServiceListFragment extends BaseFragment {
                 });
             }
 
+            View empty=mLayoutInflater.inflate(R.layout.view_empty,null);
+            pullToRefreshListview.setEmptyView(empty);
+
             pullToRefreshListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

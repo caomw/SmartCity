@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -30,6 +31,9 @@ public class WelcomeActivity extends BaseActionBarActivity {
     @ViewInject(R.id.viewPager)
     private ViewPager viewPager;
 
+    @ViewInject(R.id.iv_launch)
+    private ImageView iv_launch;
+
     private int totalNum = -1;
 
 
@@ -45,14 +49,28 @@ public class WelcomeActivity extends BaseActionBarActivity {
         hideActionBar();
         final boolean isFromMy = getIntent().getBooleanExtra(BundleKeys.ISFROMMY, false);
 
-
         if (!isFromMy) {//不是从个人中心进入，记录已经打开过
             SharedPreferences sharedPreferences = getSharedPreferences(BundleKeys.KEY_SHAREDPREFERENCES,
                     Activity.MODE_PRIVATE);
             String isopen = sharedPreferences.getString(BundleKeys.ISFIRSTOPEN, "0");
             if ("1".equals(isopen)) {   //打开过APP
-                startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
-                WelcomeActivity.this.finish();
+                new CountDownTimer(1000, 1000) {
+
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        Intent intent = new Intent();
+                        intent.setClass(WelcomeActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        if (Integer.parseInt(android.os.Build.VERSION.SDK) >= 5) {
+                            WelcomeActivity.this.overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
+                        }
+                        WelcomeActivity.this.finish();
+                    }
+                }.start();
                 return;
             } else {  //没有打开过APP
                 SharedPreferences mySharedPreferences = getSharedPreferences(BundleKeys.KEY_SHAREDPREFERENCES, Activity.MODE_PRIVATE);
@@ -60,6 +78,8 @@ public class WelcomeActivity extends BaseActionBarActivity {
                 editor.putString(BundleKeys.ISFIRSTOPEN, "1");
                 editor.commit();
             }
+        } else {
+            iv_launch.setVisibility(View.GONE);
         }
 
         View view1 = mLayoutInflater.inflate(R.layout.view_welcome, null);

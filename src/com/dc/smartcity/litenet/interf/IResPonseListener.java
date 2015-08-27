@@ -12,16 +12,16 @@ public interface IResPonseListener {
 	 * @param msg
 	 * @param result
 	 */
-	public void onSuccess(String msg, String result);
+	void onSuccess(String msg, String result);
 	/**
 	 * 业务处理失败
 	 * @param code
 	 * @param msg
 	 */
-	public void onError(String code, String msg);
+	void onError(String code, String msg);
 	/**
 	 * 取消
 	 * @param msg
 	 */
-	public void onCancel(String msg);
+	void onCancel(String msg);
 }

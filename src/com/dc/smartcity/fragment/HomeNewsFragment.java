@@ -43,8 +43,8 @@ public class HomeNewsFragment extends BaseFragment {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (!hidden) {
-//            hideActionBar(actionbar);
-            initActionBar();
+            hideActionBar(actionbar);
+//            initActionBar();
         }
     }
 
@@ -52,7 +52,8 @@ public class HomeNewsFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle bundle) {
         view = super.onCreateView(inflater, container, bundle);
-        initActionBar();
+//        initActionBar();
+        hideActionBar(actionbar);
         initViews();
         return view;
     }
@@ -71,7 +72,7 @@ public class HomeNewsFragment extends BaseFragment {
              */
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                ULog.error(url);
+                ULog.debug(url);
                 view.loadUrl(url);
                 return true;
             }

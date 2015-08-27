@@ -103,13 +103,13 @@ public class CordovaWebwiewActivity extends BaseActionBarActivity implements
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
-            ULog.error("----onPageFinished");
+            ULog.debug("----onPageFinished");
         }
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
-            ULog.error("----onPageStarted");
+            ULog.debug("----onPageStarted");
         }
 
         @Override
@@ -122,7 +122,7 @@ public class CordovaWebwiewActivity extends BaseActionBarActivity implements
 
         public void onProgressChanged(WebView view, int progress) {
 
-            ULog.error("----progress=" + progress);
+            ULog.debug("----progress=" + progress);
 
             // Activity和Webview根据加载程度决定进度条的进度大小
             // 当加载到100%的时候 进度条自动消失

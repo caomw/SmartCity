@@ -29,7 +29,7 @@ public class DFHPlugin extends CordovaPlugin {
 
 			localCallbackContext = null;
 		} else {
-			localCallbackContext = (CallbackContext) callbacks
+			localCallbackContext = callbacks
 					.remove(paramString);
 		}
 		return localCallbackContext;

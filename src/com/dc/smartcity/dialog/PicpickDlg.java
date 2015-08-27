@@ -60,7 +60,7 @@ public class PicpickDlg extends Dialog implements android.view.View.OnClickListe
 	}
 	
 	public interface IPictureListener{
-		public void notifyCamera();
-		public void notifyAlbum();
+		void notifyCamera();
+		void notifyAlbum();
 	}
 }

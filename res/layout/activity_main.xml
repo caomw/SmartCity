@@ -31,7 +31,7 @@
                 android:layout_weight="1"
                 android:drawableTop="@drawable/icon_menu_pay_bg"
                 android:text="@string/menu_pay"/>
-        
+
         <RadioButton
                 android:id="@+id/rb_menu_news"
                 style="@style/tab_main_style"
@@ -60,4 +60,5 @@
             android:orientation="horizontal"
             android:visibility="visible">
     </LinearLayout>
+
 </RelativeLayout>

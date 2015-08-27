@@ -79,8 +79,6 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
 		}
 	}
 
-	;
-
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -95,8 +93,8 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
 	public static final int MODE_PULL_DOWN_TO_REFRESH = 0x1;
 	public static final int MODE_PULL_UP_TO_REFRESH = 0x2;
 	public static final int MODE_BOTH = 0x3;
-	public static final int MODE_NONE = 0x0;//²»ÏÔÊ¾Ê±Ê¹ÓÃ
-	public static final int MODE_AUTO_REFRESH = 0x4;//×Ô¶¯Ë¢ÐÂ
+	public static final int MODE_NONE = 0x0;//ï¿½ï¿½ï¿½ï¿½Ê¾Ê±Ê¹ï¿½ï¿½
+	public static final int MODE_AUTO_REFRESH = 0x4;//ï¿½Ô¶ï¿½Ë¢ï¿½ï¿½
 
 	// ===========================================================
 	// Fields
@@ -682,7 +680,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
 		setHeaderScroll(newHeight);
 
 		if (newHeight != 0) {
-			//¸üÐÂ½ø¶ÈÌõ
+			//ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½
 			int tempHeight = Math.abs(newHeight) - headerHeight / 2;
 			switch (currentMode) {
 				case MODE_PULL_UP_TO_REFRESH:
@@ -747,14 +745,14 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static interface OnRefreshListener {
+	public interface OnRefreshListener {
 		/**
-		 * @param curMode µ±Ç°Ë¢ÐÂÄ£Ê½(·µ»ØÖµ²Î¿¼mode±äÁ¿)
-		 * @return ÓÃÓÚµ×²¿×Ô¶¯¼ÓÔØ£º
-		 * true£¬ÏÔÊ¾µ×²¿"ÕýÔÚ¼ÓÔØ"£»
-		 * false£¬²»ÏÔÊ¾
+		 * @param curMode ï¿½ï¿½Ç°Ë¢ï¿½ï¿½Ä£Ê½(ï¿½ï¿½ï¿½ï¿½Öµï¿½Î¿ï¿½modeï¿½ï¿½ï¿½ï¿½)
+		 * @return ï¿½ï¿½ï¿½Úµ×²ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Ø£ï¿½
+		 * trueï¿½ï¿½ï¿½ï¿½Ê¾ï¿½×²ï¿½"ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½"ï¿½ï¿½
+		 * falseï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 		 */
-		public boolean onRefresh(int curMode);
+		boolean onRefresh(int curMode);
 
 	}
 

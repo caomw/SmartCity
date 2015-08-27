@@ -7,6 +7,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
+import com.alibaba.fastjson.JSON;
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.android.dcone.ut.view.annotation.event.OnRadioGroupCheckedChange;
 import com.dc.smartcity.R;
@@ -16,6 +17,11 @@ import com.dc.smartcity.fragment.HomeAskFragment;
 import com.dc.smartcity.fragment.HomeMyFragment;
 import com.dc.smartcity.fragment.HomeNewsFragment;
 import com.dc.smartcity.fragment.HomePageFragment;
+import com.dc.smartcity.litenet.RequestPool;
+import com.dc.smartcity.litenet.interf.RequestProxy;
+import com.dc.smartcity.update.UpdateAg;
+import com.dc.smartcity.update.UpdateBean;
+import com.dc.smartcity.update.UpdateManager;
 import com.dc.smartcity.util.Utils;
 
 public class MainActivity extends BaseActionBarActivity implements OnCheckedChangeListener {
@@ -55,14 +61,27 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
      */
     private HomeNewsFragment mServiceFragment;
 
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         rb_menu_service.setChecked(true);
+        UpdateAg.init();
+        checkUpdate();
     }
 
-    @Override
+    //检查更新
+    private void checkUpdate() {
+		sendRequestWithNoDialog(RequestPool.checkUpdate(this), new RequestProxy() {
+			
+			@Override
+			public void onSuccess(String msg, String result) {
+				UpdateAg.update(MainActivity.this, result);
+			}
+		});
+	}
+
+	@Override
     protected void setContentView() {
         setContentView(R.layout.activity_main);
     }

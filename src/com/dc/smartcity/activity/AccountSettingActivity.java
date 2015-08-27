@@ -68,7 +68,7 @@ public class AccountSettingActivity extends BaseActionBarActivity {
     		tv_authname.setText(R.string.tv_unauth);
     	}else{
     		tv_authname.setText(R.string.tv_alauth);
-//    		btn_auth.setVisibility(View.GONE);
+    		btn_auth.setVisibility(View.GONE);
     	}
     	
     	if("1".equals(Utils.user.userAuth.pwdstrength)){

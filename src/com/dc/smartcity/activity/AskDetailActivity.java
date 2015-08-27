@@ -35,7 +35,7 @@ import com.dc.smartcity.view.pullrefresh.PullToRefreshListView;
  * 问答详情 Created by vincent on 2015/8/9.
  */
 public class AskDetailActivity extends BaseActionBarActivity implements
-		OnRefreshListener,OnSendMessage {
+		OnRefreshListener, OnSendMessage {
 
 	// 问答详情
 	AskObj obj;
@@ -120,6 +120,7 @@ public class AskDetailActivity extends BaseActionBarActivity implements
 	}
 
 	CommitDialog dlgCommit;
+
 	private void initActionBar() {
 
 		iv_actionbar_left.setVisibility(View.VISIBLE);
@@ -133,16 +134,15 @@ public class AskDetailActivity extends BaseActionBarActivity implements
 			}
 		});
 	}
-	
-	private void showCommentDlg(){
-		if(null == dlgCommit){
+
+	private void showCommentDlg() {
+		if (null == dlgCommit) {
 			dlgCommit = new CommitDialog(this, this);
 		}
-		if(!dlgCommit.isShowing()){
+		if (!dlgCommit.isShowing()) {
 			dlgCommit.show();
 		}
 	}
-	
 
 	private void updateUIDatas() {
 		tv_name.setText(obj.userName);
@@ -196,22 +196,27 @@ public class AskDetailActivity extends BaseActionBarActivity implements
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
 				convertView = LayoutInflater.from(mContext).inflate(
-						R.layout.item_comment_view, parent, false);
+						R.layout.item_ask_detail, parent, false);
 			}
-			ImageView ivHead = BaseViewHolder.get(convertView, R.id.iv_head);
-			TextView tvName = BaseViewHolder.get(convertView, R.id.tv_name);
-			TextView tvComment = BaseViewHolder.get(convertView,
-					R.id.tv_comment);
-			TextView tvTime = BaseViewHolder.get(convertView, R.id.tv_time);
+			// ImageView ivHead = BaseViewHolder.get(convertView, R.id.iv_head);
+			// TextView tvName = BaseViewHolder.get(convertView, R.id.tv_name);
+			// TextView tvComment = BaseViewHolder.get(convertView,
+			// R.id.tv_comment);
+			// TextView tvTime = BaseViewHolder.get(convertView, R.id.tv_time);
+			TextView tv_reply_title = BaseViewHolder.get(convertView,
+					R.id.tv_reply_title);
+			TextView tv_reply_content = BaseViewHolder.get(convertView,
+					R.id.tv_reply_content);
+			TextView tv_reply_time = BaseViewHolder.get(convertView,
+					R.id.tv_reply_time);
 
 			if (list.size() >= position) {
 				WeiguanBean obj = list.get(position);
-				ImageLoader.getInstance()
-						.displayImage(obj.userPhotoUrl, ivHead);
-				tvName.setText(obj.userName);
-				tvComment.setText(obj.citizenComment);
-				tvTime.setText(Utils.formatDateTime(obj.createTime));
-
+				// ImageLoader.getInstance()
+				// .displayImage(obj.userPhotoUrl, ivHead);
+				tv_reply_title.setText(obj.userName);
+				tv_reply_content.setText(obj.citizenComment);
+				tv_reply_time.setText(Utils.formatDateTime(obj.createTime));
 			}
 
 			return convertView;
@@ -237,14 +242,15 @@ public class AskDetailActivity extends BaseActionBarActivity implements
 
 	@Override
 	public void sendComment(String comment) {
-		sendRequestWithDialog(RequestPool.commentWG(comment, obj.observeId), new DialogConfig.Builder().build(), new RequestProxy() {
-			
-			@Override
-			public void onSuccess(String msg, String result) {
-				adapter.pageNo = 1;
-				queryComment();
-			}
-		});
+		sendRequestWithDialog(RequestPool.commentWG(comment, obj.observeId),
+				new DialogConfig.Builder().build(), new RequestProxy() {
+
+					@Override
+					public void onSuccess(String msg, String result) {
+						adapter.pageNo = 1;
+						queryComment();
+					}
+				});
 	}
 
 }

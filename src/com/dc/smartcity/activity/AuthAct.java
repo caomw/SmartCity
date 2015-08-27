@@ -34,6 +34,7 @@ import com.dc.smartcity.litenet.RequestPool;
 import com.dc.smartcity.litenet.interf.RequestProxy;
 import com.dc.smartcity.util.MyCount;
 import com.dc.smartcity.util.Utils;
+import com.dc.smartcity.view.LoadingDialog;
 
 /**
  * 实名认证接口 szsm_dyj 2015/08/20 create
@@ -78,6 +79,8 @@ public class AuthAct extends BaseActionBarActivity implements IPictureListener {
 	// 相册
 	static final int PICK_ALBUM = 200;
 
+	private LoadingDialog load;
+
 	@Override
 	protected void setContentView() {
 		setContentView(R.layout.act_auth);
@@ -96,6 +99,19 @@ public class AuthAct extends BaseActionBarActivity implements IPictureListener {
 		tv_loginname.setText(Utils.user.userBase.login);
 		if (!TextUtils.isEmpty(Utils.user.userBase.name)) {
 			et_idcard_name.setText(Utils.user.userBase.name);
+		}
+		load = LoadingDialog.create(this);
+	}
+
+	private void showProcess() {
+		if (null != load && !load.isShowing()) {
+			load.show();
+		}
+	}
+
+	private void dismsProcess() {
+		if (null != load && load.isShowing()) {
+			load.dismiss();
 		}
 	}
 
@@ -162,29 +178,39 @@ public class AuthAct extends BaseActionBarActivity implements IPictureListener {
 			return;
 		}
 		String bP = Utils.BitmapToBase64(bpic);
+		if (!cb_agree.isChecked()) {
+			Utils.showToast("请先阅读认证协议", this);
+			return;
+		}
 
-		sendRequestWithDialog(RequestPool.requestAuth(name, idcardCode, fP, bP,
-				Utils.user.userAuth.mobilenum),
-				new DialogConfig.Builder().build(), new RequestProxy() {
+		showProcess();
+		sendRequestWithNoDialog(RequestPool.requestAuth(name, idcardCode, fP,
+				bP, Utils.user.userAuth.mobilenum), new RequestProxy() {
 
-					@Override
-					public void onSuccess(String msg, String result) {
-						Utils.showToast("实名认证成功", AuthAct.this);
-						queryUserInfo();
-					}
+			@Override
+			public void onSuccess(String msg, String result) {
+				Utils.showToast("实名认证成功", AuthAct.this);
+				queryUserInfo();
+			}
 
-				});
+			@Override
+			public void onCancel(String msg) {
+				dismsProcess();
+			}
+
+		});
 	}
 
 	/**
 	 * 
 	 */
 	private void queryUserInfo() {
-		sendRequestWithDialog(RequestPool.requestUserInfo(),
-				new DialogConfig.Builder().build(), new RequestProxy() {
+		sendRequestWithNoDialog(RequestPool.requestUserInfo(),
+				new RequestProxy() {
 
 					@Override
 					public void onSuccess(String msg, String result) {
+						dismsProcess();
 						JSONObject obj = JSON.parseObject(result);
 						UserObj user = new UserObj();
 						user.userBase = JSON.parseObject(
@@ -197,7 +223,12 @@ public class AuthAct extends BaseActionBarActivity implements IPictureListener {
 						if (null != user.userBase) {
 							Utils.user = user;
 						}
-						finish();
+						// finish();
+					}
+
+					@Override
+					public void onCancel(String msg) {
+						dismsProcess();
 					}
 				});
 	}

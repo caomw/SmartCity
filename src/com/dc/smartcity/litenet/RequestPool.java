@@ -1,5 +1,8 @@
 package com.dc.smartcity.litenet;
 
+import android.content.Context;
+
+import com.android.dcone.ut.wbtech.ums.common.CommonUtil;
 import com.dc.smartcity.bean.user.ModifyUserBean;
 import com.dc.smartcity.litenet.response.LiteRequest;
 
@@ -90,13 +93,14 @@ public class RequestPool {
 		re.body.put("siteId", Config.cityCode);
 		return re;
 	}
+
 	/**
 	 * 修改用户密码
 	 *
 	 * @param columnId
 	 * @return
 	 */
-	public static LiteRequest changePass(String opass,String npass) {
+	public static LiteRequest changePass(String opass, String npass) {
 		LiteRequest re = new LiteRequest("center_userservice/service/CW0108");
 		re.body.put("PWDSTRENGTH", "01");
 		re.body.put("NEWPWD", npass);
@@ -115,6 +119,8 @@ public class RequestPool {
 	 */
 	public static LiteRequest requestLogin(String username, String password) {
 		LiteRequest re = new LiteRequest(Config.LOGIN_URL);
+		// LiteRequest re = new
+		// LiteRequest("http://changshu.scity.com/sso/service/CW6030");
 		re.body.put("username", username);
 		re.body.put("password", password);
 		return re;
@@ -150,6 +156,8 @@ public class RequestPool {
 	public static LiteRequest requestAuth(String name, String idcardCode,
 			String fpic, String bpic, String mobile) {
 		LiteRequest re = new LiteRequest("cs_portal/service/CW0606");
+		// LiteRequest re = new
+		// LiteRequest("http://192.168.3.102/portal/service/CW0606");
 		re.body.put("NAME", name);
 		re.body.put("IDCARDCODE", idcardCode);
 		re.body.put("FPICTURE", fpic);
@@ -197,12 +205,14 @@ public class RequestPool {
 		re.body.put("SEX", bean.sex);
 		return re;
 	}
+
 	/**
 	 * 发布微观
 	 *
 	 * @return
 	 */
-	public static LiteRequest submitWeiGuan(String title,String content,String isPublic,String loc) {
+	public static LiteRequest submitWeiGuan(String title, String content,
+			String isPublic, String loc) {
 		LiteRequest re = new LiteRequest("cs_portal/service/CW0202");
 		re.body.put("LOCATION", loc);
 		re.body.put("IS_PUBLIC", isPublic);
@@ -210,45 +220,59 @@ public class RequestPool {
 		re.body.put("TITLE", title);
 		return re;
 	}
+
 	/**
 	 * 微观-点评列表
 	 *
 	 * @return
 	 */
-	public static LiteRequest getCommentList(String observeId,int page) {
+	public static LiteRequest getCommentList(String observeId, int page) {
 		LiteRequest re = new LiteRequest("cs_mo/service/CW1731");
 		re.body.put("observeId", observeId);
 		re.body.put("page", String.valueOf(page));
 		re.body.put("size", "4");
 		return re;
 	}
+
 	/**
 	 * 更改绑定手机号
 	 *
 	 * @return
 	 */
-	public static LiteRequest changeBindMobile(String mobile,String code) {
+	public static LiteRequest changeBindMobile(String mobile, String code) {
 		LiteRequest re = new LiteRequest("center_userservice/service/CW0104");
 		re.body.put("MOBILENUM", mobile);
 		re.body.put("CODE", code);
 		return re;
 	}
-	
-    /**
-     * 提交反馈
-     */
-    public static LiteRequest feedback(String content) {
-        LiteRequest re = new LiteRequest("cs_portal/service/CW0611");
-        re.body.put("content", content);
-        return re;
-    }
-    /**
-     * 发表微观评论
-     */
-    public static LiteRequest commentWG(String comment,String observeId) {
-    	LiteRequest re = new LiteRequest("cs_mo/service/CW1730");
-    	re.body.put("observeId", observeId);
-    	re.body.put("comment", comment);
-    	return re;
-    }
+
+	/**
+	 * 提交反馈
+	 */
+	public static LiteRequest feedback(String content) {
+		LiteRequest re = new LiteRequest("cs_portal/service/CW0611");
+		re.body.put("content", content);
+		return re;
+	}
+
+	/**
+	 * 发表微观评论
+	 */
+	public static LiteRequest commentWG(String comment, String observeId) {
+		LiteRequest re = new LiteRequest("cs_mo/service/CW1730");
+		re.body.put("observeId", observeId);
+		re.body.put("comment", comment);
+		return re;
+	}
+
+	/**
+	 * 检查更新
+	 */
+	public static LiteRequest checkUpdate(Context context) {
+		LiteRequest re = new LiteRequest("CW0107");
+		re.body.put("versionCode", CommonUtil.getCurVersion(context));
+		re.body.put("system", "android");
+		// re.version = Config.version1;
+		return re;
+	}
 }

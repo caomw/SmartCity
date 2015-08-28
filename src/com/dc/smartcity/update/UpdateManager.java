@@ -33,7 +33,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.format.Time;
 import android.util.Log;
-import android.view.WindowManager;
 
 /**
  * 更新数据
@@ -89,6 +88,7 @@ public class UpdateManager {
 
 	};
 
+
 	public String now() {
 		Time localTime = new Time("Asia/Beijing");
 		localTime.setToNow();
@@ -135,7 +135,7 @@ public class UpdateManager {
 	/**
 	 * 更新提示对话框
 	 */
-	public void showNoticeDialog() {
+	public void showNoticeDialog(Context context ) {
 		AlertDialog.Builder builder = new Builder(context);
 		builder.setTitle("更新提示");
 		builder.setMessage(ubean.versionDetail);
@@ -143,7 +143,6 @@ public class UpdateManager {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
-				noticeDialog = null;
 				showDownloadDialog(context);
 			}
 
@@ -155,17 +154,18 @@ public class UpdateManager {
 				// System.exit(0);
 				// } else {
 				dialog.dismiss();
-				noticeDialog = null;
 				// }
 			}
 		});
+		
+//		if(null == noticeDialog){
 
-		noticeDialog = builder.create();
+		Dialog noticeDialog	 = builder.create();
+//		}
 		noticeDialog.show();
 	}
 
 	public void showSdDialog(final Context context) {
-		noticeDialog = null;
 		AlertDialog.Builder builder = new Builder(context);
 		builder.setTitle("提示");
 		builder.setMessage("SD卡不存在");

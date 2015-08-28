@@ -58,7 +58,7 @@
         <activity android:name="com.dc.smartcity.activity.NewsDetailActivity"/>
         <activity android:name="com.dc.smartcity.activity.SettingActivity"/>
         <activity android:name="com.dc.smartcity.activity.MainActivity"
-                  android:launchMode="singleTask"/>
+                  android:launchMode="singleInstance"/>
         <activity android:name="com.dc.smartcity.activity.AboutActivity"/>
         <activity android:name="com.dc.smartcity.activity.FeedbackActivity"/>
         <activity android:name="com.dc.smartcity.activity.ModifyUserInfoAct"/>

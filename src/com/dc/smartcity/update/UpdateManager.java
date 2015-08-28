@@ -163,7 +163,10 @@ public class UpdateManager {
 				// }
 			}
 		});
-		noticeDialog = builder.create();
+		
+		if(null == noticeDialog){
+			noticeDialog = builder.create();
+		}
 		noticeDialog.show();
 	}
 

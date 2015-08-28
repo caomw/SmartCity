@@ -51,6 +51,13 @@ public class HomeMyFragment extends BaseFragment {
     @ViewInject(R.id.userHead)
     private RoundImageView userHead;
 
+    @ViewInject(R.id.tv_update)
+    private TextView tv_update;
+
+    @ViewInject(R.id.btn_exit)
+    private TextView btn_exit;
+
+
     @Override
     protected int setContentView() {
         return R.layout.fragment_my;
@@ -73,7 +80,7 @@ public class HomeMyFragment extends BaseFragment {
             name.setText(Utils.user.userBase.login);
             tvNotlogin.setVisibility(View.GONE);
             l_login.setVisibility(View.VISIBLE);
-            ImageLoader.getInstance().displayImage(Utils.user.userBase.headphotourl, userHead,R.drawable.default_head);
+            ImageLoader.getInstance().displayImage(Utils.user.userBase.headphotourl, userHead, R.drawable.default_head);
         } else {
             name.setVisibility(View.GONE);
             tvNotlogin.setVisibility(View.VISIBLE);

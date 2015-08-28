@@ -105,7 +105,9 @@ public class RequestService {
 		// } else {
 		// alertDialog.setOnDismissListener(null);
 		// }
-		alertDialog.show();
+		if(!alertDialog.isShowing()){
+			alertDialog.show();
+		}
 		Log.e("RequestService", "Dialog show:currTime:"+System.currentTimeMillis());
 	}
 

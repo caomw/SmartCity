@@ -92,7 +92,7 @@ public class HomePageFragment extends BaseFragment {
     }
 
     private void initBiz() {
-        sendRequestWithDialog(RequestPool.GetHomePage(), new DialogConfig.Builder().build(),new RequestProxy() {
+        sendRequestWithNoDialog(RequestPool.GetHomePage(), new RequestProxy() {
 
             @Override
             public void onSuccess(String msg, String result) {

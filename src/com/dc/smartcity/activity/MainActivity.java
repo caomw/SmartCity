@@ -76,7 +76,9 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
 			
 			@Override
 			public void onSuccess(String msg, String result) {
-				UpdateAg.update(MainActivity.this, result);
+				if(!isFinishing()){
+					UpdateAg.update(MainActivity.this, result);
+				}
 			}
 		});
 	}

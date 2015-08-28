@@ -182,8 +182,13 @@ public class HomeMyFragment extends BaseFragment {
 			checkUpdate();
 			break;
 		case R.id.btn_exit:
-			Utils.logout();
-			updateLoginUI();
+			if (Utils.isLogon()) {
+				Utils.logout();
+                btn_exit.setVisibility(View.GONE);
+                updateLoginUI();
+                Utils.showToast("退出登录成功", getActivity());
+            }
+			
 			break;
 		default:
 			break;

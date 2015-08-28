@@ -43,6 +43,10 @@ public class Utils {
 		return mobile.replace(mobile.substring(3, 7), "****");
 	}
 
+	public static void logout(){
+		accessTicket = null;
+		user = null;
+	}
 	/**
 	 * 是否登陆
 	 * 

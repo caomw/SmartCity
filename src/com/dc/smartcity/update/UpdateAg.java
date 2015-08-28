@@ -6,6 +6,7 @@ import android.os.HandlerThread;
 import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
+import com.dc.smartcity.util.Utils;
 /**
  * 更新
  * @author szsm
@@ -32,6 +33,11 @@ public class UpdateAg {
 		final UpdateBean version = JSON.parseObject(result, UpdateBean.class);
 
 		if (null == version) {
+			return;
+		}
+		
+		if(!version.isUpdate){
+			Utils.showToast("当前已是最新版本", context);
 			return;
 		}
 		Runnable isupdateRunnable = new Runnable() {

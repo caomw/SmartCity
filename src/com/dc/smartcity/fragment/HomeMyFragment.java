@@ -14,6 +14,7 @@ import com.android.dcone.ut.view.annotation.event.OnClick;
 import com.dc.smartcity.R;
 import com.dc.smartcity.activity.*;
 import com.dc.smartcity.base.BaseFragment;
+import com.dc.smartcity.dialog.DialogConfig;
 import com.dc.smartcity.litenet.RequestPool;
 import com.dc.smartcity.litenet.interf.RequestProxy;
 import com.dc.smartcity.net.ImageLoader;
@@ -191,7 +192,7 @@ public class HomeMyFragment extends BaseFragment {
 
     //检查更新
     private void checkUpdate() {
-        sendRequestWithNoDialog(RequestPool.checkUpdate(getActivity()), new RequestProxy() {
+        sendRequestWithDialog(RequestPool.checkUpdate(getActivity()), new DialogConfig.Builder().build(), new RequestProxy() {
 
             @Override
             public void onSuccess(String msg, String result) {

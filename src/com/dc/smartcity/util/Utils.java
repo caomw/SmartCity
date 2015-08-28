@@ -49,10 +49,7 @@ public class Utils {
 	 * @return
 	 */
 	public static boolean isLogon() {
-		if (!TextUtils.isEmpty(accessTicket) && null != user) {
-			return true;
-		}
-		return false;
+		return !TextUtils.isEmpty(accessTicket) && null != user;
 	}
 
 	public static String BitmapToBase64(Bitmap bitmap) {

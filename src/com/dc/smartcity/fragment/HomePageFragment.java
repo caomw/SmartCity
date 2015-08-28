@@ -61,6 +61,12 @@ public class HomePageFragment extends BaseFragment {
     private RelativeLayout mudule_3;
     @ViewInject(R.id.mudule_4)
     private RelativeLayout mudule_4;
+    @ViewInject(R.id.rl_bottom)
+    private RelativeLayout rl_bottom;
+
+    @ViewInject(R.id.view_empty)
+    private View view_empty;
+
 
     private ActionBar actionbar;
 
@@ -69,7 +75,7 @@ public class HomePageFragment extends BaseFragment {
 
     public HomePageFragment(ActionBar actionBar) {
         super(actionBar);
-        this.actionbar=actionBar;
+        this.actionbar = actionBar;
         ULog.debug("---HomePageFragment", TAG);
     }
 
@@ -92,13 +98,21 @@ public class HomePageFragment extends BaseFragment {
     }
 
     private void initBiz() {
-        sendRequestWithNoDialog(RequestPool.GetHomePage(), new RequestProxy() {
+        sendRequestWithDialog(RequestPool.GetHomePage(), new DialogConfig.Builder().build(), new RequestProxy() {
 
             @Override
             public void onSuccess(String msg, String result) {
                 updatePage(result);
             }
+
+            @Override
+            public void onError(String code, String msg) {
+                super.onError(code, msg);
+                rl_bottom.setVisibility(View.GONE);
+                view_empty.setVisibility(View.VISIBLE);
+            }
         });
+
     }
 
     protected void updatePage(String result) {
@@ -265,6 +279,7 @@ public class HomePageFragment extends BaseFragment {
     }
 
     private void initActionBarAction() {
+        actionbar.show();
         iv_actionbar_left.setVisibility(View.GONE);
         tv_actionbar_left.setVisibility(View.VISIBLE);
         tv_actionbar_left.setText("常熟");

@@ -78,7 +78,7 @@ public class TitlePageIndicator extends View implements PageIndicator {
 
         public final int value;
 
-        private IndicatorStyle(int value) {
+        IndicatorStyle(int value) {
             this.value = value;
         }
 
@@ -97,7 +97,7 @@ public class TitlePageIndicator extends View implements PageIndicator {
 
         public final int value;
 
-        private LinePosition(int value) {
+        LinePosition(int value) {
             this.value = value;
         }
 

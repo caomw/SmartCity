@@ -224,7 +224,6 @@ public class SearchServiceActivity extends BaseActionBarActivity {
      */
 
     private void showSoftInput() {
-        ULog.error("----showSoftInput()");
         if (imm != null && imm.isActive()) {
             imm.showSoftInput(et_actionbar_search,
                     InputMethodManager.RESULT_SHOWN);

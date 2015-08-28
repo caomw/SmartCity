@@ -89,7 +89,7 @@ public abstract class BaseActionBarActivity extends FragmentActivity {
 		iv_actionbar_left.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				ULog.error("%s----iv_actionbar_left.onClick", TAG);
+				ULog.debug("%s----iv_actionbar_left.onClick", TAG);
 				onBackPressed();
 			}
 		});

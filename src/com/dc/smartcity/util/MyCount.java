@@ -37,10 +37,7 @@ public class MyCount extends CountDownTimer {
 	}
 
 	public boolean getMills() {
-		if (MILLS_IN_FUTURE == 0 || COUNT_MILLS == MILLS_IN_FUTURE) {
-			return false;
-		}
-		return true;
+		return !(MILLS_IN_FUTURE == 0 || COUNT_MILLS == MILLS_IN_FUTURE);
 	}
 
 	public long getCurrMill() {

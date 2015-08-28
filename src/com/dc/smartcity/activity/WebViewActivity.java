@@ -51,7 +51,7 @@ public class WebViewActivity extends BaseActionBarActivity {
              */
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                ULog.error(url);
+                ULog.debug(url);
                 view.loadUrl(url);
                 return true;
             }

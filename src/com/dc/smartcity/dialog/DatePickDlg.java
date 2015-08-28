@@ -59,6 +59,6 @@ public class DatePickDlg extends Dialog implements View.OnClickListener{
 	}
 
 	public interface IDateChange {
-		public void notifyDateChange(String time);
+		void notifyDateChange(String time);
 	}
 }

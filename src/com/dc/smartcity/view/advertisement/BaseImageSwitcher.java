@@ -102,7 +102,6 @@ public abstract class BaseImageSwitcher<T> extends RelativeLayout implements OnI
             }
         }
 
-        ;
     };
 
     public BaseImageSwitcher(Context context, AttributeSet attrs, int defStyle) {

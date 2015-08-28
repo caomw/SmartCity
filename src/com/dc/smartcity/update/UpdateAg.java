@@ -16,9 +16,9 @@ public class UpdateAg {
 	private static Handler handler;
 
 	public static void init() {
-		HandlerThread localHandlerThread = new HandlerThread("UpdateAg");
-		localHandlerThread.start();
-		UpdateAg.handler = new Handler(localHandlerThread.getLooper());
+//		HandlerThread localHandlerThread = new HandlerThread("UpdateAg");
+//		localHandlerThread.start();
+//		UpdateAg.handler = new Handler(localHandlerThread.getLooper());
 	}
 
 	/**
@@ -26,7 +26,7 @@ public class UpdateAg {
 	 * 
 	 * @param context
 	 */
-	public static void update(final Context context, String result) {
+	public static void update( Context context, String result) {
 		if (TextUtils.isEmpty(result)) {
 			return;
 		}
@@ -40,14 +40,15 @@ public class UpdateAg {
 			Utils.showToast("当前已是最新版本", context);
 			return;
 		}
-		Runnable isupdateRunnable = new Runnable() {
-
-			@Override
-			public void run() {
-				isUpdate(context, version);
-			}
-		};
-		handler.post(isupdateRunnable);
+		isUpdate(context, version);
+//		Runnable isupdateRunnable = new Runnable() {
+//
+//			@Override
+//			public void run() {
+//				isUpdate(context, version);
+//			}
+//		};
+//		handler.post(isupdateRunnable);
 	}
 
 	private static void isUpdate(Context context, UpdateBean version) {
@@ -55,7 +56,7 @@ public class UpdateAg {
 		UpdateManager manager = UpdateManager.getInstance(context);
 		manager.checkUpdate(version);
 		if (version.isUpdate) {
-			manager.showNoticeDialog();
+			manager.showNoticeDialog(context);
 		}
 	}
 }

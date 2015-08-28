@@ -201,7 +201,7 @@ public class HomeMyFragment extends BaseFragment {
 
             @Override
             public void onError(String code, String msg) {
-
+                Utils.showToast("检测更新异常:msg="+msg, getActivity());
             }
         });
     }

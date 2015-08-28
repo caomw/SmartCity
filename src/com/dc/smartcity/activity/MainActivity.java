@@ -65,10 +65,10 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
         super.onCreate(savedInstanceState);
         rb_menu_service.setChecked(true);
 
-        UpdateAg.init();
+//        UpdateAg.init();
         checkUpdate();
 
-        ULog.debug("----onCreate");
+        ULog.error("----onCreate");
     }
 
     //检查更新

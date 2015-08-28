@@ -40,6 +40,7 @@ public abstract class BaseActionBarActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		BaseApplication.getInstance().onActCreate(this);
 		mContext = this;
 		mLoadingDialog = LoadingDialog.create(mContext,
 				mContext.getString(R.string.loading));
@@ -62,6 +63,7 @@ public abstract class BaseActionBarActivity extends FragmentActivity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		BaseApplication.getInstance().onActDestroy(this);
 		// baseService.cancelAllRequest();
 	}
 

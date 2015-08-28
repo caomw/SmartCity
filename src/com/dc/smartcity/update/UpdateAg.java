@@ -37,7 +37,6 @@ public class UpdateAg {
 		}
 		
 		if(!version.isUpdate){
-			Utils.showToast("当前已是最新版本", context);
 			return;
 		}
 		Runnable isupdateRunnable = new Runnable() {

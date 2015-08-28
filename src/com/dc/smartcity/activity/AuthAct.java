@@ -97,9 +97,9 @@ public class AuthAct extends BaseActionBarActivity implements IPictureListener {
 
 	private void initUserInfo() {
 		tv_loginname.setText(Utils.user.userBase.login);
-		if (!TextUtils.isEmpty(Utils.user.userBase.name)) {
-			et_idcard_name.setText(Utils.user.userBase.name);
-		}
+//		if (!TextUtils.isEmpty(Utils.user.userBase.name)) {
+//			et_idcard_name.setText(Utils.user.userBase.name);
+//		}
 		load = LoadingDialog.create(this);
 	}
 
@@ -198,9 +198,9 @@ public class AuthAct extends BaseActionBarActivity implements IPictureListener {
 				Utils.showToast("实名认证申请提交成功", AuthAct.this);
 				queryUserInfo();
 			}
-
 			@Override
-			public void onCancel(String msg) {
+			public void onError(String code, String msg) {
+				Utils.showToast("实名认证申请失败:"+msg, AuthAct.this);
 				dismsProcess();
 			}
 

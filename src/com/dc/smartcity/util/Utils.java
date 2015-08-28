@@ -55,6 +55,18 @@ public class Utils {
     public static boolean isLogon() {
         return !TextUtils.isEmpty(accessTicket) && null != user;
     }
+    /**
+     * 是否登陆
+     *
+     * @return
+     */
+    public static boolean isRealName() {
+    	if(null == user){
+    		return false;
+    	}
+    	return (!"01".equals(user.userBase.level)&&
+    			!"0201".equals(user.userBase.level));
+    }
 
     public static void clearUserData() {
         accessTicket = "";

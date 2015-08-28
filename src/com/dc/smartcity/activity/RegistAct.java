@@ -144,7 +144,7 @@ public class RegistAct extends BaseActionBarActivity {
 
 					@Override
 					public void onSuccess(String msg, String result) {
-						Utils.showToast(result, RegistAct.this);
+						Utils.showToast("验证码发送成功", RegistAct.this);
 					}
 
 					@Override

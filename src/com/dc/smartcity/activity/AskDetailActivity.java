@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -136,12 +137,18 @@ public class AskDetailActivity extends BaseActionBarActivity implements
 	}
 
 	private void showCommentDlg() {
-		if (null == dlgCommit) {
-			dlgCommit = new CommitDialog(this, this);
+		if(!Utils.isRealName()){
+			startActivity(new Intent(this, AuthAct.class));
+		}else{
+			
+			if (null == dlgCommit) {
+				dlgCommit = new CommitDialog(this, this);
+			}
+			if (!dlgCommit.isShowing()) {
+				dlgCommit.show();
+			}
 		}
-		if (!dlgCommit.isShowing()) {
-			dlgCommit.show();
-		}
+		
 	}
 
 	private void updateUIDatas() {
@@ -247,6 +254,7 @@ public class AskDetailActivity extends BaseActionBarActivity implements
 
 					@Override
 					public void onSuccess(String msg, String result) {
+						Utils.showToast(msg, AskDetailActivity.this);
 						adapter.pageNo = 1;
 						queryComment();
 					}

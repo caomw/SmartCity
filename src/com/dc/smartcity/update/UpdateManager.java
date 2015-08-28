@@ -34,9 +34,6 @@ import android.os.Message;
 import android.text.format.Time;
 import android.util.Log;
 
-import com.android.dcone.ut.UpdateAgent;
-import com.android.dcone.ut.update.UnZipUtil;
-
 /**
  * 更新数据
  * 
@@ -91,9 +88,6 @@ public class UpdateManager {
 
 	};
 
-	private void installH5() {
-		UnZipUtil.installNewH5File(context, saveFile);
-	}
 
 	public String now() {
 		Time localTime = new Time("Asia/Beijing");

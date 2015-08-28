@@ -53,7 +53,7 @@ public class Utils {
         return !TextUtils.isEmpty(accessTicket) && null != user;
     }
 
-    public static boolean clearUserData() {
+    public static void clearUserData() {
         accessTicket = "";
         user = null;
     }

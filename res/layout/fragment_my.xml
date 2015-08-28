@@ -51,7 +51,7 @@
                 android:background="@color/background_color"
                 android:orientation="horizontal"
                 android:padding="10dp"
-                android:text="登陆|注册"
+                android:text="登录|注册"
                 android:textColor="@color/base_blue"
                 android:textSize="@dimen/text_size_hint" />
 

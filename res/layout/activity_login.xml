@@ -101,7 +101,7 @@
             android:layout_margin="15dp"
             android:background="@drawable/login_bg"
             
-            android:text="登     陆"
+            android:text="登     录"
              />
 
         <TextView

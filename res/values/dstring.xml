@@ -49,7 +49,7 @@
     <string name="tv_loginname">登录名:</string>
     <string name="tv_authname">实名认证:</string>
     <string name="tv_bingding">手机绑定:</string>
-    <string name="tv_loadpass">登陆密码:</string>
+    <string name="tv_loadpass">登录密码:</string>
     <string name="btn_action_auth">  &#160;&#160;去实名认证&#160;&#160;</string>
     <string name="btn_action_bind">更改绑定号码</string>
     <string name="btn_action_pass">更改登录密码</string>

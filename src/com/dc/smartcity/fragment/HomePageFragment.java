@@ -89,6 +89,7 @@ public class HomePageFragment extends BaseFragment {
                              Bundle bundle) {
         view = super.onCreateView(inflater, container, bundle);
         initActionBarAction();
+        rl_bottom.setVisibility(View.GONE);
         // initGridView();
         // initBottomMudule();
 
@@ -102,6 +103,7 @@ public class HomePageFragment extends BaseFragment {
 
             @Override
             public void onSuccess(String msg, String result) {
+                rl_bottom.setVisibility(View.VISIBLE);
                 updatePage(result);
             }
 

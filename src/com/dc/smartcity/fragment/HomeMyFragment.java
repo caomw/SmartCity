@@ -6,20 +6,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import cn.sharesdk.onekeyshare.OnekeyShare;
-
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.android.dcone.ut.view.annotation.event.OnClick;
 import com.dc.smartcity.R;
-import com.dc.smartcity.activity.AccountSettingActivity;
-import com.dc.smartcity.activity.CordovaWebwiewActivity;
-import com.dc.smartcity.activity.FeedbackActivity;
-import com.dc.smartcity.activity.LoginActivity;
-import com.dc.smartcity.activity.ModifyUserInfoAct;
-import com.dc.smartcity.activity.SettingActivity;
-import com.dc.smartcity.activity.WelcomeActivity;
+import com.dc.smartcity.activity.*;
 import com.dc.smartcity.base.BaseFragment;
 import com.dc.smartcity.net.ImageLoader;
 import com.dc.smartcity.util.BundleKeys;
@@ -55,7 +49,7 @@ public class HomeMyFragment extends BaseFragment {
     private TextView tv_update;
 
     @ViewInject(R.id.btn_exit)
-    private TextView btn_exit;
+    private Button btn_exit;
 
 
     @Override
@@ -76,12 +70,14 @@ public class HomeMyFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         if (Utils.isLogon()) {
+            btn_exit.setVisibility(View.VISIBLE);
             name.setVisibility(View.VISIBLE);
             name.setText(Utils.user.userBase.login);
             tvNotlogin.setVisibility(View.GONE);
             l_login.setVisibility(View.VISIBLE);
             ImageLoader.getInstance().displayImage(Utils.user.userBase.headphotourl, userHead, R.drawable.default_head);
         } else {
+            btn_exit.setVisibility(View.GONE);
             name.setVisibility(View.GONE);
             tvNotlogin.setVisibility(View.VISIBLE);
             l_login.setVisibility(View.GONE);
@@ -158,6 +154,15 @@ public class HomeMyFragment extends BaseFragment {
                 Intent intent_welcome = new Intent(getActivity(), WelcomeActivity.class);
                 intent_welcome.putExtra(BundleKeys.ISFROMMY, true);
                 startActivity(intent_welcome);
+                break;
+
+            case R.id.btn_exit:
+                if (Utils.isLogon()) {
+                    Utils.clearUserData();
+                    btn_exit.setVisibility(View.GONE);
+                    Utils.showToast("退出登录成功", getActivity());
+                }
+
                 break;
             default:
                 break;

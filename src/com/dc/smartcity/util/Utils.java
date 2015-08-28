@@ -18,90 +18,95 @@ import android.widget.Toast;
 import com.dc.smartcity.bean.user.UserObj;
 
 public class Utils {
-	public static UserObj user;// 登录的用户信息
-	public static DisplayMetrics dm;
+    private static String accessTicket;
+    public static UserObj user;// 登录的用户信息
+    public static DisplayMetrics dm;
 
-	public static void showToast(CharSequence message, Context context) {
-		int duration = Toast.LENGTH_SHORT;
-		Toast toast = Toast.makeText(context.getApplicationContext(), message,
-				duration);
-		toast.show();
-	}
+    public static void showToast(CharSequence message, Context context) {
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context.getApplicationContext(), message,
+                duration);
+        toast.show();
+    }
 
-	public static DisplayMetrics getMetrics(Activity activity) {
-		if (null == dm) {
-			dm = new DisplayMetrics();
-			activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
-		}
-		return dm;
-	}
+    public static DisplayMetrics getMetrics(Activity activity) {
+        if (null == dm) {
+            dm = new DisplayMetrics();
+            activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
+        }
+        return dm;
+    }
 
-	public static String mixPhone(String mobile) {
-		if (TextUtils.isEmpty(mobile) || mobile.length() != 11) {
-			return mobile;
-		}
-		return mobile.replace(mobile.substring(3, 7), "****");
-	}
+    public static String mixPhone(String mobile) {
+        if (TextUtils.isEmpty(mobile) || mobile.length() != 11) {
+            return mobile;
+        }
+        return mobile.replace(mobile.substring(3, 7), "****");
+    }
 
-	/**
-	 * 是否登陆
-	 * 
-	 * @return
-	 */
-	public static boolean isLogon() {
-		return !TextUtils.isEmpty(accessTicket) && null != user;
-	}
+    /**
+     * 是否登陆
+     *
+     * @return
+     */
+    public static boolean isLogon() {
+        return !TextUtils.isEmpty(accessTicket) && null != user;
+    }
 
-	public static String BitmapToBase64(Bitmap bitmap) {
-		if (bitmap == null) {
-			return null;
-		}
-		ByteArrayOutputStream out = null;
-		try {
-			out = new ByteArrayOutputStream();
-			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+    public static boolean clearUserData() {
+        accessTicket = "";
+        user = null;
+    }
 
-			out.flush();
-			out.close();
+    public static String BitmapToBase64(Bitmap bitmap) {
+        if (bitmap == null) {
+            return null;
+        }
+        ByteArrayOutputStream out = null;
+        try {
+            out = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
 
-			byte[] imgBytes = out.toByteArray();
-			return new String(Base64.encodeBase64(imgBytes));
-		} catch (Exception e) {
-			return null;
-		} finally {
-			try {
-				out.flush();
-				out.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+            out.flush();
+            out.close();
 
-	private static String accessTicket;
+            byte[] imgBytes = out.toByteArray();
+            return new String(Base64.encodeBase64(imgBytes));
+        } catch (Exception e) {
+            return null;
+        } finally {
+            try {
+                out.flush();
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-	public static void setAccessTicket(String accessTick) {
-		accessTicket = accessTick;
-	}
 
-	public static String getAccessTicket() {
-		return accessTicket;
-	}
+    public static void setAccessTicket(String accessTick) {
+        accessTicket = accessTick;
+    }
 
-	public static String formatDate(String timpstam) {
-		if (TextUtils.isEmpty(timpstam)) {
-			return "";
-		}
-		long time = (long) Double.parseDouble(timpstam);
-		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date(time);
-		return sdf.format(date);
-	}
+    public static String getAccessTicket() {
+        return accessTicket;
+    }
 
-	public static String formatDateTime(String timpstam) {
-		long time = (long) Double.parseDouble(timpstam);
-		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-		Date date = new Date(time);
-		return sdf.format(date);
-	}
+    public static String formatDate(String timpstam) {
+        if (TextUtils.isEmpty(timpstam)) {
+            return "";
+        }
+        long time = (long) Double.parseDouble(timpstam);
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(time);
+        return sdf.format(date);
+    }
+
+    public static String formatDateTime(String timpstam) {
+        long time = (long) Double.parseDouble(timpstam);
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Date date = new Date(time);
+        return sdf.format(date);
+    }
 }

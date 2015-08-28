@@ -63,7 +63,9 @@ public class ServiceListActivity extends BaseActionBarActivity {
                         startActivity(intent);
                     }
                 });
-                View empty=mLayoutInflater.inflate(R.layout.view_empty,null);
+                View empty = mLayoutInflater.inflate(R.layout.view_empty, null);
+                TextView tv_content = (TextView) empty.findViewById(R.id.tv_content);
+                tv_content.setText("正在建设中");
                 pullToRefreshListview.setEmptyView(empty);
             }
         });

@@ -18,6 +18,7 @@ import com.dc.smartcity.fragment.HomePageFragment;
 import com.dc.smartcity.litenet.RequestPool;
 import com.dc.smartcity.litenet.interf.RequestProxy;
 import com.dc.smartcity.update.UpdateAg;
+import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.util.Utils;
 
 public class MainActivity extends BaseActionBarActivity implements OnCheckedChangeListener {
@@ -66,6 +67,8 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
 
         UpdateAg.init();
         checkUpdate();
+
+        ULog.debug("----onCreate");
     }
 
     //检查更新

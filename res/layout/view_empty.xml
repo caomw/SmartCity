@@ -6,6 +6,7 @@
               android:background="@color/whitesmoke">
 
     <TextView
+            android:id="@+id/tv_content"
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_width="match_parent"

@@ -137,7 +137,9 @@ public class AskDetailActivity extends BaseActionBarActivity implements
 	}
 
 	private void showCommentDlg() {
-		if(!Utils.isRealName()){
+		if(!Utils.isLogon()){
+			startActivity(new Intent(this, LoginActivity.class));
+		}else if(!Utils.isRealName()){
 			startActivity(new Intent(this, AuthAct.class));
 		}else{
 			

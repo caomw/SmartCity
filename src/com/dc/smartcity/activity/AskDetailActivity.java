@@ -83,6 +83,7 @@ public class AskDetailActivity extends BaseActionBarActivity implements
 		queryComment();
 	}
 
+	
 	private void queryComment() {
 		sendRequestWithDialog(
 				RequestPool.getCommentList(obj.observeId, adapter.pageNo),

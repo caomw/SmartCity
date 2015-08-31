@@ -10,6 +10,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.android.dcone.ut.ViewUtils;
 import com.dc.smartcity.R;
 import com.dc.smartcity.dialog.DialogConfig;
@@ -19,6 +20,7 @@ import com.dc.smartcity.litenet.interf.RequestProxy;
 import com.dc.smartcity.litenet.response.LiteRequest;
 import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.view.LoadingDialog;
+import com.umeng.analytics.MobclickAgent;
 
 public abstract class BaseActionBarActivity extends FragmentActivity {
 	private String TAG = BaseActionBarActivity.class.getSimpleName();
@@ -57,7 +59,13 @@ public abstract class BaseActionBarActivity extends FragmentActivity {
 	@Override
 	protected void onPause() {
 		super.onPause();
+		MobclickAgent.onPause(this);
 		baseService.dismissLoadingDialog();
+	}
+	
+	public void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
 	}
 
 	@Override

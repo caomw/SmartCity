@@ -6,6 +6,8 @@ import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import cn.sharesdk.framework.ShareSDK;
+
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.android.dcone.ut.view.annotation.event.OnRadioGroupCheckedChange;
 import com.dc.smartcity.R;
@@ -67,6 +69,10 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
 
 //        UpdateAg.init();
         checkUpdate();
+        ShareSDK.initSDK(this);
+//		ShareSDK.registerPlatform(LaiwangCustomize.class);
+		ShareSDK.setConnTimeout(20000);
+		ShareSDK.setReadTimeout(20000);
 
         ULog.error("----onCreate");
     }
@@ -165,7 +171,7 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
     }
 
     @Override
-    protected void onResume() {
+	public void onResume() {
         super.onResume();
         if (null != mCurrentButton) {
             mCurrentButton.setChecked(true);

@@ -116,7 +116,7 @@ public class SearchServiceActivity extends BaseActionBarActivity {
     }
 
     @Override
-    protected void onResume() {
+	public void onResume() {
         super.onResume();
         showSoftInput();
     }

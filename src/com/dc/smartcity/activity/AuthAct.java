@@ -135,7 +135,7 @@ public class AuthAct extends BaseActionBarActivity implements IPictureListener {
 			showPickDialog();
 			break;
 		case R.id.tv_auth_rules:
-			startActivity(new Intent(this, RegistActProtocal.class));
+			startActivity(new Intent(this, AccountAuthProtActivity.class));
 			break;
 		case R.id.iv_idcard_pic2:
 			type = BPICTURE;

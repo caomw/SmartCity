@@ -252,6 +252,9 @@
                 android:text="检测更新"
                 android:textColor="@color/main_secondary"
                 android:textSize="@dimen/text_size_list"/>
+        
+        
+        
         <Button
                 android:id="@+id/btn_exit"
                 android:layout_width="match_parent"
@@ -260,6 +263,15 @@
                 android:text="退出登录"
                 android:background="@color/red"
                 android:textColor="@color/white"
+                android:textSize="@dimen/text_size_list"/>
+        <TextView
+                android:id="@+id/tv_version"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="version 1.1 , build code 3"
+                android:background="@android:color/transparent"
+                android:textColor="@color/main_secondary"
                 android:textSize="@dimen/text_size_list"/>
     </LinearLayout>
 

@@ -149,6 +149,8 @@ public class HomeMyFragment extends BaseFragment {
             case R.id.tv_share:
                 // 分享
                 OnekeyShare share = new OnekeyShare();
+                share.setText(getString(R.string.share_content));
+//                share.setImageUrl(imageUrl);
                 share.show(getActivity());
                 break;
             case R.id.tv_feedback:

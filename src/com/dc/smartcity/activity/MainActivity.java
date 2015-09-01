@@ -69,10 +69,6 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
 
 //        UpdateAg.init();
         checkUpdate();
-        ShareSDK.initSDK(this);
-//		ShareSDK.registerPlatform(LaiwangCustomize.class);
-		ShareSDK.setConnTimeout(20000);
-		ShareSDK.setReadTimeout(20000);
 
         ULog.error("----onCreate");
     }

@@ -2,23 +2,23 @@ package com.dc.smartcity.update;
 
 import android.content.Context;
 import android.os.Handler;
-import android.os.HandlerThread;
 import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
-import com.dc.smartcity.util.Utils;
+
 /**
  * 更新
+ * 
  * @author szsm
  *
  */
 public class UpdateAg {
-	private static Handler handler;
+	private static Handler	handler;
 
 	public static void init() {
-//		HandlerThread localHandlerThread = new HandlerThread("UpdateAg");
-//		localHandlerThread.start();
-//		UpdateAg.handler = new Handler(localHandlerThread.getLooper());
+		//		HandlerThread localHandlerThread = new HandlerThread("UpdateAg");
+		//		localHandlerThread.start();
+		//		UpdateAg.handler = new Handler(localHandlerThread.getLooper());
 	}
 
 	/**
@@ -26,7 +26,7 @@ public class UpdateAg {
 	 * 
 	 * @param context
 	 */
-	public static void update( Context context, String result) {
+	public static void update(Context context, String result) {
 		if (TextUtils.isEmpty(result)) {
 			return;
 		}
@@ -35,19 +35,19 @@ public class UpdateAg {
 		if (null == version) {
 			return;
 		}
-		
-		if(!version.isUpdate){
+
+		if (!version.isUpdate) {
 			return;
 		}
 		isUpdate(context, version);
-//		Runnable isupdateRunnable = new Runnable() {
-//
-//			@Override
-//			public void run() {
-//				isUpdate(context, version);
-//			}
-//		};
-//		handler.post(isupdateRunnable);
+		//		Runnable isupdateRunnable = new Runnable() {
+		//
+		//			@Override
+		//			public void run() {
+		//				isUpdate(context, version);
+		//			}
+		//		};
+		//		handler.post(isupdateRunnable);
 	}
 
 	private static void isUpdate(Context context, UpdateBean version) {

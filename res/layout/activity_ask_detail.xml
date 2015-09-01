@@ -101,24 +101,21 @@
                 android:drawablePadding="3dp"
                 android:text="威海市人民路"
                 android:textColor="@color/main_hint"
-                android:textSize="@dimen/text_size_hint" />
+                android:textSize="@dimen/text_size_hint"
+                android:visibility="invisible" />
         </RelativeLayout>
-
-        <com.dc.smartcity.view.pullrefresh.PullToRefreshListView
-            xmlns:ptr="http://schemas.android.com/apk/res/com.dc.smartcity"
-            android:id="@+id/pullToRefreshListView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/rl_right"
-            android:layout_alignLeft="@+id/rl_right"
-            android:layout_alignRight="@+id/rl_right"
-            android:layout_alignStart="@+id/rl_right"
-            android:layout_below="@id/rl_right"
-            android:layout_margin="10dp"
-            android:background="@drawable/gray_round"
-            android:divider="@drawable/line_dash"
-            android:listSelector="@android:color/transparent"
-            ptr:pullmode="both" />
     </RelativeLayout>
+
+    <com.dc.smartcity.view.pullrefresh.PullToRefreshListView
+        xmlns:ptr="http://schemas.android.com/apk/res/com.dc.smartcity"
+        android:id="@+id/pullToRefreshListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_first"
+        android:layout_margin="10dp"
+        android:background="@drawable/gray_round"
+        android:divider="@drawable/line_dash"
+        android:listSelector="@android:color/transparent"
+        ptr:pullmode="both" />
 
 </RelativeLayout>

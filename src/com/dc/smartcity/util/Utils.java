@@ -28,8 +28,7 @@ public class Utils {
      */
     public static void showToast(CharSequence message, Context context) {
         int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context.getApplicationContext(), message,
-                duration);
+        Toast toast = Toast.makeText(context.getApplicationContext(), message, duration);
         toast.show();
     }
 

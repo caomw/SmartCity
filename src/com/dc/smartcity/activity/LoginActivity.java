@@ -99,25 +99,21 @@ public class LoginActivity extends BaseActionBarActivity {
      * 查询用户信息
      */
     private void queryUserInfo() {
-        sendRequestWithDialog(RequestPool.requestUserInfo(),
-                new DialogConfig.Builder().build(), new RequestProxy() {
+        sendRequestWithDialog(RequestPool.requestUserInfo(), new DialogConfig.Builder().build(), new RequestProxy() {
 
-                    @Override
-                    public void onSuccess(String msg, String result) {
-                        JSONObject obj = JSON.parseObject(result);
-                        UserObj user = new UserObj();
-                        user.userBase = JSON.parseObject(
-                                obj.getString("USERBASIC"), UserBaseBean.class);
-                        user.userAuth = JSON.parseObject(
-                                obj.getString("USERAUTH"), UserAuthBean.class);
-                        user.userLocal = JSON.parseObject(
-                                obj.getString("LOCALUSER"), UserLocalBean.class);
+            @Override
+            public void onSuccess(String msg, String result) {
+                JSONObject obj = JSON.parseObject(result);
+                UserObj user = new UserObj();
+                user.userBase = JSON.parseObject(obj.getString("USERBASIC"), UserBaseBean.class);
+                user.userAuth = JSON.parseObject(obj.getString("USERAUTH"), UserAuthBean.class);
+                user.userLocal = JSON.parseObject(obj.getString("LOCALUSER"), UserLocalBean.class);
 
-                        if (null != user.userBase) {
-                            Utils.user = user;
-                        }
-                        finish();
-                    }
-                });
+                if (null != user.userBase) {
+                    Utils.user = user;
+                }
+                finish();
+            }
+        });
     }
 }

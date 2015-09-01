@@ -125,8 +125,7 @@ public class HomeMyFragment extends BaseFragment {
                 startActivity(i);
                 break;
             case R.id.ll_safe_set:
-                Intent intent_safe = new Intent(getActivity(),
-                        AccountSettingActivity.class);
+                Intent intent_safe = new Intent(getActivity(),AccountSettingActivity.class);
                 startActivity(intent_safe);
                 break;
             case R.id.ll_edit_info:
@@ -139,11 +138,9 @@ public class HomeMyFragment extends BaseFragment {
                 break;
             case R.id.tv_about:
                 // 关于
-                Intent intent = new Intent(getActivity(),
-                        CordovaWebwiewActivity.class);
+                Intent intent = new Intent(getActivity(),CordovaWebwiewActivity.class);
                 intent.putExtra(BundleKeys.WEBVIEW_TITLE, "关于");
-                intent.putExtra(BundleKeys.WEBVIEW_LOADURL,
-                        "http://test.cszhcs.cn/cs_phoneAppcms/about_us/about_us.html");
+                intent.putExtra(BundleKeys.WEBVIEW_LOADURL,"http://test.cszhcs.cn/cs_phoneAppcms/about_us/about_us.html");
                 startActivity(intent);
                 break;
             case R.id.tv_share:
@@ -155,8 +152,7 @@ public class HomeMyFragment extends BaseFragment {
                 break;
             case R.id.tv_feedback:
                 // 反馈
-                Intent intent_feedback = new Intent(getActivity(),
-                        FeedbackActivity.class);
+                Intent intent_feedback = new Intent(getActivity(),FeedbackActivity.class);
                 startActivity(intent_feedback);
                 break;
             case R.id.tv_problem:
@@ -170,8 +166,7 @@ public class HomeMyFragment extends BaseFragment {
                 break;
             case R.id.tv_welcome:
                 // 产品导读
-                Intent intent_welcome = new Intent(getActivity(),
-                        WelcomeActivity.class);
+                Intent intent_welcome = new Intent(getActivity(),WelcomeActivity.class);
                 intent_welcome.putExtra(BundleKeys.ISFROMMY, true);
                 startActivity(intent_welcome);
                 break;

@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import com.dc.smartcity.activity.CordovaWebwiewActivity;
-import com.dc.smartcity.activity.WebViewActivity;
 import com.dc.smartcity.bean.AdObj;
 import com.dc.smartcity.util.BundleKeys;
 

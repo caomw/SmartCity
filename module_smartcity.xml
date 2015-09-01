@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_smartcity" default="compile.module.smartcity">
+  <dirname property="module.smartcity.basedir" file="${ant.file.module_smartcity}"/>
+  
+  <property name="module.jdk.home.smartcity" value="${jdk.home.android_api_22_platform}"/>
+  <property name="module.jdk.bin.smartcity" value="${jdk.bin.android_api_22_platform}"/>
+  <property name="module.jdk.classpath.smartcity" value="jdk.classpath.android_api_22_platform"/>
+  
+  <property name="compiler.args.smartcity" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="smartcity.output.dir" value="${module.smartcity.basedir}/out/production/SmartCity"/>
+  <property name="smartcity.testoutput.dir" value="${module.smartcity.basedir}/out/test/SmartCity"/>
+  
+  <path id="smartcity.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="smartcity.module.production.classpath">
+    <path refid="${module.jdk.classpath.smartcity}"/>
+    <pathelement location="${app_frame_core.output.dir}"/>
+    <fileset dir="${basedir}/../App_Frame_Core/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="smartcity.runtime.production.module.classpath">
+    <pathelement location="${smartcity.output.dir}"/>
+    <path refid="app_frame_core.runtime.production.module.classpath"/>
+    <fileset dir="${basedir}/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="smartcity.module.classpath">
+    <path refid="${module.jdk.classpath.smartcity}"/>
+    <pathelement location="${smartcity.output.dir}"/>
+    <pathelement location="${app_frame_core.testoutput.dir}"/>
+    <pathelement location="${app_frame_core.output.dir}"/>
+    <fileset dir="${basedir}/../App_Frame_Core/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <path id="smartcity.runtime.module.classpath">
+    <pathelement location="${smartcity.testoutput.dir}"/>
+    <pathelement location="${smartcity.output.dir}"/>
+    <path refid="app_frame_core.runtime.module.classpath"/>
+    <fileset dir="${basedir}/libs">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.smartcity">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.smartcity">
+    <patternset refid="excluded.from.module.smartcity"/>
+  </patternset>
+  
+  <path id="smartcity.module.sourcepath">
+    <dirset dir="${module.smartcity.basedir}">
+      <include name="src"/>
+      <include name="gen"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.smartcity" depends="compile.module.smartcity.production,compile.module.smartcity.tests" description="Compile module SmartCity"/>
+  
+  <target name="compile.module.smartcity.production" depends="register.custom.compilers,compile.module.app_frame_core" description="Compile module SmartCity; production classes">
+    <mkdir dir="${smartcity.output.dir}"/>
+    <javac2 destdir="${smartcity.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.smartcity}/javac">
+      <compilerarg line="${compiler.args.smartcity}"/>
+      <bootclasspath refid="smartcity.module.bootclasspath"/>
+      <classpath refid="smartcity.module.production.classpath"/>
+      <src refid="smartcity.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.smartcity"/>
+    </javac2>
+    
+    <copy todir="${smartcity.output.dir}">
+      <fileset dir="${module.smartcity.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.smartcity.basedir}/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.smartcity.tests" depends="register.custom.compilers,compile.module.smartcity.production" description="compile module SmartCity; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.smartcity" description="cleanup module">
+    <delete dir="${smartcity.output.dir}"/>
+    <delete dir="${smartcity.testoutput.dir}"/>
+  </target>
+</project>

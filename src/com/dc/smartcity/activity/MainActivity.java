@@ -70,7 +70,7 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
 //        UpdateAg.init();
         checkUpdate();
 
-        ULog.error("----onCreate");
+        ULog.error("----MainActivity.onCreate");
     }
 
     //检查更新

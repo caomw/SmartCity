@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dc.smartcity"
-    android:versionCode="1"
-    android:versionName="1.0" >
+          package="com.dc.smartcity"
+          android:versionCode="3"
+          android:versionName="1.1">
 
     <uses-sdk
-        android:minSdkVersion="15"
-        android:targetSdkVersion="22" />
+            android:minSdkVersion="15"
+            android:targetSdkVersion="22"/>
 
     <!-- 联网 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -36,139 +36,160 @@
         android:theme="@style/AppBaseTheme"
         android:label="@string/app_name" >
         <activity
-            android:name="com.dc.smartcity.activity.WelcomeActivity"
-            android:configChanges="keyboardHidden|navigation|orientation"
-            android:label="@string/app_name" >
+                android:name="com.dc.smartcity.activity.WelcomeActivity"
+                android:configChanges="keyboardHidden|navigation|orientation"
+                android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name="com.dc.smartcity.activity.MainActivity"
+                  android:launchMode="singleInstance"/>
         <activity
-            android:name="com.dc.smartcity.activity.ServiceMarketActivity"
-            android:theme="@style/ActivityTheme_Light.PageIndicatorDefaults" />
+                android:name="com.dc.smartcity.activity.ServiceMarketActivity"
+                android:theme="@style/ActivityTheme_Light.PageIndicatorDefaults"/>
         <activity
-            android:name="com.dc.smartcity.activity.SearchServiceActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" >
+                android:name="com.dc.smartcity.activity.SearchServiceActivity"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="adjustPan">
         </activity>
-        <activity android:name="com.dc.smartcity.activity.ServiceListActivity" />
-        <activity android:name="com.dc.smartcity.activity.LoginActivity" />
-        <activity android:name="com.dc.smartcity.activity.MessageActivity" />
-        <activity android:name="com.dc.smartcity.activity.AskDetailActivity" />
-        <activity android:name="com.dc.smartcity.activity.WebViewActivity" />
-        <activity android:name="com.dc.smartcity.activity.NewsDetailActivity" />
-        <activity android:name="com.dc.smartcity.activity.SettingActivity" />
-        <activity android:name="com.dc.smartcity.activity.MainActivity" />
-        <activity android:name="com.dc.smartcity.activity.AccountAuthProtActivity" />
-        <activity android:name="com.dc.smartcity.activity.AboutActivity" />
-        <activity android:name="com.dc.smartcity.activity.FeedbackActivity" />
-        <activity android:name="com.dc.smartcity.activity.ModifyUserInfoAct" />
-        <activity android:name="com.dc.smartcity.activity.AccountSettingActivity" />
-        <activity android:name="com.dc.smartcity.activity.AuthAct" />
-        <activity android:name="com.dc.smartcity.activity.ChangeBindMobileAct" />
-        <activity android:name="com.dc.smartcity.activity.ChangePasswordAct" />
-        <activity android:name="com.dc.smartcity.activity.RegistAct" />
-        <activity android:name="com.dc.smartcity.activity.CordovaWebwiewActivity" />
-        <activity android:name="com.dc.smartcity.activity.PublicQuestAct" />
-        <activity android:name="com.dc.smartcity.activity.RegistActProtocal" />
+        <activity android:name="com.dc.smartcity.activity.ServiceListActivity"/>
+        <activity android:name="com.dc.smartcity.activity.LoginActivity"/>
+        <activity android:name="com.dc.smartcity.activity.MessageActivity"/>
+        <activity android:name="com.dc.smartcity.activity.AskDetailActivity"/>
+        <activity android:name="com.dc.smartcity.activity.WebViewActivity"/>
+        <activity android:name="com.dc.smartcity.activity.NewsDetailActivity"/>
+        <activity android:name="com.dc.smartcity.activity.SettingActivity"/>
+        <activity android:name="com.dc.smartcity.activity.AccountAuthProtActivity"/>
+        <activity android:name="com.dc.smartcity.activity.AboutActivity"/>
+        <activity android:name="com.dc.smartcity.activity.FeedbackActivity"/>
+        <activity android:name="com.dc.smartcity.activity.ModifyUserInfoAct"/>
+        <activity android:name="com.dc.smartcity.activity.AccountSettingActivity"/>
+        <activity android:name="com.dc.smartcity.activity.AuthAct"/>
+        <activity android:name="com.dc.smartcity.activity.ChangeBindMobileAct"/>
+        <activity android:name="com.dc.smartcity.activity.ChangePasswordAct"/>
+        <activity android:name="com.dc.smartcity.activity.RegistAct"/>
+        <activity android:name="com.dc.smartcity.activity.CordovaWebwiewActivity"/>
+        <activity android:name="com.dc.smartcity.activity.PublicQuestAct"/>
+        <activity android:name="com.dc.smartcity.activity.RegistActProtocal"/>
 
         <!-- sharesdk -->
         <activity
-            android:name="com.mob.tools.MobUIShell"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
+                android:name="com.mob.tools.MobUIShell"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar"
+                android:windowSoftInputMode="stateHidden|adjustResize">
 
             <!--
             	AuthorizeAdapter表示一个继承自cn.sharesdk.framework.authorize.AuthorizeAdapter
             	的类，这个类可以监听到页面的生命周期，也可以获取授权页面的各种UI控件。 
+<<<<<<< HEAD
             	开发者可以通过继承AuthorizeAdapter，重写其方法，并获取各种UI来自定义这个页面的行为。
+=======
+            	开发者可以通过继承AuthorizeAdapter，重写其方法，并获取各种UI来自定义这个页面的行为。
+
+>>>>>>> 555d23d1ccb538f12bcf3363499dfbade8dbc991
             -->
             <meta-data
-                android:name="AuthorizeAdapter"
-                android:value="cn.sharesdk.demo.MyAdapter" />
+                    android:name="AuthorizeAdapter"
+                    android:value="cn.sharesdk.demo.MyAdapter"/>
 
             <!--
             	QZoneWebShareAdapter表示一个继承自cn.sharesdk.tencent.qzone.QZoneWebShareAdapter
             	的类，这个类可以监听到页面的生命周期，也可以获QQ空间网页分享权页面的各种UI控件。 
             	开发者可以通过继承QZoneWebShareAdapter，重写其方法，并获取各种UI来自定义这个页面的行为。
             <meta-data android:name="QZoneWebShareAdapter" android:value="cn.sharesdk.demo.MyQZoneWebShareAdapter" />
+<<<<<<< HEAD
             <meta-data android:name="QQWebShareAdapter" android:value="cn.sharesdk.demo.MyQQWebShareAdapter" />
+=======
+            <meta-data android:name="QQWebShareAdapter" android:value="cn.sharesdk.demo.MyQQWebShareAdapter" />
+
+>>>>>>> 555d23d1ccb538f12bcf3363499dfbade8dbc991
             -->
 
 
             <!--
             	Dropbox的SSO功能需要在此处添加一个对ACTION_VIEW事件的过滤器，其中的scheme是
+<<<<<<< HEAD
             	“db-”前缀再开发者应用的加上appKey。如果此过滤器不设置，则不能完成SSO功能授权
+=======
+            	“db-”前缀再开发者应用的加上appKey。如果此过滤器不设置，则不能完成SSO功能授权
+
+>>>>>>> 555d23d1ccb538f12bcf3363499dfbade8dbc991
             -->
             <intent-filter>
-                <data android:scheme="db-7janx53ilz11gbs" />
+                <data android:scheme="db-7janx53ilz11gbs"/>
 
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
 
             <!--
             	如果集成QQ分享，或者使用QQ客户端来进行QQ空间的分享，须要在此处添加一个对ACTION_VIEW
             	事件的过滤器，其中的scheme是“tencent”前缀再开发者应用的加上appId。如果此过滤器不设置，
+<<<<<<< HEAD
             	则分享结束以后不能得到正确的回调
+=======
+            	则分享结束以后不能得到正确的回调
+
+>>>>>>> 555d23d1ccb538f12bcf3363499dfbade8dbc991
             -->
             <intent-filter>
-                <data android:scheme="tencent100371282" />
+                <data android:scheme="tencent100371282"/>
 
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter>
         </activity>
 
         <!-- 微信分享回调 -->
         <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+                android:name=".wxapi.WXEntryActivity"
+                android:configChanges="keyboardHidden|orientation|screenSize"
+                android:exported="true"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
         <!-- 调用新浪原生SDK，需要注册的activity -->
         <activity
-            android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
-            android:configChanges="keyboardHidden|orientation"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" >
+                android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+                android:configChanges="keyboardHidden|orientation"
+                android:exported="false"
+                android:windowSoftInputMode="adjustResize">
         </activity>
 
         <!-- 调用新浪原生SDK，需要注册的回调activity -->
         <activity
-            android:name="cn.sharesdk.sina.weibo.SinaActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+                android:name="cn.sharesdk.sina.weibo.SinaActivity"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
-                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
         <!-- sharesdk end -->
 
         <meta-data
-            android:name="DC_H5_APP_VERSION"
-            android:value="1" />
+                android:name="DC_H5_APP_VERSION"
+                android:value="1"/>
         <meta-data
-            android:name="DC_APPKEY"
-            android:value="7586bdf953e849a295556ace30d01a25" />
+                android:name="DC_APPKEY"
+                android:value="7586bdf953e849a295556ace30d01a25"/>
         <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="55e403a467e58e67db001efd" >
+                android:name="UMENG_APPKEY"
+                android:value="55e403a467e58e67db001efd">
         </meta-data>
         <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="smartCity_changshu" >
+                android:name="UMENG_CHANNEL"
+                android:value="smartCity_changshu">
         </meta-data>
     </application>
 

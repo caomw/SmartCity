@@ -16,7 +16,6 @@
                 android:layout_width="38.0dip"
                 android:layout_height="38.0dip"
                 android:layout_centerVertical="true"
-                android:src="@drawable/app_phonecharge"
                 android:contentDescription="@string/app_name"/>
 
         <TextView

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.android.dcone.ut.view.annotation.ViewInject;
@@ -27,99 +26,98 @@ import com.dc.smartcity.util.Utils;
  */
 public class LoginActivity extends BaseActionBarActivity {
 
-	@ViewInject(R.id.name)
-	private EditText name;
-	@ViewInject(R.id.pass)
-	private EditText pass;
+    @ViewInject(R.id.name)
+    private EditText name;
+    @ViewInject(R.id.pass)
+    private EditText pass;
 
-	@Override
-	protected void setContentView() {
-		setContentView(R.layout.activity_login);
-	}
+    @Override
+    protected void setContentView() {
+        setContentView(R.layout.activity_login);
+    }
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-		hideActionBar();
-	}
+        hideActionBar();
+    }
 
-	@OnClick(value = { R.id.btnLogin, R.id.tv_forgetpass, R.id.tv_regist,
-			R.id.ivClose })
-	private void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.btnLogin:
-			String n = name.getText().toString().trim();
-			String p = pass.getText().toString().trim();
-			if (TextUtils.isEmpty(n)) {
-				Utils.showToast("用户名不能为空", LoginActivity.this);
-				return;
-			}
-			if (TextUtils.isEmpty(p)) {
-				Utils.showToast("密码不能为空", LoginActivity.this);
-				return;
-			}
-			SHA1 sha1 = new SHA1();
-			String password = sha1.getDigestOfString(p.getBytes());
-			doLogin(n, password);
-			break;
-		case R.id.tv_forgetpass:
+    @OnClick(value = {R.id.btnLogin, R.id.tv_forgetpass, R.id.tv_regist,
+            R.id.ivClose})
+    private void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnLogin:
+                String n = name.getText().toString().trim();
+                String p = pass.getText().toString().trim();
+                if (TextUtils.isEmpty(n)) {
+                    Utils.showToast("用户名不能为空", LoginActivity.this);
+                    return;
+                }
+                if (TextUtils.isEmpty(p)) {
+                    Utils.showToast("密码不能为空", LoginActivity.this);
+                    return;
+                }
+                SHA1 sha1 = new SHA1();
+                String password = sha1.getDigestOfString(p.getBytes());
+                doLogin(n, password);
+                break;
+            case R.id.tv_forgetpass:
 
-			break;
-		case R.id.tv_regist:
-			startActivity(new Intent(this, RegistAct.class));
-			break;
-		case R.id.ivClose:
-			finish();
-			break;
-		default:
-			break;
-		}
+                break;
+            case R.id.tv_regist:
+                startActivity(new Intent(this, RegistAct.class));
+                break;
+            case R.id.ivClose:
+                finish();
+                break;
+            default:
+                break;
+        }
 
-	}
+    }
 
-	private void doLogin(String n, String p) {
-		sendRequestWithDialog(RequestPool.requestLogin(n, p),
-				new DialogConfig.Builder().build(), new RequestProxy() {
+    private void doLogin(String n, String p) {
+        sendRequestWithDialog(RequestPool.requestLogin(n, p),
+                new DialogConfig.Builder().build(), new RequestProxy() {
 
-					@Override
-					public void onSuccess(String msg, String result) {
+                    @Override
+                    public void onSuccess(String msg, String result) {
 
-						Utils.setAccessTicket(JSON.parseObject(result)
-								.getString("accessTicket"));
-						queryUserInfo();
-					}
+                        Utils.accessTicket = JSON.parseObject(result).getString("accessTicket");
+                        queryUserInfo();
+                    }
 
-					@Override
-					public void onError(String code, String msg) {
-						Utils.showToast(msg, LoginActivity.this);
-					}
-				});
-	}
+                    @Override
+                    public void onError(String code, String msg) {
+                        Utils.showToast(msg, LoginActivity.this);
+                    }
+                });
+    }
 
-	/**
-	 * 查询用户信息
-	 */
-	private void queryUserInfo() {
-		sendRequestWithDialog(RequestPool.requestUserInfo(),
-				new DialogConfig.Builder().build(), new RequestProxy() {
+    /**
+     * 查询用户信息
+     */
+    private void queryUserInfo() {
+        sendRequestWithDialog(RequestPool.requestUserInfo(),
+                new DialogConfig.Builder().build(), new RequestProxy() {
 
-					@Override
-					public void onSuccess(String msg, String result) {
-						JSONObject obj = JSON.parseObject(result);
-						UserObj user = new UserObj();
-						user.userBase = JSON.parseObject(
-								obj.getString("USERBASIC"), UserBaseBean.class);
-						user.userAuth = JSON.parseObject(
-								obj.getString("USERAUTH"), UserAuthBean.class);
-						user.userLocal = JSON.parseObject(
-								obj.getString("LOCALUSER"), UserLocalBean.class);
+                    @Override
+                    public void onSuccess(String msg, String result) {
+                        JSONObject obj = JSON.parseObject(result);
+                        UserObj user = new UserObj();
+                        user.userBase = JSON.parseObject(
+                                obj.getString("USERBASIC"), UserBaseBean.class);
+                        user.userAuth = JSON.parseObject(
+                                obj.getString("USERAUTH"), UserAuthBean.class);
+                        user.userLocal = JSON.parseObject(
+                                obj.getString("LOCALUSER"), UserLocalBean.class);
 
-						if (null != user.userBase) {
-							Utils.user = user;
-						}
-						finish();
-					}
-				});
-	}
+                        if (null != user.userBase) {
+                            Utils.user = user;
+                        }
+                        finish();
+                    }
+                });
+    }
 }

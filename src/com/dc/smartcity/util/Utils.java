@@ -16,10 +16,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Utils {
-    private static String accessTicket;
+    public static String accessTicket;//登录之后的凭证
     public static UserObj user;// 登录的用户信息
-    public static DisplayMetrics dm;
+    public static DisplayMetrics dm;//屏幕宽高
 
+    /**
+     * 弹出toast
+     *
+     * @param message
+     * @param context
+     */
     public static void showToast(CharSequence message, Context context) {
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context.getApplicationContext(), message,
@@ -27,6 +33,12 @@ public class Utils {
         toast.show();
     }
 
+    /**
+     * 获取屏幕宽高度
+     *
+     * @param activity
+     * @return
+     */
     public static DisplayMetrics getMetrics(Activity activity) {
         if (null == dm) {
             dm = new DisplayMetrics();
@@ -42,6 +54,9 @@ public class Utils {
         return mobile.replace(mobile.substring(3, 7), "****");
     }
 
+    /**
+     * 退出登录，删除保存的用户信息
+     */
     public static void logout() {
         accessTicket = null;
         user = null;
@@ -55,23 +70,19 @@ public class Utils {
     public static boolean isLogon() {
         return !TextUtils.isEmpty(accessTicket) && null != user;
     }
+
     /**
-     * 是否登陆
+     * 是否实名认证
      *
      * @return
      */
     public static boolean isRealName() {
-    	if(null == user){
-    		return false;
-    	}
-    	return (!"01".equals(user.userBase.level)&&
-    			!"0201".equals(user.userBase.level));
+        if (null == user) {
+            return false;
+        }
+        return (!"01".equals(user.userBase.level) && !"0201".equals(user.userBase.level));
     }
 
-    public static void clearUserData() {
-        accessTicket = "";
-        user = null;
-    }
 
     public static String BitmapToBase64(Bitmap bitmap) {
         if (bitmap == null) {
@@ -99,10 +110,6 @@ public class Utils {
         }
     }
 
-
-    public static void setAccessTicket(String accessTick) {
-        accessTicket = accessTick;
-    }
 
     public static String getAccessTicket() {
         return accessTicket;

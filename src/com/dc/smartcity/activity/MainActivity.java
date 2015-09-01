@@ -74,7 +74,7 @@ public class MainActivity extends BaseActionBarActivity implements OnCheckedChan
 		ShareSDK.setConnTimeout(20000);
 		ShareSDK.setReadTimeout(20000);
 
-        ULog.error("----onCreate");
+        ULog.error("----MainActivity.onCreate");
     }
 
     //检查更新

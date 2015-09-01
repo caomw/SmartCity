@@ -4,8 +4,8 @@
  * @package Cobub Razor
  * @author WBTECH Dev Team
  * @copyright Copyright (c) 2011 - 2012, NanJing Western Bridge Co.,Ltd.
- * @since Version 0.1
  * @filesource
+ * @since Version 0.1
  */
 
 package com.dc.smartcity.update;
@@ -117,6 +117,7 @@ public class UpdateManager {
 
     public void checkUpdate(UpdateBean ubean) {
         this.ubean = ubean;
+
     }
 
     private static UpdateManager instance;
@@ -133,7 +134,7 @@ public class UpdateManager {
     /**
      * 更新提示对话框
      */
-    public void showNoticeDialog(final Context context) {
+    public void showNoticeDialog(Context context) {
         AlertDialog.Builder builder = new Builder(context);
         builder.setTitle("更新提示");
         builder.setMessage(ubean.versionDetail);
@@ -181,7 +182,6 @@ public class UpdateManager {
      * 显示下载进度对话框
      *
      * @param context
-     * @param version
      */
     private void showDownloadDialog(Context context) {
         progressDialog = new ProgressDialog(context);
@@ -217,8 +217,7 @@ public class UpdateManager {
                 InputStream is = conn.getInputStream();
 
                 // File file = new File(downUrl);
-                boolean sdCardExist = Environment.getExternalStorageState()
-                                                 .equals(android.os.Environment.MEDIA_MOUNTED);
+                boolean sdCardExist = Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
                 if (!sdCardExist) {
                     showSdDialog(context);
                 } else {
@@ -287,7 +286,6 @@ public class UpdateManager {
     /**
      * install apk
      *
-     * @param url
      */
     private void installApk() {
         File apkfile = new File(saveFile);
@@ -295,8 +293,7 @@ public class UpdateManager {
             return;
         }
         Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setDataAndType(Uri.parse("file://" + apkfile.toString()),
-                "application/vnd.android.package-archive");
+        i.setDataAndType(Uri.parse("file://" + apkfile.toString()), "application/vnd.android.package-archive");
         context.startActivity(i);
 
     }

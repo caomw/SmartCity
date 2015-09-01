@@ -18,6 +18,7 @@ import com.dc.smartcity.bean.user.UserObj;
 import com.dc.smartcity.dialog.DialogConfig;
 import com.dc.smartcity.litenet.RequestPool;
 import com.dc.smartcity.litenet.interf.RequestProxy;
+import com.dc.smartcity.util.DateTools;
 import com.dc.smartcity.util.Utils;
 
 /**
@@ -101,7 +102,7 @@ public class AccountSettingActivity extends BaseActionBarActivity {
                 tv_mail.setText("--");
             }
             if (null != Utils.user.userBase && !TextUtils.isEmpty(Utils.user.userBase.lastlogintime)) {
-                tv_lastlogintime.setText(Utils.formatDateTime(Utils.user.userBase.lastlogintime));
+                tv_lastlogintime.setText(DateTools.formatDateTime(Utils.user.userBase.lastlogintime));
             }
             if (null != Utils.user.userBase && "01".equals(Utils.user.userBase.level)) {
                 tv_authname.setText(R.string.tv_unauth);

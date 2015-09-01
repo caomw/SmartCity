@@ -40,6 +40,24 @@ public class DateTools {
     public static final SimpleDateFormat DATE_FORMAT_YYYY_MM_DD_EEEE = new SimpleDateFormat(YYYY_MM_DD_EEEE,
             Locale.getDefault());
 
+
+    public static String formatDate(String timpstam) {
+        if (TextUtils.isEmpty(timpstam)) {
+            return "";
+        }
+        long time = (long) Double.parseDouble(timpstam);
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(time);
+        return sdf.format(date);
+    }
+
+    public static String formatDateTime(String timpstam) {
+        long time = (long) Double.parseDouble(timpstam);
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Date date = new Date(time);
+        return sdf.format(date);
+    }
+
     /**
      * 获取相差时间 字符串描述 xx小时xx分
      *
@@ -99,7 +117,7 @@ public class DateTools {
      * @param date
      * @return
      */
-    public static String formatDate(String date) {
+    public static String getFormatDate(String date) {
         Date d = new Date();
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat ymdDate = new SimpleDateFormat("yyyy-MM-dd");

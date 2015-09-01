@@ -3,21 +3,16 @@
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
-    <style name="AppBaseTheme">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
-    </style>
 
+
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light">
+        <!-- API 11 theme customizations can go here. -->
+    </style>
     <!-- Application theme. -->
     <style name="AppTheme">
-
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-
 
     <style name="actionbar_def_style" parent="@android:style/Widget.Holo.Light.ActionBar">
 
@@ -31,7 +26,6 @@
     <style name="ActivityTheme_Light" parent="android:Theme.Holo.Light">
         <item name="android:actionBarStyle">@style/actionbar_def_style</item>
     </style>
-
 
     <style name="CustomDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
@@ -69,6 +63,7 @@
         <item name="android:shadowDy">1.0</item>
         <item name="android:shadowRadius">2.0</item>
     </style>
+
     <style name="normalList">
         <item name="android:cacheColorHint">@android:color/transparent</item>
         <item name="android:divider">@null</item>
@@ -87,10 +82,12 @@
         <item name="android:background">@drawable/itemmiddle_press</item>
         <item name="android:padding">15dp</item>
     </style>
+
     <style name="TextTopContainer" parent="@style/NormalText">
         <item name="android:background">@drawable/itemtop_press</item>
         <item name="android:padding">15dp</item>
     </style>
+
     <style name="NormalText">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">14sp</item>
@@ -108,7 +105,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-
     <style name="news_style">
         <item name="android:paddingLeft">20dp</item>
         <item name="android:paddingRight">20dp</item>
@@ -161,6 +157,4 @@
         <item name="android:padding">5dp</item>
         <item name="android:background">@color/base_blue</item>
     </style>
-
-
 </resources>

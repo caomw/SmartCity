@@ -11,9 +11,6 @@ import org.apache.commons.codec.binary.Base64;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Utils {
     public static String accessTicket;//登录之后的凭证
@@ -114,20 +111,4 @@ public class Utils {
         return accessTicket;
     }
 
-    public static String formatDate(String timpstam) {
-        if (TextUtils.isEmpty(timpstam)) {
-            return "";
-        }
-        long time = (long) Double.parseDouble(timpstam);
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date(time);
-        return sdf.format(date);
-    }
-
-    public static String formatDateTime(String timpstam) {
-        long time = (long) Double.parseDouble(timpstam);
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date date = new Date(time);
-        return sdf.format(date);
-    }
 }

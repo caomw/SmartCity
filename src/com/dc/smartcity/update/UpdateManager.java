@@ -134,7 +134,7 @@ public class UpdateManager {
     /**
      * 更新提示对话框
      */
-    public void showNoticeDialog(Context context) {
+    public void showNoticeDialog(final Context context) {
         AlertDialog.Builder builder = new Builder(context);
         builder.setTitle("更新提示");
         builder.setMessage(ubean.versionDetail);

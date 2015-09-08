@@ -11,9 +11,7 @@ import org.json.JSONObject;
 
 import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
 
-import com.android.dcone.ut.UmsAgent;
 import com.dc.smartcity.activity.LoginActivity;
 import com.dc.smartcity.litenet.Config;
 import com.dc.smartcity.util.Utils;

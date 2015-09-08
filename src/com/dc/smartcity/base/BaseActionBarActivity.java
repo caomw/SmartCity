@@ -10,7 +10,9 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.android.dcone.ut.ViewUtils;
+import com.android.dcone.ut.wbtech.ums.UmsAgent;
 import com.dc.smartcity.R;
 import com.dc.smartcity.dialog.DialogConfig;
 import com.dc.smartcity.litenet.RequestService;
@@ -60,11 +62,13 @@ public abstract class BaseActionBarActivity extends FragmentActivity {
         super.onPause();
         MobclickAgent.onPause(this);
         baseService.dismissLoadingDialog();
+        UmsAgent.onPause(this);
     }
 
     public void onResume() {
         super.onResume();
         MobclickAgent.onResume(this);
+        UmsAgent.onResume(this);
     }
 
     @Override

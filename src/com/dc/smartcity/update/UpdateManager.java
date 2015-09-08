@@ -40,33 +40,22 @@ import java.net.URL;
  *
  */
 public class UpdateManager {
-    // String appkey;
-    // public Context mContext;
-    public String force;
     public ProgressDialog progressDialog;
-    // private String Msg = "Found  new version , update?";
-    // private String updateMsg = null;
-
-    // public String apkUrl = null;
 
     private final String savePath = "/sdcard/";
 
     private String saveFile = null;
 
-    // private ProgressBar mProgress;
 
     private static final int DOWN_UPDATE = 1;
 
     private static final int DOWN_OVER = 2;
-    // private static final int DOWN_H5_OVER = 3;
 
     private int progress;
 
     private Thread downLoadThread;
 
     private static boolean interceptFlag = false;
-    // public String newVersion;
-    // public String newtime;
 
     private Handler mHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -77,9 +66,6 @@ public class UpdateManager {
                 case DOWN_OVER:
                     installApk();
                     break;
-                // case DOWN_H5_OVER:
-                // installH5();
-                // break;
                 default:
                     break;
             }
@@ -134,7 +120,7 @@ public class UpdateManager {
     /**
      * 更新提示对话框
      */
-    public void showNoticeDialog(final Context context) {
+    public void showNoticeDialog() {
         AlertDialog.Builder builder = new Builder(context);
         builder.setTitle("更新提示");
         builder.setMessage(ubean.versionDetail);
@@ -142,29 +128,23 @@ public class UpdateManager {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                showDownloadDialog(context);
+                showDownloadDialog();
             }
 
         });
         builder.setNegativeButton("取消", new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // if ("true".equals(ubean.getForce_update())) {
-                // System.exit(0);
-                // } else {
                 dialog.dismiss();
-                // }
             }
         });
 
-//		if(null == noticeDialog){
 
         Dialog noticeDialog = builder.create();
-//		}
         noticeDialog.show();
     }
 
-    public void showSdDialog(final Context context) {
+    public void showSdDialog() {
         AlertDialog.Builder builder = new Builder(context);
         builder.setTitle("提示");
         builder.setMessage("SD卡不存在");
@@ -183,7 +163,7 @@ public class UpdateManager {
      *
      * @param context
      */
-    private void showDownloadDialog(Context context) {
+    private void showDownloadDialog() {
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("更新应用");
 
@@ -216,10 +196,9 @@ public class UpdateManager {
                 int length = conn.getContentLength();
                 InputStream is = conn.getInputStream();
 
-                // File file = new File(downUrl);
                 boolean sdCardExist = Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
                 if (!sdCardExist) {
-                    showSdDialog(context);
+                    showSdDialog();
                 } else {
 
                     String apkFile = saveFile
@@ -235,8 +214,6 @@ public class UpdateManager {
                         count += numread;
                         progress = (int) (((float) count / length) * 100);
 
-                        // if (UpdateAgent.IsAppUpdate()) {
-                        // 更新APP的实现
                         mHandler.sendEmptyMessage(DOWN_UPDATE);
                         if (numread <= 0) {
                             progressDialog.dismiss();
@@ -245,14 +222,6 @@ public class UpdateManager {
                             break;
                         }
 
-                        // } else {
-                        // // 更新H5的实现
-                        // if (numread <= 0) {
-                        //
-                        // mHandler.sendEmptyMessage(DOWN_H5_OVER);
-                        // break;
-                        // }
-                        // }
                         fos.write(buf, 0, numread);
                     } while (!interceptFlag);
 

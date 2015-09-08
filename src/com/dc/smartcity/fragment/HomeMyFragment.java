@@ -189,11 +189,11 @@ public class HomeMyFragment extends BaseFragment {
 
     //检查更新
     private void checkUpdate() {
-        sendRequestWithDialog(RequestPool.checkUpdate(getActivity()), new DialogConfig.Builder().build(), new RequestProxy() {
+    	sendRequestWithDialog(RequestPool.checkUpdate(getActivity()), new DialogConfig.Builder().build(), new RequestProxy() {
 
             @Override
             public void onSuccess(String msg, String result) {
-                UpdateAg.update(getActivity(), result);
+                UpdateAg.update(getActivity(), result,true);
             }
 
             @Override

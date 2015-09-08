@@ -54,11 +54,20 @@ public class ChangePasswordAct extends BaseActionBarActivity {
 			Utils.showToast("请输入新密码", this);
 			return;
 		}
+		if (npass.length()<6 ) {
+			Utils.showToast("新密码过于简单", this);
+			return;
+		}
 		String npass2 = et_confirm_pass.getText().toString().trim();
 		if (!npass2.equals(npass)) {
 			Utils.showToast("新密码不一致", this);
 			return;
 		}
+		if (npass2.length()<6 ) {
+			Utils.showToast("新密码过于简单", this);
+			return;
+		}
+		
 		SHA1 sha1 = new SHA1();
 		sendRequestWithDialog(RequestPool.changePass(
 				sha1.getDigestOfString(opass.getBytes()),

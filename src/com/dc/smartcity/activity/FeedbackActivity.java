@@ -36,6 +36,8 @@ public class FeedbackActivity extends BaseActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initActionBar();
+
+        et_feedback.setOnFocusChangeListener(onFocusAutoClearHintListener);
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +57,22 @@ public class FeedbackActivity extends BaseActionBarActivity {
             }
         });
     }
+
+    EditText.OnFocusChangeListener onFocusAutoClearHintListener = new EditText.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            EditText editview = (EditText) v;
+            String hint;
+            if (hasFocus) {
+                hint = editview.getHint().toString();
+                editview.setTag(hint);
+                editview.setHint("");
+            } else {
+                hint = editview.getTag().toString();
+                editview.setHint(hint);
+            }
+        }
+    };
 
     private void initActionBar() {
         iv_actionbar_left.setVisibility(View.VISIBLE);

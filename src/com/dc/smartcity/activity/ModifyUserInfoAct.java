@@ -83,7 +83,7 @@ public class ModifyUserInfoAct extends BaseActionBarActivity implements
         if (!Utils.isLogon()) {
             return;
         }
-        if (isNotAuth()) {
+        if (!Utils.isRealName()) {
             tv_auth.setText("未认证");
             rg_sex.setOnCheckedChangeListener(this);
             et_realname.addTextChangedListener(new TextWatcher() {
@@ -156,9 +156,6 @@ public class ModifyUserInfoAct extends BaseActionBarActivity implements
         });
     }
 
-    private boolean isNotAuth() {
-        return "01".equals(Utils.user.userBase.level);
-    }
 
     private void initActionBar() {
         iv_actionbar_left.setVisibility(View.VISIBLE);
@@ -172,7 +169,7 @@ public class ModifyUserInfoAct extends BaseActionBarActivity implements
                 saveUserChange();
                 break;
             case R.id.tv_brithday:
-                if (isNotAuth()) {
+                if (!Utils.isRealName()) {
                     showDatePicker();
                 }
                 break;

@@ -104,7 +104,7 @@ public class AccountSettingActivity extends BaseActionBarActivity {
             if (null != Utils.user.userBase && !TextUtils.isEmpty(Utils.user.userBase.lastlogintime)) {
                 tv_lastlogintime.setText(DateTools.formatDateTime(Utils.user.userBase.lastlogintime));
             }
-            if (null != Utils.user.userBase && "01".equals(Utils.user.userBase.level)) {
+            if (!Utils.isRealName()) {
                 tv_authname.setText(R.string.tv_unauth);
             } else {
                 tv_authname.setText(R.string.tv_alauth);

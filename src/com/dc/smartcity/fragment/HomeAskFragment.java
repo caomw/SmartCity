@@ -12,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -36,8 +37,8 @@ import com.dc.smartcity.litenet.RequestPool;
 import com.dc.smartcity.litenet.interf.RequestProxy;
 import com.dc.smartcity.net.ImageLoader;
 import com.dc.smartcity.util.BundleKeys;
-import com.dc.smartcity.util.ULog;
 import com.dc.smartcity.util.Utils;
+import com.dc.smartcity.view.ScrollableViewPager;
 import com.dc.smartcity.view.gridview.BaseViewHolder;
 import com.dc.smartcity.view.pullrefresh.PullToRefreshBase.OnRefreshListener;
 import com.dc.smartcity.view.pullrefresh.PullToRefreshListView;
@@ -46,32 +47,31 @@ import com.dc.smartcity.view.pullrefresh.PullToRefreshListView;
  * 有问必答 Created by vincent on 2015/8/3.
  */
 public class HomeAskFragment extends BaseFragment {
-	private String TAG = HomeAskFragment.class.getSimpleName();
+	private String		TAG	= HomeAskFragment.class.getSimpleName();
 
 	@ViewInject(R.id.rg_login)
-	RadioGroup rg_login;
+	RadioGroup			rg_login;
 
 	@ViewInject(R.id.rb_all)
-	RadioButton rb_all;
+	RadioButton			rb_all;
 
 	@ViewInject(R.id.rb_my)
-	RadioButton rb_my;
+	RadioButton			rb_my;
 
 	// @ViewInject(R.id.pullToRefreshListview)
 	// private PullToRefreshListView pullToRefreshListview;
 
 	@ViewInject(R.id.viewPager)
-	ViewPager viewPager;
+	ScrollableViewPager			viewPager;
 
-	private ActionBar actionBar;
+	private ActionBar	actionBar;
 
 	public HomeAskFragment(ActionBar actionBar) {
 		super(actionBar);
-		this.actionBar=actionBar;
+		this.actionBar = actionBar;
 	}
 
-	public HomeAskFragment() {
-	}
+	public HomeAskFragment() {}
 
 	@Override
 	protected int setContentView() {
@@ -79,8 +79,7 @@ public class HomeAskFragment extends BaseFragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle bundle) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
 		view = super.onCreateView(inflater, container, bundle);
 		initActionBar();
 		initAdapter();
@@ -92,20 +91,7 @@ public class HomeAskFragment extends BaseFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (Utils.isLogon()) {
-			rg_login.setVisibility(View.VISIBLE);
-			if (tadapter.mListViews.size() < 2) {
 
-				initMyList();
-			}
-
-		} else {
-			rg_login.setVisibility(View.GONE);
-			if (tadapter.mListViews.size() == 2) {
-				tadapter.mListViews.remove(1);
-				tadapter.notifyDataSetChanged();
-			}
-		}
 	}
 
 	@Override
@@ -116,9 +102,37 @@ public class HomeAskFragment extends BaseFragment {
 	@Override
 	public void onHiddenChanged(boolean hidden) {
 		super.onHiddenChanged(hidden);
+
 		if (!hidden) {
 			initActionBar();
 		}
+
+		if (!hidden) {//仅当进入页面的时候作判断
+			if (Utils.isLogon()) {
+				rg_login.setVisibility(View.VISIBLE);
+				viewPager.setScanScroll(true);
+				viewPager.setCurrentItem(0);
+				Log.e(TAG, "tadapter.mListViews.size()  " + tadapter.mListViews.size());
+				if (tadapter.mListViews.size() == 2) {
+					myAdapter.pageNo = 1;
+					myAdapter.list.clear();
+					myAdapter.notifyDataSetChanged();
+					queryMyAsk(myAdapter.pageNo, myAdapter, mpullToRefreshListview);
+				}else{
+					
+					initMyList();
+				}
+
+			}
+			else {
+				rg_login.setVisibility(View.GONE);
+				if (tadapter.mListViews.size() == 2) {
+					viewPager.setScanScroll(false);
+					viewPager.setCurrentItem(0);
+				}
+			}
+		}
+
 	}
 
 	@OnClick(value = { R.id.rb_all, R.id.rb_my })
@@ -149,20 +163,21 @@ public class HomeAskFragment extends BaseFragment {
 			public void onClick(View v) {
 				if (!Utils.isLogon()) {
 					startActivity(new Intent(getActivity(), LoginActivity.class));
-				} else if ("01".equals(Utils.user.userBase.level)) {
+				}
+				else if ("01".equals(Utils.user.userBase.level)) {
 					startActivity(new Intent(getActivity(), AuthAct.class));
-				} else {
-					startActivity(new Intent(getActivity(),
-							PublicQuestAct.class));
+				}
+				else {
+					startActivity(new Intent(getActivity(), PublicQuestAct.class));
 				}
 			}
 		});
 		tv_actionbar_right.setVisibility(View.GONE);
 	}
 
-	ListAdapter allAdapter;
-	ListAdapter myAdapter;
-	TabAdapter tadapter;
+	ListAdapter	allAdapter;
+	ListAdapter	myAdapter;
+	TabAdapter	tadapter;
 
 	private void initAdapter() {
 		tadapter = new TabAdapter();
@@ -177,8 +192,7 @@ public class HomeAskFragment extends BaseFragment {
 
 		LayoutInflater inflater = LayoutInflater.from(getActivity());
 		View view = inflater.inflate(R.layout.view_pulltorefresh, null);
-		final PullToRefreshListView pullToRefreshListview = (PullToRefreshListView) view
-				.findViewById(R.id.pullToRefreshListview);
+		final PullToRefreshListView pullToRefreshListview = (PullToRefreshListView) view.findViewById(R.id.pullToRefreshListview);
 
 		pullToRefreshListview.setMode(PullToRefreshListView.MODE_BOTH);
 
@@ -189,28 +203,23 @@ public class HomeAskFragment extends BaseFragment {
 			public boolean onRefresh(int curMode) {
 				if (curMode == PullToRefreshListView.MODE_PULL_DOWN_TO_REFRESH) {
 					allAdapter.pageNo = 1;
-					queryAllAsk(allAdapter.pageNo, allAdapter,
-							pullToRefreshListview);
-				} else if (curMode == PullToRefreshListView.MODE_PULL_UP_TO_REFRESH) {
+					queryAllAsk(allAdapter.pageNo, allAdapter, pullToRefreshListview);
+				}
+				else if (curMode == PullToRefreshListView.MODE_PULL_UP_TO_REFRESH) {
 					allAdapter.pageNo++;
-					queryAllAsk(allAdapter.pageNo, allAdapter,
-							pullToRefreshListview);
+					queryAllAsk(allAdapter.pageNo, allAdapter, pullToRefreshListview);
 				}
 				return false;
 			}
 		});
-		pullToRefreshListview
-				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-					@Override
-					public void onItemClick(AdapterView<?> parent, View view,
-							int position, long id) {
-						Intent intent = new Intent(getActivity(),
-								AskDetailActivity.class);
-						intent.putExtra(BundleKeys.QUESTION_BEAN,
-								allAdapter.list.get(position));
-						startActivity(intent);
-					}
-				});
+		pullToRefreshListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent intent = new Intent(getActivity(), AskDetailActivity.class);
+				intent.putExtra(BundleKeys.QUESTION_BEAN, allAdapter.list.get(position));
+				startActivity(intent);
+			}
+		});
 
 		queryAllAsk(allAdapter.pageNo, allAdapter, pullToRefreshListview);
 		tadapter.mListViews.add(view);
@@ -218,52 +227,49 @@ public class HomeAskFragment extends BaseFragment {
 		viewPager.setCurrentItem(0);
 	}
 
-	TextView tv_mempty;
-
+	TextView				tv_mempty;
+	PullToRefreshListView mpullToRefreshListview;
 	private void initMyList() {
 
+		View view;
 		LayoutInflater inflater = LayoutInflater.from(getActivity());
-		View view = inflater.inflate(R.layout.view_pulltorefresh, null);
+		view = inflater.inflate(R.layout.view_pulltorefresh, null);
 		tv_mempty = (TextView) view.findViewById(R.id.tv_empty);
-		final PullToRefreshListView pullToRefreshListview = (PullToRefreshListView) view
-				.findViewById(R.id.pullToRefreshListview);
+		mpullToRefreshListview = (PullToRefreshListView) view.findViewById(R.id.pullToRefreshListview);
 
-		pullToRefreshListview.setMode(PullToRefreshListView.MODE_BOTH);
+		mpullToRefreshListview.setMode(PullToRefreshListView.MODE_BOTH);
 
-		pullToRefreshListview.setAdapter(myAdapter);
-		pullToRefreshListview.setOnRefreshListener(new OnRefreshListener() {
+		mpullToRefreshListview.setAdapter(myAdapter);
+		mpullToRefreshListview.setOnRefreshListener(new OnRefreshListener() {
 
 			@Override
 			public boolean onRefresh(int curMode) {
 				if (curMode == PullToRefreshListView.MODE_PULL_DOWN_TO_REFRESH) {
 					myAdapter.pageNo = 1;
-					queryMyAsk(myAdapter.pageNo, myAdapter,
-							pullToRefreshListview);
-				} else if (curMode == PullToRefreshListView.MODE_PULL_UP_TO_REFRESH) {
+					queryMyAsk(myAdapter.pageNo, myAdapter, mpullToRefreshListview);
+				}
+				else if (curMode == PullToRefreshListView.MODE_PULL_UP_TO_REFRESH) {
 					myAdapter.pageNo++;
-					queryMyAsk(myAdapter.pageNo, myAdapter,
-							pullToRefreshListview);
+					queryMyAsk(myAdapter.pageNo, myAdapter, mpullToRefreshListview);
 				}
 				return false;
 			}
 		});
-		pullToRefreshListview
-				.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-					@Override
-					public void onItemClick(AdapterView<?> parent, View view,
-							int position, long id) {
-						Intent intent = new Intent(getActivity(),
-								AskDetailActivity.class);
-						intent.putExtra(BundleKeys.QUESTION_BEAN,
-								myAdapter.list.get(position));
-						startActivity(intent);
-					}
-				});
+		mpullToRefreshListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent intent = new Intent(getActivity(), AskDetailActivity.class);
+				intent.putExtra(BundleKeys.QUESTION_BEAN, myAdapter.list.get(position));
+				startActivity(intent);
+			}
+		});
 
-		queryMyAsk(myAdapter.pageNo, myAdapter, pullToRefreshListview);
+		queryMyAsk(myAdapter.pageNo, myAdapter, mpullToRefreshListview);
+
 		tadapter.mListViews.add(view);
 		tadapter.notifyDataSetChanged();
 		viewPager.setCurrentItem(0);
+
 	}
 
 	/**
@@ -273,42 +279,36 @@ public class HomeAskFragment extends BaseFragment {
 	 * @param adapter
 	 * @param pullToRefreshListview
 	 */
-	private void queryAllAsk(final int pageNo, final ListAdapter adapter,
-			final PullToRefreshListView pullToRefreshListview) {
+	private void queryAllAsk(final int pageNo, final ListAdapter adapter, final PullToRefreshListView pullToRefreshListview) {
 
-		sendRequestWithNoDialog(RequestPool.requestQannAns(pageNo),
-				new RequestProxy() {
+		sendRequestWithNoDialog(RequestPool.requestQannAns(pageNo), new RequestProxy() {
 
-					@Override
-					public void onSuccess(String msg, String result) {
-						Log.e(TAG, "result:" + result + " \n pageNo:" + pageNo);
-						JSONObject js = JSON.parseObject(result);
-						List<AskObj> items = JSON.parseArray(
-								js.getJSONObject("page").getString("result"),
-								AskObj.class);
+			@Override
+			public void onSuccess(String msg, String result) {
+				Log.e(TAG, "result:" + result + " \n pageNo:" + pageNo);
+				JSONObject js = JSON.parseObject(result);
+				List<AskObj> items = JSON.parseArray(js.getJSONObject("page").getString("result"), AskObj.class);
 
-						if (pageNo == 1) {
-							adapter.list.clear();
-							pullToRefreshListview
-									.setMode(PullToRefreshListView.MODE_BOTH);
-						}
-						if (items.size() > 0) {
-							adapter.list.addAll(items);
-						}
+				if (pageNo == 1) {
+					adapter.list.clear();
+					pullToRefreshListview.setMode(PullToRefreshListView.MODE_BOTH);
+				}
+				if (items.size() > 0) {
+					adapter.list.addAll(items);
+				}
 
-						if (items.size() < 8) {
-							pullToRefreshListview
-									.setMode(PullToRefreshListView.MODE_PULL_UP_TO_REFRESH);
-						}
-						adapter.notifyDataSetChanged();
-						pullToRefreshListview.onRefreshComplete();
-					}
+				if (items.size() < 8) {
+					pullToRefreshListview.setMode(PullToRefreshListView.MODE_PULL_UP_TO_REFRESH);
+				}
+				adapter.notifyDataSetChanged();
+				pullToRefreshListview.onRefreshComplete();
+			}
 
-					@Override
-					public void onError(String code, String msg) {
-						pullToRefreshListview.onRefreshComplete();
-					}
-				});
+			@Override
+			public void onError(String code, String msg) {
+				pullToRefreshListview.onRefreshComplete();
+			}
+		});
 
 	}
 
@@ -319,39 +319,35 @@ public class HomeAskFragment extends BaseFragment {
 	 * @param adapter
 	 * @param pullToRefreshListview
 	 */
-	private void queryMyAsk(final int pageNo, final ListAdapter adapter,
-			final PullToRefreshListView pullToRefreshListview) {
-		sendRequestWithNoDialog(RequestPool.requestMQannAns(pageNo),
-				new RequestProxy() {
+	private void queryMyAsk(final int pageNo, final ListAdapter adapter, final PullToRefreshListView pullToRefreshListview) {
+		sendRequestWithNoDialog(RequestPool.requestMQannAns(pageNo), new RequestProxy() {
 
-					@Override
-					public void onSuccess(String msg, String result) {
-						Log.e(TAG, "result:" + result);
-						JSONObject js = JSON.parseObject(result);
-						List<AskObj> items = JSON.parseArray(
-								js.getJSONObject("page").getString("result"),
-								AskObj.class);
+			@Override
+			public void onSuccess(String msg, String result) {
+				JSONObject js = JSON.parseObject(result);
+				List<AskObj> items = JSON.parseArray(js.getJSONObject("page").getString("result"), AskObj.class);
 
-						if (pageNo == 1) {
-							if (items.size() == 0) {
-								tv_mempty.setVisibility(View.VISIBLE);
-							}else{
-								tv_mempty.setVisibility(View.GONE);
-							}
-							adapter.list.clear();
-						}
-						if (items.size() > 0) {
-							adapter.list.addAll(items);
-						}
-						adapter.notifyDataSetChanged();
-						pullToRefreshListview.onRefreshComplete();
+				if (pageNo == 1) {
+					if (items.size() == 0) {
+						tv_mempty.setVisibility(View.VISIBLE);
 					}
-
-					@Override
-					public void onError(String code, String msg) {
-						pullToRefreshListview.onRefreshComplete();
+					else {
+						tv_mempty.setVisibility(View.GONE);
 					}
-				});
+					adapter.list.clear();
+				}
+				if (items.size() > 0) {
+					adapter.list.addAll(items);
+				}
+				adapter.notifyDataSetChanged();
+				pullToRefreshListview.onRefreshComplete();
+			}
+
+			@Override
+			public void onError(String code, String msg) {
+				pullToRefreshListview.onRefreshComplete();
+			}
+		});
 
 	}
 
@@ -362,9 +358,9 @@ public class HomeAskFragment extends BaseFragment {
 	 *
 	 */
 	class ListAdapter extends BaseAdapter {
-		ArrayList<AskObj> list;
-		private Context mContext;
-		int pageNo;
+		ArrayList<AskObj>	list;
+		private Context		mContext;
+		int					pageNo;
 
 		public ListAdapter(Context mContext) {
 			this.list = new ArrayList<AskObj>();
@@ -390,20 +386,15 @@ public class HomeAskFragment extends BaseFragment {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
-				convertView = LayoutInflater.from(mContext).inflate(
-						R.layout.ask_list_item, parent, false);
+				convertView = LayoutInflater.from(mContext).inflate(R.layout.ask_list_item, parent, false);
 			}
 			ImageView iv_head = BaseViewHolder.get(convertView, R.id.iv_head);
 			TextView tv_name = BaseViewHolder.get(convertView, R.id.tv_name);
 			TextView tv_title = BaseViewHolder.get(convertView, R.id.tv_title);
-			TextView tv_status = BaseViewHolder
-					.get(convertView, R.id.tv_status);
-			TextView tv_content = BaseViewHolder.get(convertView,
-					R.id.tv_content);
-			TextView tv_ask_date = BaseViewHolder.get(convertView,
-					R.id.tv_ask_date);
-			TextView tv_ask_location = BaseViewHolder.get(convertView,
-					R.id.tv_ask_location);
+			TextView tv_status = BaseViewHolder.get(convertView, R.id.tv_status);
+			TextView tv_content = BaseViewHolder.get(convertView, R.id.tv_content);
+			TextView tv_ask_date = BaseViewHolder.get(convertView, R.id.tv_ask_date);
+			TextView tv_ask_location = BaseViewHolder.get(convertView, R.id.tv_ask_location);
 
 			if (list.size() >= position) {
 				AskObj obj = list.get(position);
@@ -420,15 +411,12 @@ public class HomeAskFragment extends BaseFragment {
 		}
 	}
 
-	// @Override
-	// public boolean onRefresh(int curMode) {
-	//
-	// }
 
 	// tab adapter
 	class TabAdapter extends PagerAdapter {
 
-		List<View> mListViews;
+		List<View>	mListViews;
+		boolean isScroll;
 
 		public TabAdapter() {
 			this.mListViews = new ArrayList<View>();
@@ -438,6 +426,8 @@ public class HomeAskFragment extends BaseFragment {
 		public void destroyItem(ViewGroup container, int position, Object object) {
 			container.removeView(mListViews.get(position));
 		}
+
+
 
 		@Override
 		public Object instantiateItem(ViewGroup container, int position) {
@@ -457,7 +447,7 @@ public class HomeAskFragment extends BaseFragment {
 
 	}
 
-	int MODE = 1;
+	int	MODE	= 1;
 
 	/**
 	 * 页面切换，更新标题
@@ -479,7 +469,8 @@ public class HomeAskFragment extends BaseFragment {
 			if (postion == 0) {
 				rb_all.setChecked(true);
 				rb_my.setChecked(false);
-			} else if (1 == postion) {
+			}
+			else if (1 == postion) {
 				rb_all.setChecked(false);
 				rb_my.setChecked(true);
 			}

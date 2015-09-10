@@ -92,8 +92,8 @@ public class Api {
 			protected void onPostExecute(HttpResponseData result) {
 				if (listener != null) {
 					boolean success = result.getCode() == 200;
-					Log.e("test", "response:" + result.getDataString());
-					Log.e("test", "response:" + result.getCode());
+//					Log.e("test", "response:" + result.getDataString());
+//					Log.e("test", "response:" + result.getCode());
 					String respBody = "";
 					String msg = null;
 					if (success) {

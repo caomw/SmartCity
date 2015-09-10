@@ -53,14 +53,13 @@
 			Pocket         http://getpocket.com/developer/apps/new
     -->
 
-    <!--  <ShareSDK AppKey="996c45704e50" />-->
-    <ShareSDK AppKey="androidv1101" />
+      <ShareSDK AppKey="996c45704e50" />
  <!-- 修改成你在sharesdk后台注册的应用的appkey" -->
     <!-- ShareByAppClient标识是否使用微博客户端分享，默认是false -->
 
     <SinaWeibo
-        AppKey="568898243"
-        AppSecret="38a4f8204cc784f81f9f0daaf31e02e3"
+        AppKey="3040372731"
+        AppSecret="f890e3dc741088075c7db8536ed5cea1"
         Enable="true"
         Id="1"
         RedirectUrl="http://www.sharesdk.cn"
@@ -99,16 +98,16 @@
     -->
 
     <Wechat
-        AppId="wx4868b35061f87885"
-        AppSecret="64020361b8ec4c99936c0e3999a9f249"
+        AppId="wx4a0e2bd86525c6b9"
+        AppSecret="309b8d8a2372c1174063050000f31494"
         BypassApproval="false"
         Enable="true"
         Id="4"
         SortId="4" />
 
     <WechatMoments
-        AppId="wx4868b35061f87885"
-        AppSecret="64020361b8ec4c99936c0e3999a9f249"
+        AppId="wx4a0e2bd86525c6b9"
+        AppSecret="309b8d8a2372c1174063050000f31494"
         BypassApproval="false"
         Enable="true"
         Id="5"

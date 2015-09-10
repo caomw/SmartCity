@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
+
 import com.android.dcone.ut.view.annotation.ViewInject;
 import com.android.dcone.ut.view.annotation.event.OnClick;
 import com.dc.smartcity.R;
@@ -90,6 +92,8 @@ public class HomeMyFragment extends BaseFragment {
             name.setVisibility(View.GONE);
             tvNotlogin.setVisibility(View.VISIBLE);
             l_login.setVisibility(View.GONE);
+            userHead.setImageResource(R.drawable.default_head);
+            
         }
     }
 
@@ -147,8 +151,10 @@ public class HomeMyFragment extends BaseFragment {
                 // 分享
                 OnekeyShare share = new OnekeyShare();
                 share.setText(getString(R.string.share_content));
-//                share.setImageUrl(imageUrl);
+                share.setImageUrl("http://image.photophoto.cn/nm-6/018/030/0180300244.jpg");
                 share.show(getActivity());
+                
+                
                 break;
             case R.id.tv_feedback:
                 // 反馈

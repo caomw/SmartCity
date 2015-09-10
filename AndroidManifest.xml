@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.dc.smartcity"
-          android:versionCode="3"
-          android:versionName="1.1">
+          android:versionCode="5"
+          android:versionName="1.5">
 
     <uses-sdk
             android:minSdkVersion="15"
@@ -182,7 +182,7 @@
                 android:value="1"/>
         <meta-data
                 android:name="DC_APPKEY"
-                android:value="7586bdf953e849a295556ace30d01a25"/>
+                android:value="75454c119ef246599ee63ec4c5d2604e"/>
         <meta-data
                 android:name="UMENG_APPKEY"
                 android:value="55e403a467e58e67db001efd">

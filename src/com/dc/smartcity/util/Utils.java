@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class Utils {
     public static String accessTicket;//登录之后的凭证
+    public static boolean logExchangeFlag;//登录之后的凭证
     public static UserObj user;// 登录的用户信息
     public static DisplayMetrics dm;//屏幕宽高
 
@@ -56,6 +57,7 @@ public class Utils {
     public static void logout() {
         accessTicket = null;
         user = null;
+        logExchangeFlag = true;
     }
 
     /**

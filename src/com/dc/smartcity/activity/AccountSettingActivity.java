@@ -91,7 +91,7 @@ public class AccountSettingActivity extends BaseActionBarActivity {
         if (null != Utils.user) {
 
             if (null != Utils.user.userBase && !TextUtils.isEmpty(Utils.user.userBase.name)) {
-                tv_username.setText(Utils.user.userBase.name);
+                tv_username.setText(Utils.user.userBase.login);
             }
             if (null != Utils.user.userAuth && !TextUtils.isEmpty(Utils.user.userAuth.mobilenum)) {
                 tv_mobile.setText(Utils.mixPhone(Utils.user.userAuth.mobilenum));
@@ -112,9 +112,11 @@ public class AccountSettingActivity extends BaseActionBarActivity {
             }
 
             if (null != Utils.user.userAuth && "1".equals(Utils.user.userAuth.pwdstrength)) {
-                tv_loadpass.setText("强度(中)");
-            } else {
+                tv_loadpass.setText("强度(弱)");
+            } else if ((null != Utils.user.userAuth && "2".equals(Utils.user.userAuth.pwdstrength))) {
                 tv_loadpass.setText("强度(强)");
+            } else {
+                tv_loadpass.setText("强度(中)");
             }
         }
     }
@@ -135,6 +137,7 @@ public class AccountSettingActivity extends BaseActionBarActivity {
                 break;
             case R.id.btn_change_pass:
                 startActivity(new Intent(this, ChangePasswordAct.class));
+                finish();
                 break;
 
             default:

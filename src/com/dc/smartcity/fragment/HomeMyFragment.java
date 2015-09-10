@@ -3,6 +3,7 @@ package com.dc.smartcity.fragment;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,7 +82,11 @@ public class HomeMyFragment extends BaseFragment {
         if (Utils.isLogon()) {
             btn_exit.setVisibility(View.VISIBLE);
             name.setVisibility(View.VISIBLE);
-            name.setText(Utils.user.userBase.login);
+            if(TextUtils.isEmpty(Utils.user.userBase.name)){
+            	name.setText(Utils.user.userBase.login);
+            }else{
+            	name.setText(Utils.user.userBase.name);
+            }
             tvNotlogin.setVisibility(View.GONE);
             l_login.setVisibility(View.VISIBLE);
             ImageLoader.getInstance().displayImage(

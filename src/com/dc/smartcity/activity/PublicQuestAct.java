@@ -125,17 +125,17 @@ public class PublicQuestAct extends BaseActionBarActivity {
 	private void submitWg() {
 		String title = et_title.getText().toString().trim();
 		if (TextUtils.isEmpty(title)) {
-			Utils.showToast("微观标题不能为空", this);
+			Utils.showToast("标题不能为空", this);
 			return;
 		}
 		String content = et_content.getText().toString().trim();
 		if (TextUtils.isEmpty(content)) {
-			Utils.showToast("微观内容不能为空", this);
+			Utils.showToast("内容不能为空", this);
 			return;
 		}
 		String loc = tv_gps.getText().toString().trim();
 		if (TextUtils.isEmpty(loc)) {
-			Utils.showToast("微观地址不能为空", this);
+			Utils.showToast("地址不能为空", this);
 			return;
 		}
 

@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_gv"
-    
     android:orientation="horizontal" >
 
     <RelativeLayout
@@ -45,8 +44,7 @@
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:background="@color/main_line"
-             />
+            android:background="@color/main_line" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -67,13 +65,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:singleLine="true"
             android:gravity="left"
-            android:text="公交站点是不是可以变更位置啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"
             android:maxWidth="150dp"
+            android:singleLine="true"
+            android:text="公交站点是不是可以变更位置啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"
             android:textColor="@color/main_primary"
             android:textSize="16sp" />
-        
+
         <TextView
             android:id="@+id/tv_status"
             android:layout_width="wrap_content"
@@ -84,8 +82,6 @@
             android:text="办理中"
             android:textColor="@color/main_hint"
             android:textSize="15sp" />
-
-        
 
         <TextView
             android:id="@+id/tv_content"
@@ -115,12 +111,14 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/tv_ask_date"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"
-            android:text="威海市人民路"
-            android:drawableLeft="@drawable/gps"
-            android:textColor="@color/main_hint"
-            android:drawablePadding="3dp"
             android:layout_marginLeft="3dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/gps"
+            android:drawablePadding="3dp"
+            android:hint="威海市人民路"
+            android:maxLength="12"
+            android:singleLine="true"
+            android:textColor="@color/main_hint"
             android:textSize="@dimen/text_size_hint" />
     </RelativeLayout>
 

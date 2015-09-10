@@ -155,7 +155,7 @@ public class HomeAskFragment extends BaseFragment {
 		tv_actionbar_left.setVisibility(View.GONE);
 		et_actionbar_search.setVisibility(View.GONE);
 		tv_actionbar_title.setVisibility(View.VISIBLE);
-		tv_actionbar_title.setText("有问必答");
+		tv_actionbar_title.setText("服务热线");
 		iv_actionbar_right.setVisibility(View.VISIBLE);
 		iv_actionbar_right.setImageResource(R.drawable.pub);
 		iv_actionbar_right.setOnClickListener(new View.OnClickListener() {
@@ -398,7 +398,7 @@ public class HomeAskFragment extends BaseFragment {
 
 			if (list.size() >= position) {
 				AskObj obj = list.get(position);
-				ImageLoader.getInstance().displayImage(obj.photoUrl, iv_head);
+				ImageLoader.getInstance().displayImage(obj.photoUrl, iv_head,R.drawable.head);
 				tv_name.setText(obj.userName);
 				tv_title.setText(obj.title);
 				tv_status.setText(getString(R.string.tv_comment_num, obj.commentNum));// 需处理

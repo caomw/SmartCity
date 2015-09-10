@@ -11,10 +11,10 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 /**
- * ÈÕÆÚ¹¤¾ßÀà
+ * ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 public class DateTools {
-    // ³£ÓÃÈÕÆÚÊä³ö¸ñÊ½
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
     public final static String YYYYMMDD = "yyyyMMdd";
     public final static String YYYY_MM_DD = "yyyy-MM-dd";
     public final static String YYYY_M_D = "yyyy-M-d";
@@ -24,10 +24,10 @@ public class DateTools {
     public final static String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
     public final static String HHMMSS = "HHmmss";
     public final static String HH_MM_SS = "HH:mm:ss";
-    public final static String MM_SS = "MMÔÂddÈÕ";
+    public final static String MM_SS = "MMï¿½ï¿½ddï¿½ï¿½";
     public final static String YYYY_MM_DD_EE = "yyyy-MM-dd EE";
     public final static String YYYY_MM_DD_EEEE = "yyyy-MM-dd EEEE";
-    public final static String DATE_FORMAT_STR_CHINESE = "yyyyÄêMMÔÂddÈÕ";
+    public final static String DATE_FORMAT_STR_CHINESE = "yyyyï¿½ï¿½MMï¿½ï¿½ddï¿½ï¿½";
 
     public static final SimpleDateFormat DATE_FORMAT_DEFAULT = new SimpleDateFormat(YYYY_MM_DD_HH_MM_SS,
             Locale.getDefault());
@@ -53,20 +53,20 @@ public class DateTools {
 
     public static String formatDateTime(String timpstam) {
         long time = (long) Double.parseDouble(timpstam);
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date(time);
         return sdf.format(date);
     }
 
     /**
-     * »ñÈ¡Ïà²îÊ±¼ä ×Ö·û´®ÃèÊö xxÐ¡Ê±xx·Ö
+     * ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ xxÐ¡Ê±xxï¿½ï¿½
      *
      * @param cal1
      * @param cal2
      * @return
      */
     public static String getHoursMinute2String(Calendar cal1, Calendar cal2) {
-        long gap = (cal2.getTimeInMillis() - cal1.getTimeInMillis()) / (1000 * 60);// ¼ä¸ô·ÖÖÓ
+        long gap = (cal2.getTimeInMillis() - cal1.getTimeInMillis()) / (1000 * 60);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (gap < 0) {
             gap = gap + 1000 * 60 * 60 * 24;
         }
@@ -76,20 +76,20 @@ public class DateTools {
             long l2 = gap / 60;
             long l3 = gap % 60;
             if (l3 > 0) {
-                tip = l3 + "·ÖÖÓ";
+                tip = l3 + "ï¿½ï¿½ï¿½ï¿½";
             }
 
             tip = l2 + "Ð¡Ê±" + tip;
 
         } else if (gap > 0) {
-            tip = gap + "·ÖÖÓ";
+            tip = gap + "ï¿½ï¿½ï¿½ï¿½";
         }
 
         return tip;
     }
 
     /**
-     * ÊäÈëÒ»¸öÊ±¼ä£¬»ñÈ¡¸ÃÊ±¼äµÄÊ±¼ä´Á
+     * ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ä£¬ï¿½ï¿½È¡ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½
      *
      * @param @param  dateString
      * @param @return
@@ -97,12 +97,12 @@ public class DateTools {
      */
     public static long string2Timestamp(String dateString) throws ParseException {
         Date date1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dateString);
-        long temp = date1.getTime();// JAVAµÄÊ±¼ä´Á³¤¶ÈÊÇ13Î»
+        long temp = date1.getTime();// JAVAï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½13Î»
         return temp;
     }
 
     /**
-     * »ñÈ¡yyyy.MM.dd HH:mm:ss¸ñÊ½µÄµ±Ç°Ê±¼ä
+     * ï¿½ï¿½È¡yyyy.MM.dd HH:mm:ssï¿½ï¿½Ê½ï¿½Äµï¿½Ç°Ê±ï¿½ï¿½
      */
     public static String getNowDate() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -112,7 +112,7 @@ public class DateTools {
     }
 
     /**
-     * yyyy-MM-dd HH:mm:ss ÖÐ»ñÈ¡ yyyy-MM-dd
+     * yyyy-MM-dd HH:mm:ss ï¿½Ð»ï¿½È¡ yyyy-MM-dd
      *
      * @param date
      * @return
@@ -131,7 +131,7 @@ public class DateTools {
     }
 
     /**
-     * »ñÈ¡ÈÕÆÚ Ê±·ÖÃëÎª0
+     * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ Ê±ï¿½ï¿½ï¿½ï¿½Îª0
      *
      * @return
      */
@@ -161,10 +161,10 @@ public class DateTools {
     }
 
     /**
-     * ½«1900-01-01 07:00:00¸ñÊ½»¯Îª07:00
+     * ï¿½ï¿½1900-01-01 07:00:00ï¿½ï¿½Ê½ï¿½ï¿½Îª07:00
      *
      * @param strTime
-     * @return 07:00¸ñÊ½
+     * @return 07:00ï¿½ï¿½Ê½
      */
     public static String formatTime(String strTime) {
         SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -179,19 +179,19 @@ public class DateTools {
     }
 
     /**
-     * »ñÈ¡Ïà²îÌìÊý
+     * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      *
      * @param cal1
      * @param cal2
      * @return
      */
     public static int getBetween(Calendar cal1, Calendar cal2) {
-        long gap = (cal2.getTimeInMillis() - cal1.getTimeInMillis()) / (1000 * 3600 * 24);// ´Ó¼ä¸ôºÁÃë±ä³É¼ä¸ôÌìÊý
+        long gap = (cal2.getTimeInMillis() - cal1.getTimeInMillis()) / (1000 * 3600 * 24);// ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         return (int) gap;
     }
 
     /**
-     * »ñÈ¡Ïà²îÌìÊý È¥³ýºóÃæµÄÊ±·ÖÃë »ñÈ¡Ïà²îÌìÊý
+     * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      *
      * @param cal1
      * @param cal2
@@ -199,7 +199,7 @@ public class DateTools {
      */
     public static int getBetween2(Calendar cal1, Calendar cal2) {
         long gap = (getCalendar((Calendar) cal2.clone()).getTimeInMillis() - getCalendar(cal1).getTimeInMillis())
-                / (1000 * 3600 * 24);// ´Ó¼ä¸ôºÁÃë±ä³É¼ä¸ôÌìÊý
+                / (1000 * 3600 * 24);// ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         return (int) gap;
     }
 
@@ -232,11 +232,11 @@ public class DateTools {
     }
 
     /**
-     * yyyy-MM-dd HH:mm:ss ×Ö·û´®¸ñÊ½µÄÁ½¸öÊ±¼äµÄ¼õ·¨
+     * yyyy-MM-dd HH:mm:ss ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
      *
-     * @param str1 ¼õÊý
-     * @param str2 ±»¼õÊý
-     * @return ·µ»ØºÁÃë¼¶±ðµÄÊ±¼äµ¥Î»
+     * @param str1 ï¿½ï¿½ï¿½ï¿½
+     * @param str2 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+     * @return ï¿½ï¿½ï¿½Øºï¿½ï¿½ë¼¶ï¿½ï¿½ï¿½Ê±ï¿½äµ¥Î»
      */
     public static long getTimeTwoString(String str1, String str2) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -253,7 +253,7 @@ public class DateTools {
     }
 
     /**
-     * °ÑºÁÃë»ù±¾µÄÊ±¼ä¸ñÊ½×ª»¯Îª hh:mm:ss ¸ñÊ½µÄÊ±¼ä
+     * ï¿½Ñºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ê½×ªï¿½ï¿½Îª hh:mm:ss ï¿½ï¿½Ê½ï¿½ï¿½Ê±ï¿½ï¿½
      *
      * @param diff
      * @return

@@ -77,7 +77,7 @@
     <string name="btn_confirm">确        定</string>
     <string name="btn_submit">提        交</string>
     <string name="tv_notify">提        示</string>
-    <string name="tv_account_msg">你的账户信息</string>
+    <string name="tv_account_msg">您的账户信息</string>
     <string name="tv_username">用户名:</string>
     <string name="tv_loginname">登录名:</string>
     <string name="tv_authname">实名认证:</string>

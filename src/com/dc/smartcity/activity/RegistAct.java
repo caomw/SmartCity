@@ -104,6 +104,10 @@ public class RegistAct extends BaseActionBarActivity {
 		else if (TextUtils.isEmpty(pass2)) {
 			Utils.showToast("密码不能为空", RegistAct.this);
 		}
+		else if (pass.length() < 6) {
+			Utils.showToast("密码过于简单", RegistAct.this);
+		}
+
 		else if (!pass.equals(pass2)) {
 			Utils.showToast("两次输入的密码不一致", RegistAct.this);
 		}

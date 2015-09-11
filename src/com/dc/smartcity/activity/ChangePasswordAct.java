@@ -3,6 +3,7 @@ package com.dc.smartcity.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -83,8 +84,7 @@ public class ChangePasswordAct extends BaseActionBarActivity {
 
                     @Override
                     public void onError(String code, String msg) {
-                        Utils.showToast("修改失败", ChangePasswordAct.this);
-                        finish();
+                        Utils.showToast("失败:"+msg, ChangePasswordAct.this);
                     }
                 });
 

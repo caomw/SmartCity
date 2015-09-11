@@ -75,10 +75,27 @@ public class Utils {
      * @return
      */
     public static boolean isRealName() {
-        if (null == user) {
+        if (null == user || null == user.userBase) {
             return false;
         }
-        return (!"01".equals(user.userBase.level) && !"0201".equals(user.userBase.level));
+        return ("01".equals(user.userBase.level) || "02".equals(user.userBase.level) || "03".equals(user.userBase.level));
+    }
+
+    public static String getRealNameStatus() {
+        if (null == user || null == user.userBase) {
+            return "";
+        }
+        if ("01".equals(user.userBase.level)) {
+            return "去实名认证";
+        } else if ("02".equals(user.userBase.level)) {
+            return "高级实名认证";
+        } else if ("03".equals(user.userBase.level)) {
+            return "高级实名认证";
+        } else if ("0201".equals(user.userBase.level)) {
+            return "待审核";
+        } else {
+            return "";
+        }
     }
 
 

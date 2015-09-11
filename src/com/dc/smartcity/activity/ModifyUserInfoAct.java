@@ -107,7 +107,7 @@ public class ModifyUserInfoAct extends BaseActionBarActivity implements
                 }
             });
         } else {
-            tv_auth.setText("已认证");
+            tv_auth.setText(Utils.getRealNameStatus());
             et_realname.setEnabled(false);
 
             rb_sex_female.setClickable(false);

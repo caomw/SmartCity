@@ -107,7 +107,7 @@ public class AccountSettingActivity extends BaseActionBarActivity {
             if (!Utils.isRealName()) {
                 tv_authname.setText(R.string.tv_unauth);
             } else {
-                tv_authname.setText(R.string.tv_alauth);
+                tv_authname.setText(Utils.getRealNameStatus());
                 btn_auth.setVisibility(View.GONE);
             }
 

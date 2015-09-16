@@ -11,3 +11,4 @@ ant.properties
 build.xml
 local.properties
 proguard-project.txt
+sh.exe.stackdump

@@ -63,6 +63,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:gravity="top"
+                    android:inputType="textMultiLine"
                     android:hint="@string/hint_et_content"
                     android:lines="5" />
             </LinearLayout>
